@@ -16,8 +16,13 @@
     "typecheck": "tsc --noEmit"
   },
   "dependencies": {
+    "@chakra-ui/icons": "^2.1.1",
+    "@chakra-ui/react": "^2.8.2",
     "@emotion/react": "^11.11.4",
     "@emotion/styled": "^11.11.5",
+    "@fontsource-variable/eb-garamond": "^5.0.19",
+    "@fontsource-variable/open-sans": "^5.0.29",
+    "framer-motion": "^11.2.14",
     "gatsby": "^5.13.5",
     "gatsby-plugin-emotion": "^8.13.1",
     "gatsby-plugin-google-gtag": "^5.13.1",
@@ -27,7 +32,8 @@
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "react": "^18.2.0",
-    "react-dom": "^18.2.0"
+    "react-dom": "^18.2.0",
+    "react-icons": "^5.2.1"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
