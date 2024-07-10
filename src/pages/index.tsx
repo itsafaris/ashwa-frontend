@@ -65,6 +65,7 @@ export default function Page() {
       <BadgesSection />
       <RecommendedUsageSection />
       <ComparisonSection />
+      <FactsFromCustomersSection />
       <ReviewsSection reviews={reviews} />
       <Footer />
     </Box>
@@ -544,6 +545,58 @@ function ComparisonSection() {
             </Flex>
           </SimpleGrid>
         </GridItem>
+      </SimpleGrid>
+    </Container>
+  );
+}
+
+function FactsFromCustomersSection() {
+  const facts = [
+    {
+      number: "92%",
+      fact: "Feel more balanced and less stressed within just 3 weeks of daily use",
+    },
+    {
+      number: "37 min",
+      fact: "Less time to fall asleep",
+    },
+    {
+      number: "78%",
+      fact: "No longer need their afternoon coffee",
+    },
+  ];
+  return (
+    <Container maxWidth={"1200px"} my={20}>
+      <Heading textAlign={"center"}>
+        We know for a <Span textDecoration={"underline"}>fact</Span>, you will
+        be calmer
+      </Heading>
+      <Text textAlign={"center"} my={4}>
+        Based on our{" "}
+        <Span textDecoration={"underline"}>customer survey study</Span> , who've
+        used our product for more than 3 weeks
+      </Text>
+      <SimpleGrid
+        columns={[1, 1, 3]}
+        alignItems={"start"}
+        justifyContent={"center"}
+        justifyItems={"center"}
+      >
+        {facts.map((fact, idx) => (
+          <Flex
+            key={idx}
+            direction={"column"}
+            alignItems={"center"}
+            maxW={"260px"}
+          >
+            <Text fontSize={"6xl"} fontWeight={"bold"} fontFamily={"heading"}>
+              {fact.number}
+            </Text>
+            <Text textAlign={"center"} fontSize={"sm"} fontWeight={"semibold"}>
+              {fact.fact}
+            </Text>
+          </Flex>
+        ))}
       </SimpleGrid>
     </Container>
   );
