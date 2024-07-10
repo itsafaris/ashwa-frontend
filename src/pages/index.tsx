@@ -3,7 +3,6 @@ import { Link, type HeadFC, type PageProps } from "gatsby";
 import {
   Box,
   Flex,
-  Image,
   Heading,
   Text,
   Button,
@@ -11,12 +10,17 @@ import {
   SimpleGrid,
   Icon,
   Container,
-  IconButton,
+  GridItem,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoPersonCircle } from "react-icons/io5";
-import { FaCheckCircle, FaShippingFast, FaStar } from "react-icons/fa";
+import {
+  FaCheck,
+  FaCheckCircle,
+  FaShippingFast,
+  FaTimes,
+} from "react-icons/fa";
 import { LiaFlagUsaSolid } from "react-icons/lia";
 import { RiRefund2Line } from "react-icons/ri";
 import { Logo } from "../components/logo";
@@ -24,6 +28,33 @@ import { Rating, Span } from "../components/components";
 import { Review, reviews } from "../reviews";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
+
+const comparisonData = [
+  {
+    your_product: "Handles stress with ease",
+    competitors: "Overwhelmed by daily stress",
+  },
+  {
+    your_product: "Enjoys steady, all-day energy",
+    competitors: "Struggles with energy crashes",
+  },
+  {
+    your_product: "Sleeps soundly, wakes refreshed",
+    competitors: "Tosses and turns at night",
+  },
+  {
+    your_product: "Skin glows with vitality",
+    competitors: "Skin looks dull and tired",
+  },
+  {
+    your_product: "Balanced mood, stronger connections",
+    competitors: "Mood swings affect relationships",
+  },
+  {
+    your_product: "Crushing goals, living vibrantly",
+    competitors: "Feels stuck in a rut",
+  },
+];
 
 export default function Page() {
   return (
@@ -33,6 +64,7 @@ export default function Page() {
       <HeroSection />
       <BadgesSection />
       <RecommendedUsageSection />
+      <ComparisonSection />
       <ReviewsSection reviews={reviews} />
       <Footer />
     </Box>
@@ -442,10 +474,85 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
   );
 }
 
+function ComparisonSection() {
+  const ours = comparisonData.map((it) => it.your_product);
+  const theirs = comparisonData.map((it) => it.competitors);
+
+  return (
+    <Container maxWidth={"1200px"} my={20}>
+      <SimpleGrid spacing={8} columns={[1, 1, 5]} alignItems={"center"}>
+        <GridItem colSpan={[1, 1, 2]}>
+          <StaticImage
+            src="../images/stressed.png"
+            alt="stressed woman"
+            width={400}
+            style={{ borderRadius: 16 }}
+          />
+        </GridItem>
+        <GridItem colSpan={[1, 1, 3]}>
+          <Heading>Conquer Chaos, Embrace Calm!</Heading>
+          <Text my={4}>
+            78% of women aged 25-45 battle daily stress. Our gummies have helped
+            100,000+ women reclaim their calm and energy. Join them. Stress
+            less. Achieve more. Glow naturally. Your vibrant life starts now.*
+          </Text>
+
+          <SimpleGrid flex={1} columns={[1, 1, 2]} spacing={2}>
+            <Flex direction={"column"} gap={"1px"} bg="white">
+              {ours.map((it) => (
+                <Flex
+                  key={it}
+                  py={3}
+                  px={3}
+                  bg="teal.400"
+                  alignItems={"center"}
+                  color="white"
+                  gap={2}
+                >
+                  <Icon as={FaCheck} />
+                  <Text
+                    whiteSpace={"nowrap"}
+                    fontWeight={"semibold"}
+                    fontSize={"sm"}
+                  >
+                    {it}
+                  </Text>
+                </Flex>
+              ))}
+            </Flex>
+            <Flex direction={"column"} bg="white">
+              {theirs.map((it, idx) => (
+                <Flex
+                  key={it}
+                  py={3}
+                  px={3}
+                  borderBottom={"1px solid"}
+                  borderBottomColor={"gray.100"}
+                  alignItems={"center"}
+                  gap={2}
+                >
+                  <Icon as={FaTimes} color="red.400" />
+                  <Text
+                    whiteSpace={"nowrap"}
+                    fontWeight={"semibold"}
+                    fontSize={"sm"}
+                  >
+                    {it}
+                  </Text>
+                </Flex>
+              ))}
+            </Flex>
+          </SimpleGrid>
+        </GridItem>
+      </SimpleGrid>
+    </Container>
+  );
+}
+
 function Footer(props: {}) {
   return (
     <Flex py={20} bg="bg.100" color="bg.700">
-      <Container as={Flex} minWidth={1200} direction={"column"} gap={8}>
+      <Container as={Flex} maxWidth={1200} direction={"column"} gap={8}>
         <Flex direction={"column"} gap={2}>
           <Flex gap={4} alignItems={"center"}>
             <Logo height={"24px"} color={"primary.400"} />
