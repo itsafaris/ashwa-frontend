@@ -1,5 +1,5 @@
 import * as React from "react";
-import type { HeadFC, PageProps } from "gatsby";
+import { Link, type HeadFC, type PageProps } from "gatsby";
 import {
   Box,
   Flex,
@@ -34,6 +34,7 @@ export default function Page() {
       <BadgesSection />
       <RecommendedUsageSection />
       <ReviewsSection reviews={reviews} />
+      <Footer />
     </Box>
   );
 }
@@ -381,7 +382,7 @@ function RecommendedUsageSection() {
 
 function ReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
-    <Box py={4} px={4}>
+    <Box my={8} px={4}>
       <Container>
         <Heading my={4}>Our customers love us!</Heading>
         <Flex my={2} justifyContent={"space-between"}>
@@ -438,6 +439,70 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         </Flex>
       </Container>
     </Box>
+  );
+}
+
+function Footer(props: {}) {
+  return (
+    <Flex py={20} bg="bg.100" color="bg.700">
+      <Container as={Flex} minWidth={1200} direction={"column"} gap={8}>
+        <Flex direction={"column"} gap={2}>
+          <Flex gap={4} alignItems={"center"}>
+            <Logo height={"24px"} color={"primary.400"} />
+            <Span color="primary.400">ZenPro™</Span>
+          </Flex>
+          <Text
+            textAlign={"center"}
+            fontSize={"4xl"}
+            fontWeight={"black"}
+            fontFamily={"heading"}
+          >
+            Stress Reduction Gummies
+            <br /> for busy moms
+          </Text>
+        </Flex>
+        <SimpleGrid
+          columns={[1, 1, 2]}
+          alignItems={"center"}
+          justifyItems={"center"}
+        >
+          <Flex direction={"column"} justifyContent={"center"}>
+            <Text fontWeight={"semibold"}>Operational Address</Text>
+            <Text>
+              Suite 403-B, 1013 Centre Road
+              <br /> City of Wilmington <br /> Delaware - 19805.
+            </Text>
+          </Flex>
+          <Flex gap={2} flexWrap={"wrap"} maxWidth={"220px"}>
+            <Text>About us</Text>
+            <Text>Affiliates</Text>
+            <Text>FAQs</Text>
+            <Text>Help</Text>
+            <Text>Blog</Text>
+            <Text>Learn</Text>
+          </Flex>
+        </SimpleGrid>
+        <Flex direction={"column"} gap={2}>
+          <Text fontSize={"sm"} textAlign={"center"}>
+            ©2024 ZenPro. All rights reserved.
+          </Text>
+          <Flex gap={4} justifyContent={"center"} textDecoration={"underline"}>
+            <Link to="/">Terms of Service</Link>
+            <Link to="/">Privacy policy</Link>
+            <Link to="/">Shipping & Returns</Link>
+            <Link to="/">Refund policy</Link>
+          </Flex>
+          <Text my={4} fontSize={"xs"}>
+            The statements made on this website have not been evaluated by the
+            FDA (U.S. Food & Drug Administration). The products sold on this
+            website are not intended to diagnose, treat, cure, or prevent any
+            disease. The information provided by this website or this company is
+            not a substitute for a face-to-face consultation with your
+            physician, and should not be construed as individual medical advice.
+          </Text>
+        </Flex>
+      </Container>
+    </Flex>
   );
 }
 
