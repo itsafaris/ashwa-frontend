@@ -139,7 +139,66 @@ const HeroSection = () => (
   </Box>
 );
 
+type PurchaseType = "subscription" | "one-off";
+
+const getProducts = (type: PurchaseType) => {
+  const subExtraDiscount = 10;
+
+  return [
+    {
+      count: 3,
+      unitServingsCount: 30,
+      unitPrice: type === "one-off" ? 41.99 : 34.99,
+      discount: 40,
+      subtitle: "Great for building new habits",
+      image: (
+        <StaticImage
+          alt="ashwagandha supplements bottle"
+          src={"../images/product2.png"}
+        />
+      ),
+    },
+    {
+      count: 6,
+      unitServingsCount: 30,
+      unitPrice: type === "one-off" ? 30.0 : 25.99,
+      discount: 50,
+      subtitle: "For achieving the most sustainable results",
+      image: (
+        <StaticImage
+          alt="ashwagandha supplements bottle"
+          src={"../images/product2.png"}
+        />
+      ),
+    },
+    {
+      count: 1,
+      unitServingsCount: 30,
+      unitPrice: type === "one-off" ? 55.99 : 47.99,
+      discount: 30,
+      subtitle: "Ideal solution for trying out",
+      image: (
+        <StaticImage
+          alt="ashwagandha supplements bottle"
+          src={"../images/product2.png"}
+        />
+      ),
+    },
+  ].map((p) => ({
+    ...p,
+    discount:
+      type === "subscription" ? p.discount + subExtraDiscount : p.discount,
+  }));
+};
+
+type Product = ReturnType<typeof getProducts>[number];
+
 function ProductSelection() {
+  const [purchaseType, setPurchaseType] =
+    React.useState<PurchaseType>("subscription");
+
+  const productList = getProducts(purchaseType);
+
   return (
     <Flex id="product-selection" direction={"column"} alignItems={"center"}>
       <SimpleGrid
@@ -152,18 +211,37 @@ function ProductSelection() {
         borderRadius={"md"}
         padding={1}
       >
-        <Button size="sm" variant={"solid"} colorScheme="bg">
+        <Button
+          size="sm"
+          variant={purchaseType === "one-off" ? "solid" : "ghost"}
+          colorScheme="bg"
+          onClick={() => setPurchaseType("one-off")}
+        >
           One time purchase
         </Button>
-        <Button size="sm" variant={"ghost"} gap={2}>
+        <Button
+          size="sm"
+          variant={purchaseType === "subscription" ? "solid" : "ghost"}
+          colorScheme="bg"
+          gap={2}
+          onClick={() => setPurchaseType("subscription")}
+        >
           <Text>Subscribe</Text> <Badge colorScheme="red">Sale %</Badge>
         </Button>
       </SimpleGrid>
 
       <SimpleGrid columns={[1, 1, 3]} gap={4}>
-        <ProductSelectItem />
-        <ProductSelectItem />
-        <ProductSelectItem />
+        <ProductSelectItem
+          product={productList[0]}
+          badgeText={`Best value SAVE ${productList[0].discount}%`}
+          badgeBg="green.500"
+        />
+        <ProductSelectItem
+          product={productList[1]}
+          badgeText={`Most popular SAVE ${productList[1].discount}%`}
+          badgeBg="purple.500"
+        />
+        <ProductSelectItem product={productList[2]} />
       </SimpleGrid>
 
       <Box mt={4}>
@@ -176,46 +254,87 @@ function ProductSelection() {
   );
 }
 
-function ProductSelectItem() {
+function ProductSelectItem({
+  product,
+  badgeText,
+  badgeBg,
+}: {
+  product: Product;
+  badgeText?: string;
+  badgeBg?: string;
+}) {
   return (
-    <Flex direction={"column"} bg="white" p={4} borderRadius={"md"}>
-      <Flex alignItems={"center"} gap={4} flexWrap={"wrap"}>
-        <Image
-          mt={3}
-          width={130}
-          height={"auto"}
-          src="https://bioma.health/_next/image?url=%2FImages%2FCheckout%2F3-months.png&w=828&q=75"
-        />
-        <Box>
-          <Text fontSize={"lg"} fontWeight={"semibold"}>
-            1 month supply
-          </Text>
-          <Text fontSize={"xs"}>Great for building new habits</Text>
-          <Flex gap={2} mt={3} fontSize={"lg"}>
-            <Text fontWeight={"semibold"}>$34.99</Text>
-            <Text textDecoration={"line-through"} color={"red.400"}>
-              $59.99
+    <Box position={"relative"}>
+      <Box
+        color="white"
+        px={2}
+        py={1}
+        fontSize={"xs"}
+        bg={badgeBg}
+        textAlign={"center"}
+        fontWeight={"semibold"}
+        borderRadius={"sm"}
+        position={"absolute"}
+        top={1}
+        left={1}
+      >
+        {badgeText ?? "\u200b"}
+      </Box>
+      <Flex
+        direction={"column"}
+        bg="white"
+        p={4}
+        borderRadius={"md"}
+        border="1px solid"
+        borderColor={"bg.100"}
+      >
+        <SimpleGrid
+          columns={[2, 2, 1]}
+          alignItems={"center"}
+          gap={4}
+          flexWrap={"wrap"}
+        >
+          {product.image}
+          <Box>
+            <Text fontSize={"lg"} fontWeight={"semibold"}>
+              {product.count} month supply
             </Text>
-          </Flex>
-          <Text fontSize={"sm"} color="gray.600">
-            Per bottle
-          </Text>
+            <Text fontSize={"xs"} minHeight={"3em"}>
+              {product.subtitle}
+            </Text>
+            <Flex gap={2} mt={3} fontSize={"lg"}>
+              <Text fontWeight={"semibold"}>
+                ${product.unitPrice.toFixed(2)}
+              </Text>
+              <Text textDecoration={"line-through"} color={"red.400"}>
+                $
+                {(product.unitPrice / ((100 - product.discount) / 100)).toFixed(
+                  2
+                )}
+              </Text>
+            </Flex>
+            <Text fontSize={"sm"} color="gray.600">
+              Per bottle
+            </Text>
 
-          <Flex direction={"column"} gap={1} fontSize={"sm"} my={3}>
-            <Text>30 servings</Text>
-            <Text>$0.85 per day</Text>
-            <Text>3 bottles delivered</Text>
-          </Flex>
-        </Box>
+            <Flex direction={"column"} gap={1} fontSize={"sm"} my={3}>
+              <Text>{product.count * product.unitServingsCount} servings</Text>
+              <Text>${(product.unitPrice / 30).toFixed(2)} per day</Text>
+              <Text>
+                {product.count} bottle{product.count === 1 ? "" : "s"} delivered
+              </Text>
+            </Flex>
+          </Box>
+        </SimpleGrid>
+
+        <Button mt={3} colorScheme="primary">
+          Order now
+        </Button>
+        <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
+          Cancel anytime. Free shipping
+        </Text>
       </Flex>
-
-      <Button mt={3} colorScheme="primary">
-        Order now
-      </Button>
-      <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
-        Cancel anytime. Free shipping
-      </Text>
-    </Flex>
+    </Box>
   );
 }
 
