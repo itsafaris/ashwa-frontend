@@ -22,11 +22,11 @@ import { Span } from "../components/components";
 
 export default function Page() {
   return (
-    <>
+    <Box bg="bg.50">
       <Banner />
       <Header />
       <HeroSection />
-    </>
+    </Box>
   );
 }
 
@@ -88,14 +88,14 @@ const HeroSection = () => (
       </Heading>
     </Box>
     <Container maxWidth={"1000px"}>
-      <SimpleGrid columns={[1, 1, 2]} spacing={4}>
+      <SimpleGrid columns={[1, 1, 2]} spacing={4} py={4}>
         <Box>
-          <Image
-            src="https://placehold.co/800x800"
+          <StaticImage
+            src="../images/product1.png"
             alt="Ashwagandha Supplement"
           />
         </Box>
-        <Box minWidth={"400px"} py={4} px={8}>
+        <Box>
           <Text color="purple.700" fontWeight={"bold"}>
             Summer Sale
           </Text>
@@ -131,21 +131,92 @@ const HeroSection = () => (
               <Text key={b}>{b}</Text>
             ))}
           </Flex>
-          <Box mt={4}>
-            <Button colorScheme="teal" size="lg">
-              Add to Cart
-            </Button>
-          </Box>
-          <Box mt={4}>
-            <Badge colorScheme="green">Money-back Guarantee</Badge>
-            <Badge colorScheme="blue" ml={2}>
-              Free Shipping
-            </Badge>
-          </Box>
         </Box>
       </SimpleGrid>
+
+      <ProductSelection />
     </Container>
   </Box>
 );
+
+function ProductSelection() {
+  return (
+    <Flex id="product-selection" direction={"column"} alignItems={"center"}>
+      <SimpleGrid
+        columns={2}
+        my={4}
+        gap={2}
+        border="1px solid"
+        borderColor={"bg.200"}
+        bg="bg.50"
+        borderRadius={"md"}
+        padding={1}
+      >
+        <Button size="sm" variant={"solid"} colorScheme="bg">
+          One time purchase
+        </Button>
+        <Button size="sm" variant={"ghost"} gap={2}>
+          <Text>Subscribe</Text> <Badge colorScheme="red">Sale %</Badge>
+        </Button>
+      </SimpleGrid>
+
+      <SimpleGrid columns={[1, 1, 3]} gap={4}>
+        <ProductSelectItem />
+        <ProductSelectItem />
+        <ProductSelectItem />
+      </SimpleGrid>
+
+      <Box mt={4}>
+        <Badge colorScheme="green">Money-back Guarantee</Badge>
+        <Badge colorScheme="blue" ml={2}>
+          Free Shipping
+        </Badge>
+      </Box>
+    </Flex>
+  );
+}
+
+function ProductSelectItem() {
+  return (
+    <Flex direction={"column"} bg="white" p={4} borderRadius={"md"}>
+      <Flex alignItems={"center"} gap={4} flexWrap={"wrap"}>
+        <Image
+          mt={3}
+          width={130}
+          height={"auto"}
+          src="https://bioma.health/_next/image?url=%2FImages%2FCheckout%2F3-months.png&w=828&q=75"
+        />
+        <Box>
+          <Text fontSize={"lg"} fontWeight={"semibold"}>
+            1 month supply
+          </Text>
+          <Text fontSize={"xs"}>Great for building new habits</Text>
+          <Flex gap={2} mt={3} fontSize={"lg"}>
+            <Text fontWeight={"semibold"}>$34.99</Text>
+            <Text textDecoration={"line-through"} color={"red.400"}>
+              $59.99
+            </Text>
+          </Flex>
+          <Text fontSize={"sm"} color="gray.600">
+            Per bottle
+          </Text>
+
+          <Flex direction={"column"} gap={1} fontSize={"sm"} my={3}>
+            <Text>30 servings</Text>
+            <Text>$0.85 per day</Text>
+            <Text>3 bottles delivered</Text>
+          </Flex>
+        </Box>
+      </Flex>
+
+      <Button mt={3} colorScheme="primary">
+        Order now
+      </Button>
+      <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
+        Cancel anytime. Free shipping
+      </Text>
+    </Flex>
+  );
+}
 
 export const Head: HeadFC = () => <title>Home Page</title>;
