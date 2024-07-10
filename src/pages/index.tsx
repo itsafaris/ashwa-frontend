@@ -13,12 +13,17 @@ import {
   Container,
   IconButton,
 } from "@chakra-ui/react";
-import { CheckCircleIcon } from "@chakra-ui/icons";
 import { StaticImage } from "gatsby-plugin-image";
 import { FiShoppingCart } from "react-icons/fi";
-import { FaStar } from "react-icons/fa";
+import { IoPersonCircle } from "react-icons/io5";
+import { FaCheckCircle, FaShippingFast, FaStar } from "react-icons/fa";
+import { LiaFlagUsaSolid } from "react-icons/lia";
+import { RiRefund2Line } from "react-icons/ri";
 import { Logo } from "../components/logo";
-import { Span } from "../components/components";
+import { Rating, Span } from "../components/components";
+import { Review, reviews } from "../reviews";
+
+const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
 export default function Page() {
   return (
@@ -26,6 +31,9 @@ export default function Page() {
       <Banner />
       <Header />
       <HeroSection />
+      <BadgesSection />
+      <RecommendedUsageSection />
+      <ReviewsSection reviews={reviews} />
     </Box>
   );
 }
@@ -104,21 +112,12 @@ const HeroSection = () => (
           </Heading>
           <Flex alignItems={"center"} gap={2} py={2}>
             <Text fontSize={"sm"}>4.8</Text>
-            <Flex gap={1}>
-              {Array(5)
-                .fill("")
-                .map((_, idx) => (
-                  <Icon
-                    key={idx}
-                    boxSize={"12px"}
-                    color={"orange.300"}
-                    as={FaStar}
-                  />
-                ))}
-            </Flex>
-            <Text fontSize={"sm"} decoration={"underline"}>
-              1247 Reviews
-            </Text>
+            <Rating />
+            <a href="#reviews">
+              <Text fontSize={"sm"} decoration={"underline"}>
+                {TOTAL_NUMBER_OF_REVIEWS} Reviews
+              </Text>
+            </a>
           </Flex>
           <Text mt={4}>
             Meet the fastest growing alternative to regular coffee and
@@ -243,13 +242,6 @@ function ProductSelection() {
         />
         <ProductSelectItem product={productList[2]} />
       </SimpleGrid>
-
-      <Box mt={4}>
-        <Badge colorScheme="green">Money-back Guarantee</Badge>
-        <Badge colorScheme="blue" ml={2}>
-          Free Shipping
-        </Badge>
-      </Box>
     </Flex>
   );
 }
@@ -334,6 +326,117 @@ function ProductSelectItem({
           Cancel anytime. Free shipping
         </Text>
       </Flex>
+    </Box>
+  );
+}
+
+function BadgesSection() {
+  return (
+    <SimpleGrid
+      mt={4}
+      columns={[1, 1, 3]}
+      bg="white"
+      py={4}
+      flexWrap={"wrap"}
+      spacing={3}
+      justifyItems={"center"}
+      color="gray.700"
+      id="reviews"
+    >
+      <Flex alignItems={"center"} gap={2}>
+        <Icon boxSize={6} as={FaShippingFast} />
+        <Text fontWeight={"bold"}>Free Shipping</Text>
+      </Flex>
+      <Flex alignItems={"center"} gap={2}>
+        <Icon boxSize={6} as={RiRefund2Line} />
+        <Text fontWeight={"bold"}>14-Day Money-back Guarantee</Text>
+      </Flex>
+      <Flex alignItems={"center"} gap={2}>
+        <Icon boxSize={6} as={LiaFlagUsaSolid} />
+        <Text fontWeight={"bold"}>Blended in the USA</Text>
+      </Flex>
+    </SimpleGrid>
+  );
+}
+
+function RecommendedUsageSection() {
+  return (
+    <Flex mt={4} py={4}>
+      <Container as={Flex} flexWrap={"wrap"} gap={3} alignItems={"center"}>
+        <StaticImage
+          src="../images/product2.png"
+          alt="bundle of 3 supplement bottles"
+          width={100}
+        />
+        <Text flex={1} fontSize={"sm"}>
+          💡 We recommend starting with the{" "}
+          <Span fontWeight={"bold"}>3-month plan</Span> to achieve effective
+          results or a <Span fontWeight={"bold"}>6-month plan</Span> to form a
+          longer-lasting routine.
+        </Text>
+      </Container>
+    </Flex>
+  );
+}
+
+function ReviewsSection({ reviews }: { reviews: Review[] }) {
+  return (
+    <Box py={4} px={4}>
+      <Container>
+        <Heading my={4}>Our customers love us!</Heading>
+        <Flex my={2} justifyContent={"space-between"}>
+          <Text fontSize={"sm"}>
+            Showing <Span decoration={"underline"}>most recent</Span> reviews
+            from <Span decoration={"underline"}>United States</Span>{" "}
+          </Text>
+          <Text fontSize={"xs"} color="gray.500">
+            <Span color="black" fontWeight={"semibold"}>
+              {reviews.length}
+            </Span>{" "}
+            / {TOTAL_NUMBER_OF_REVIEWS}
+          </Text>
+        </Flex>
+        <Flex direction={"column"} gap={2}>
+          {reviews.map((review, idx) => {
+            return (
+              <Flex key={idx} direction={"column"} bg="white" p={2} px={3}>
+                <Flex alignItems={"center"} gap={2}>
+                  <Icon as={IoPersonCircle} color="gray.400" boxSize={6}></Icon>
+                  <Text>{review.name}</Text>
+                  <Flex alignItems={"center"} gap={1}>
+                    <Icon
+                      as={FaCheckCircle}
+                      color="orange.400"
+                      boxSize={3}
+                    ></Icon>
+                    <Text
+                      fontWeight={"bold"}
+                      fontSize={"xs"}
+                      color="orange.500"
+                    >
+                      Verified Purchase
+                    </Text>
+                  </Flex>
+                </Flex>
+                <Flex gap={2} alignItems={"center"}>
+                  <Rating rating={review.score} />
+                  <Text fontWeight={"bold"}>{review.title}</Text>
+                </Flex>
+                <Flex gap={1} direction={"column"}>
+                  <Text
+                    fontSize={"xs"}
+                    fontWeight={"semibold"}
+                    color={"gray.500"}
+                  >
+                    Reviewed in {review.location} 12 hours ago
+                  </Text>
+                </Flex>
+                <Text my={2}>{review.text}</Text>
+              </Flex>
+            );
+          })}
+        </Flex>
+      </Container>
     </Box>
   );
 }
