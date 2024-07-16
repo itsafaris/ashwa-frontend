@@ -7,6 +7,13 @@ const extensions: DeepPartial<ChakraTheme> = {
     heading: `'EB Garamond Variable', serif`,
     body: `'Open Sans Variable', sans-serif`,
   },
+  components: {
+    Heading: {
+      baseStyle: {
+        color: "black",
+      },
+    },
+  },
   colors: {
     bg: {
       "50": "#f6faf7",

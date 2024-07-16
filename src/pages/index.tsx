@@ -11,6 +11,8 @@ import {
   Icon,
   Container,
   GridItem,
+  AspectRatio,
+  Stack,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FiShoppingCart } from "react-icons/fi";
@@ -24,7 +26,7 @@ import {
 import { LiaFlagUsaSolid } from "react-icons/lia";
 import { RiRefund2Line } from "react-icons/ri";
 import { Logo } from "../components/logo";
-import { Rating, Span } from "../components/components";
+import { Rating, Span, Timer } from "../components/components";
 import { Review, reviews } from "../reviews";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
@@ -60,10 +62,13 @@ export default function Page() {
   return (
     <Box bg="bg.50">
       <Banner />
-      <Header />
-      <HeroSection />
+      {/* <Header /> */}
+      <ProductCarouselSection />
       <BadgesSection />
       <RecommendedUsageSection />
+      <MainHero />
+      <AshwaRevivalSection />
+      <IngredientsSection />
       <ComparisonSection />
       <FactsFromCustomersSection />
       <ReviewsSection reviews={reviews} />
@@ -73,22 +78,27 @@ export default function Page() {
 }
 
 const Banner = () => (
-  <Flex
-    alignItems={"center"}
-    bg="purple.400"
-    color="white"
-    fontWeight={"bold"}
-    py={1}
-    gap={4}
-    justifyContent={"center"}
-  >
-    <Text>⚡</Text>
-    <Text>Summer sale</Text>
-    <Text>⚡</Text>
-    <Text>25% OFF + Free Gifts</Text>
-    <Text>⚡</Text>
-    <Text>Offer Expires in 02:14:32</Text>
-    <Text>⚡</Text>
+  <Flex bg="purple.400" fontWeight={"semibold"} color="white" py={1} px={3}>
+    <Container
+      as={Flex}
+      gap={8}
+      alignItems={"center"}
+      justifyContent={"space-between"}
+    >
+      <Flex
+        direction={"column"}
+        justifyContent={"center"}
+        alignItems={"center"}
+        flex={1}
+      >
+        <Text>🔥 Summer sale 🔥</Text>
+        <Flex gap={2}>
+          <Text>Ends in</Text>
+          <Timer fontWeight={"bold"} />
+        </Flex>
+      </Flex>
+      <Text flex={1}>35% OFF + Free Gifts</Text>
+    </Container>
   </Flex>
 );
 
@@ -103,49 +113,117 @@ const Header = () => (
   </Box>
 );
 
-const benefits = [
-  "😌 Stress Relief",
-  "😴 Better Sleep Quality",
-  "🔋 Increased Energy Levels",
-  "🧘‍♀️ Balanced Mood",
-  "🧠 Improved Cognitive Function",
-  "💪 Enhanced Physical Performance",
-];
+const MainHero = () => {
+  const values = [
+    "🧠 Struggles with brain fog",
+    "🔋 Feels lacking energy throughout the day",
+    "😰 Often feels overwhelmed",
+    "🎭 Finds it hard to cope with daily stress",
+    "😴 Yearns for better quality sleep",
+  ];
 
-const HeroSection = () => (
-  <Box>
-    <Box py={8} bg="yellow.100">
+  return (
+    <Box py={8}>
       <Heading
+        as="h1"
         mx="auto"
+        mb={3}
         maxWidth={"720px"}
-        fontSize={"3xl"}
-        fontWeight={"regular"}
         px={8}
         textAlign={"center"}
+        fontSize={"2xl"}
       >
-        NEW Ashwagandha Blend Designed For Adults Seeking{" "}
-        <Span decoration={"underline"}>Stress Relief</Span> And{" "}
-        <Span decoration={"underline"}>Enhanced Energy</Span> While Promoting{" "}
-        <Span decoration={"underline"}>Better Sleep</Span>
+        Go From Frazzled to Fabulous with our unique Nature-based 5-Key Solution
+        to Modern Woman's Stress
       </Heading>
+
+      <SimpleGrid columns={[1, 1, 2]}>
+        <AspectRatio ratio={1} maxW={650}>
+          <StaticImage
+            src="../images/product3.png"
+            alt="ashwagandha supplement for women health"
+          />
+        </AspectRatio>
+
+        <Box>
+          <Text
+            fontFamily={"heading"}
+            fontSize={"2xl"}
+            fontWeight={"bold"}
+            textAlign={"center"}
+            my={4}
+          >
+            If you are one who:
+          </Text>
+          <Flex gap={2} direction={"column"} alignItems={"center"}>
+            {values.map((value) => (
+              <Flex
+                key={value}
+                bg="shade.100"
+                p={1}
+                borderRadius={"full"}
+                fontWeight={"semibold"}
+                fontSize={"sm"}
+                alignItems={"center"}
+              >
+                <Text>{value}</Text>
+              </Flex>
+            ))}
+          </Flex>
+          <Text textAlign={"center"} mt={4}>
+            On average, our customers start feeling positive effects within the
+            first week of use
+          </Text>
+        </Box>
+      </SimpleGrid>
+
+      {/* <Box>
+      <Text>Go from:</Text>
+      <Text>Mental fog and forgetfulness</Text>
+      <Text>Depleted energy levels</Text>
+      <Text>Constant worry and anxiety</Text>
+      <Text>To:</Text>
+      <Text>Sharp focus and clear thinking</Text>
+      <Text>Composed and in control</Text>
+      <Text>Calm resilience in face of challenges</Text>
+    </Box> */}
     </Box>
-    <Container maxWidth={"1000px"}>
+  );
+};
+
+const benefits = [
+  "🧠 Sharpen your mind and banish brain fog",
+  "⚡ Elevate your energy levels",
+  "🧘‍♀️ Ease anxiety",
+  "🧠 Improved Cognitive Function",
+  "😴 Better Sleep Quality",
+];
+
+const ProductCarouselSection = () => (
+  <Box>
+    <Container maxW={"container.lg"}>
       <SimpleGrid columns={[1, 1, 2]} spacing={4} py={4}>
         <Box>
-          <StaticImage
-            src="../images/product1.png"
-            alt="Ashwagandha Supplement"
-          />
+          <AspectRatio ratio={1}>
+            <StaticImage
+              src="../images/product1.png"
+              alt="Ashwagandha Supplement"
+            />
+          </AspectRatio>
         </Box>
         <Box>
-          <Text color="purple.700" fontWeight={"bold"}>
+          <Text
+            color="purple.600"
+            fontWeight={"bold"}
+            textTransform={"uppercase"}
+          >
             Summer Sale
           </Text>
           <Heading as="h1" fontSize="3xl">
-            Unique Blend Ashwagandha Gummies
+            Most complete Blend of Ashwagandha for Modern Busy Women
           </Heading>
           <Flex alignItems={"center"} gap={2} py={2}>
-            <Text fontSize={"sm"}>4.8</Text>
+            <Text fontSize={"sm"}>4.7</Text>
             <Rating />
             <a href="#reviews">
               <Text fontSize={"sm"} decoration={"underline"}>
@@ -154,14 +232,19 @@ const HeroSection = () => (
             </a>
           </Flex>
           <Text mt={4}>
-            Meet the fastest growing alternative to regular coffee and
-            stimulants that combines functional mushrooms, collagen protein, and
-            nootropics to promote laser focus, improved mood, all-day energy,
-            and reduced stress.
+            Our all-in-one supplement blend - the only one you'll need to{" "}
+            <Span fontWeight={"bold"}>combat stress</Span>,{" "}
+            <Span fontWeight={"bold"}>sharpen focus</Span>, and{" "}
+            <Span fontWeight={"bold"}>boost energy</Span>. This revolutionary
+            formula uniquely combines Ashwagandha, Rhodiola Extract, and Bacopa
+            with essential vitamins and minerals, creating a powerhouse solution
+            tailored specifically for the modern woman's needs.
           </Text>
-          <Flex direction={"column"} gap={1} py={4}>
+          <Flex direction={"column"} gap={1} py={6}>
             {benefits.map((b) => (
-              <Text key={b}>{b}</Text>
+              <Text key={b} fontWeight={"semibold"} fontSize={"sm"}>
+                {b}
+              </Text>
             ))}
           </Flex>
         </Box>
@@ -413,6 +496,109 @@ function RecommendedUsageSection() {
   );
 }
 
+const AshwaRevivalSection = () => {
+  const studies = [
+    {
+      title: "Anxiety Reduction",
+      year: 2000,
+      src: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2958355/",
+      summarized_outcome:
+        "56.5% reduction in anxiety scores on the Hamilton Anxiety Rating Scale",
+    },
+    {
+      title: "Stress Reduction",
+      year: 2008,
+      src: "https://pubmed.ncbi.nlm.nih.gov/23439798/",
+      summarized_outcome: "30.5% reduction in cortisol levels",
+    },
+    {
+      title: "Cortisol Reduction",
+      year: 2012,
+      src: "https://pubmed.ncbi.nlm.nih.gov/23439798/",
+      summarized_outcome: "27.9% reduction in serum cortisol levels",
+    },
+    {
+      title: "Muscle Strength and Recovery",
+      year: 2015,
+      src: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC4658772/",
+      summarized_outcome:
+        "21.5% increase in muscle strength in the bench press and a 24% increase in leg extension strength",
+    },
+    {
+      title: "Sleep Quality",
+      year: 2019,
+      src: "https://pubmed.ncbi.nlm.nih.gov/31728244/",
+      summarized_outcome:
+        "72% improvement in sleep onset latency and a 42% improvement in overall sleep quality",
+    },
+    {
+      title: "Sports Performance",
+      year: 2021,
+      src: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC8006238/",
+      summarized_outcome:
+        "13.6% increase in VO2 max and a 10.5% improvement in their time to exhaustion during endurance tests",
+    },
+    {
+      title: "Cognitive Function",
+      year: 2022,
+      src: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC9565281/",
+      summarized_outcome:
+        "14.3% improvement in memory and a 9.8% improvement in executive function",
+    },
+  ];
+
+  return (
+    <Box py={8}>
+      <Container maxW={"container.md"}>
+        <Heading mx="auto" mb={6} px={8} textAlign={"center"} fontSize={"3xl"}>
+          Why This Ancient Herb
+          <br /> Is 2024's Stress-Busting Superstar
+        </Heading>
+
+        <Stack spacing={2} my={8}>
+          <Text>
+            Ashwagandha's recent surge in popularity is no coincidence. This
+            ancient herb has captured modern attention due to a perfect storm of
+            factors.
+          </Text>
+          <Text>
+            Busy professionals are flocking to this stress-busting,
+            energy-boosting powerhouse as their secret weapon against burnouts.
+          </Text>
+        </Stack>
+
+        <Heading as={"h3"} fontSize={"2xl"} textAlign={"center"} my={4}>
+          And More So, It's Backed by numerous clinical studies
+        </Heading>
+
+        <Flex bg="white" borderRadius={"lg"}>
+          <StaticImage
+            src="../images/studies.png"
+            alt="ashwagandha clinical studies timeline"
+            width={800}
+          />
+        </Flex>
+        <Stack spacing={4} my={6}>
+          {studies.map((study) => (
+            <Flex key={study.year} direction={"column"} fontSize={"sm"}>
+              <a href={study.src}>
+                <Text textDecoration={"underline"} color="blue.500">
+                  {study.year} - {study.title} (
+                  <Span as={"a"} color="blue.500" href={study.src}>
+                    link
+                  </Span>
+                  )
+                </Text>
+              </a>
+              <Text fontWeight={"semibold"}>{study.summarized_outcome}</Text>
+            </Flex>
+          ))}
+        </Stack>
+      </Container>
+    </Box>
+  );
+};
+
 function ReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
     <Box my={8} px={4}>
@@ -595,6 +781,133 @@ function FactsFromCustomersSection() {
             <Text textAlign={"center"} fontSize={"sm"} fontWeight={"semibold"}>
               {fact.fact}
             </Text>
+          </Flex>
+        ))}
+      </SimpleGrid>
+    </Container>
+  );
+}
+
+function IngredientsSection() {
+  const ingredients = [
+    {
+      name: "Ashwagandha",
+      scientificName: "Withania somnifera",
+      image: (
+        <StaticImage
+          alt="ashwagandha root"
+          src="../images/ashwa1.jpeg"
+          height={600}
+        />
+      ),
+      mainValue: "🤺 The Stress Warrior",
+      description:
+        "By lowering cortisol levels, Ashwagandha helps your body resist the physiological impacts of stress, promoting a sense of calm and balance. It's not just about feeling relaxed - it's about empowering your body to thrive under pressure",
+      benefits: [
+        "Reduces stress and anxiety",
+        "Improves cognitive function",
+        "Enhances physical performance",
+        "Supports immune system",
+      ],
+    },
+    {
+      name: "Rhodiola",
+      scientificName: "Rhodiola rosea",
+      mainValue: "🔋 The Energy Amplifier",
+      description:
+        "Combats both mental and physical fatigue, helping you tap into reserves of energy you didn't know you had. It's like having a natural power-up button, allowing you to tackle your day with renewed vigor and mental clarity. With Rhodiola, you're not just surviving the day; you're conquering it.",
+      image: (
+        <StaticImage
+          alt="Rhodiola rosea"
+          src="../images/rhodiola-rosea.jpg"
+          height={600}
+        />
+      ),
+      benefits: [
+        "Fights fatigue",
+        "Enhances mental performance",
+        "Improves stress resistance",
+        "Boosts energy levels",
+      ],
+    },
+    {
+      name: "Bacopa",
+      scientificName: "Bacopa monnieri",
+      mainValue: "🧠 The Memory Maestro",
+      description:
+        "Bacopa enhances both the acquisition and retention of memory. This isn't just about remembering where you left your keys - it's about boosting your cognitive prowess. Bacopa may help you process information more efficiently, leading to improved learning and sharper recall. It's like upgrading your brain's software for peak performance.",
+      image: (
+        <StaticImage
+          alt="Bacopa monnieri"
+          src="../images/bacopa.jpg"
+          height={600}
+        />
+      ),
+      benefits: [
+        "Improves memory",
+        "Enhances cognitive processing",
+        "Reduces anxiety and stress",
+        "Supports overall brain health",
+      ],
+    },
+  ];
+
+  return (
+    <Container maxWidth={"1200px"} my={20}>
+      <Heading textAlign={"center"}>
+        Nature's Time-Tested <Span decoration={"underline"}>Trio</Span>:<br />{" "}
+        Backed by human clinical trials
+      </Heading>
+      <Text textAlign={"center"} my={4} maxWidth={"800px"} mx="auto">
+        This powerful trio of adaptogenic herbs works synergistically to create
+        a comprehensive approach to{" "}
+        <Span fontWeight={"bold"} decoration={"underline"}>
+          stress management
+        </Span>
+        ,{" "}
+        <Span fontWeight={"bold"} decoration={"underline"}>
+          cognitive enhancement
+        </Span>
+        , and{" "}
+        <Span fontWeight={"bold"} decoration={"underline"}>
+          overall well-being
+        </Span>
+        , providing a natural solution to the demands of modern life.
+      </Text>
+      <SimpleGrid
+        columns={[1, 1, 3]}
+        my={8}
+        alignItems={"start"}
+        justifyContent={"center"}
+        justifyItems={"center"}
+      >
+        {ingredients.map((fact, idx) => (
+          <Flex
+            key={idx}
+            direction={"column"}
+            alignItems={"center"}
+            maxW={"260px"}
+          >
+            <Text fontWeight={"bold"}>{fact.mainValue}</Text>
+            <Text fontSize={"3xl"} fontWeight={"bold"} fontFamily={"heading"}>
+              {fact.name}
+            </Text>
+            <Flex
+              bg="white"
+              height={240}
+              borderRadius={"xl"}
+              overflow={"hidden"}
+              alignItems={"center"}
+              mt={4}
+            >
+              {fact.image}
+            </Flex>
+            <Box textAlign={"start"}>
+              <Text mt={4} mb={2} fontWeight={"bold"} fontSize={"sm"}>
+                How does it work?
+              </Text>
+              <Text fontSize={"sm"}>{fact.description}</Text>
+            </Box>
           </Flex>
         ))}
       </SimpleGrid>

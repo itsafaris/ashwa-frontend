@@ -1,5 +1,5 @@
-import { Flex, Icon, Text } from "@chakra-ui/react";
-import React, { ComponentProps } from "react";
+import { Flex, Icon, Text, TextProps } from "@chakra-ui/react";
+import React, { ComponentProps, useEffect, useState } from "react";
 import { FaRegStar, FaStar, FaStarHalf, FaStarHalfAlt } from "react-icons/fa";
 
 export function Span(props: ComponentProps<typeof Text>) {
@@ -27,4 +27,53 @@ export function Rating({
       })}
     </Flex>
   );
+}
+
+export function Timer({
+  timestamp = 1000 * 60 * 324,
+  ...rest
+}: TextProps & { timestamp?: number }) {
+  const [timeRemaining, setTimeRemaining] = useState(timestamp);
+
+  useEffect(() => {
+    const i = setInterval(() => {
+      setTimeRemaining((v) => {
+        const nextValue = v - 1000;
+        if (nextValue < 0) {
+          clearInterval(i);
+          return 0;
+        }
+        return nextValue;
+      });
+    }, 1000);
+    return () => clearInterval(i);
+  }, []);
+
+  const readableTime = formatTimestamp(timeRemaining);
+
+  return (
+    <Text fontSize={"md"} {...rest}>
+      {readableTime.hours}:{readableTime.minutes}:{readableTime.seconds}
+    </Text>
+  );
+}
+
+function formatTimestamp(timestamp: number): {
+  hours: string;
+  minutes: string;
+  seconds: string;
+} {
+  const hours = Math.floor(timestamp / (60000 * 60));
+  timestamp = timestamp - hours * 60000 * 60;
+
+  const minutes = Math.floor(timestamp / 60000);
+  timestamp = timestamp - minutes * 60000;
+
+  const seconds = Math.floor(timestamp / 1000);
+
+  return {
+    hours: hours.toString().padStart(2, "0"),
+    minutes: minutes.toString().padStart(2, "0"),
+    seconds: seconds.toString().padStart(2, "0"),
+  };
 }
