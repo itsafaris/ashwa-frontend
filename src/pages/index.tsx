@@ -13,6 +13,7 @@ import {
   GridItem,
   AspectRatio,
   Stack,
+  Grid,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FiShoppingCart } from "react-icons/fi";
@@ -354,6 +355,11 @@ function ProductSelectionSection() {
         </Button>
       </SimpleGrid>
 
+      <Flex gap={2} fontWeight={"bold"} mx="auto" width={"max"} my={4}>
+        <Text>Sale ends in: </Text>
+        <Timer color={"primary.600"} />
+      </Flex>
+
       <SimpleGrid columns={[1, 1, 3]} gap={4}>
         <ProductSelectItem
           product={productList[0]}
@@ -563,7 +569,7 @@ const AshwaRevivalSection = () => {
   ];
 
   return (
-    <Box my={10}>
+    <Box my={16}>
       <Container maxW={"container.md"}>
         <Heading mx="auto" mb={6} px={8} textAlign={"center"} fontSize={"3xl"}>
           Why This Ancient Herb
@@ -684,12 +690,20 @@ function ComparisonSection() {
   const theirs = comparisonData.map((it) => it.competitors);
 
   return (
-    <Container maxW={"container.lg"} my={10}>
-      <Heading textAlign={"center"} my={4}>
-        Conquer Chaos, Embrace Calm!
+    <Container maxW={"container.xl"} my={16}>
+      <Heading textAlign={"center"} my={10}>
+        Conquer Chaos.
+        <br /> Stay Focused.
+        <br /> Embrace Calm.
       </Heading>
-      <SimpleGrid spacing={4} columns={[1, 1, 5]} alignItems={"center"}>
-        <GridItem colSpan={[1, 1, 2]}>
+      <Grid
+        gap={8}
+        templateColumns={["1fr", null, "0.6fr 1fr"]}
+        alignItems={"center"}
+        justifyItems={"center"}
+        justifyContent={"center"}
+      >
+        <GridItem justifySelf={"end"}>
           <StaticImage
             src="../images/stressed.png"
             alt="stressed woman"
@@ -697,11 +711,12 @@ function ComparisonSection() {
             style={{ borderRadius: 16 }}
           />
         </GridItem>
-        <GridItem colSpan={[1, 1, 3]}>
-          <Text my={4}>
-            78% of women aged 25-45 battle daily stress. Our gummies have helped
-            100,000+ women reclaim their calm and energy. Join them. Stress
-            less. Achieve more. Glow naturally. Your vibrant life starts now.*
+        <GridItem justifySelf={"start"}>
+          <Text mb={8} maxW={"md"}>
+            Over 40 million women in the US experience stress and anxiety every
+            day. We've already helped over 250,000 women find balance and
+            calmness in their lives. Take action now to improve your well-being
+            and mental clarity for good.
           </Text>
 
           <SimpleGrid flex={1} columns={[1, 1, 2]} spacing={2}>
@@ -751,7 +766,7 @@ function ComparisonSection() {
             </Flex>
           </SimpleGrid>
         </GridItem>
-      </SimpleGrid>
+      </Grid>
     </Container>
   );
 }
@@ -772,7 +787,7 @@ function FactsFromCustomersSection() {
     },
   ];
   return (
-    <Container maxWidth={"container.lg"} my={10}>
+    <Container maxWidth={"container.lg"} my={16}>
       <Heading textAlign={"center"}>
         Here's what we know - <br />
         <Span textDecoration={"underline"}>for a fact</Span>
@@ -812,73 +827,83 @@ function IngredientsSection() {
   const ingredients = [
     {
       name: "Ashwagandha",
-      scientificName: "Withania somnifera",
       image: (
         <StaticImage
           alt="ashwagandha root"
           src="../images/ashwa1.jpeg"
-          height={600}
+          height={400}
+          objectFit="contain"
         />
       ),
-      mainValue: "🤺 The Stress Warrior",
+      mainValue: "🤺 Stress Warrior",
       description:
-        "By lowering cortisol levels, Ashwagandha helps your body resist the physiological impacts of stress, promoting a sense of calm and balance. It's not just about feeling relaxed - it's about empowering your body to thrive under pressure",
-      benefits: [
-        "Reduces stress and anxiety",
-        "Improves cognitive function",
-        "Enhances physical performance",
-        "Supports immune system",
-      ],
+        "By lowering cortisol levels, Ashwagandha helps your body resist the physiological impacts of stress. It's not just about feeling relaxed - it's about empowering your body to thrive under pressure",
     },
     {
       name: "Rhodiola",
-      scientificName: "Rhodiola rosea",
-      mainValue: "🔋 The Energy Amplifier",
+      mainValue: "🔋 Energy Amplifier",
       description:
-        "Combats both mental and physical fatigue, helping you tap into reserves of energy you didn't know you had. It's like having a natural power-up button, allowing you to tackle your day with renewed vigor and mental clarity. With Rhodiola, you're not just surviving the day; you're conquering it.",
+        "Combats both mental and physical fatigue, helping you tap into reserves of energy you didn't know you had",
       image: (
         <StaticImage
           alt="Rhodiola rosea"
           src="../images/rhodiola-rosea.jpg"
-          height={600}
+          height={400}
+          objectFit="contain"
         />
       ),
-      benefits: [
-        "Fights fatigue",
-        "Enhances mental performance",
-        "Improves stress resistance",
-        "Boosts energy levels",
-      ],
     },
     {
       name: "Bacopa",
-      scientificName: "Bacopa monnieri",
-      mainValue: "🧠 The Memory Maestro",
+      mainValue: "🧠 Memory Maestro",
       description:
-        "Bacopa enhances both the acquisition and retention of memory. This isn't just about remembering where you left your keys - it's about boosting your cognitive prowess. Bacopa may help you process information more efficiently, leading to improved learning and sharper recall. It's like upgrading your brain's software for peak performance.",
+        "An herb that supports cognitive function, memory, and focus. It works synergistically with ashwagandha to enhance mental clarity",
       image: (
         <StaticImage
           alt="Bacopa monnieri"
           src="../images/bacopa.jpg"
-          height={600}
+          height={400}
+          objectFit="contain"
         />
       ),
-      benefits: [
-        "Improves memory",
-        "Enhances cognitive processing",
-        "Reduces anxiety and stress",
-        "Supports overall brain health",
-      ],
     },
+    // {
+    //   name: "GABA",
+    //   mainValue: "🌙 Calming Agent",
+    //   description:
+    //     "A neurotransmitter that promotes relaxation and reduces neural excitability, helping you unwind and de-stress.",
+    //   image: (
+    //     <StaticImage
+    //       alt="Bacopa monnieri"
+    //       src="../images/bacopa.jpg"
+    //       height={400}
+    //       objectFit="contain"
+    //     />
+    //   ),
+    // },
+    // {
+    //   name: "L-Theanine",
+    //   mainValue: "🌿 Relaxation Promoter",
+    //   description:
+    //     "A neurotransmitter that promotes relaxation and reduces neural excitability, helping you unwind and de-stress.",
+    //   image: (
+    //     <StaticImage
+    //       alt="Bacopa monnieri"
+    //       src="../images/ltheanine.png"
+    //       height={400}
+    //       objectFit="contain"
+    //     />
+    //   ),
+    // },
   ];
 
   return (
-    <Container maxWidth={"container.lg"} my={10}>
-      <Heading textAlign={"center"}>
+    <Container maxWidth={"container.lg"} my={16}>
+      <Heading textAlign={"center"} my={10}>
         Nature's Time-Tested <Span decoration={"underline"}>Trio</Span>:<br />{" "}
-        Backed by human clinical trials
+        The Ultimate Stress-Busting Powerhouse
       </Heading>
-      <Text textAlign={"center"} my={4} maxWidth={"800px"} mx="auto">
+      <Text textAlign={"center"} my={4} maxWidth={"xl"} mx="auto">
         This powerful trio of adaptogenic herbs works synergistically to create
         a comprehensive approach to{" "}
         <Span fontWeight={"bold"} decoration={"underline"}>
@@ -898,35 +923,32 @@ function IngredientsSection() {
         columns={[1, 1, 3]}
         my={8}
         gap={6}
-        alignItems={"start"}
+        alignItems={"stretch"}
         justifyContent={"center"}
-        justifyItems={"center"}
+        justifyItems={"stretch"}
       >
         {ingredients.map((fact, idx) => (
           <Flex
             key={idx}
             direction={"column"}
             alignItems={"center"}
+            // justifyContent={"center"}
             bg="white"
             p={4}
             borderRadius={"lg"}
+            boxShadow={"xl"}
           >
             <Text fontWeight={"semibold"}>{fact.mainValue}</Text>
             <Text fontSize={"3xl"} fontWeight={"bold"} fontFamily={"heading"}>
               {fact.name}
             </Text>
-            <Flex
-              bg="white"
-              height={240}
-              borderRadius={"xl"}
-              overflow={"hidden"}
-              alignItems={"center"}
-              mt={4}
-            >
+
+            <Flex w={200} h={200}>
               {fact.image}
             </Flex>
+
             <Box textAlign={"start"}>
-              <Text mt={4} mb={2} fontWeight={"bold"} fontSize={"sm"}>
+              <Text mt={2} mb={2} fontWeight={"bold"} fontSize={"sm"}>
                 How does it work?
               </Text>
               <Text fontSize={"sm"}>{fact.description}</Text>

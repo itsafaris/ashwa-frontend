@@ -1,6 +1,7 @@
 import { Flex, Icon, Text, TextProps } from "@chakra-ui/react";
 import React, { ComponentProps, useEffect, useState } from "react";
 import { FaRegStar, FaStar, FaStarHalf, FaStarHalfAlt } from "react-icons/fa";
+import { useGlobalState } from "../RootWrapper";
 
 export function Span(props: ComponentProps<typeof Text>) {
   return <Text as="span" {...props}></Text>;
@@ -33,7 +34,11 @@ export function Timer({
   timestamp = 1000 * 60 * 324,
   ...rest
 }: TextProps & { timestamp?: number }) {
-  const [timeRemaining, setTimeRemaining] = useState(timestamp);
+  const global = useGlobalState();
+
+  const [timeRemaining, setTimeRemaining] = useState(
+    timestamp - (Date.now() - global.pageLoadedAt)
+  );
 
   useEffect(() => {
     const i = setInterval(() => {
