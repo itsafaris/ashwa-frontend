@@ -52,7 +52,7 @@ export function Timer({
   const readableTime = formatTimestamp(timeRemaining);
 
   return (
-    <Text fontSize={"md"} {...rest}>
+    <Text {...rest}>
       {readableTime.hours}:{readableTime.minutes}:{readableTime.seconds}
     </Text>
   );

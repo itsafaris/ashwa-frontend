@@ -64,40 +64,46 @@ export default function Page() {
       <Banner />
       {/* <Header /> */}
       <ProductCarouselSection />
+      <ProductSelectionSection />
       <BadgesSection />
       <RecommendedUsageSection />
-      <MainHero />
+      <ComparisonSection />
       <AshwaRevivalSection />
       <IngredientsSection />
-      <ComparisonSection />
       <FactsFromCustomersSection />
       <ReviewsSection reviews={reviews} />
+      <MainHero />
       <Footer />
     </Box>
   );
 }
 
 const Banner = () => (
-  <Flex bg="purple.400" fontWeight={"semibold"} color="white" py={1} px={3}>
+  <Flex bg="black" fontWeight={"semibold"} color="white" py={1} px={3}>
     <Container
       as={Flex}
       gap={8}
       alignItems={"center"}
       justifyContent={"space-between"}
+      maxW={["container.lg"]}
+      fontSize={["sm", null, "md"]}
     >
       <Flex
-        direction={"column"}
         justifyContent={"center"}
         alignItems={"center"}
         flex={1}
+        gap={[0, 2, 2]}
+        flexWrap={"wrap"}
       >
-        <Text>🔥 Summer sale 🔥</Text>
+        <Text>Summer sale</Text>
         <Flex gap={2}>
-          <Text>Ends in</Text>
+          <Text>ends in</Text>
           <Timer fontWeight={"bold"} />
         </Flex>
       </Flex>
-      <Text flex={1}>35% OFF + Free Gifts</Text>
+      <Text flex={1} textAlign={"center"}>
+        35% OFF + Free Gifts
+      </Text>
     </Container>
   </Flex>
 );
@@ -200,11 +206,11 @@ const benefits = [
 ];
 
 const ProductCarouselSection = () => (
-  <Box>
-    <Container maxW={"container.lg"}>
-      <SimpleGrid columns={[1, 1, 2]} spacing={4} py={4}>
+  <Box bg="white">
+    <Container maxW={["container.sm", null, "container.lg"]} py={6}>
+      <SimpleGrid columns={[1, 1, 2]} spacing={8} py={4}>
         <Box>
-          <AspectRatio ratio={1}>
+          <AspectRatio ratio={1} maxW={460} mx="auto">
             <StaticImage
               src="../images/product1.png"
               alt="Ashwagandha Supplement"
@@ -249,8 +255,6 @@ const ProductCarouselSection = () => (
           </Flex>
         </Box>
       </SimpleGrid>
-
-      <ProductSelection />
     </Container>
   </Box>
 );
@@ -309,28 +313,32 @@ const getProducts = (type: PurchaseType) => {
 
 type Product = ReturnType<typeof getProducts>[number];
 
-function ProductSelection() {
+function ProductSelectionSection() {
   const [purchaseType, setPurchaseType] =
     React.useState<PurchaseType>("subscription");
 
   const productList = getProducts(purchaseType);
+  const dynamicText =
+    purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
 
   return (
-    <Flex id="product-selection" direction={"column"} alignItems={"center"}>
+    <Container maxW={"container.lg"}>
       <SimpleGrid
         columns={2}
         my={4}
         gap={2}
-        border="1px solid"
-        borderColor={"bg.200"}
-        bg="bg.50"
+        // border="1px solid"
+        bg="bg.100"
         borderRadius={"md"}
-        padding={1}
+        padding={2}
+        maxW={"max"}
+        mx="auto"
+        shadow={"inner"}
       >
         <Button
           size="sm"
           variant={purchaseType === "one-off" ? "solid" : "ghost"}
-          colorScheme="bg"
+          colorScheme="black"
           onClick={() => setPurchaseType("one-off")}
         >
           One time purchase
@@ -338,11 +346,11 @@ function ProductSelection() {
         <Button
           size="sm"
           variant={purchaseType === "subscription" ? "solid" : "ghost"}
-          colorScheme="bg"
+          colorScheme="black"
           gap={2}
           onClick={() => setPurchaseType("subscription")}
         >
-          <Text>Subscribe</Text> <Badge colorScheme="red">Sale %</Badge>
+          <Text>Subscribe</Text> <Badge colorScheme="purple">Sale %</Badge>
         </Button>
       </SimpleGrid>
 
@@ -351,15 +359,20 @@ function ProductSelection() {
           product={productList[0]}
           badgeText={`Best value SAVE ${productList[0].discount}%`}
           badgeBg="green.500"
+          footerText={`${dynamicText}. Free shipping`}
         />
         <ProductSelectItem
           product={productList[1]}
           badgeText={`Most popular SAVE ${productList[1].discount}%`}
           badgeBg="purple.500"
+          footerText={`${dynamicText}. Free shipping`}
         />
-        <ProductSelectItem product={productList[2]} />
+        <ProductSelectItem
+          product={productList[2]}
+          footerText={`${dynamicText}. Free shipping`}
+        />
       </SimpleGrid>
-    </Flex>
+    </Container>
   );
 }
 
@@ -367,10 +380,12 @@ function ProductSelectItem({
   product,
   badgeText,
   badgeBg,
+  footerText,
 }: {
   product: Product;
   badgeText?: string;
   badgeBg?: string;
+  footerText?: string;
 }) {
   return (
     <Box position={"relative"}>
@@ -440,7 +455,7 @@ function ProductSelectItem({
           Order now
         </Button>
         <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
-          Cancel anytime. Free shipping
+          {footerText}
         </Text>
       </Flex>
     </Box>
@@ -548,7 +563,7 @@ const AshwaRevivalSection = () => {
   ];
 
   return (
-    <Box py={8}>
+    <Box my={10}>
       <Container maxW={"container.md"}>
         <Heading mx="auto" mb={6} px={8} textAlign={"center"} fontSize={"3xl"}>
           Why This Ancient Herb
@@ -601,22 +616,25 @@ const AshwaRevivalSection = () => {
 
 function ReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
-    <Box my={8} px={4}>
+    <Box my={8}>
       <Container>
-        <Heading my={4}>Our customers love us!</Heading>
-        <Flex my={2} justifyContent={"space-between"}>
+        <Heading my={6}>Our customers love us!</Heading>
+        <Flex my={4} gap={2} justifyContent={"space-between"}>
           <Text fontSize={"sm"}>
             Showing <Span decoration={"underline"}>most recent</Span> reviews
-            from <Span decoration={"underline"}>United States</Span>{" "}
+            from{" "}
+            <Span decoration={"underline"} whiteSpace={"nowrap"}>
+              United States
+            </Span>{" "}
           </Text>
-          <Text fontSize={"xs"} color="gray.500">
+          <Text flexShrink={0} fontSize={"xs"} color="gray.500">
             <Span color="black" fontWeight={"semibold"}>
               {reviews.length}
             </Span>{" "}
             / {TOTAL_NUMBER_OF_REVIEWS}
           </Text>
         </Flex>
-        <Flex direction={"column"} gap={2}>
+        <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
               <Flex key={idx} direction={"column"} bg="white" p={2} px={3}>
@@ -666,8 +684,11 @@ function ComparisonSection() {
   const theirs = comparisonData.map((it) => it.competitors);
 
   return (
-    <Container maxWidth={"1200px"} my={20}>
-      <SimpleGrid spacing={8} columns={[1, 1, 5]} alignItems={"center"}>
+    <Container maxW={"container.lg"} my={10}>
+      <Heading textAlign={"center"} my={4}>
+        Conquer Chaos, Embrace Calm!
+      </Heading>
+      <SimpleGrid spacing={4} columns={[1, 1, 5]} alignItems={"center"}>
         <GridItem colSpan={[1, 1, 2]}>
           <StaticImage
             src="../images/stressed.png"
@@ -677,7 +698,6 @@ function ComparisonSection() {
           />
         </GridItem>
         <GridItem colSpan={[1, 1, 3]}>
-          <Heading>Conquer Chaos, Embrace Calm!</Heading>
           <Text my={4}>
             78% of women aged 25-45 battle daily stress. Our gummies have helped
             100,000+ women reclaim their calm and energy. Join them. Stress
@@ -752,10 +772,10 @@ function FactsFromCustomersSection() {
     },
   ];
   return (
-    <Container maxWidth={"1200px"} my={20}>
+    <Container maxWidth={"container.lg"} my={10}>
       <Heading textAlign={"center"}>
-        We know for a <Span textDecoration={"underline"}>fact</Span>, you will
-        be calmer
+        Here's what we know - <br />
+        <Span textDecoration={"underline"}>for a fact</Span>
       </Heading>
       <Text textAlign={"center"} my={4}>
         Based on our{" "}
@@ -853,7 +873,7 @@ function IngredientsSection() {
   ];
 
   return (
-    <Container maxWidth={"1200px"} my={20}>
+    <Container maxWidth={"container.lg"} my={10}>
       <Heading textAlign={"center"}>
         Nature's Time-Tested <Span decoration={"underline"}>Trio</Span>:<br />{" "}
         Backed by human clinical trials
@@ -877,6 +897,7 @@ function IngredientsSection() {
       <SimpleGrid
         columns={[1, 1, 3]}
         my={8}
+        gap={6}
         alignItems={"start"}
         justifyContent={"center"}
         justifyItems={"center"}
@@ -886,9 +907,11 @@ function IngredientsSection() {
             key={idx}
             direction={"column"}
             alignItems={"center"}
-            maxW={"260px"}
+            bg="white"
+            p={4}
+            borderRadius={"lg"}
           >
-            <Text fontWeight={"bold"}>{fact.mainValue}</Text>
+            <Text fontWeight={"semibold"}>{fact.mainValue}</Text>
             <Text fontSize={"3xl"} fontWeight={"bold"} fontFamily={"heading"}>
               {fact.name}
             </Text>
