@@ -784,7 +784,7 @@ const AshwaRevivalSection = () => {
         <Stack spacing={4} my={6}>
           {studies.map((study) => (
             <Flex key={study.year} direction={"column"} fontSize={"sm"}>
-              <a href={study.src}>
+              <a href={study.src} target="_blank" rel="noopener noreferrer">
                 <Text textDecoration={"underline"} color="blue.500">
                   {study.year} - {study.title} (
                   <Span as={"a"} color="blue.500" href={study.src}>
