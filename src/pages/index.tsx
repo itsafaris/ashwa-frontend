@@ -40,24 +40,11 @@ import { Logo } from "../components/logo";
 import { Rating, Span, Timer } from "../components/components";
 import { Review, reviews } from "../reviews";
 import { css, Global } from "@emotion/react";
+import { loadStripe } from "@stripe/stripe-js";
 
-const responsive = {
-  desktop: {
-    breakpoint: { max: 3000, min: 1024 },
-    items: 1,
-    // slidesToSlide: 3, // optional, default to 1.
-  },
-  tablet: {
-    breakpoint: { max: 1024, min: 464 },
-    items: 1,
-    // slidesToSlide: 2, // optional, default to 1.
-  },
-  mobile: {
-    breakpoint: { max: 464, min: 0 },
-    items: 1,
-    // slidesToSlide: 1, // optional, default to 1.
-  },
-};
+const stripePromise = loadStripe(
+  "pk_test_51PdZVqCSMlpgjECR0fnDEpQssuYcErVr30IQJox6ptUdWBagvZzC5tHk5RdEDOgoZPqe7YrVi0sfBT0t5TKOenWZ0076LgXGir"
+);
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
@@ -392,11 +379,17 @@ const ProductCarouselSection = () => {
 
 type PurchaseType = "subscription" | "one-off";
 
+type Product = ReturnType<typeof getProducts>[number];
+
 const getProducts = (type: PurchaseType) => {
   const subExtraDiscount = 10;
 
   return [
     {
+      stripeID:
+        type === "one-off"
+          ? "price_1PdZinCSMlpgjECR1m4HUs2n"
+          : "price_1PdanGCSMlpgjECRerg53HTL",
       count: 3,
       unitServingsCount: 30,
       unitPrice: type === "one-off" ? 41.99 : 34.99,
@@ -411,6 +404,10 @@ const getProducts = (type: PurchaseType) => {
       ),
     },
     {
+      stripeID:
+        type === "one-off"
+          ? "price_1PdaDOCSMlpgjECRPNMPPzRr"
+          : "price_1Pdaj3CSMlpgjECRCIDtwNt2",
       count: 6,
       unitServingsCount: 30,
       unitPrice: type === "one-off" ? 30.0 : 25.99,
@@ -425,6 +422,10 @@ const getProducts = (type: PurchaseType) => {
       ),
     },
     {
+      stripeID:
+        type === "one-off"
+          ? "price_1PdZhuCSMlpgjECR1eJj9PFi"
+          : "price_1PdaBTCSMlpgjECRDWZ2LB0k",
       count: 1,
       unitServingsCount: 30,
       unitPrice: type === "one-off" ? 55.99 : 47.99,
@@ -445,8 +446,6 @@ const getProducts = (type: PurchaseType) => {
   }));
 };
 
-type Product = ReturnType<typeof getProducts>[number];
-
 function ProductSelectionSection() {
   const [purchaseType, setPurchaseType] =
     React.useState<PurchaseType>("subscription");
@@ -454,6 +453,25 @@ function ProductSelectionSection() {
   const productList = getProducts(purchaseType);
   const dynamicText =
     purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
+
+  const handleClick = async (product: Product) => {
+    const stripe = await stripePromise;
+    const { error } = await stripe!.redirectToCheckout({
+      lineItems: [
+        {
+          price: product.stripeID, // Replace with the ID of your price
+          quantity: purchaseType === "one-off" ? product.count : 1,
+        },
+      ],
+      mode: purchaseType === "one-off" ? "payment" : "subscription",
+      successUrl: "https://example.com/success",
+      cancelUrl: "https://example.com/cancel",
+      shippingAddressCollection: { allowedCountries: ["US"] },
+    });
+    // If `redirectToCheckout` fails due to a browser or network
+    // error, display the localized error message to your customer
+    // using `error.message`.
+  };
 
   return (
     <Container maxW={"container.lg"}>
@@ -511,16 +529,28 @@ function ProductSelectionSection() {
           badgeText={`Best value SAVE ${productList[0].discount}%`}
           badgeBg="orange.400"
           footerText={`${dynamicText}. Free shipping`}
+          onBuyClick={() => {
+            const product = productList[0];
+            handleClick(product);
+          }}
         />
         <ProductSelectItem
           product={productList[1]}
           badgeText={`Most popular SAVE ${productList[1].discount}%`}
           badgeBg="purple.400"
           footerText={`${dynamicText}. Free shipping`}
+          onBuyClick={() => {
+            const product = productList[1];
+            handleClick(product);
+          }}
         />
         <ProductSelectItem
           product={productList[2]}
           footerText={`${dynamicText}. Free shipping`}
+          onBuyClick={() => {
+            const product = productList[2];
+            handleClick(product);
+          }}
         />
       </SimpleGrid>
     </Container>
@@ -532,11 +562,13 @@ function ProductSelectItem({
   badgeText,
   badgeBg,
   footerText,
+  onBuyClick,
 }: {
   product: Product;
   badgeText?: string;
   badgeBg?: string;
   footerText?: string;
+  onBuyClick: () => void;
 }) {
   return (
     <Box position={"relative"}>
@@ -606,6 +638,7 @@ function ProductSelectItem({
           mt={3}
           colorScheme="green"
           rightIcon={<Icon as={FaArrowRight} />}
+          onClick={onBuyClick}
         >
           Order now
         </Button>
