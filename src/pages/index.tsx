@@ -794,39 +794,50 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
-              <Flex key={idx} direction={"column"} bg="white" p={2} px={3}>
-                <Flex alignItems={"center"} gap={2}>
-                  <Icon as={IoPersonCircle} color="gray.400" boxSize={6}></Icon>
-                  <Text>{review.name}</Text>
-                  <Flex alignItems={"center"} gap={1}>
+              <Flex key={idx} bg="white">
+                <Flex direction={"column"} p={2} px={3} flex={1}>
+                  <Flex alignItems={"center"} gap={2}>
                     <Icon
-                      as={FaCheckCircle}
-                      color="orange.400"
-                      boxSize={3}
+                      as={IoPersonCircle}
+                      color="gray.400"
+                      boxSize={6}
                     ></Icon>
+                    <Text>{review.name}</Text>
+                    <Flex alignItems={"center"} gap={1}>
+                      <Icon
+                        as={FaCheckCircle}
+                        color="orange.400"
+                        boxSize={3}
+                      ></Icon>
+                      <Text
+                        fontWeight={"bold"}
+                        fontSize={"xs"}
+                        color="orange.500"
+                      >
+                        Verified Purchase
+                      </Text>
+                    </Flex>
+                  </Flex>
+                  <Flex gap={2} alignItems={"center"}>
+                    <Rating rating={review.score} />
+                    <Text fontWeight={"bold"}>{review.title}</Text>
+                  </Flex>
+                  <Flex gap={1} direction={"column"}>
                     <Text
-                      fontWeight={"bold"}
                       fontSize={"xs"}
-                      color="orange.500"
+                      fontWeight={"semibold"}
+                      color={"gray.500"}
                     >
-                      Verified Purchase
+                      Reviewed in {review.location} 12 hours ago
                     </Text>
                   </Flex>
+                  {review.img && (
+                    <Flex height={"140px"} width={"140px"}>
+                      {review.img}
+                    </Flex>
+                  )}
+                  <Text my={2}>{review.text}</Text>
                 </Flex>
-                <Flex gap={2} alignItems={"center"}>
-                  <Rating rating={review.score} />
-                  <Text fontWeight={"bold"}>{review.title}</Text>
-                </Flex>
-                <Flex gap={1} direction={"column"}>
-                  <Text
-                    fontSize={"xs"}
-                    fontWeight={"semibold"}
-                    color={"gray.500"}
-                  >
-                    Reviewed in {review.location} 12 hours ago
-                  </Text>
-                </Flex>
-                <Text my={2}>{review.text}</Text>
               </Flex>
             );
           })}

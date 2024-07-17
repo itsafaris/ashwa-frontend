@@ -1,3 +1,6 @@
+import { StaticImage } from "gatsby-plugin-image";
+import * as React from "react";
+
 export type Review = (typeof reviews)[number];
 
 export const reviews = [
@@ -7,6 +10,7 @@ export const reviews = [
     name: "Sarah J.",
     location: "Vermont",
     score: 4.8,
+    img: <StaticImage width={400} src="./images/review1.jpeg" alt="" />,
   },
   {
     title: "Sleep like a baby now",
@@ -14,6 +18,7 @@ export const reviews = [
     name: "Mike T.",
     location: "Georgia",
     score: 4.5,
+    img: <StaticImage width={400} src="./images/review2.jpeg" alt="" />,
   },
 
   {
@@ -30,6 +35,7 @@ export const reviews = [
     name: "Emily R.",
     location: "Virginia",
     score: 4.7,
+    img: <StaticImage width={400} src="./images/review4.jpeg" alt="" />,
   },
   {
     title: "Gains in the gym",
@@ -37,21 +43,14 @@ export const reviews = [
     name: "Chris L.",
     location: "North Carolina",
     score: 4.9,
+    img: <StaticImage width={400} src="./images/review5.jpeg" alt="" />,
   },
-  {
-    title: "Focus on point",
-    text: "WFH was killing my concentration. Since taking this, I'm way more productive. My boss even noticed! Thx ashwagandha!",
-    name: "Lisa M.",
-    location: "North Carolina",
 
-    score: 4.6,
-  },
   {
     title: "Meh, it's okay",
     text: "It's not bad, but not mind-blowing either. Feel a bit calmer I guess. Might need more time to see real results. Giving it 4 stars for now.",
     name: "Sam K.",
     location: "Montana",
-
     score: 4.0,
   },
   {
@@ -59,7 +58,7 @@ export const reviews = [
     text: "I feel sharper since I started taking this. Words come easier, and I'm killing it at work. Plus, no weird side effects. Love it!",
     name: "David W.",
     location: "Oregon",
-
+    img: <StaticImage width={400} src="./images/review7.jpeg" alt="" />,
     score: 4.8,
   },
   {
@@ -69,6 +68,14 @@ export const reviews = [
     location: "Oregon",
 
     score: 5.0,
+  },
+  {
+    title: "Focus on point",
+    text: "WFH was killing my concentration. Since taking this, I'm way more productive. My boss even noticed! Thx ashwagandha!",
+    name: "Lisa M.",
+    location: "North Carolina",
+    score: 4.6,
+    img: <StaticImage width={400} src="./images/review6.jpeg" alt="" />,
   },
   {
     title: "Good product, but pricey",
@@ -82,7 +89,7 @@ export const reviews = [
     text: "I get pretty moody sometimes, but this stuff helps level me out. Hubby's noticed too. Feeling more like myself again!",
     name: "Amanda B.",
     location: "Georgia",
-
+    img: <StaticImage width={400} src="./images/review3.jpeg" alt="" />,
     score: 4.7,
   },
   {
