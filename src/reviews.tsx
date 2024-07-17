@@ -10,7 +10,7 @@ export const reviews = [
     name: "Sarah J.",
     location: "Vermont",
     score: 4.8,
-    img: <StaticImage width={400} src="./images/review1.jpeg" alt="" />,
+    img: <StaticImage width={400} src="../images/review1.jpeg" alt="" />,
   },
   {
     title: "Sleep like a baby now",
