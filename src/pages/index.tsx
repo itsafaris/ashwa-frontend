@@ -1,6 +1,12 @@
 import * as React from "react";
 import { Link, type HeadFC, type PageProps } from "gatsby";
 import {
+  useKeenSlider,
+  KeenSliderPlugin,
+  KeenSliderInstance,
+} from "keen-slider/react";
+import "keen-slider/keen-slider.min.css";
+import {
   Box,
   Flex,
   Heading,
@@ -14,11 +20,14 @@ import {
   AspectRatio,
   Stack,
   Grid,
+  IconButton,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FiShoppingCart } from "react-icons/fi";
 import { IoPersonCircle } from "react-icons/io5";
 import {
+  FaArrowLeft,
+  FaArrowRight,
   FaCheck,
   FaCheckCircle,
   FaShippingFast,
@@ -29,6 +38,25 @@ import { RiRefund2Line } from "react-icons/ri";
 import { Logo } from "../components/logo";
 import { Rating, Span, Timer } from "../components/components";
 import { Review, reviews } from "../reviews";
+import { css, Global } from "@emotion/react";
+
+const responsive = {
+  desktop: {
+    breakpoint: { max: 3000, min: 1024 },
+    items: 1,
+    // slidesToSlide: 3, // optional, default to 1.
+  },
+  tablet: {
+    breakpoint: { max: 1024, min: 464 },
+    items: 1,
+    // slidesToSlide: 2, // optional, default to 1.
+  },
+  mobile: {
+    breakpoint: { max: 464, min: 0 },
+    items: 1,
+    // slidesToSlide: 1, // optional, default to 1.
+  },
+};
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
@@ -183,17 +211,6 @@ const MainHero = () => {
           </Text>
         </Box>
       </SimpleGrid>
-
-      {/* <Box>
-      <Text>Go from:</Text>
-      <Text>Mental fog and forgetfulness</Text>
-      <Text>Depleted energy levels</Text>
-      <Text>Constant worry and anxiety</Text>
-      <Text>To:</Text>
-      <Text>Sharp focus and clear thinking</Text>
-      <Text>Composed and in control</Text>
-      <Text>Calm resilience in face of challenges</Text>
-    </Box> */}
     </Box>
   );
 };
@@ -206,59 +223,172 @@ const benefits = [
   "😴 Better Sleep Quality",
 ];
 
-const ProductCarouselSection = () => (
-  <Box bg="white">
-    <Container maxW={["container.sm", null, "container.lg"]} py={6}>
-      <SimpleGrid columns={[1, 1, 2]} spacing={8} py={4}>
-        <Box>
-          <AspectRatio ratio={1} maxW={460} mx="auto">
-            <StaticImage
-              src="../images/product1.png"
-              alt="Ashwagandha Supplement"
-            />
-          </AspectRatio>
-        </Box>
-        <Box>
-          <Text
-            color="purple.600"
-            fontWeight={"bold"}
-            textTransform={"uppercase"}
-          >
-            Summer Sale
-          </Text>
-          <Heading as="h1" fontSize="3xl">
-            Most complete Blend of Ashwagandha for Modern Busy Women
-          </Heading>
-          <Flex alignItems={"center"} gap={2} py={2}>
-            <Text fontSize={"sm"}>4.7</Text>
-            <Rating />
-            <a href="#reviews">
-              <Text fontSize={"sm"} decoration={"underline"}>
-                {TOTAL_NUMBER_OF_REVIEWS} Reviews
-              </Text>
-            </a>
-          </Flex>
-          <Text mt={4}>
-            Our all-in-one supplement blend - the only one you'll need to{" "}
-            <Span fontWeight={"bold"}>combat stress</Span>,{" "}
-            <Span fontWeight={"bold"}>sharpen focus</Span>, and{" "}
-            <Span fontWeight={"bold"}>boost energy</Span>. This revolutionary
-            formula uniquely combines Ashwagandha, Rhodiola Extract, and Bacopa
-            with essential vitamins and minerals, creating a powerhouse solution
-            tailored specifically for the modern woman's needs.
-          </Text>
-          <Flex direction={"column"} gap={1} py={6}>
-            {benefits.map((b) => (
-              <Text key={b} fontWeight={"semibold"} fontSize={"sm"}>
-                {b}
-              </Text>
-            ))}
-          </Flex>
-        </Box>
-      </SimpleGrid>
-    </Container>
-  </Box>
-);
+function ThumbnailPlugin(
+  mainRef: React.MutableRefObject<KeenSliderInstance | null>
+): KeenSliderPlugin {
+  return (slider) => {
+    function removeActive() {
+      slider.slides.forEach((slide) => {
+        slide.classList.remove("active");
+      });
+    }
+
+    function addActive(idx: number) {
+      slider.slides[idx].classList.add("active");
+    }
+
+    function addClickEvents() {
+      slider.slides.forEach((slide, idx) => {
+        slide.addEventListener("click", () => {
+          if (mainRef.current) mainRef.current.moveToIdx(idx);
+        });
+      });
+    }
+
+    slider.on("created", () => {
+      if (!mainRef.current) return;
+      addActive(slider.track.details.rel);
+      addClickEvents();
+
+      mainRef.current.on("animationStarted", (main) => {
+        removeActive();
+        // with looping, this does not reset to 0 ever
+        const idx = main.animator.targetIdx ?? 0;
+        const realIdx = idx % main.slides.length;
+        addActive(realIdx);
+        slider.moveToIdx(realIdx);
+      });
+    });
+  };
+}
+
+const ProductCarouselSection = () => {
+  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
+    initial: 0,
+    loop: true,
+  });
+
+  const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
+    {
+      initial: 0,
+      slides: {
+        perView: 4,
+        spacing: 10,
+      },
+      loop: true,
+    },
+    [ThumbnailPlugin(instanceRef)]
+  );
+
+  const images = [
+    <StaticImage src="../images/product1.png" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/product2.png" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/ashwa1.jpeg" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/bacopa.jpg" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/product3.png" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/ltheanine.png" alt="Ashwagandha Supplement" />,
+  ];
+
+  return (
+    <Box bg="white">
+      <Global
+        styles={css`
+          .keen-slider__slide.active {
+            border-color: var(--chakra-colors-primary-500);
+            border-width: 2px;
+          }
+        `}
+      />
+      <Container maxW={["container.sm", null, "container.lg"]}>
+        <SimpleGrid columns={[1, 1, 2]} spacing={8} py={4}>
+          <Box>
+            <div ref={sliderRef} className="keen-slider">
+              {images.map((it, idx) => (
+                <AspectRatio
+                  className="keen-slider__slide"
+                  key={idx}
+                  ratio={1}
+                  maxW={460}
+                  mx="auto"
+                >
+                  {it}
+                </AspectRatio>
+              ))}
+            </div>
+
+            <Flex alignItems={"center"} gap={3} mt={2}>
+              <IconButton
+                aria-label="arrow left"
+                icon={<Icon as={FaArrowLeft} />}
+                onClick={() => instanceRef.current?.prev()}
+              />
+
+              <div ref={thumbnailRef} className="keen-slider">
+                {images.map((it, idx) => (
+                  <AspectRatio
+                    className="keen-slider__slide"
+                    key={idx}
+                    ratio={1}
+                    maxW={460}
+                    mx="auto"
+                    border={"1px solid"}
+                    borderColor={"gray.300"}
+                    borderRadius={"md"}
+                  >
+                    {it}
+                  </AspectRatio>
+                ))}
+              </div>
+
+              <IconButton
+                aria-label="arrow right"
+                icon={<Icon as={FaArrowRight} />}
+                onClick={() => instanceRef.current?.next()}
+              />
+            </Flex>
+          </Box>
+          <Box>
+            <Text
+              color="purple.600"
+              fontWeight={"bold"}
+              textTransform={"uppercase"}
+            >
+              Summer Sale
+            </Text>
+            <Heading as="h1" fontSize="3xl">
+              Most complete Blend of Ashwagandha for Modern Busy Women
+            </Heading>
+            <Flex alignItems={"center"} gap={2} py={2}>
+              <Text fontSize={"sm"}>4.7</Text>
+              <Rating />
+              <a href="#reviews">
+                <Text fontSize={"sm"} decoration={"underline"}>
+                  {TOTAL_NUMBER_OF_REVIEWS} Reviews
+                </Text>
+              </a>
+            </Flex>
+            <Text mt={4}>
+              Our all-in-one supplement blend - the only one you'll need to{" "}
+              <Span fontWeight={"bold"}>combat stress</Span>,{" "}
+              <Span fontWeight={"bold"}>sharpen focus</Span>, and{" "}
+              <Span fontWeight={"bold"}>boost energy</Span>. This revolutionary
+              formula uniquely combines Ashwagandha, Rhodiola Extract, and
+              Bacopa with essential vitamins and minerals, creating a powerhouse
+              solution tailored specifically for the modern woman's needs.
+            </Text>
+            <Flex direction={"column"} gap={1} py={6}>
+              {benefits.map((b) => (
+                <Text key={b} fontWeight={"semibold"} fontSize={"sm"}>
+                  {b}
+                </Text>
+              ))}
+            </Flex>
+          </Box>
+        </SimpleGrid>
+      </Container>
+    </Box>
+  );
+};
 
 type PurchaseType = "subscription" | "one-off";
 
