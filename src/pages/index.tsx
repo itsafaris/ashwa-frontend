@@ -23,13 +23,14 @@ import {
   IconButton,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
-import { FiShoppingCart } from "react-icons/fi";
 import { IoPersonCircle } from "react-icons/io5";
 import {
   FaArrowLeft,
   FaArrowRight,
   FaCheck,
   FaCheckCircle,
+  FaRegCheckCircle,
+  FaRegCircle,
   FaShippingFast,
   FaTimes,
 } from "react-icons/fa";
@@ -91,7 +92,7 @@ export default function Page() {
   return (
     <Box bg="bg.50">
       <Banner />
-      {/* <Header /> */}
+      <Header />
       <ProductCarouselSection />
       <ProductSelectionSection />
       <BadgesSection />
@@ -101,14 +102,20 @@ export default function Page() {
       <IngredientsSection />
       <FactsFromCustomersSection />
       <ReviewsSection reviews={reviews} />
-      <MainHero />
+      {/* <MainHero /> */}
       <Footer />
     </Box>
   );
 }
 
 const Banner = () => (
-  <Flex bg="black" fontWeight={"semibold"} color="white" py={1} px={3}>
+  <Flex
+    bgGradient="linear(to-r, orange.400, primary.500)"
+    fontWeight={"semibold"}
+    color="white"
+    py={1}
+    px={3}
+  >
     <Container
       as={Flex}
       gap={8}
@@ -121,12 +128,11 @@ const Banner = () => (
         justifyContent={"center"}
         alignItems={"center"}
         flex={1}
-        gap={[0, 2, 2]}
+        gap={[0, 1, 1]}
         flexWrap={"wrap"}
       >
-        <Text>Summer sale</Text>
-        <Flex gap={2}>
-          <Text>ends in</Text>
+        <Flex gap={1}>
+          <Text>Sale ends in</Text>
           <Timer fontWeight={"bold"} />
         </Flex>
       </Flex>
@@ -138,12 +144,9 @@ const Banner = () => (
 );
 
 const Header = () => (
-  <Box bg="gray.100">
-    <Container as={Flex} py={2} alignItems={"center"}>
-      <Logo height={"18px"} />
-      <Button ml="auto" leftIcon={<Icon as={FiShoppingCart} />}>
-        My Cart
-      </Button>
+  <Box bg="shade.100">
+    <Container as={Flex} py={3} alignItems={"center"} justifyContent={"center"}>
+      <Logo height={"24px"} />
     </Container>
   </Box>
 );
@@ -252,11 +255,9 @@ function ThumbnailPlugin(
 
       mainRef.current.on("animationStarted", (main) => {
         removeActive();
-        // with looping, this does not reset to 0 ever
-        const idx = main.animator.targetIdx ?? 0;
-        const realIdx = idx % main.slides.length;
-        addActive(realIdx);
-        slider.moveToIdx(realIdx);
+        const t = main.track.absToRel(main.animator.targetIdx ?? 0);
+        addActive(t);
+        slider.moveToIdx(t);
       });
     });
   };
@@ -268,26 +269,25 @@ const ProductCarouselSection = () => {
     loop: true,
   });
 
+  const images = [
+    <StaticImage src="../images/carousel1.jpg" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/carousel2.jpg" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/carousel3.jpg" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/carousel4.jpg" alt="Ashwagandha Supplement" />,
+    <StaticImage src="../images/carousel5.jpg" alt="Ashwagandha Supplement" />,
+  ];
+
   const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
     {
       initial: 0,
       slides: {
-        perView: 4,
-        spacing: 10,
+        perView: images.length - 2,
+        spacing: 8,
       },
       loop: true,
     },
     [ThumbnailPlugin(instanceRef)]
   );
-
-  const images = [
-    <StaticImage src="../images/product1.png" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/product2.png" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/ashwa1.jpeg" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/bacopa.jpg" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/product3.png" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/ltheanine.png" alt="Ashwagandha Supplement" />,
-  ];
 
   return (
     <Box bg="white">
@@ -406,6 +406,7 @@ const getProducts = (type: PurchaseType) => {
         <StaticImage
           alt="ashwagandha supplements bottle"
           src={"../images/product2.png"}
+          placeholder="blurred"
         />
       ),
     },
@@ -418,7 +419,8 @@ const getProducts = (type: PurchaseType) => {
       image: (
         <StaticImage
           alt="ashwagandha supplements bottle"
-          src={"../images/product2.png"}
+          src={"../images/product3.png"}
+          placeholder="blurred"
         />
       ),
     },
@@ -431,7 +433,8 @@ const getProducts = (type: PurchaseType) => {
       image: (
         <StaticImage
           alt="ashwagandha supplements bottle"
-          src={"../images/product2.png"}
+          src={"../images/product1.png"}
+          placeholder="blurred"
         />
       ),
     },
@@ -454,36 +457,48 @@ function ProductSelectionSection() {
 
   return (
     <Container maxW={"container.lg"}>
-      <SimpleGrid
-        columns={2}
+      <Flex
         my={4}
-        gap={2}
-        // border="1px solid"
+        gap={1}
         bg="bg.100"
         borderRadius={"md"}
-        padding={2}
         maxW={"max"}
         mx="auto"
         shadow={"inner"}
       >
         <Button
           size="sm"
-          variant={purchaseType === "one-off" ? "solid" : "ghost"}
-          colorScheme="black"
+          variant={purchaseType === "one-off" ? "solid" : "outline"}
+          colorScheme={"green"}
           onClick={() => setPurchaseType("one-off")}
+          justifyContent={"start"}
+          leftIcon={
+            <Icon
+              as={purchaseType === "one-off" ? FaRegCheckCircle : FaRegCircle}
+            />
+          }
         >
           One time purchase
         </Button>
         <Button
           size="sm"
-          variant={purchaseType === "subscription" ? "solid" : "ghost"}
-          colorScheme="black"
-          gap={2}
+          variant={purchaseType === "subscription" ? "solid" : "outline"}
+          colorScheme={"green"}
+          gap={1}
+          justifyContent={"start"}
+          leftIcon={
+            <Icon
+              as={
+                purchaseType === "subscription" ? FaRegCheckCircle : FaRegCircle
+              }
+            />
+          }
           onClick={() => setPurchaseType("subscription")}
         >
-          <Text>Subscribe</Text> <Badge colorScheme="purple">Sale %</Badge>
+          <Text>Subscribe</Text>
+          <Badge colorScheme="primary">Sale %</Badge>
         </Button>
-      </SimpleGrid>
+      </Flex>
 
       <Flex gap={2} fontWeight={"bold"} mx="auto" width={"max"} my={4}>
         <Text>Sale ends in: </Text>
@@ -494,13 +509,13 @@ function ProductSelectionSection() {
         <ProductSelectItem
           product={productList[0]}
           badgeText={`Best value SAVE ${productList[0].discount}%`}
-          badgeBg="green.500"
+          badgeBg="orange.400"
           footerText={`${dynamicText}. Free shipping`}
         />
         <ProductSelectItem
           product={productList[1]}
           badgeText={`Most popular SAVE ${productList[1].discount}%`}
-          badgeBg="purple.500"
+          badgeBg="purple.400"
           footerText={`${dynamicText}. Free shipping`}
         />
         <ProductSelectItem
@@ -554,7 +569,7 @@ function ProductSelectItem({
           gap={4}
           flexWrap={"wrap"}
         >
-          {product.image}
+          <Box p={[0, 6]}>{product.image}</Box>
           <Box>
             <Text fontSize={"lg"} fontWeight={"semibold"}>
               {product.count} month supply
@@ -587,7 +602,11 @@ function ProductSelectItem({
           </Box>
         </SimpleGrid>
 
-        <Button mt={3} colorScheme="primary">
+        <Button
+          mt={3}
+          colorScheme="green"
+          rightIcon={<Icon as={FaArrowRight} />}
+        >
           Order now
         </Button>
         <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
