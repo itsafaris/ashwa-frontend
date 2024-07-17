@@ -771,9 +771,11 @@ const AshwaRevivalSection = () => {
 
 function ReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
-    <Box my={8}>
-      <Container>
-        <Heading my={6}>Our customers love us!</Heading>
+    <Box py={8} bg="shade.100">
+      <Container maxW={"container.md"}>
+        <Heading my={6} textAlign={"center"}>
+          Real Stories, Real Results
+        </Heading>
         <Flex my={4} gap={2} justifyContent={"space-between"}>
           <Text fontSize={"sm"}>
             Showing <Span decoration={"underline"}>most recent</Span> reviews
@@ -1111,21 +1113,14 @@ function IngredientsSection() {
 
 function Footer(props: {}) {
   return (
-    <Flex py={20} bg="bg.100" color="bg.700">
+    <Flex py={20} bg="shade.100" color="bg.700">
       <Container as={Flex} maxWidth={1200} direction={"column"} gap={8}>
         <Flex direction={"column"} gap={2}>
-          <Flex gap={4} alignItems={"center"}>
-            <Logo height={"24px"} color={"primary.400"} />
-            <Span color="primary.400">ZenPro™</Span>
+          <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
+            <Logo height={"32px"} color={"primary.400"} />
           </Flex>
-          <Text
-            textAlign={"center"}
-            fontSize={"4xl"}
-            fontWeight={"black"}
-            fontFamily={"heading"}
-          >
-            Stress Reduction Gummies
-            <br /> for busy moms
+          <Text textAlign={"center"} fontSize={"xl"} fontFamily={"heading"}>
+            Stress-Free Living For Modern People
           </Text>
         </Flex>
         <SimpleGrid
