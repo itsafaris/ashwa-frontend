@@ -1142,8 +1142,8 @@ function Footer(props: {}) {
           <Flex direction={"column"} justifyContent={"center"}>
             <Text fontWeight={"semibold"}>Operational Address</Text>
             <Text>
-              Suite 403-B, 1013 Centre Road
-              <br /> City of Wilmington <br /> Delaware - 19805.
+              110 Innovation Blvd
+              <br /> City of Wilmington <br /> DE 19805, USA
             </Text>
           </Flex>
           <Flex gap={2} flexWrap={"wrap"} maxWidth={"220px"}>
@@ -1161,7 +1161,7 @@ function Footer(props: {}) {
           </Text>
           <Flex gap={4} justifyContent={"center"} textDecoration={"underline"}>
             <Link to="/">Terms of Service</Link>
-            <Link to="/">Privacy policy</Link>
+            <Link to="/privacy-policy">Privacy policy</Link>
             <Link to="/">Shipping & Returns</Link>
             <Link to="/">Refund policy</Link>
           </Flex>
