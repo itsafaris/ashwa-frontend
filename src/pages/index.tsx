@@ -41,6 +41,7 @@ import { Rating, Span, Timer } from "../components/components";
 import { Review, reviews } from "../reviews";
 import { css, Global } from "@emotion/react";
 import { loadStripe } from "@stripe/stripe-js";
+import useSiteMetadata from "../site-metadata";
 
 const stripePromise = loadStripe(
   "pk_test_51PdZVqCSMlpgjECR0fnDEpQssuYcErVr30IQJox6ptUdWBagvZzC5tHk5RdEDOgoZPqe7YrVi0sfBT0t5TKOenWZ0076LgXGir"
@@ -382,71 +383,97 @@ type PurchaseType = "subscription" | "one-off";
 type Product = ReturnType<typeof getProducts>[number];
 
 const getProducts = (type: PurchaseType) => {
-  const subExtraDiscount = 10;
+  const common1 = {
+    count: 1,
+    unitServingsCount: 30,
+    subtitle: "Ideal solution for trying out",
+    image: (
+      <StaticImage
+        alt="ashwagandha supplements bottle"
+        src={"../images/product1.png"}
+        placeholder="blurred"
+      />
+    ),
+  };
 
-  return [
-    {
-      stripeID:
-        type === "one-off"
-          ? "price_1PdZinCSMlpgjECR1m4HUs2n"
-          : "price_1PdanGCSMlpgjECRerg53HTL",
-      count: 3,
-      unitServingsCount: 30,
-      unitPrice: type === "one-off" ? 41.99 : 34.99,
-      discount: 40,
-      subtitle: "Great for building new habits",
-      image: (
-        <StaticImage
-          alt="ashwagandha supplements bottle"
-          src={"../images/product2.png"}
-          placeholder="blurred"
-        />
-      ),
-    },
-    {
-      stripeID:
-        type === "one-off"
-          ? "price_1PdaDOCSMlpgjECRPNMPPzRr"
-          : "price_1Pdaj3CSMlpgjECRCIDtwNt2",
-      count: 6,
-      unitServingsCount: 30,
-      unitPrice: type === "one-off" ? 30.0 : 25.99,
-      discount: 50,
-      subtitle: "For achieving the most sustainable results",
-      image: (
-        <StaticImage
-          alt="ashwagandha supplements bottle"
-          src={"../images/product3.png"}
-          placeholder="blurred"
-        />
-      ),
-    },
-    {
-      stripeID:
-        type === "one-off"
-          ? "price_1PdZhuCSMlpgjECR1eJj9PFi"
-          : "price_1PdaBTCSMlpgjECRDWZ2LB0k",
-      count: 1,
-      unitServingsCount: 30,
-      unitPrice: type === "one-off" ? 55.99 : 47.99,
-      discount: 30,
-      subtitle: "Ideal solution for trying out",
-      image: (
-        <StaticImage
-          alt="ashwagandha supplements bottle"
-          src={"../images/product1.png"}
-          placeholder="blurred"
-        />
-      ),
-    },
-  ].map((p) => ({
-    ...p,
-    discount:
-      type === "subscription" ? p.discount + subExtraDiscount : p.discount,
-  }));
+  const common3 = {
+    count: 3,
+    unitServingsCount: 30,
+    subtitle: "Great for building new habits",
+    image: (
+      <StaticImage
+        alt="ashwagandha supplements bottle"
+        src={"../images/product2.png"}
+        placeholder="blurred"
+      />
+    ),
+  };
+
+  const common6 = {
+    count: 6,
+    unitServingsCount: 30,
+    subtitle: "For achieving the most sustainable results",
+    image: (
+      <StaticImage
+        alt="ashwagandha supplements bottle"
+        src={"../images/product3.png"}
+        placeholder="blurred"
+      />
+    ),
+  };
+
+  const sub1 = {
+    stripeID: "price_1PdaBTCSMlpgjECRDWZ2LB0k",
+    unitPrice: 47.99,
+    discount: 40,
+    ...common1,
+  };
+
+  const sub3 = {
+    stripeID: "price_1PdanGCSMlpgjECRerg53HTL",
+    unitPrice: 34.99,
+    discount: 50,
+    ...common3,
+  };
+
+  const sub6 = {
+    stripeID: "price_1Pdaj3CSMlpgjECRCIDtwNt2",
+    unitPrice: 25.99,
+    discount: 60,
+    ...common6,
+  };
+
+  const oneOff1 = {
+    stripeID: "price_1PdZhuCSMlpgjECR1eJj9PFi",
+    unitPrice: 55.99,
+    discount: 30,
+    ...common1,
+  };
+
+  const oneOff3 = {
+    stripeID: "price_1PdZinCSMlpgjECR1m4HUs2n",
+    unitPrice: 41.99,
+    discount: 40,
+    ...common3,
+  };
+
+  const oneOff6 = {
+    stripeID: "price_1PdaDOCSMlpgjECRPNMPPzRr",
+    unitPrice: 30.0,
+    discount: 50,
+    ...common6,
+  };
+
+  if (type === "one-off") {
+    return [oneOff3, oneOff6, oneOff1];
+  }
+
+  return [sub3, sub6, sub1];
 };
 
 function ProductSelectionSection() {
+  const { websiteHostname } = useSiteMetadata();
+
   const [purchaseType, setPurchaseType] =
     React.useState<PurchaseType>("subscription");
 
@@ -464,8 +491,8 @@ function ProductSelectionSection() {
         },
       ],
       mode: purchaseType === "one-off" ? "payment" : "subscription",
-      successUrl: "https://example.com/success",
-      cancelUrl: "https://example.com/cancel",
+      successUrl: `${websiteHostname}/purchase-success`,
+      cancelUrl: `${websiteHostname}`,
       shippingAddressCollection: { allowedCountries: ["US"] },
     });
     // If `redirectToCheckout` fails due to a browser or network

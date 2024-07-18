@@ -15,6 +15,8 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run build
+        env:
+          WEBSITE_HOSTNAME: https://trycalmr.com
       - name: Netlify Deploy
         uses: nwtgck/actions-netlify@v3.0.0
         with:
