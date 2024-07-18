@@ -29,12 +29,9 @@ export function Footer() {
             </Text>
           </Flex>
           <Flex gap={2} flexWrap={"wrap"} maxWidth={"220px"}>
-            <Text>About us</Text>
-            <Text>Affiliates</Text>
+            <Link to="/about-us">About us</Link>
             <Text>FAQs</Text>
-            <Text>Help</Text>
             <Text>Blog</Text>
-            <Text>Learn</Text>
           </Flex>
         </SimpleGrid>
         <Flex direction={"column"} gap={2}>
