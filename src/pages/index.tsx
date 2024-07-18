@@ -44,6 +44,7 @@ import { siteConfig } from "../conf";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
 import { FAQ } from "../components/FAQ";
+import { SEO } from "@components/SEO";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
@@ -73,6 +74,10 @@ const comparisonData = [
     competitors: "Feels stuck in a rut",
   },
 ];
+
+export const Head: HeadFC = () => {
+  return <SEO />;
+};
 
 export default function Page() {
   return (
@@ -1208,5 +1213,3 @@ function IngredientsSection() {
     </Container>
   );
 }
-
-export const Head: HeadFC = () => <title>Home Page</title>;
