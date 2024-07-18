@@ -30,7 +30,7 @@ export function Footer() {
           </Flex>
           <Flex gap={2} flexWrap={"wrap"} maxWidth={"220px"}>
             <Link to="/about-us">About us</Link>
-            <Text>FAQs</Text>
+            <Link to="/faq">FAQs</Link>
             <Text>Blog</Text>
           </Flex>
         </SimpleGrid>

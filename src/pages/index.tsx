@@ -42,6 +42,7 @@ import { css, Global } from "@emotion/react";
 import { loadStripe } from "@stripe/stripe-js";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
+import { FAQ } from "../components/FAQ";
 
 const stripePromise = loadStripe(
   "pk_test_51PdZVqCSMlpgjECR0fnDEpQssuYcErVr30IQJox6ptUdWBagvZzC5tHk5RdEDOgoZPqe7YrVi0sfBT0t5TKOenWZ0076LgXGir"
@@ -90,6 +91,7 @@ export default function Page() {
       <IngredientsSection />
       <FactsFromCustomersSection />
       <ReviewsSection reviews={reviews} />
+      <FAQSection />
       {/* <MainHero /> */}
       <Footer />
     </Box>
@@ -794,6 +796,16 @@ const AshwaRevivalSection = () => {
     </Box>
   );
 };
+
+function FAQSection() {
+  return (
+    <Box py={8}>
+      <Container maxW={"container.md"}>
+        <FAQ />
+      </Container>
+    </Box>
+  );
+}
 
 function ReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
