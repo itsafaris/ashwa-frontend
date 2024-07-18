@@ -181,7 +181,7 @@ const MainHero = () => {
             {values.map((value) => (
               <Flex
                 key={value}
-                bg="shade.100"
+                bg="shade.200"
                 p={1}
                 borderRadius={"full"}
                 fontWeight={"semibold"}
@@ -801,7 +801,7 @@ const AshwaRevivalSection = () => {
   ];
 
   return (
-    <Box py={16} bg={"shade.100"}>
+    <Box py={16} bg={"shade.200"}>
       <Container maxW={"container.md"}>
         <Heading mx="auto" mb={6} px={8} textAlign={"center"}>
           Why This Ancient Herb
@@ -854,7 +854,7 @@ const AshwaRevivalSection = () => {
 
 function FAQSection() {
   return (
-    <Box py={8} bg="shade.100">
+    <Box py={8} bg="shade.200">
       <Container maxW={"container.md"}>
         <FAQ />
       </Container>
@@ -864,7 +864,7 @@ function FAQSection() {
 
 function TopReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
-    <Box py={8} bg="shade.100">
+    <Box py={8} bg="shade.200">
       <Container maxW={"container.lg"}>
         <Heading my={6} textAlign={"center"}>
           Don't Just Take Our Word
@@ -1146,7 +1146,7 @@ function FactsFromCustomersSection() {
     },
   ];
   return (
-    <Box py={16} bg="shade.100">
+    <Box py={16} bg="shade.200">
       <Container maxWidth={"container.lg"}>
         <Heading textAlign={"center"}>
           Here's what we know - <br />
