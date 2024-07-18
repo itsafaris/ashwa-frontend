@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, type HeadFC, type PageProps } from "gatsby";
+import { type HeadFC } from "gatsby";
 import {
   useKeenSlider,
   KeenSliderPlugin,
@@ -36,11 +36,12 @@ import {
 } from "react-icons/fa";
 import { LiaFlagUsaSolid } from "react-icons/lia";
 import { RiRefund2Line } from "react-icons/ri";
-import { Logo } from "../components/logo";
 import { Rating, Span, Timer } from "../components/components";
 import { Review, reviews } from "../reviews";
 import { css, Global } from "@emotion/react";
 import { loadStripe } from "@stripe/stripe-js";
+import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
 
 const stripePromise = loadStripe(
   "pk_test_51PdZVqCSMlpgjECR0fnDEpQssuYcErVr30IQJox6ptUdWBagvZzC5tHk5RdEDOgoZPqe7YrVi0sfBT0t5TKOenWZ0076LgXGir"
@@ -128,14 +129,6 @@ const Banner = () => (
       </Text>
     </Container>
   </Flex>
-);
-
-const Header = () => (
-  <Box bg="shade.100">
-    <Container as={Flex} py={3} alignItems={"center"} justifyContent={"center"}>
-      <Logo height={"24px"} />
-    </Container>
-  </Box>
 );
 
 const MainHero = () => {
@@ -1152,63 +1145,6 @@ function IngredientsSection() {
         ))}
       </SimpleGrid>
     </Container>
-  );
-}
-
-function Footer(props: {}) {
-  return (
-    <Flex py={20} bg="shade.100" color="bg.700">
-      <Container as={Flex} maxWidth={1200} direction={"column"} gap={8}>
-        <Flex direction={"column"} gap={2}>
-          <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
-            <Logo height={"32px"} color={"primary.400"} />
-          </Flex>
-          <Text textAlign={"center"} fontSize={"xl"} fontFamily={"heading"}>
-            Stress-Free Living For Modern People
-          </Text>
-        </Flex>
-        <SimpleGrid
-          columns={[1, 1, 2]}
-          alignItems={"center"}
-          justifyItems={"center"}
-        >
-          <Flex direction={"column"} justifyContent={"center"}>
-            <Text fontWeight={"semibold"}>Operational Address</Text>
-            <Text>
-              110 Innovation Blvd
-              <br /> City of Wilmington <br /> DE 19805, USA
-            </Text>
-          </Flex>
-          <Flex gap={2} flexWrap={"wrap"} maxWidth={"220px"}>
-            <Text>About us</Text>
-            <Text>Affiliates</Text>
-            <Text>FAQs</Text>
-            <Text>Help</Text>
-            <Text>Blog</Text>
-            <Text>Learn</Text>
-          </Flex>
-        </SimpleGrid>
-        <Flex direction={"column"} gap={2}>
-          <Text fontSize={"sm"} textAlign={"center"}>
-            ©2024 ZenPro. All rights reserved.
-          </Text>
-          <Flex gap={4} justifyContent={"center"} textDecoration={"underline"}>
-            <Link to="/">Terms of Service</Link>
-            <Link to="/privacy-policy">Privacy policy</Link>
-            <Link to="/">Shipping & Returns</Link>
-            <Link to="/">Refund policy</Link>
-          </Flex>
-          <Text my={4} fontSize={"xs"}>
-            The statements made on this website have not been evaluated by the
-            FDA (U.S. Food & Drug Administration). The products sold on this
-            website are not intended to diagnose, treat, cure, or prevent any
-            disease. The information provided by this website or this company is
-            not a substitute for a face-to-face consultation with your
-            physician, and should not be construed as individual medical advice.
-          </Text>
-        </Flex>
-      </Container>
-    </Flex>
   );
 }
 

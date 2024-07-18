@@ -8,8 +8,8 @@ import {
   UnorderedList,
 } from "@chakra-ui/react";
 import React from "react";
-
-import { Link as LinkRaw } from "gatsby";
+import { Footer } from "../components/Footer";
+import { Header } from "../components/Header";
 
 function Headline(props: TextProps) {
   return (
@@ -52,19 +52,10 @@ function Text(props: TextProps) {
   return <TextRaw {...props} />;
 }
 
-function Link({ to, children }: { to: string } & React.PropsWithChildren) {
-  return (
-    <LinkRaw to={to}>
-      <Text as="span" color="blue.300">
-        {children}
-      </Text>
-    </LinkRaw>
-  );
-}
-
 export default function PrivacyPolicyPage() {
   return (
     <Stack>
+      <Header />
       <Container>
         <Stack spacing={8} my={10}>
           <Headline>Privacy Policy</Headline>
@@ -377,6 +368,7 @@ export default function PrivacyPolicyPage() {
           <TitleXL>Last updated: July 17th, 2024</TitleXL>
         </Stack>
       </Container>
+      <Footer />
     </Stack>
   );
 }
