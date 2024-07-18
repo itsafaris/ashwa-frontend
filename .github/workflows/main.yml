@@ -16,7 +16,8 @@ jobs:
       - run: bun install --frozen-lockfile
       - run: bun run build
         env:
-          WEBSITE_HOSTNAME: https://trycalmr.com
+          GATSBY_WEBSITE_HOSTNAME: https://trycalmr.com
+          GATSBY_STRIPE_PUBLIC_KEY: pk_live_51PdZVqCSMlpgjECRHtH15CLT2Q2fdn5faGSPUrUnGdEwffHMuNsNLuU7olWduyZfRAWQnpWtchled4zCmT9cIk4j00oNyOrM9w
       - name: Netlify Deploy
         uses: nwtgck/actions-netlify@v3.0.0
         with:
