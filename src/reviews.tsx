@@ -3,6 +3,33 @@ import * as React from "react";
 
 export type Review = (typeof reviews)[number];
 
+export const topReviews = [
+  {
+    title: "Game changer for stress!",
+    text: "OMG, this stuff is amazing! I've been taking it for a month and I feel so much calmer. Work doesn't stress me out as much anymore. Def recommend!",
+    name: "Sarah J.",
+    location: "Vermont",
+    score: 4.8,
+    img: <StaticImage width={400} src="./images/review1.jpeg" alt="" />,
+  },
+  {
+    title: "Sleep like a baby now",
+    text: "Used to toss and turn all night, but since I started taking ashwagandha, I'm out like a light. Wake up feeling refreshed too. Win-win!",
+    name: "Mike T.",
+    location: "Georgia",
+    score: 4.5,
+    img: <StaticImage width={400} src="./images/review2.jpeg" alt="" />,
+  },
+  {
+    title: "Goodbye anxiety!",
+    text: "Been dealing with anxiety for years. This supplement has been a lifesaver. Not a magic pill, but it takes the edge off for sure.",
+    name: "Emily R.",
+    location: "Virginia",
+    score: 4.7,
+    img: <StaticImage width={400} src="./images/review4.jpeg" alt="" />,
+  },
+];
+
 export const reviews = [
   {
     title: "Game changer for stress!",

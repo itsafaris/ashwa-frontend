@@ -37,7 +37,7 @@ import {
 import { LiaFlagUsaSolid } from "react-icons/lia";
 import { RiRefund2Line } from "react-icons/ri";
 import { Rating, Span, Timer } from "../components/components";
-import { Review, reviews } from "../reviews";
+import { Review, reviews, topReviews } from "../reviews";
 import { css, Global } from "@emotion/react";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import { siteConfig } from "../conf";
@@ -86,12 +86,13 @@ export default function Page() {
       <Header />
       <ProductCarouselSection />
       <ProductSelectionSection />
-      <BadgesSection />
       <RecommendedUsageSection />
+      <BadgesSection />
+      <TopReviewsSection reviews={topReviews} />
       <ComparisonSection />
-      <AshwaRevivalSection />
-      <IngredientsSection />
       <FactsFromCustomersSection />
+      <IngredientsSection />
+      <AshwaRevivalSection />
       <ReviewsSection reviews={reviews} />
       <FAQSection />
       {/* <MainHero /> */}
@@ -800,9 +801,9 @@ const AshwaRevivalSection = () => {
   ];
 
   return (
-    <Box my={16}>
+    <Box py={16} bg={"shade.100"}>
       <Container maxW={"container.md"}>
-        <Heading mx="auto" mb={6} px={8} textAlign={"center"} fontSize={"3xl"}>
+        <Heading mx="auto" mb={6} px={8} textAlign={"center"}>
           Why This Ancient Herb
           <br /> Is 2024's Stress-Busting Superstar
         </Heading>
@@ -853,7 +854,7 @@ const AshwaRevivalSection = () => {
 
 function FAQSection() {
   return (
-    <Box py={8}>
+    <Box py={8} bg="shade.100">
       <Container maxW={"container.md"}>
         <FAQ />
       </Container>
@@ -861,9 +862,108 @@ function FAQSection() {
   );
 }
 
-function ReviewsSection({ reviews }: { reviews: Review[] }) {
+function TopReviewsSection({ reviews }: { reviews: Review[] }) {
   return (
     <Box py={8} bg="shade.100">
+      <Container maxW={"container.lg"}>
+        <Heading my={6} textAlign={"center"}>
+          Don't Just Take Our Word
+        </Heading>
+
+        <Grid
+          gridTemplateColumns={[
+            "repeat(1, 1fr)",
+            "repeat(1, 1fr)",
+            "repeat(3, 1fr)",
+          ]}
+          alignItems={"center"}
+          gap={3}
+        >
+          {reviews.map((review, idx) => {
+            return (
+              <Stack
+                key={idx}
+                height={"400px"}
+                width={"100%"}
+                maxW={"400px"}
+                backgroundColor={"white"}
+                mx={"auto"}
+                borderRadius={"lg"}
+                position={"relative"}
+                overflow={"hidden"}
+              >
+                {review.img && (
+                  <Flex
+                    height={"100%"}
+                    width={"100%"}
+                    position={"absolute"}
+                    top={0}
+                    left={0}
+                    zIndex={0}
+                  >
+                    {review.img}
+                  </Flex>
+                )}
+
+                <Box
+                  position={"absolute"}
+                  top={0}
+                  left={0}
+                  height={"100%"}
+                  width={"100%"}
+                  bgGradient={"linear(to-t, gray.900, transparent)"}
+                  zIndex={0}
+                />
+
+                <Stack
+                  direction={"column"}
+                  p={2}
+                  px={3}
+                  zIndex={1}
+                  color="white"
+                  lineHeight={1.3}
+                  spacing={1}
+                  height={"220px"}
+                  mt={"auto"}
+                >
+                  <Text fontWeight={"bold"} fontSize={"lg"}>
+                    {review.title}
+                  </Text>
+
+                  <Stack
+                    flexDirection={"row"}
+                    spacing={1}
+                    alignItems={"center"}
+                  >
+                    <Icon as={IoPersonCircle} color="gray.400" boxSize={6} />
+                    <Text>{review.name}</Text>
+                  </Stack>
+
+                  <Stack
+                    flexDirection={"row"}
+                    spacing={1}
+                    alignItems={"center"}
+                  >
+                    <Rating rating={review.score} />
+                    <Text fontWeight={"semibold"} fontSize={"xs"}>
+                      Verified Purchase
+                    </Text>
+                  </Stack>
+
+                  <Text fontSize={"sm"}>{review.text}</Text>
+                </Stack>
+              </Stack>
+            );
+          })}
+        </Grid>
+      </Container>
+    </Box>
+  );
+}
+
+function ReviewsSection({ reviews }: { reviews: Review[] }) {
+  return (
+    <Box py={8}>
       <Container maxW={"container.md"}>
         <Heading my={6} textAlign={"center"}>
           Real Stories, Real Results
@@ -886,7 +986,12 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
-              <Flex key={idx} bg="white">
+              <Flex
+                key={idx}
+                bg="white"
+                border="1px solid"
+                borderColor={"bg.100"}
+              >
                 <Flex direction={"column"} p={2} px={3} flex={1}>
                   <Flex alignItems={"center"} gap={2}>
                     <Icon
@@ -1041,39 +1146,45 @@ function FactsFromCustomersSection() {
     },
   ];
   return (
-    <Container maxWidth={"container.lg"} my={16}>
-      <Heading textAlign={"center"}>
-        Here's what we know - <br />
-        <Span textDecoration={"underline"}>for a fact</Span>
-      </Heading>
-      <Text textAlign={"center"} my={4}>
-        Based on our{" "}
-        <Span textDecoration={"underline"}>customer survey study</Span> , who've
-        used our product for more than 3 weeks
-      </Text>
-      <SimpleGrid
-        columns={[1, 1, 3]}
-        alignItems={"start"}
-        justifyContent={"center"}
-        justifyItems={"center"}
-      >
-        {facts.map((fact, idx) => (
-          <Flex
-            key={idx}
-            direction={"column"}
-            alignItems={"center"}
-            maxW={"260px"}
-          >
-            <Text fontSize={"6xl"} fontWeight={"bold"} fontFamily={"heading"}>
-              {fact.number}
-            </Text>
-            <Text textAlign={"center"} fontSize={"sm"} fontWeight={"semibold"}>
-              {fact.fact}
-            </Text>
-          </Flex>
-        ))}
-      </SimpleGrid>
-    </Container>
+    <Box py={16} bg="shade.100">
+      <Container maxWidth={"container.lg"}>
+        <Heading textAlign={"center"}>
+          Here's what we know - <br />
+          <Span textDecoration={"underline"}>for a fact</Span>
+        </Heading>
+        <Text textAlign={"center"} my={4}>
+          Based on our{" "}
+          <Span textDecoration={"underline"}>customer survey study</Span> ,
+          who've used our product for more than 3 weeks
+        </Text>
+        <SimpleGrid
+          columns={[1, 1, 3]}
+          alignItems={"start"}
+          justifyContent={"center"}
+          justifyItems={"center"}
+        >
+          {facts.map((fact, idx) => (
+            <Flex
+              key={idx}
+              direction={"column"}
+              alignItems={"center"}
+              maxW={"260px"}
+            >
+              <Text fontSize={"6xl"} fontWeight={"bold"} fontFamily={"heading"}>
+                {fact.number}
+              </Text>
+              <Text
+                textAlign={"center"}
+                fontSize={"sm"}
+                fontWeight={"semibold"}
+              >
+                {fact.fact}
+              </Text>
+            </Flex>
+          ))}
+        </SimpleGrid>
+      </Container>
+    </Box>
   );
 }
 

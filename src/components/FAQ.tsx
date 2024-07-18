@@ -74,7 +74,7 @@ export function FAQ() {
       <Accordion allowMultiple>
         {data.map((it, idx) => {
           return (
-            <AccordionItem key={idx}>
+            <AccordionItem key={idx} borderColor={"blackAlpha.300"}>
               <Text>
                 <AccordionButton py={6}>
                   <Box
