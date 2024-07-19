@@ -26,6 +26,7 @@
     "framer-motion": "^11.2.14",
     "gatsby": "^5.13.5",
     "gatsby-plugin-emotion": "^8.13.1",
+    "gatsby-plugin-facebook-pixel": "^1.0.8",
     "gatsby-plugin-google-gtag": "^5.13.1",
     "gatsby-plugin-image": "^3.13.1",
     "gatsby-plugin-manifest": "^5.13.1",
@@ -33,6 +34,7 @@
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "keen-slider": "^6.8.6",
+    "posthog-js": "^1.148.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1"
@@ -41,6 +43,7 @@
     "@types/node": "^20.11.19",
     "@types/react": "^18.2.55",
     "@types/react-dom": "^18.2.19",
+    "dotenv": "^16.4.5",
     "gatsby-plugin-tsconfig-paths": "^1.0.6",
     "typescript": "^5.3.3"
   }

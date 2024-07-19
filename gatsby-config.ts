@@ -1,4 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const config: GatsbyConfig = {
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
@@ -10,14 +13,17 @@ const config: GatsbyConfig = {
     "gatsby-plugin-emotion",
     // "gatsby-plugin-google-gtag",
     "gatsby-plugin-image",
+
     {
       resolve: "gatsby-plugin-manifest",
       options: {
         icon: "src/images/favicon.png",
       },
     },
+
     "gatsby-plugin-sharp",
     "gatsby-transformer-sharp",
+
     {
       resolve: "gatsby-source-filesystem",
       options: {
@@ -25,6 +31,13 @@ const config: GatsbyConfig = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+
+    {
+      resolve: `gatsby-plugin-facebook-pixel`,
+      options: {
+        pixelId: "1151210512780170",
+      },
     },
   ],
 };
