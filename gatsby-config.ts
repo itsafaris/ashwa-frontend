@@ -1,5 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
 import dotenv from "dotenv";
+import { PostHogConfig } from "posthog-js";
+import { isProdMode } from "./src/utils";
 
 dotenv.config();
 
@@ -30,6 +32,22 @@ const config: GatsbyConfig = {
         path: "./src/images/",
       },
       __key: "images",
+    },
+
+    {
+      resolve: `gatsby-plugin-posthog`,
+      options: {
+        apiKey: "phc_8GZnMTIRMuj7aNKBpluPe46MiqUaFn4RiuH4TtCnmme",
+        apiHost: "https://us.i.posthog.com",
+        head: true,
+        isEnabledDevMode: true,
+        initOptions: {
+          autocapture: true,
+          debug: !isProdMode(),
+          disable_session_recording: !isProdMode(),
+          enable_heatmaps: true,
+        } satisfies Partial<PostHogConfig>,
+      },
     },
 
     {

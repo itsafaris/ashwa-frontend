@@ -47,6 +47,7 @@ import { FAQ } from "../components/FAQ";
 import { SEO } from "@components/SEO";
 import { getProducts, Product, PurchaseType } from "src/products";
 import { getPageUrl } from "./purchase-success";
+import { trackEvent } from "src/tracking";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
@@ -96,6 +97,7 @@ export default function Page() {
       <IngredientsSection />
       <AshwaRevivalSection />
       <ReviewsSection reviews={reviews} />
+      <ProductSelectionSection />
       <FAQSection />
       {/* <MainHero /> */}
       <Footer />
@@ -389,6 +391,13 @@ function ProductSelectionSection() {
     purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
 
   const handleClick = async (product: Product) => {
+    trackEvent({
+      name: "InitiateCheckout",
+      properties: {
+        productID: product.id,
+      },
+    });
+
     const stripe = await stripePromise.current;
 
     const { error } = await stripe!.redirectToCheckout({
@@ -413,7 +422,7 @@ function ProductSelectionSection() {
   }, []);
 
   return (
-    <Container maxW={"container.lg"}>
+    <Container maxW={"container.lg"} id="pricing-section">
       <Flex
         my={4}
         gap={1}
@@ -725,17 +734,17 @@ const AshwaRevivalSection = () => {
             <Flex key={study.year} direction={"column"} fontSize={"sm"}>
               <a href={study.src} target="_blank" rel="noopener noreferrer">
                 <Text textDecoration={"underline"} color="blue.500">
-                  {study.year} - {study.title} (
-                  <Span as={"a"} color="blue.500" href={study.src}>
-                    link
-                  </Span>
-                  )
+                  {study.year} - {study.title}
                 </Text>
               </a>
               <Text fontWeight={"semibold"}>{study.summarized_outcome}</Text>
             </Flex>
           ))}
         </Stack>
+
+        <Flex mt={16}>
+          <JumptToPricingButton />
+        </Flex>
       </Container>
     </Box>
   );
@@ -1074,6 +1083,10 @@ function FactsFromCustomersSection() {
             </Flex>
           ))}
         </SimpleGrid>
+
+        <Flex mt={16}>
+          <JumptToPricingButton />
+        </Flex>
       </Container>
     </Box>
   );
@@ -1213,5 +1226,19 @@ function IngredientsSection() {
         ))}
       </SimpleGrid>
     </Container>
+  );
+}
+
+function JumptToPricingButton() {
+  return (
+    <Button
+      as="a"
+      colorScheme="green"
+      mx="auto"
+      rightIcon={<Icon as={FaArrowRight} />}
+      href="#pricing-section"
+    >
+      Order yours now
+    </Button>
   );
 }
