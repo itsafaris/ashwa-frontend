@@ -19,11 +19,11 @@ export function Rating({
     <Flex gap={1} {...rest} color={"orange.300"}>
       {[...Array(5)].map((_, idx) => {
         if (idx < fullStars) {
-          return <Icon key={idx} boxSize={"12px"} as={FaStar} />;
+          return <Icon key={idx} boxSize={"14px"} as={FaStar} />;
         } else if (idx === fullStars && hasHalfStar) {
-          return <Icon key={idx} boxSize={"12px"} as={FaStarHalfAlt} />;
+          return <Icon key={idx} boxSize={"14px"} as={FaStarHalfAlt} />;
         } else {
-          return <Icon key={idx} boxSize={"12px"} as={FaRegStar} />;
+          return <Icon key={idx} boxSize={"14px"} as={FaRegStar} />;
         }
       })}
     </Flex>

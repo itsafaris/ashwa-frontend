@@ -206,7 +206,7 @@ const benefits = [
   "🧠 Sharpen your mind and banish brain fog",
   "⚡ Elevate your energy levels",
   "🧘‍♀️ Ease anxiety",
-  "🧠 Improved Cognitive Function",
+  "🧠 Improve Cognitive Function",
   "😴 Better Sleep Quality",
 ];
 
@@ -804,7 +804,7 @@ const AshwaRevivalSection = () => {
     <Box py={16} bg={"shade.100"}>
       <Container maxW={"container.md"}>
         <Heading mx="auto" mb={6} px={8} textAlign={"center"}>
-          Why This Ancient Herb
+          Why Ashwagandha
           <br /> Is 2024's Stress-Busting Superstar
         </Heading>
 
@@ -992,7 +992,7 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
                 border="1px solid"
                 borderColor={"bg.100"}
               >
-                <Flex direction={"column"} p={2} px={3} flex={1}>
+                <Flex direction={"column"} p={2} px={3} flex={1} gap={1}>
                   <Flex alignItems={"center"} gap={2}>
                     <Icon
                       as={IoPersonCircle}
@@ -1003,37 +1003,39 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
                     <Flex alignItems={"center"} gap={1}>
                       <Icon
                         as={FaCheckCircle}
-                        color="orange.400"
+                        color="green.400"
                         boxSize={3}
                       ></Icon>
                       <Text
                         fontWeight={"bold"}
                         fontSize={"xs"}
-                        color="orange.500"
+                        color="green.500"
                       >
                         Verified Purchase
                       </Text>
                     </Flex>
                   </Flex>
+
                   <Flex gap={2} alignItems={"center"}>
                     <Rating rating={review.score} />
                     <Text fontWeight={"bold"}>{review.title}</Text>
                   </Flex>
+
                   <Flex gap={1} direction={"column"}>
-                    <Text
-                      fontSize={"xs"}
-                      fontWeight={"semibold"}
-                      color={"gray.500"}
-                    >
-                      Reviewed in {review.location} 12 hours ago
+                    <Text fontSize={"sm"} color={"gray.700"}>
+                      Reviewed in {review.location} {review.hoursAgo} hours ago
                     </Text>
                   </Flex>
+
                   {review.img && (
-                    <Flex height={"140px"} width={"140px"}>
+                    <Flex height={"140px"} width={"140px"} my={2}>
                       {review.img}
                     </Flex>
                   )}
-                  <Text my={2}>{review.text}</Text>
+
+                  <Text my={2} fontSize={"sm"}>
+                    {review.text}
+                  </Text>
                 </Flex>
               </Flex>
             );

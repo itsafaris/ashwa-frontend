@@ -15,7 +15,7 @@ const data: Array<{ question: string; answer: string }> = [
   {
     question: "What is Calmr?",
     answer:
-      "Calmr is a dietary supplement designed specifically to help reduce anxiety in women aged 25-50. Our formula combines key vitamins, minerals, and natural ingredients to promote a sense of calm and well-being.",
+      "Calmr is a dietary supplement designed specifically to help reduce anxiety in women. Our formula combines key vitamins, minerals, and natural ingredients to promote a sense of calm and well-being.",
   },
   {
     question: "How should I take Calmr?",
@@ -40,7 +40,7 @@ const data: Array<{ question: string; answer: string }> = [
   {
     question: "What are the pricing options for Calmr?",
     answer:
-      "We offer three bundle options:\n- 1 Bottle: For a one-month supply\n- 3 Bottles: For a three-month supply\n- 6 Bottles: For a six-month supply\nPlease visit our website www.trycalmr.com for detailed pricing and savings information.",
+      "We offer three bundle options: 1 Bottle For a one-month supply, 3 Bottles For a three-month supply, 6 Bottles For a six-month supply.",
   },
   {
     question: "Where is Calmr manufactured?",

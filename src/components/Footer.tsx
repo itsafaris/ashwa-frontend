@@ -13,7 +13,7 @@ export function Footer() {
             <Logo height={"32px"} color={"primary.400"} />
           </Flex>
           <Text textAlign={"center"} fontSize={"xl"} fontFamily={"heading"}>
-            Stress-Free Living For Modern People
+            Stress-Free Living For Modern Women
           </Text>
         </Flex>
         <SimpleGrid
