@@ -6,8 +6,8 @@ import { PageProps } from "gatsby";
 import * as React from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { siteConfig } from "src/conf";
-import { getProduct } from "src/products";
-import { trackPixel } from "src/tracking";
+import { getProduct } from "../products";
+import { trackPixel } from "../tracking";
 
 export interface IPurchaseSuccessPageProps extends PageProps {}
 
