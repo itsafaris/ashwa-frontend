@@ -11,7 +11,6 @@ const config: GatsbyConfig = {
   plugins: [
     `gatsby-plugin-tsconfig-paths`,
     "gatsby-plugin-emotion",
-    // "gatsby-plugin-google-gtag",
     "gatsby-plugin-image",
 
     {
@@ -37,6 +36,13 @@ const config: GatsbyConfig = {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
         pixelId: "1151210512780170",
+      },
+    },
+
+    {
+      resolve: `gatsby-plugin-google-gtag`,
+      options: {
+        trackingIds: [],
       },
     },
   ],
