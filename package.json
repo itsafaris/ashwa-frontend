@@ -33,6 +33,7 @@
     "gatsby-source-filesystem": "^5.13.1",
     "gatsby-transformer-sharp": "^5.13.1",
     "keen-slider": "^6.8.6",
+    "posthog-js": "^1.148.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
     "react-icons": "^5.2.1"
