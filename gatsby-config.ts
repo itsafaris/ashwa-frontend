@@ -1,4 +1,7 @@
 import type { GatsbyConfig } from "gatsby";
+import dotenv from "dotenv";
+
+dotenv.config();
 
 const config: GatsbyConfig = {
   // More easily incorporate content into your pages through automatic TypeScript type generation and better GraphQL IntelliSense.
