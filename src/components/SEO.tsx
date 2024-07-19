@@ -1,5 +1,5 @@
 import React from "react";
-import { useSiteMetadata } from "@hooks/useSiteMetadata";
+import { siteConfig } from "src/conf";
 
 export type SEOProps = {
   title?: string;
@@ -19,14 +19,14 @@ export const SEO = ({
   const {
     title: defaultTitle,
     description: defaultDescription,
-    siteUrl,
+    websiteHostname,
     image: defualtImage,
-  } = useSiteMetadata();
+  } = siteConfig;
 
   const seo = {
     title: title || defaultTitle,
     description: description || defaultDescription,
-    url: `${siteUrl}${pathname || ``}`,
+    url: `${websiteHostname}${pathname || ``}`,
     image: image ?? defualtImage,
   };
 
