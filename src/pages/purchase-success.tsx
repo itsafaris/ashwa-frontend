@@ -6,8 +6,8 @@ import { PageProps } from "gatsby";
 import * as React from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { siteConfig } from "src/conf";
-import { getProduct } from "../products";
-import { trackPixel } from "../tracking";
+import { getProduct } from "src/products";
+import { trackEvent, trackGtagEvent, trackPixelEvent } from "src/tracking";
 
 export interface IPurchaseSuccessPageProps extends PageProps {}
 
@@ -27,9 +27,28 @@ export default function PurchaseSuccessPage(props: IPurchaseSuccessPageProps) {
 
   React.useEffect(() => {
     if (product) {
-      trackPixel("Purchase", {
-        value: product.unitPrice * product.count,
-        productID: product.id,
+      trackEvent({
+        name: "conversion",
+        properties: {
+          value: product.unitPrice * product.count,
+          product_id: product.id,
+        },
+      });
+
+      trackPixelEvent({
+        name: "conversion",
+        properties: {
+          value: product.unitPrice * product.count,
+          product_id: product.id,
+        },
+      });
+
+      trackGtagEvent({
+        name: "conversion",
+        properties: {
+          value: product.unitPrice * product.count,
+          product_id: product.id,
+        },
       });
     }
   }, []);
