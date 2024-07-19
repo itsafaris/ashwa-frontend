@@ -5,6 +5,7 @@ import React from "react";
 export type PurchaseType = "subscription" | "one-off";
 
 export type Product = {
+  id: string;
   stripeID: string;
   unitPrice: number;
   discount: number;
@@ -56,6 +57,7 @@ const common6 = {
 };
 
 const sub1 = {
+  id: "sub-1",
   stripeID:
     stripeEnv === "test"
       ? "price_1PdaBTCSMlpgjECRDWZ2LB0k"
@@ -66,6 +68,7 @@ const sub1 = {
 };
 
 const sub3 = {
+  id: "sub-3",
   stripeID:
     stripeEnv === "test"
       ? "price_1PdanGCSMlpgjECRerg53HTL"
@@ -76,6 +79,7 @@ const sub3 = {
 };
 
 const sub6 = {
+  id: "sub-6",
   stripeID:
     stripeEnv === "test"
       ? "price_1Pdaj3CSMlpgjECRCIDtwNt2"
@@ -86,6 +90,7 @@ const sub6 = {
 };
 
 const oneOff1 = {
+  id: "one-off-1",
   stripeID:
     stripeEnv === "test"
       ? "price_1PdZhuCSMlpgjECR1eJj9PFi"
@@ -96,6 +101,7 @@ const oneOff1 = {
 };
 
 const oneOff3 = {
+  id: "one-off-3",
   stripeID:
     stripeEnv === "test"
       ? "price_1PdZinCSMlpgjECR1m4HUs2n"
@@ -106,6 +112,7 @@ const oneOff3 = {
 };
 
 const oneOff6 = {
+  id: "one-off-6",
   stripeID:
     stripeEnv === "test"
       ? "price_1PdaDOCSMlpgjECRPNMPPzRr"
@@ -125,6 +132,6 @@ export const getProducts = (type: PurchaseType) => {
   return [sub3, sub6, sub1];
 };
 
-export function getProduct(stripeID: string) {
-  return allProducts.find((p) => p.stripeID === stripeID);
+export function getProduct(productID: string) {
+  return allProducts.find((p) => p.id === productID);
 }

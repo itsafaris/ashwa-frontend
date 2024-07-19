@@ -399,7 +399,7 @@ function ProductSelectionSection() {
         },
       ],
       mode: purchaseType === "one-off" ? "payment" : "subscription",
-      successUrl: getPageUrl(product.stripeID),
+      successUrl: getPageUrl(product.id),
       cancelUrl: `${websiteHostname}`,
       shippingAddressCollection: { allowedCountries: ["US"] },
     });

@@ -7,6 +7,7 @@ import * as React from "react";
 import { FaRegCheckCircle } from "react-icons/fa";
 import { siteConfig } from "src/conf";
 import { getProduct } from "src/products";
+import { trackPixel } from "src/tracking";
 
 export interface IPurchaseSuccessPageProps extends PageProps {}
 
@@ -23,6 +24,15 @@ const formatter = new Intl.DateTimeFormat("en-US", {
 export default function PurchaseSuccessPage(props: IPurchaseSuccessPageProps) {
   const productID = new URLSearchParams(props.location.search).get("productID");
   const product = productID ? getProduct(productID) : null;
+
+  React.useEffect(() => {
+    if (product) {
+      trackPixel("Purchase", {
+        value: product.unitPrice * product.count,
+        productID: product.id,
+      });
+    }
+  }, []);
 
   return (
     <Box>
