@@ -1,11 +1,6 @@
 import * as React from "react";
 import { type HeadFC } from "gatsby";
-import {
-  useKeenSlider,
-  KeenSliderPlugin,
-  KeenSliderInstance,
-} from "keen-slider/react";
-import "keen-slider/keen-slider.min.css";
+
 import {
   Box,
   Flex,
@@ -48,6 +43,22 @@ import { SEO } from "@components/SEO";
 import { getProducts, Product, PurchaseType } from "src/products";
 import { getPageUrl } from "./purchase-success";
 import { trackEvent } from "src/tracking";
+
+import BlazeSlider, { BlazeConfig } from "blaze-slider";
+import "blaze-slider/dist/blaze.css";
+
+function useBlazeSlider(config: BlazeConfig) {
+  const sliderRef = React.useRef<BlazeSlider>();
+  const elRef = React.useRef<HTMLDivElement>(null);
+
+  React.useEffect(() => {
+    if (!sliderRef.current) {
+      sliderRef.current = new BlazeSlider(elRef.current!, config);
+    }
+  }, []);
+
+  return { elRef, sliderRef };
+}
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
@@ -214,74 +225,81 @@ const benefits = [
   "😴 Better Sleep Quality",
 ];
 
-function ThumbnailPlugin(
-  mainRef: React.MutableRefObject<KeenSliderInstance | null>
-): KeenSliderPlugin {
-  return (slider) => {
+const ProductCarouselSection = () => {
+  const thumbsContainer = React.useRef<HTMLDivElement>(null);
+
+  const { elRef, sliderRef } = useBlazeSlider({
+    all: {
+      slidesToShow: 1,
+      loop: true,
+    },
+  });
+
+  React.useEffect(() => {
+    const s = sliderRef.current!;
+
+    addActive(s.stateIndex);
+
     function removeActive() {
-      slider.slides.forEach((slide) => {
-        slide.classList.remove("active");
+      thumbsContainer.current?.childNodes.forEach((it) => {
+        let a = it as HTMLDivElement;
+        a.classList.remove("active");
       });
     }
 
     function addActive(idx: number) {
-      slider.slides[idx].classList.add("active");
+      const it = thumbsContainer.current?.children.item(idx);
+      it!.classList.add("active");
     }
 
-    function addClickEvents() {
-      slider.slides.forEach((slide, idx) => {
-        slide.addEventListener("click", () => {
-          if (mainRef.current) mainRef.current.moveToIdx(idx);
-        });
-      });
-    }
-
-    slider.on("created", () => {
-      if (!mainRef.current) return;
-      addActive(slider.track.details.rel);
-      addClickEvents();
-
-      mainRef.current.on("animationStarted", (main) => {
-        removeActive();
-        const t = main.track.absToRel(main.animator.targetIdx ?? 0);
-        addActive(t);
-        slider.moveToIdx(t);
-      });
+    const unsub = s.onSlide((a) => {
+      removeActive();
+      addActive(a);
     });
-  };
-}
 
-const ProductCarouselSection = () => {
-  const [sliderRef, instanceRef] = useKeenSlider<HTMLDivElement>({
-    initial: 0,
-    loop: true,
-  });
+    return () => {
+      unsub();
+    };
+  }, []);
 
   const images = [
-    <StaticImage src="../images/carousel1.jpg" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/carousel2.jpg" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/carousel3.jpg" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/carousel4.jpg" alt="Ashwagandha Supplement" />,
-    <StaticImage src="../images/carousel5.jpg" alt="Ashwagandha Supplement" />,
+    <StaticImage
+      src="../images/carousel1.jpg"
+      alt="Ashwagandha Supplement"
+      height={500}
+      width={500}
+    />,
+    <StaticImage
+      src="../images/carousel2.jpg"
+      alt="Ashwagandha Supplement"
+      height={500}
+      width={500}
+    />,
+    <StaticImage
+      src="../images/carousel3.jpg"
+      alt="Ashwagandha Supplement"
+      height={500}
+      width={500}
+    />,
+    <StaticImage
+      src="../images/carousel4.jpg"
+      alt="Ashwagandha Supplement"
+      height={500}
+      width={500}
+    />,
+    <StaticImage
+      src="../images/carousel5.jpg"
+      alt="Ashwagandha Supplement"
+      height={500}
+      width={500}
+    />,
   ];
-
-  const [thumbnailRef] = useKeenSlider<HTMLDivElement>(
-    {
-      initial: 0,
-      slides: {
-        perView: images.length - 2,
-        spacing: 8,
-      },
-      loop: true,
-    },
-    [ThumbnailPlugin(instanceRef)]
-  );
 
   return (
     <Box bg="white">
       <Global
         styles={css`
-          .keen-slider__slide.active {
+          .slider_thumbnail.active {
             border-color: var(--chakra-colors-primary-500);
             border-width: 2px;
           }
@@ -290,49 +308,89 @@ const ProductCarouselSection = () => {
       <Container maxW={["container.sm", null, "container.lg"]}>
         <SimpleGrid columns={[1, 1, 2]} spacing={8} py={4}>
           <Box>
-            <div ref={sliderRef} className="keen-slider">
-              {images.map((it, idx) => (
-                <AspectRatio
-                  className="keen-slider__slide"
-                  key={idx}
-                  ratio={1}
-                  maxW={460}
-                  mx="auto"
-                >
-                  {it}
-                </AspectRatio>
-              ))}
-            </div>
-
-            <Flex alignItems={"center"} gap={3} mt={2}>
+            <Box className="blaze-slider" ref={elRef} position={"relative"}>
               <IconButton
                 aria-label="arrow left"
+                variant={"ghost"}
                 icon={<Icon as={FaArrowLeft} />}
-                onClick={() => instanceRef.current?.prev()}
+                position={"absolute"}
+                top={"50%"}
+                transform={"translateY(-50%)"}
+                left={0}
+                zIndex={1}
+                onClick={() => sliderRef.current?.prev()}
+              />
+              <IconButton
+                aria-label="arrow right"
+                variant={"ghost"}
+                icon={<Icon as={FaArrowRight} />}
+                position={"absolute"}
+                top={"50%"}
+                transform={"translateY(-50%)"}
+                right={0}
+                zIndex={1}
+                onClick={() => sliderRef.current?.next()}
               />
 
-              <div ref={thumbnailRef} className="keen-slider">
+              <div className="blaze-container">
+                <div className="blaze-track-container">
+                  <div className="blaze-track">
+                    {images.map((it, idx) => (
+                      <AspectRatio
+                        className="keen-slider__slide"
+                        key={idx}
+                        ratio={1}
+                        maxW={460}
+                        mx="auto"
+                      >
+                        {it}
+                      </AspectRatio>
+                    ))}
+                  </div>
+                </div>
+              </div>
+            </Box>
+
+            <Flex alignItems={"center"} gap={3} mt={2}>
+              <Flex
+                flex={1}
+                gap={2}
+                justifyContent={"start"}
+                flexWrap={"wrap"}
+                ref={thumbsContainer}
+              >
                 {images.map((it, idx) => (
                   <AspectRatio
-                    className="keen-slider__slide"
                     key={idx}
                     ratio={1}
-                    maxW={460}
-                    mx="auto"
+                    w={"60px"}
                     border={"1px solid"}
-                    borderColor={"gray.300"}
+                    borderColor={"bg.200"}
                     borderRadius={"md"}
+                    overflow={"hidden"}
+                    // outline={"2px solid"}
+                    className="slider_thumbnail"
+                    onClick={() => {
+                      const offset = sliderRef.current!.stateIndex;
+                      console.log(sliderRef.current);
+                      if (offset === idx) {
+                        return;
+                      }
+
+                      const direction = idx > offset ? 1 : -1;
+                      console.log(direction);
+
+                      if (direction === 1) {
+                        sliderRef.current?.next(idx - offset);
+                      } else {
+                        sliderRef.current?.prev(Math.abs(idx - offset));
+                      }
+                    }}
                   >
                     {it}
                   </AspectRatio>
                 ))}
-              </div>
-
-              <IconButton
-                aria-label="arrow right"
-                icon={<Icon as={FaArrowRight} />}
-                onClick={() => instanceRef.current?.next()}
-              />
+              </Flex>
             </Flex>
           </Box>
           <Box>
