@@ -218,7 +218,8 @@ const MainHero = () => {
 };
 
 const benefits = [
-  "🧠 Sharpen your mind and banish brain fog",
+  "🧠 Banish brain fog",
+  "⚖️ More Consistent weight-loss",
   "⚡ Elevate your energy levels",
   "🧘‍♀️ Ease anxiety",
   "🧠 Improve Cognitive Function",
