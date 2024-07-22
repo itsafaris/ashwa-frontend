@@ -61,8 +61,8 @@ const sub1 = {
   stripeID:
     stripeEnv === "test"
       ? "price_1PdaBTCSMlpgjECRDWZ2LB0k"
-      : "price_1PdpSlCSMlpgjECRrVr4dfDf",
-  unitPrice: 47.99,
+      : "price_1PfN5hCSMlpgjECRymGRUXV6",
+  unitPrice: 24.9,
   discount: 40,
   ...common1,
 };
@@ -72,8 +72,8 @@ const sub3 = {
   stripeID:
     stripeEnv === "test"
       ? "price_1PdanGCSMlpgjECRerg53HTL"
-      : "price_1PdpSjCSMlpgjECRyjrtpKxP",
-  unitPrice: 34.99,
+      : "price_1PfN51CSMlpgjECRe3Ax5mBo",
+  unitPrice: 19.9,
   discount: 50,
   ...common3,
 };
@@ -83,8 +83,8 @@ const sub6 = {
   stripeID:
     stripeEnv === "test"
       ? "price_1Pdaj3CSMlpgjECRCIDtwNt2"
-      : "price_1PdpSfCSMlpgjECRKpGQgNIR",
-  unitPrice: 25.99,
+      : "price_1PfN2UCSMlpgjECRDf9MCr2m",
+  unitPrice: 14.9,
   discount: 60,
   ...common6,
 };
@@ -95,7 +95,7 @@ const oneOff1 = {
     stripeEnv === "test"
       ? "price_1PdZhuCSMlpgjECR1eJj9PFi"
       : "price_1PdpSrCSMlpgjECROTMJLTEU",
-  unitPrice: 55.99,
+  unitPrice: 29.9,
   discount: 30,
   ...common1,
 };
@@ -106,7 +106,7 @@ const oneOff3 = {
     stripeEnv === "test"
       ? "price_1PdZinCSMlpgjECR1m4HUs2n"
       : "price_1PdpSpCSMlpgjECRn1EnzhdG",
-  unitPrice: 41.99,
+  unitPrice: 25.9,
   discount: 40,
   ...common3,
 };
@@ -117,7 +117,7 @@ const oneOff6 = {
     stripeEnv === "test"
       ? "price_1PdaDOCSMlpgjECRPNMPPzRr"
       : "price_1PdpSnCSMlpgjECRCONM7i7F",
-  unitPrice: 30.0,
+  unitPrice: 21.9,
   discount: 50,
   ...common6,
 };
