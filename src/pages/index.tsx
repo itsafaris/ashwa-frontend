@@ -306,8 +306,8 @@ const ProductCarouselSection = () => {
         `}
       />
       <Container maxW={["container.sm", null, "container.lg"]}>
-        <SimpleGrid columns={[1, 1, 2]} spacing={8} py={4}>
-          <Box>
+        <Flex py={4} flexWrap={"wrap"} gap={8}>
+          <Box minWidth={340} flex={1}>
             <Box className="blaze-slider" ref={elRef} position={"relative"}>
               <IconButton
                 aria-label="arrow left"
@@ -340,7 +340,6 @@ const ProductCarouselSection = () => {
                         className="keen-slider__slide"
                         key={idx}
                         ratio={1}
-                        maxW={460}
                         mx="auto"
                       >
                         {it}
@@ -393,7 +392,7 @@ const ProductCarouselSection = () => {
               </Flex>
             </Flex>
           </Box>
-          <Box>
+          <Box flex={1} minWidth={300}>
             <Text
               color="purple.600"
               fontWeight={"bold"}
@@ -430,7 +429,7 @@ const ProductCarouselSection = () => {
               ))}
             </Flex>
           </Box>
-        </SimpleGrid>
+        </Flex>
       </Container>
     </Box>
   );
