@@ -11,6 +11,8 @@ import { useQuizSnapshot } from "../internal/state";
 import { useSlide } from "./slide";
 import { Email } from "../internal/email";
 import { TimePicker } from "../internal/timepicker";
+import { Age } from "../internal/age";
+import { Height } from "../internal/height";
 
 type SelectorProps = {};
 
@@ -73,6 +75,12 @@ export function Selector(props: ComponentProps<typeof Box> & SelectorProps) {
       }
       case "email": {
         return <Email {...slide} />;
+      }
+      case "age": {
+        return <Age {...slide} />;
+      }
+      case "height": {
+        return <Height {...slide} />;
       }
     }
   }

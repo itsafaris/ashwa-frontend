@@ -27,7 +27,9 @@ export type SelectorState =
   | LocationState
   | LoadingState
   | FillerState
-  | EmailState;
+  | EmailState
+  | AgeState
+  | HeightState;
 
 export type MultiState = {
   type: "multi";
@@ -81,6 +83,16 @@ export type FillerState = {
   type: "filler";
 } & BaseSelectorState;
 
+export type AgeState = {
+  type: "age";
+  value?: number;
+} & BaseSelectorState;
+
+export type HeightState = {
+  type: "height";
+  value?: HeightValue;
+} & BaseSelectorState;
+
 export type BaseSelectorState = {
   attempts: number;
   confirmed: boolean;
@@ -90,6 +102,19 @@ export type BaseSelectorState = {
 export type SelectorValue = Readonly<{ value: string; idx: number }>;
 
 export type DateValue = { year: number; month: number; day: number };
+
+export type HeightValue = HeightValueMetric | HeightValueImperial;
+
+export type HeightValueImperial = {
+  system: "imperial";
+  ft: number | null;
+  in: number | null;
+};
+
+export type HeightValueMetric = {
+  system: "metric";
+  value: number | null;
+};
 
 const QUICK_TIME_PERIODS = ["Morning", "Noon", "Evening", "Night"] as const;
 
@@ -402,6 +427,20 @@ export function createQuizState(input: {
       const slideState = state.slideStateByID[selectorID] as LoadingState;
       slideState.progressValue = value;
     },
+
+    setAgeValue(selectorID: string, value: number) {
+      const slideState = state.slideStateByID[selectorID] as AgeState;
+      slideState.value = value;
+    },
+
+    setHeightValue(selectorID: string, value: Partial<HeightValue>) {
+      const slideState = state.slideStateByID[selectorID] as HeightState;
+      // @ts-expect-error
+      slideState.value = {
+        ...slideState.value,
+        ...value,
+      };
+    },
   };
 
   return { state, actions };
@@ -428,6 +467,18 @@ export function isSlideStateValid(state: SelectorState): boolean {
     }
     case "email": {
       return state.value != null && validateEmail(state.value);
+    }
+    case "age": {
+      return state.value != null && state.value < 99 && state.value > 0;
+    }
+    case "height": {
+      if (!state.value) {
+        return false;
+      }
+      if (state.value.system === "imperial") {
+        return state.value.ft != null && state.value.in != null;
+      }
+      return state.value.value != null;
     }
     default: {
       return true;

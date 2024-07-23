@@ -1,7 +1,17 @@
 import React, { useEffect, useState } from "react";
 import { QuizProvider, QuizUI, Segment } from "@lib/quiz-lib";
 import { isProdMode } from "src/utils";
-import { EmailSlide, GoalsSlide } from "@components/quiz/slides";
+import {
+  AgeSlide,
+  AlergiesSlide,
+  EmailSlide,
+  GoalsSlide,
+  HealthStateSlide,
+  HeightSlide,
+  MedicalConditionsSlide,
+  SymptomsSlide,
+  WeightGainSlide,
+} from "@components/quiz/slides";
 
 export default function OnboardingQuiz() {
   const [mounted, setMounted] = useState(false);
@@ -56,6 +66,13 @@ export default function OnboardingQuiz() {
       >
         <Segment title="Progress">
           <GoalsSlide />
+          <HealthStateSlide />
+          <WeightGainSlide />
+          <SymptomsSlide />
+          <AlergiesSlide />
+          <MedicalConditionsSlide />
+          <AgeSlide />
+          <HeightSlide />
           <EmailSlide />
         </Segment>
       </QuizUI>

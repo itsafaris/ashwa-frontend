@@ -1,5 +1,9 @@
 import { Button } from "@chakra-ui/react";
-import { BackgroundProps, ColorProps, ThemeTypings } from "@chakra-ui/styled-system";
+import {
+  BackgroundProps,
+  ColorProps,
+  ThemeTypings,
+} from "@chakra-ui/styled-system";
 import { ComponentProps } from "react";
 
 export type IOptionInputType = "checkbox" | "radio" | "none";
@@ -34,7 +38,9 @@ export type SlideProps =
   | SlidePropsLocation
   | SlidePropsLoading
   | SlidePropsFiller
-  | SlidePropsEmail;
+  | SlidePropsEmail
+  | SlidePropsAge
+  | SlidePropsHeight;
 
 export type ISelectorType = SlideProps["type"];
 
@@ -149,6 +155,15 @@ export type SlidePropsFiller = {
   type: "filler";
 } & SlidePropsBase;
 
+export type SlidePropsAge = {
+  type: "age";
+  placeholder?: string;
+} & SlidePropsBase;
+
+export type SlidePropsHeight = {
+  type: "height";
+} & SlidePropsBase;
+
 export type LoadingPhase = {
   title: string;
   duration?: number; // in seconds
@@ -160,4 +175,7 @@ export type LogicDefinition = {
 }[];
 
 // A helper type to extract specific SlideProps based on the 'type' discriminator
-export type ExtractSlideProps<T extends SlideProps["type"]> = Extract<SlideProps, { type: T }>;
+export type ExtractSlideProps<T extends SlideProps["type"]> = Extract<
+  SlideProps,
+  { type: T }
+>;

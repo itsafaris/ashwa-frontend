@@ -1,5 +1,5 @@
 import { ArrowRightIcon } from "@chakra-ui/icons";
-import { Button, Icon, useTheme } from "@chakra-ui/react";
+import { Button, Heading, Icon, useTheme } from "@chakra-ui/react";
 import { useQuiz } from "@lib/quiz-lib";
 import { ComponentProps } from "react";
 
@@ -18,5 +18,11 @@ export function NextButton(props: ComponentProps<typeof Button>) {
       rightIcon={<Icon as={ArrowRightIcon} />}
       {...props}
     />
+  );
+}
+
+export function QuizHeading(props: ComponentProps<typeof Heading>) {
+  return (
+    <Heading color="text.main" fontSize={"2xl"} mb={4} {...props}></Heading>
   );
 }
