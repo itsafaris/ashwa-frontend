@@ -1,7 +1,7 @@
 import { ComponentProps, useEffect, useState } from "react";
 import { Button, Flex, Icon, Progress, Text } from "@chakra-ui/react";
 
-import { useQuizSnapshot } from "../internal/state";
+import { useQuizActions, useQuizSnapshot } from "../internal/state";
 import { getPosInBounds } from "../internal/utils";
 import { ContainerPropsOverride } from "./types";
 
@@ -15,6 +15,7 @@ export function ProgressIndicator(
   props: ProgressIndicatorProps & ComponentProps<typeof Flex>
 ) {
   const snap = useQuizSnapshot();
+  const actions = useQuizActions();
   const [colorOverrides, setColorOverrides] = useState<
     ContainerPropsOverride["progressBar"] | undefined
   >({});
@@ -50,6 +51,9 @@ export function ProgressIndicator(
           size="sm"
           px={0}
           leftIcon={<Icon as={FaArrowLeft} />}
+          onClick={() => {
+            actions.goToPrev();
+          }}
         >
           Back
         </Button>
