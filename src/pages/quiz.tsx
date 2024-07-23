@@ -16,6 +16,8 @@ import {
   WeightGainSlide,
   WeightSlide,
 } from "@components/quiz/slides";
+import { ProgressIndicator } from "@lib/quiz-lib/public/progress";
+import { Logo } from "@components/logo";
 
 export default function OnboardingQuiz() {
   const [mounted, setMounted] = useState(false);
@@ -63,6 +65,9 @@ export default function OnboardingQuiz() {
     >
       {/* <QuizStateSaver /> */}
       <QuizUI
+        progressComponent={
+          <ProgressIndicator logo={<Logo height={"28px"} />} />
+        }
         containerProps={{
           minH: "100vh",
           bg: "bg.50",

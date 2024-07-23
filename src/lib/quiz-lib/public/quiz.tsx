@@ -10,19 +10,21 @@ import {
 import React, { useEffect } from "react";
 
 import { useQuizActions, useQuizSnapshot } from "../internal/state";
-import { ProgressIndicator } from "./progress";
+
 import { useQuizConfig } from "./quizProvider";
 import { getSlideProperties } from "../internal/tracking";
 
 export type QuizUIProps = {
   children?: React.ReactNode;
   headerComponent?: React.ReactNode;
+  progressComponent?: React.ReactNode;
   containerProps?: FlexProps;
 };
 
 export function QuizUI({
   children,
   headerComponent,
+  progressComponent,
   containerProps,
 }: QuizUIProps) {
   useStateSyncToUrl();
@@ -54,7 +56,7 @@ export function QuizUI({
       <QuizBg />
       {config.showDebugUI && <DebugUI />}
       {headerComponent && <Box id="header-wrapper">{headerComponent}</Box>}
-      <ProgressIndicator />
+      {progressComponent}
       <Flex
         position={"relative"}
         flexGrow={1}

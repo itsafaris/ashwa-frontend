@@ -1,11 +1,19 @@
-import { useEffect, useState } from "react";
-import { Flex, Progress, Text } from "@chakra-ui/react";
+import { ComponentProps, useEffect, useState } from "react";
+import { Button, Flex, Icon, Progress, Text } from "@chakra-ui/react";
 
 import { useQuizSnapshot } from "../internal/state";
 import { getPosInBounds } from "../internal/utils";
 import { ContainerPropsOverride } from "./types";
 
-export function ProgressIndicator() {
+import { FaArrowLeft } from "react-icons/fa";
+
+export type ProgressIndicatorProps = {
+  logo?: React.ReactNode;
+};
+
+export function ProgressIndicator(
+  props: ProgressIndicatorProps & ComponentProps<typeof Flex>
+) {
   const snap = useQuizSnapshot();
   const [colorOverrides, setColorOverrides] = useState<
     ContainerPropsOverride["progressBar"] | undefined
@@ -19,25 +27,41 @@ export function ProgressIndicator() {
     setColorOverrides(snap.currentSlide.quizContainerProps?.progressBar as any);
   }, [snap.currentSlide]);
 
-  const overallProgress = Math.ceil(((snap.currentIdx + 1) / snap.slideCount) * 100);
+  const overallProgress = Math.ceil(
+    ((snap.currentIdx + 1) / snap.slideCount) * 100
+  );
 
-  const colorScheme = colorOverrides?.colorScheme ?? "brand";
+  const colorScheme = colorOverrides?.colorScheme ?? "primary";
   const activeSegmentBg = colorOverrides?.activeSegmentBg ?? "bg.200";
   const inactiveSegmentBg = colorOverrides?.inactiveSegmentBg ?? "bg.200";
   const textColor = colorOverrides?.textColor ?? "text.main";
 
-  if (snap.currentIdx === 0) {
-    return null;
-  }
-
   return (
-    <Flex p={4} direction={"column"} gap={1} alignItems={"center"}>
-      <Flex width={"full"} fontSize={"sm"} justifyContent={"space-between"}>
-        <Text color={textColor} fontWeight={"bold"}>
-          {snap.currentSegment?.title}
-        </Text>
-        <Text fontWeight={"bold"} color={textColor}>
-          {overallProgress}%
+    <Flex p={3} direction={"column"} gap={1} alignItems={"center"}>
+      <Flex
+        width={"full"}
+        fontSize={"sm"}
+        justifyContent={"space-between"}
+        alignItems={"center"}
+        py={1}
+      >
+        <Button
+          variant={"text"}
+          size="sm"
+          px={0}
+          leftIcon={<Icon as={FaArrowLeft} />}
+        >
+          Back
+        </Button>
+
+        {props.logo}
+        <Text
+          fontWeight={"bold"}
+          color={textColor}
+          width={"60px"}
+          textAlign={"right"}
+        >
+          {snap.currentIdx + 1} of {snap.slideCount}
         </Text>
       </Flex>
       <Flex direction={"row"} gap={2} width={"100%"}>
@@ -59,8 +83,16 @@ export function ProgressIndicator() {
                 borderRadius={"full"}
                 width={"full"}
                 colorScheme={colorScheme}
-                background={segmentIsActive ? activeSegmentBg : inactiveSegmentBg}
-                value={posInBounds === "left" ? 0 : posInBounds === "right" ? 100 : segmentProgress}
+                background={
+                  segmentIsActive ? activeSegmentBg : inactiveSegmentBg
+                }
+                value={
+                  posInBounds === "left"
+                    ? 0
+                    : posInBounds === "right"
+                    ? 100
+                    : segmentProgress
+                }
                 size={"sm"}
               />
             </Flex>
