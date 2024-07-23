@@ -9,6 +9,8 @@ import {
 } from "react-icons/tb";
 
 import { NextButton, QuizHeading } from "./ui";
+import { StaticImage } from "gatsby-plugin-image";
+import { Span } from "@components/components";
 
 export function GoalsSlide() {
   return (
@@ -44,6 +46,73 @@ export function WeightGainSlide() {
     >
       <QuizHeading color="text.main" mb={4}>
         Hve you gained weight in the last year?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+    </Slide>
+  );
+}
+
+export function StressBellySlide() {
+  return (
+    <Slide
+      id="stress-belly"
+      type="single"
+      variant="list"
+      options={[
+        { text: "Almost every day" },
+        { text: "A few times a week" },
+        { text: "Occasionally" },
+        { text: "Rarely" },
+      ]}
+    >
+      <QuizHeading color="text.main" mb={4}>
+        Stress belly refers to weight gain around the abdominal area. How often
+        do you feel stressed?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+    </Slide>
+  );
+}
+
+export function CortisolGraphicSlide() {
+  return (
+    <Slide id="cortisol-graphic" type="filler">
+      <QuizHeading color="text.main" mb={4}>
+        Cortisol (stress hormone) is often ignored in the fight for that flat
+        belly.
+      </QuizHeading>
+      <StaticImage
+        src="../../images/cortisol-graphic.jpg"
+        alt="effects of cortisol for weight gain"
+      />
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton mt={4}>Next</NextButton>
+    </Slide>
+  );
+}
+
+export function EmotionalEatingSlide() {
+  return (
+    <Slide
+      id="emotional-eating"
+      type="single"
+      variant="list"
+      options={[
+        { text: "Frequently" },
+        { text: "Sometime" },
+        { text: "Rarely" },
+        { text: "Never" },
+      ]}
+    >
+      <QuizHeading color="text.main" mb={4}>
+        Stress can trigger emotional eating and cravings for high-calorie foods.
+        How often do you experience food cravings?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -187,9 +256,9 @@ export function MedicalConditionsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        You're doing amazing! To guarantee you have the best experience using
-        ColonBroom, let us know if you have any of the following medical
-        conditions:
+        You're doing amazing! To guarantee you have the best experience using{" "}
+        <Span decoration={"underline"}>Calmr</Span>, let us know if you have any
+        of the following medical conditions:
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />

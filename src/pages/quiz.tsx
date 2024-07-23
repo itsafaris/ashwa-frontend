@@ -4,11 +4,14 @@ import { isProdMode } from "src/utils";
 import {
   AgeSlide,
   AlergiesSlide,
+  CortisolGraphicSlide,
   EmailSlide,
+  EmotionalEatingSlide,
   GoalsSlide,
   HealthStateSlide,
   HeightSlide,
   MedicalConditionsSlide,
+  StressBellySlide,
   SymptomsSlide,
   WeightGainSlide,
   WeightSlide,
@@ -68,8 +71,11 @@ export default function OnboardingQuiz() {
         <Segment title="Progress">
           <GoalsSlide />
           <HealthStateSlide />
-          <WeightGainSlide />
           <SymptomsSlide />
+          <WeightGainSlide />
+          <EmotionalEatingSlide />
+          <StressBellySlide />
+          <CortisolGraphicSlide />
           <AlergiesSlide />
           <MedicalConditionsSlide />
           <AgeSlide />
