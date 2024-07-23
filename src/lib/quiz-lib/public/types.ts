@@ -40,7 +40,8 @@ export type SlideProps =
   | SlidePropsFiller
   | SlidePropsEmail
   | SlidePropsAge
-  | SlidePropsHeight;
+  | SlidePropsHeight
+  | SlidePropsWeight;
 
 export type ISelectorType = SlideProps["type"];
 
@@ -162,6 +163,10 @@ export type SlidePropsAge = {
 
 export type SlidePropsHeight = {
   type: "height";
+} & SlidePropsBase;
+
+export type SlidePropsWeight = {
+  type: "weight";
 } & SlidePropsBase;
 
 export type LoadingPhase = {

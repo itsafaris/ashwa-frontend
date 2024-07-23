@@ -29,7 +29,8 @@ export type SelectorState =
   | FillerState
   | EmailState
   | AgeState
-  | HeightState;
+  | HeightState
+  | WeightState;
 
 export type MultiState = {
   type: "multi";
@@ -93,6 +94,11 @@ export type HeightState = {
   value?: HeightValue;
 } & BaseSelectorState;
 
+export type WeightState = {
+  type: "weight";
+  value?: WeightValue;
+} & BaseSelectorState;
+
 export type BaseSelectorState = {
   attempts: number;
   confirmed: boolean;
@@ -102,6 +108,11 @@ export type BaseSelectorState = {
 export type SelectorValue = Readonly<{ value: string; idx: number }>;
 
 export type DateValue = { year: number; month: number; day: number };
+
+export type WeightValue = {
+  system: "imperial" | "metric";
+  value?: number | null;
+};
 
 export type HeightValue = HeightValueMetric | HeightValueImperial;
 
@@ -433,6 +444,15 @@ export function createQuizState(input: {
       slideState.value = value;
     },
 
+    setWeightValue(selectorID: string, value: Partial<WeightValue>) {
+      const slideState = state.slideStateByID[selectorID] as WeightState;
+      // @ts-expect-error
+      slideState.value = {
+        ...slideState.value,
+        ...value,
+      };
+    },
+
     setHeightValue(selectorID: string, value: Partial<HeightValue>) {
       const slideState = state.slideStateByID[selectorID] as HeightState;
       // @ts-expect-error
@@ -479,6 +499,9 @@ export function isSlideStateValid(state: SelectorState): boolean {
         return state.value.ft != null && state.value.in != null;
       }
       return state.value.value != null;
+    }
+    case "weight": {
+      return state.value?.value != null;
     }
     default: {
       return true;

@@ -11,6 +11,7 @@ import {
   MedicalConditionsSlide,
   SymptomsSlide,
   WeightGainSlide,
+  WeightSlide,
 } from "@components/quiz/slides";
 
 export default function OnboardingQuiz() {
@@ -73,6 +74,7 @@ export default function OnboardingQuiz() {
           <MedicalConditionsSlide />
           <AgeSlide />
           <HeightSlide />
+          <WeightSlide />
           <EmailSlide />
         </Segment>
       </QuizUI>

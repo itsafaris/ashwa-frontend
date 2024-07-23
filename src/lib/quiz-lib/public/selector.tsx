@@ -13,6 +13,7 @@ import { Email } from "../internal/email";
 import { TimePicker } from "../internal/timepicker";
 import { Age } from "../internal/age";
 import { Height } from "../internal/height";
+import { Weight } from "../internal/weight";
 
 type SelectorProps = {};
 
@@ -81,6 +82,9 @@ export function Selector(props: ComponentProps<typeof Box> & SelectorProps) {
       }
       case "height": {
         return <Height {...slide} />;
+      }
+      case "weight": {
+        return <Weight {...slide} />;
       }
     }
   }

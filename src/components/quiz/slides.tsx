@@ -227,6 +227,20 @@ export function HeightSlide() {
   );
 }
 
+export function WeightSlide() {
+  return (
+    <Slide id="weight" type="weight">
+      <QuizHeading color="text.main" mb={4}>
+        What's your weight?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton>Next</NextButton>
+    </Slide>
+  );
+}
+
 export function EmailSlide() {
   return (
     <Slide id="your-email" type="email" placeholder="Enter your email">
