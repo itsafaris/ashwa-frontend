@@ -42,7 +42,7 @@ const config: GatsbyConfig = {
         head: true,
         isEnabledDevMode: true,
         initOptions: {
-          autocapture: true,
+          autocapture: false,
           debug: !isProdMode(),
           disable_session_recording: !isProdMode(),
           enable_heatmaps: true,

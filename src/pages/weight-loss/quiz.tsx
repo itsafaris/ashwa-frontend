@@ -23,6 +23,7 @@ import { Logo } from "@components/logo";
 import { getTypedQuizState } from "src/quizstate";
 import { clearQuizState, loadQuizState, saveQuizState } from "src/localStorage";
 import { PageProps } from "gatsby";
+import { trackEvent } from "src/tracking";
 
 export function createPageParams(input: Partial<PageParams>): URLSearchParams {
   const s = new URLSearchParams();
@@ -88,28 +89,7 @@ export default function OnboardingQuiz(props: PageProps) {
         //
       }}
       onTrackingEvent={(event) => {
-        // trackEvent(event);
-      }}
-      onSlideSubmitted={async (state) => {
-        const rawState = await state.getQuizState();
-        // const parsedState = getTypedQuizState(rawState);
-        // const calcState = calcPersonalInfo(parsedState);
-
-        // posthog.setPersonProperties({
-        //   email: parsedState.email,
-        //   gender: parsedState.yourGender,
-        //   birth_date_local: calcState.birthOrigin.localTimeFormatted,
-        //   birth_date_local_extracted: {
-        //     year: parsedState.yourBirthDate.year,
-        //     month: parsedState.yourBirthDate.month - 1,
-        //     date: parsedState.yourBirthDate.day,
-        //   },
-        //   birth_date_utc: calcState.birthOrigin.utcTimeFormatted,
-        //   birth_place: parsedState.yourBirthLocation,
-        //   theme_focus: parsedState.areasOfInterest?.map((a) => a.value),
-        //   astrologer_persona_id: parsedState.astrologerID,
-        //   relationship_status: parsedState.relationshipStatus,
-        // });
+        trackEvent(event);
       }}
     >
       <QuizStateSaver gender={gender} />

@@ -1,4 +1,4 @@
-import { posthog } from "posthog-js";
+import { PostHog } from "posthog-js";
 import { isProdMode } from "./utils";
 
 type TrackingEvent = {
@@ -8,8 +8,18 @@ type TrackingEvent = {
   };
 };
 
+export function getPosthog() {
+  if (typeof window === "undefined") {
+    return;
+  }
+  if (!(window as any).posthog) {
+    return;
+  }
+  return (window as any).posthog as PostHog;
+}
+
 export function trackEvent(e: TrackingEvent) {
-  posthog.capture(e.name, e.properties);
+  getPosthog()?.capture(e.name, e.properties);
 }
 
 export function trackPixelEvent(e: TrackingEvent) {
