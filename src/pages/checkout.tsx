@@ -68,32 +68,35 @@ export default function Page() {
 }
 const FreeGift = () => {
   return (
-    <Container maxW={"container.lg"} as={Stack} spacing={4} py={8}>
-      <Stack
-        flexDirection={["column", "column", "row"]}
-        alignItems={"center"}
-        spacing={6}
-        width={"full"}
-        justifyContent={"space-between"}
-      >
-        <Heading
-          px={8}
-          textAlign={["center", "center", "left"]}
-          fontSize={["2xl", "2xl", "4xl"]}
-          maxW={"container.sm"}
+    <Box bg="white">
+      <Container maxW={"container.lg"} as={Stack} spacing={4} py={8}>
+        <Stack
+          flexDirection={["column", "column", "row"]}
+          alignItems={"center"}
+          spacing={6}
+          width={"full"}
+          justifyContent={"space-between"}
         >
-          We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
-        </Heading>
+          <Heading
+            px={8}
+            textAlign={["center", "center", "left"]}
+            fontSize={["2xl", "2xl", "4xl"]}
+            maxW={"container.sm"}
+          >
+            We Did It: Combat Stress and Shed Pounds with Our All-in-One
+            Solution!
+          </Heading>
 
-        <StaticImage
-          src="../images/free-gift.png"
-          alt=""
-          style={{ maxWidth: "300px" }}
-        />
-      </Stack>
+          <StaticImage
+            src="../images/free-gift.jpg"
+            alt=""
+            style={{ maxWidth: "250px" }}
+          />
+        </Stack>
 
-      <JumptToPricingButton />
-    </Container>
+        <JumptToPricingButton />
+      </Container>
+    </Box>
   );
 };
 
