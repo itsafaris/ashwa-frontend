@@ -34,7 +34,7 @@ import { Footer } from "../components/Footer";
 import { SEO } from "@components/SEO";
 import { getProducts, Product, PurchaseType } from "src/products";
 import { getPageUrl } from "./purchase-success";
-import { trackEvent } from "src/tracking";
+import { trackEvent, trackPixelEvent } from "src/tracking";
 
 import "blaze-slider/dist/blaze.css";
 import { SafeCheckout } from "@components/SafeCheckout";
@@ -44,6 +44,10 @@ export const Head: HeadFC = () => {
 };
 
 export default function Page() {
+  React.useEffect(() => {
+    trackPixelEvent({ name: "AddToCart" });
+  }, []);
+
   return (
     <Box bg="bg.50">
       <BannerTop />
