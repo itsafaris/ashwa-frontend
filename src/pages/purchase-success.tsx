@@ -28,7 +28,7 @@ export default function PurchaseSuccessPage(props: IPurchaseSuccessPageProps) {
   React.useEffect(() => {
     if (product) {
       trackEvent({
-        name: "conversion",
+        name: "Purchase",
         properties: {
           value: product.unitPrice * product.count,
           product_id: product.id,
@@ -36,7 +36,7 @@ export default function PurchaseSuccessPage(props: IPurchaseSuccessPageProps) {
       });
 
       trackPixelEvent({
-        name: "conversion",
+        name: "Purchase",
         properties: {
           value: product.unitPrice * product.count,
           product_id: product.id,
@@ -44,7 +44,7 @@ export default function PurchaseSuccessPage(props: IPurchaseSuccessPageProps) {
       });
 
       trackGtagEvent({
-        name: "conversion",
+        name: "Purchase",
         properties: {
           value: product.unitPrice * product.count,
           product_id: product.id,

@@ -24,6 +24,7 @@
     "@fontsource-variable/open-sans": "^5.0.29",
     "@stripe/stripe-js": "^4.1.0",
     "blaze-slider": "^1.9.3",
+    "chakra-react-select": "^4.9.1",
     "framer-motion": "^11.2.14",
     "gatsby": "^5.13.5",
     "gatsby-plugin-emotion": "^8.13.1",
@@ -38,7 +39,8 @@
     "posthog-js": "^1.148.0",
     "react": "^18.2.0",
     "react-dom": "^18.2.0",
-    "react-icons": "^5.2.1"
+    "react-icons": "^5.2.1",
+    "valtio": "^1.13.2"
   },
   "devDependencies": {
     "@types/node": "^20.11.19",
