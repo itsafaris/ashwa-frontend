@@ -4,6 +4,7 @@ import { Footer } from "@components/Footer";
 import { Header } from "@components/Header";
 import { HeadFC, Link } from "gatsby";
 import { SEO } from "@components/SEO";
+import { createPageParams } from "./quiz";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -34,8 +35,10 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
               as={Link}
               flex={1}
               colorScheme="teal"
-              to="quiz"
-              state={{ gender: "male" }}
+              to={`quiz?${createPageParams({
+                resetState: true,
+                gender: "male",
+              }).toString()}`}
             >
               Male
             </Button>
@@ -43,8 +46,10 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
               as={Link}
               flex={1}
               colorScheme="pink"
-              to="quiz"
-              state={{ gender: "female" }}
+              to={`quiz?${createPageParams({
+                resetState: true,
+                gender: "female",
+              }).toString()}`}
             >
               Female
             </Button>

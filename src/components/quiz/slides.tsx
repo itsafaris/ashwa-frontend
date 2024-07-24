@@ -382,7 +382,7 @@ function LoadingListItem({
   );
 }
 
-export function EmailSlide() {
+export function EmailSlide({ gender }: { gender: "male" | "female" }) {
   const { submitQuestion } = useQuizActions();
   const quizState = useQuizContext();
 
@@ -405,7 +405,10 @@ export function EmailSlide() {
 
           if (proceed) {
             navigate("/s", {
-              state: typedState satisfies SummaryPageState,
+              state: {
+                ...typedState,
+                gender,
+              } satisfies SummaryPageState,
             });
           }
         }}

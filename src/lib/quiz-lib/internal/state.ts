@@ -118,13 +118,13 @@ export type HeightValue = HeightValueMetric | HeightValueImperial;
 
 export type HeightValueImperial = {
   system: "imperial";
-  ft: number | null;
-  in: number | null;
+  ft: number | null; // 5
+  in: number | null; // 6
 };
 
 export type HeightValueMetric = {
   system: "metric";
-  value: number | null;
+  value: number | null; // 155
 };
 
 const QUICK_TIME_PERIODS = ["Morning", "Noon", "Evening", "Night"] as const;

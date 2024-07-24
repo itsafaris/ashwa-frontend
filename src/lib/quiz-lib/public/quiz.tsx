@@ -134,7 +134,13 @@ function useStateSyncToUrl() {
       return;
     }
 
-    history.pushState(null, "", `?${PARAM_SLIDE_ID}=${snap.currentSlideID}`);
+    params.set(PARAM_SLIDE_ID, snap.currentSlideID);
+
+    if (!paramValue) {
+      history.replaceState(null, "", `?${params.toString()}`);
+    } else {
+      history.pushState(null, "", `?${params.toString()}`);
+    }
   }, [snap.currentSlideID]);
 
   // Effect to update the state when the URL parameter changes
