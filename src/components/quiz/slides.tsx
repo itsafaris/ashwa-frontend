@@ -19,6 +19,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Span } from "@components/components";
 import { FaCheck } from "react-icons/fa";
 import { navigate } from "gatsby";
+import { trackPixelEvent } from "src/tracking";
 
 export function GoalsSlide() {
   return (
@@ -397,6 +398,9 @@ export function EmailSlide() {
         onClick={() => {
           const proceed = submitQuestion();
           if (proceed) {
+            trackPixelEvent({
+              name: "Lead",
+            });
             navigate("/s");
           }
         }}
