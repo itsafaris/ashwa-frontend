@@ -1,10 +1,9 @@
 import { ArrowRightIcon } from "@chakra-ui/icons";
-import { Button, Heading, Icon, useTheme } from "@chakra-ui/react";
+import { Button, Heading, Icon } from "@chakra-ui/react";
 import { useQuiz } from "@lib/quiz-lib";
 import { ComponentProps } from "react";
 
 export function NextButton(props: ComponentProps<typeof Button>) {
-  const theme = useTheme();
   const { submitQuestion } = useQuiz();
   return (
     <Button

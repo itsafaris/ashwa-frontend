@@ -78,7 +78,7 @@ function DebugUI() {
       gap={2}
       p={1}
       autoFlow={"column"}
-      color="text.invert"
+      color="white"
       zIndex={1000}
     >
       <Text>total: {quiz.slideCount}</Text>

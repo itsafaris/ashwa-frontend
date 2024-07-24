@@ -1,4 +1,3 @@
-import * as React from "react";
 import { Box, Button, Container, Flex, Heading, Text } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Footer } from "@components/Footer";
@@ -22,7 +21,7 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
           talks about
         </Heading>
         <StaticImage
-          src="../images/weight-loss-lp-main.jpeg"
+          src="../../images/weight-loss-lp-main.jpeg"
           alt="women using ashwagandha supplements"
         />
 
@@ -35,7 +34,7 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
               as={Link}
               flex={1}
               colorScheme="teal"
-              to="/quiz"
+              to="quiz"
               state={{ gender: "male" }}
             >
               Male
@@ -44,7 +43,7 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
               as={Link}
               flex={1}
               colorScheme="pink"
-              to="/quiz"
+              to="quiz"
               state={{ gender: "female" }}
             >
               Female

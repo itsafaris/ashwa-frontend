@@ -1,6 +1,5 @@
-import React from "react";
 import { useEffect, useRef, useState } from "react";
-import { Flex, Text } from "@chakra-ui/react";
+import { Box, Flex, Progress, Text } from "@chakra-ui/react";
 import { motion } from "framer-motion";
 
 import { SlidePropsLoading } from "../../public/types";
@@ -128,7 +127,15 @@ function SpinnerWihtText(props: SpinnerWihtTextProps) {
 
   if (variant === "linear") {
     return (
-      <Flex flexDirection={"column"} alignItems={"center"}>
+      <Box width={"100%"}>
+        <Box p={1} bg="bg.200" borderRadius={"full"}>
+          <Progress
+            width={"100%"}
+            value={loadingValue}
+            colorScheme="bg"
+            borderRadius={"full"}
+          />
+        </Box>
         <Text
           textAlign={"center"}
           color="primary.900"
@@ -137,12 +144,14 @@ function SpinnerWihtText(props: SpinnerWihtTextProps) {
         >
           {getStatusText()}
         </Text>
-        <Text fontWeight={"semibold"} color="primary.900" fontSize={"lg"}>
-          {loadingValue === to
-            ? completedText ?? `${loadingValue}%`
-            : `${loadingValue}%`}
-        </Text>
-      </Flex>
+        {false && (
+          <Text fontWeight={"semibold"} color="primary.900" fontSize={"lg"}>
+            {loadingValue === to
+              ? completedText ?? `${loadingValue}%`
+              : `${loadingValue}%`}
+          </Text>
+        )}
+      </Box>
     );
   }
 

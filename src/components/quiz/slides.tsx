@@ -1,5 +1,13 @@
-import { Icon, Stack, Text } from "@chakra-ui/react";
-import { Selector, Slide } from "@lib/quiz-lib";
+import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
+import {
+  LoadingState,
+  Selector,
+  Slide,
+  useQuizActions,
+  useQuizContext,
+  useQuizState,
+  useSlideState,
+} from "@lib/quiz-lib";
 import {
   TbMoodConfuzed,
   TbMoodEmpty,
@@ -11,6 +19,10 @@ import {
 import { NextButton, QuizHeading } from "./ui";
 import { StaticImage } from "gatsby-plugin-image";
 import { Span } from "@components/components";
+import { FaCheck } from "react-icons/fa";
+import { navigate } from "gatsby";
+import { SummaryPageState } from "src/pages/s";
+import { getTypedQuizState } from "src/quizstate";
 
 export function GoalsSlide() {
   return (
@@ -310,19 +322,99 @@ export function WeightSlide() {
   );
 }
 
-export function EmailSlide() {
+export function LoadingSlide() {
+  const s = useSlideState() as LoadingState;
+
+  const progressValue = s?.progressValue;
+
   return (
-    <Slide id="your-email" type="email" placeholder="Enter your email">
+    <Slide
+      id="loading"
+      type="loading"
+      variant="linear"
+      statusText={""}
+      autoProceed
+    >
       <QuizHeading color="text.main" mb={4}>
-        Claim your FREE shipping and get Calmr at a limited-time, discounted
-        price!
+        Determining your stress levels
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
-      <Text mt={0} mb={7} fontSize={"xs"}>
-        🔒 We respect your privacy and protect your personal data. We will use
-        your email to identify you and send personalized astrological insights.
+      <Stack mt={4}>
+        <LoadingListItem
+          text="Evaluating your answers..."
+          isComplete={(progressValue ?? 0) > 25}
+        />
+        <LoadingListItem
+          text="Analyzing your results..."
+          isComplete={(progressValue ?? 0) > 50}
+        />
+        <LoadingListItem
+          text="Determining your cortisol levels..."
+          isComplete={(progressValue ?? 0) > 75}
+        />
+        <LoadingListItem
+          text="Building your summary..."
+          isComplete={(progressValue ?? 0) === 100}
+        />
+      </Stack>
+
+      <NextButton mt={8} isDisabled={!s?.isComplete}>
+        Next
+      </NextButton>
+    </Slide>
+  );
+}
+
+function LoadingListItem({
+  isComplete,
+  text,
+}: {
+  isComplete?: boolean;
+  text: string;
+}) {
+  return (
+    <Flex gap={2} alignItems={"center"}>
+      <Icon as={FaCheck} color={isComplete ? "text" : "text.100"} />
+      <Text>{text}</Text>
+    </Flex>
+  );
+}
+
+export function EmailSlide() {
+  const { submitQuestion } = useQuizActions();
+  const quizState = useQuizContext();
+
+  return (
+    <Slide id="your-email" type="email" placeholder="Enter your email">
+      <QuizHeading color="text.main" mb={4}>
+        Your results are ready!
+      </QuizHeading>
+      <Text>
+        Enter your email and claim your FREE shipping and get Calmr at a
+        limited-time, discounted price!
+      </Text>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton
+        onClick={() => {
+          const proceed = submitQuestion();
+          const typedState = getTypedQuizState(quizState);
+
+          if (proceed) {
+            navigate("/s", {
+              state: typedState satisfies SummaryPageState,
+            });
+          }
+        }}
+      >
+        Unlock my results
+      </NextButton>
+      <Text mt={4} mb={7} fontSize={"xs"}>
+        🔒 We don't send spam or share your data. We treat your privacy with the
+        utmost care and respect.
       </Text>
     </Slide>
   );

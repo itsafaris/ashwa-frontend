@@ -10,6 +10,7 @@ import {
   GoalsSlide,
   HealthStateSlide,
   HeightSlide,
+  LoadingSlide,
   MedicalConditionsSlide,
   StressBellySlide,
   SymptomsSlide,
@@ -86,6 +87,7 @@ export default function OnboardingQuiz() {
           <AgeSlide />
           <HeightSlide />
           <WeightSlide />
+          <LoadingSlide />
           <EmailSlide />
         </Segment>
       </QuizUI>
