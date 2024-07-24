@@ -78,8 +78,7 @@ const FreeGift = () => {
           fontSize={["2xl", "2xl", "4xl"]}
           maxW={"container.sm"}
         >
-          We Did It: Prevent Hair Loss and Boost Overall Hair Health with Our
-          All-in-One Solution!
+          We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
         </Heading>
 
         <StaticImage
@@ -105,8 +104,7 @@ const Hero = () => {
           fontSize={["2xl", "2xl", "4xl"]}
           maxW={"container.sm"}
         >
-          We Did It: Prevent Hair Loss and Boost Overall Hair Health with Our
-          All-in-One Solution!
+          We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
         </Heading>
 
         <Stack
