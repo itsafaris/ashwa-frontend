@@ -135,7 +135,7 @@ export default function OnboardingQuiz(props: PageProps) {
           <HeightSlide />
           <WeightSlide />
           <LoadingSlide />
-          <EmailSlide gender={gender} />
+          <EmailSlide />
         </Segment>
       </QuizUI>
     </QuizProvider>
@@ -147,7 +147,10 @@ function QuizStateSaver({ gender }: { gender?: "male" | "female" }) {
 
   useEffect(() => {
     const quizState = getTypedQuizState(q.slideStateByID);
-    saveQuizState({ ...quizState, gender });
+    saveQuizState({
+      ...quizState,
+      gender,
+    });
   }, [q.slideStateByID]);
 
   return null;

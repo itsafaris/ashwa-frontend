@@ -4,8 +4,6 @@ import {
   Selector,
   Slide,
   useQuizActions,
-  useQuizContext,
-  useQuizState,
   useSlideState,
 } from "@lib/quiz-lib";
 import {
@@ -21,8 +19,6 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Span } from "@components/components";
 import { FaCheck } from "react-icons/fa";
 import { navigate } from "gatsby";
-import { SummaryPageState } from "src/pages/s";
-import { getTypedQuizState } from "src/quizstate";
 
 export function GoalsSlide() {
   return (
@@ -382,9 +378,8 @@ function LoadingListItem({
   );
 }
 
-export function EmailSlide({ gender }: { gender: "male" | "female" }) {
+export function EmailSlide() {
   const { submitQuestion } = useQuizActions();
-  const quizState = useQuizContext();
 
   return (
     <Slide id="your-email" type="email" placeholder="Enter your email">
@@ -401,15 +396,8 @@ export function EmailSlide({ gender }: { gender: "male" | "female" }) {
       <NextButton
         onClick={() => {
           const proceed = submitQuestion();
-          const typedState = getTypedQuizState(quizState);
-
           if (proceed) {
-            navigate("/s", {
-              state: {
-                ...typedState,
-                gender,
-              } satisfies SummaryPageState,
-            });
+            navigate("/s");
           }
         }}
       >
