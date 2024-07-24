@@ -14,8 +14,8 @@ export type Review = {
 
 export const topReviews: Review[] = [
   {
-    title: "Boosts focus!",
-    text: "I've been takin these pills every day and I gotta say they've really helped with my focus at work. They almost feel like a little boost for my brain. I'm really happy with them",
+    title: "Enhances weight loss!",
+    text: "I've been taking these pills every day and I gotta say they've really helped with my weight loss. They almost feel like a little boost for my metabolism. I'm really happy with them.",
     name: "Amanda E.",
     location: "Vermont",
     score: 5,
@@ -60,8 +60,8 @@ export const topReviews: Review[] = [
 
 export const reviews: Review[] = [
   {
-    title: "Game changer for stress!",
-    text: "OMG, this stuff is amazing! I've been taking it for a month and I feel so much calmer. Work doesn't stress me out as much anymore",
+    title: "Game changer for weight loss!",
+    text: "OMG, I've been taking calmr for a couple months and I've lost 21 pound so far. I feel healthier and more confident!",
     name: "Sarah J.",
     location: "Vermont",
     score: 4.8,
@@ -86,8 +86,8 @@ export const reviews: Review[] = [
     hoursAgo: 13,
   },
   {
-    title: "Goodbye anxiety!",
-    text: "Been dealing with anxiety for years. This supplement has been a lifesaver. Not a magic pill, but it takes the edge off for sure.",
+    title: "Goodbye weight!",
+    text: "Been dealing with overweight for years. This supplement has been a lifesaver. Not a magic pill, but it takes the edge off for sure.",
     name: "Emily R.",
     location: "Virginia",
     score: 4.7,
