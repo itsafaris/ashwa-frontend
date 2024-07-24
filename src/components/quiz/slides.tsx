@@ -309,7 +309,25 @@ export function WeightSlide() {
   return (
     <Slide id="weight" type="weight">
       <QuizHeading color="text.main" mb={4}>
-        What's your weight?
+        What's your{" "}
+        <Span fontWeight={"bold"} decoration={"underline"}>
+          current
+        </Span>{" "}
+        weight?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton>Next</NextButton>
+    </Slide>
+  );
+}
+
+export function WeightGoalSlide() {
+  return (
+    <Slide id="weight-goal" type="weight">
+      <QuizHeading color="text.main" mb={4}>
+        What's weight <Span decoration={"underline"}>goal</Span>?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />

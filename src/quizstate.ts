@@ -16,6 +16,7 @@ export function getTypedQuizState(state: QuizQuestionsState) {
   const age = (state["age"] as AgeState)?.value;
   const height = (state["height"] as HeightState)?.value;
   const weight = (state["weight"] as WeightState)?.value;
+  const weightGoal = (state["weight-goal"] as WeightState)?.value;
 
   return {
     version: STATE_VERSION, // IMPORTANT - change this if making breaking changes to the state object
@@ -23,5 +24,6 @@ export function getTypedQuizState(state: QuizQuestionsState) {
     age,
     height,
     weight,
+    weightGoal,
   };
 }

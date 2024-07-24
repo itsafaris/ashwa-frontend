@@ -15,6 +15,7 @@ import {
   StressBellySlide,
   SymptomsSlide,
   WeightGainSlide,
+  WeightGoalSlide,
   WeightSlide,
 } from "@components/quiz/slides";
 import { ProgressIndicator } from "@lib/quiz-lib/public/progress";
@@ -134,6 +135,7 @@ export default function OnboardingQuiz(props: PageProps) {
           <AgeSlide />
           <HeightSlide />
           <WeightSlide />
+          <WeightGoalSlide />
           <LoadingSlide />
           <EmailSlide />
         </Segment>
