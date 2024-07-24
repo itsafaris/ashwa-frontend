@@ -85,8 +85,15 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
         </Flex>
       </Container>
 
-      <Box py={6} bg="white" mx={4} borderRadius={"lg"} mb={8}>
-        <Container maxWidth={"container.lg"}>
+      <Box px={4}>
+        <Container
+          maxWidth={"container.lg"}
+          py={6}
+          bg="white"
+          borderRadius={"lg"}
+          mb={8}
+          mx="auto"
+        >
           <Text
             textAlign={"center"}
             fontWeight={"semibold"}
