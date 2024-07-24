@@ -78,8 +78,8 @@ export function StressBellySlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Stress belly refers to weight gain around the abdominal area. How often
-        do you feel stressed?
+        "Stress belly" refers to weight gain around the abdominal area. How
+        often do you feel stressed?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -92,8 +92,8 @@ export function CortisolGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        Cortisol (stress hormone) is often ignored in the fight for that flat
-        belly.
+        Cortisol (stress hormone) is often the reason why that "stress belly"
+        keeps coming back
       </QuizHeading>
       <StaticImage
         src="../../images/cortisol-graphic.jpg"
@@ -115,7 +115,7 @@ export function EmotionalEatingSlide() {
       variant="list"
       options={[
         { text: "Frequently" },
-        { text: "Sometime" },
+        { text: "Sometimes" },
         { text: "Rarely" },
         { text: "Never" },
       ]}
@@ -184,7 +184,6 @@ export function HealthStateSlide() {
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
-      <NextButton mt={4}>Next</NextButton>
     </Slide>
   );
 }
@@ -238,8 +237,9 @@ export function AlergiesSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        To ensure Calmr is safe for you to use, please let us know if you have
-        any of the following sensitivities or allergies:
+        To ensure <Span decoration={"underline"}>Calmr</Span> is safe for you to
+        use, please let us know if you have any of the following sensitivities
+        or allergies:
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -408,8 +408,9 @@ export function EmailSlide() {
         Your results are ready!
       </QuizHeading>
       <Text>
-        Enter your email and claim your FREE shipping and get Calmr at a
-        limited-time, discounted price!
+        Enter your email and claim your FREE shipping and get{" "}
+        <Span decoration={"underline"}>Calmr</Span> at a limited-time,
+        discounted price!
       </Text>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -421,7 +422,7 @@ export function EmailSlide() {
             trackPixelEvent({
               name: "Lead",
             });
-            navigate("/s");
+            navigate("/summary");
           }
         }}
       >
