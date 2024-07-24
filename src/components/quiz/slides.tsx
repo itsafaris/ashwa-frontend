@@ -20,6 +20,7 @@ import { Span } from "@components/components";
 import { FaCheck } from "react-icons/fa";
 import { navigate } from "gatsby";
 import { trackPixelEvent } from "src/tracking";
+import { UnitSystemPicker } from "@lib/quiz-lib/internal/unitsystem";
 
 export function GoalsSlide() {
   return (
@@ -298,6 +299,7 @@ export function HeightSlide() {
         What's your height?
       </QuizHeading>
       <Stack mt={4} mb={2}>
+        <UnitSystemPicker />
         <Selector mt={0} mb={0} />
       </Stack>
       <NextButton>Next</NextButton>

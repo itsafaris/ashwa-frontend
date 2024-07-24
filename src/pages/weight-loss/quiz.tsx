@@ -148,12 +148,12 @@ function QuizStateSaver({ gender }: { gender?: "male" | "female" }) {
   const q = useQuizSnapshot();
 
   useEffect(() => {
-    const quizState = getTypedQuizState(q.slideStateByID);
+    const quizState = getTypedQuizState(q);
     saveQuizState({
       ...quizState,
       gender,
     });
-  }, [q.slideStateByID]);
+  }, [q.slideStateByID, q.unitSystem]);
 
   return null;
 }

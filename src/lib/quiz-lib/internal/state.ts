@@ -96,7 +96,7 @@ export type HeightState = {
 
 export type WeightState = {
   type: "weight";
-  value?: WeightValue;
+  value?: number | null;
 } & BaseSelectorState;
 
 export type BaseSelectorState = {
@@ -109,22 +109,12 @@ export type SelectorValue = Readonly<{ value: string; idx: number }>;
 
 export type DateValue = { year: number; month: number; day: number };
 
-export type WeightValue = {
-  system: "imperial" | "metric";
-  value?: number | null;
-};
+export type UnitSystem = "imperial" | "metric";
 
-export type HeightValue = HeightValueMetric | HeightValueImperial;
-
-export type HeightValueImperial = {
-  system: "imperial";
+export type HeightValue = {
   ft: number | null; // 5
   in: number | null; // 6
-};
-
-export type HeightValueMetric = {
-  system: "metric";
-  value: number | null; // 155
+  cm: number | null; // 155
 };
 
 const QUICK_TIME_PERIODS = ["Morning", "Noon", "Evening", "Night"] as const;
@@ -188,6 +178,7 @@ export function createQuizState(input: {
     currentSlideID: input.initialState?.slideID,
     direction: 0, // -1 or 1
     slideStateByID: {} as Record<string, SelectorState>,
+    unitSystem: "imperial" as "imperial" | "metric",
     segments: [] as SegmentDescriptor[],
     slides: [] as SlideProps[],
 
@@ -227,10 +218,10 @@ export function createQuizState(input: {
           this.currentSlide.type
         );
       }
-      const state = this.slideStateByID[this.currentSlide.id];
+      const s = this.slideStateByID[this.currentSlide.id];
       return {
-        ...state,
-        isValid: isSlideStateValid(state),
+        ...s,
+        isValid: isSlideStateValid(s, state),
       };
     },
 
@@ -276,7 +267,7 @@ export function createQuizState(input: {
 
       const currentSlideState = state.slideStateByID[state.currentSlideID!];
 
-      if (!isSlideStateValid(state.currentSlideState)) {
+      if (!isSlideStateValid(state.currentSlideState, state)) {
         currentSlideState.attempts++;
         currentSlideState.confirmed = false;
         currentSlideState.isValueValid = false;
@@ -295,7 +286,7 @@ export function createQuizState(input: {
       const currentSlideState = state.slideStateByID[state.currentSlideID!];
       const currentSlide = state.currentSlide;
 
-      if (!isSlideStateValid(state.currentSlideState)) {
+      if (!isSlideStateValid(state.currentSlideState, state)) {
         currentSlideState.attempts++;
         currentSlideState.confirmed = false;
         currentSlideState.isValueValid = false;
@@ -404,6 +395,10 @@ export function createQuizState(input: {
       }
     },
 
+    setUnitSystem(s: UnitSystem) {
+      state.unitSystem = s;
+    },
+
     setShortTextInputValue(selectorID: string, value: string) {
       const slideState = state.slideStateByID[selectorID] as ShortTextState;
       slideState.value = value;
@@ -444,13 +439,9 @@ export function createQuizState(input: {
       slideState.value = value;
     },
 
-    setWeightValue(selectorID: string, value: Partial<WeightValue>) {
+    setWeightValue(selectorID: string, value: number | null) {
       const slideState = state.slideStateByID[selectorID] as WeightState;
-      // @ts-expect-error
-      slideState.value = {
-        ...slideState.value,
-        ...value,
-      };
+      slideState.value = value;
     },
 
     setHeightValue(selectorID: string, value: Partial<HeightValue>) {
@@ -468,7 +459,10 @@ export function createQuizState(input: {
 
 type QuizCtxType = QuizState;
 
-export function isSlideStateValid(state: SelectorState): boolean {
+export function isSlideStateValid(
+  state: SelectorState,
+  quizState: QuizState["state"]
+): boolean {
   switch (state.type) {
     case "single": {
       return state.value != null;
@@ -495,13 +489,13 @@ export function isSlideStateValid(state: SelectorState): boolean {
       if (!state.value) {
         return false;
       }
-      if (state.value.system === "imperial") {
+      if (quizState.unitSystem === "imperial") {
         return state.value.ft != null && state.value.in != null;
       }
-      return state.value.value != null;
+      return state.value.cm != null;
     }
     case "weight": {
-      return state.value?.value != null;
+      return state.value != null;
     }
     default: {
       return true;

@@ -22,45 +22,11 @@ export function Height({}: HeightProps) {
   const state = snap.slideStateByID[slide.id] as HeightState;
 
   const value = state.value;
-  const system = value?.system ?? "imperial";
+  const system = snap.unitSystem;
 
   return (
     <FormControl position={"relative"} pb={7}>
-      <Flex
-        gap={2}
-        width={"full"}
-        mb={3}
-        bg={"bg.100"}
-        p={1}
-        borderRadius={"lg"}
-      >
-        <Button
-          size="sm"
-          flex={1}
-          colorScheme={system === "imperial" ? "bg" : undefined}
-          variant={system === "imperial" ? "solid" : "text"}
-          onClick={() => {
-            actions.setHeightValue(slide.id, {
-              system: "imperial",
-            });
-          }}
-        >
-          Imperial
-        </Button>
-        <Button
-          size="sm"
-          flex={1}
-          colorScheme={system === "metric" ? "bg" : undefined}
-          variant={system === "metric" ? "solid" : "text"}
-          onClick={() => {
-            actions.setHeightValue(slide.id, { system: "metric" });
-          }}
-        >
-          Metric
-        </Button>
-      </Flex>
-
-      {!value || value.system === "imperial" ? (
+      {snap.unitSystem === "imperial" ? (
         <Flex gap={2}>
           <InputGroup>
             <Input
@@ -73,7 +39,6 @@ export function Height({}: HeightProps) {
                 const i = parseInt(e.target.value);
                 let it = isNaN(i) ? null : i;
                 actions.setHeightValue(slide.id, {
-                  system: "imperial",
                   ft: it,
                 });
               }}
@@ -93,7 +58,6 @@ export function Height({}: HeightProps) {
                 const i = parseInt(e.target.value);
                 let it = isNaN(i) ? null : i;
                 actions.setHeightValue(slide.id, {
-                  system: "imperial",
                   in: it,
                 });
               }}
@@ -109,14 +73,13 @@ export function Height({}: HeightProps) {
             <Input
               {...commonInputStyles()}
               size={"lg"}
-              value={value.value ?? ""}
+              value={value?.cm ?? ""}
               type="number"
               onChange={(e) => {
                 const i = parseInt(e.target.value);
                 let it = isNaN(i) ? null : i;
                 actions.setHeightValue(slide.id, {
-                  system: "metric",
-                  value: it,
+                  cm: it,
                 });
               }}
             />
