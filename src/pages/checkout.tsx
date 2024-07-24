@@ -38,14 +38,18 @@ import { trackEvent, trackPixelEvent } from "src/tracking";
 
 import "blaze-slider/dist/blaze.css";
 import { SafeCheckout } from "@components/SafeCheckout";
+import { loadQuizState, SavedState } from "src/localStorage";
 
 export const Head: HeadFC = () => {
   return <SEO />;
 };
 
 export default function Page() {
+  const [quizState, setQuizState] = React.useState<SavedState>();
+
   React.useEffect(() => {
     trackPixelEvent({ name: "AddToCart" });
+    setQuizState(loadQuizState());
   }, []);
 
   return (
@@ -55,7 +59,7 @@ export default function Page() {
       <Hero />
       <Banner />
       <SpecialOfferTimer />
-      <ProductSelectionSection />
+      <ProductSelectionSection email={quizState?.email} />
       <BadgesSection />
       <FreeGift />
       <Footer />
@@ -270,7 +274,7 @@ const BannerTop = () => (
   </Flex>
 );
 
-function ProductSelectionSection() {
+function ProductSelectionSection({ email }: { email?: string }) {
   const { websiteHostname, stripePublicKey } = siteConfig;
 
   const stripePromise = React.useRef<Promise<Stripe | null> | null>(null);
@@ -303,6 +307,7 @@ function ProductSelectionSection() {
       successUrl: getPageUrl(product.id),
       cancelUrl: `${websiteHostname}`,
       shippingAddressCollection: { allowedCountries: ["US"] },
+      customerEmail: email,
     });
     // If `redirectToCheckout` fails due to a browser or network
     // error, display the localized error message to your customer

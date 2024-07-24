@@ -69,7 +69,7 @@ export default function PurchaseSuccessPage(props: IPurchaseSuccessPageProps) {
             borderRadius={"md"}
             p={3}
           >
-            <Text>Order #12345678</Text>
+            <Text>Order #1379882</Text>
             <Flex gap={1} alignItems={"center"}>
               <Icon as={FaRegCheckCircle} color="green.500" />
               <Text fontWeight={"semibold"} fontSize={"lg"}>
