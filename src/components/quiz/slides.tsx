@@ -55,7 +55,7 @@ export function WeightGainSlide() {
       options={[{ text: "Yes" }, { text: "No" }]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Hve you gained weight in the last year?
+        Have you gained weight in the last year?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
