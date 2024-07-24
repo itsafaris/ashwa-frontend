@@ -19,6 +19,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Span } from "@components/components";
 import { FaCheck } from "react-icons/fa";
 import { navigate } from "gatsby";
+import { trackPixelEvent } from "src/tracking";
 
 export function GoalsSlide() {
   return (
@@ -308,7 +309,25 @@ export function WeightSlide() {
   return (
     <Slide id="weight" type="weight">
       <QuizHeading color="text.main" mb={4}>
-        What's your weight?
+        What's your{" "}
+        <Span fontWeight={"bold"} decoration={"underline"}>
+          current
+        </Span>{" "}
+        weight?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton>Next</NextButton>
+    </Slide>
+  );
+}
+
+export function WeightGoalSlide() {
+  return (
+    <Slide id="weight-goal" type="weight">
+      <QuizHeading color="text.main" mb={4}>
+        What's your weight <Span decoration={"underline"}>goal</Span>?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -397,6 +416,9 @@ export function EmailSlide() {
         onClick={() => {
           const proceed = submitQuestion();
           if (proceed) {
+            trackPixelEvent({
+              name: "Lead",
+            });
             navigate("/s");
           }
         }}
