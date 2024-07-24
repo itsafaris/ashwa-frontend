@@ -1,6 +1,6 @@
 import { QuizStateTyped, STATE_VERSION } from "./quizstate";
 
-type SavedState = QuizStateTyped & { gender?: "male" | "female" };
+export type SavedState = QuizStateTyped & { gender?: "male" | "female" };
 
 export function saveQuizState(state: SavedState) {
   localStorage.setItem("quizstate", JSON.stringify(state));

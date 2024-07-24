@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Link, type HeadFC } from "gatsby";
+import { Link, type HeadFC, navigate } from "gatsby";
 
 import { IoMdFemale } from "react-icons/io";
 import { IoMdSpeedometer } from "react-icons/io";
@@ -54,7 +54,7 @@ import { trackEvent } from "src/tracking";
 
 import BlazeSlider, { BlazeConfig } from "blaze-slider";
 import "blaze-slider/dist/blaze.css";
-import { calculateBMI, calculateWeightLoss, getMetabolicAge } from "src/utils";
+import { getReadableState, ReadableState } from "src/utils";
 
 function useBlazeSlider(config: BlazeConfig) {
   const sliderRef = React.useRef<BlazeSlider>();
@@ -102,36 +102,6 @@ export const Head: HeadFC = () => {
   return <SEO />;
 };
 
-type Customer = {
-  system: "metric" | "imperial";
-  age: number;
-  weight: number;
-  goalWeight: number;
-  height: number;
-  gender: "female" | "male";
-};
-
-type Results = {
-  startWeight: string; // readable
-  startDate: string; // readable
-  endWeight: string; // readable
-  endDate: string; // readable
-  weightDiff: string; // readable
-  monthlyLoss: string; // readable
-  lossByWeeks: string[]; // readable
-  height: string; // readable
-  gender: "Female" | "Male"; // readable
-  bmi: number;
-  metabolicAge: number;
-};
-
-type Program = {
-  customer: Customer;
-  results: Results;
-};
-
-const ProgramCtx = React.createContext<Program | null>(null);
-
 // const customer: Customer = {
 //   system: "metric",
 //   age: 34,
@@ -141,87 +111,44 @@ const ProgramCtx = React.createContext<Program | null>(null);
 //   height: 180,
 // };
 
-const customer: Customer = {
-  system: "imperial",
-  age: 34,
-  gender: "male",
-  weight: 176,
-  goalWeight: 132,
-  height: 71,
-};
+// const customer: Customer = {
+//   system: "imperial",
+//   age: 34,
+//   gender: "male",
+//   weight: 176,
+//   goalWeight: 132,
+//   height: 71,
+// };
 
-function ProgramProvider({ children }: React.PropsWithChildren) {
-  const [results, setResults] = React.useState<Results | null>(null);
+const ReadableStateCtx = React.createContext<ReadableState | null>(null);
+
+function ReadableStateProvider({ children }: React.PropsWithChildren) {
+  const [state, setState] = React.useState<ReadableState | null>(null);
 
   React.useEffect(() => {
-    const obj = calculateWeightLoss(
-      customer.weight,
-      customer.goalWeight,
-      customer.system
-    );
-
-    const imperialCoff = 2.2046;
-    const suffixW = customer.system === "metric" ? "kg" : "lbs";
-    const suffixH = customer.system === "metric" ? "cm" : "in";
-    const gender = customer.gender === "female" ? "Female" : "Male";
-    const lossByWeeks =
-      customer.system === "metric"
-        ? [
-            `${round(obj.startWeight)}${suffixW}`,
-            `${round(obj.startWeight - 1.3)}${suffixW}`,
-            `${round(obj.startWeight - 3.4)}${suffixW}`,
-            `${round(obj.startWeight - 4.7)}${suffixW}`,
-          ]
-        : [
-            `${round(obj.startWeight)}${suffixW}`,
-            `${round(obj.startWeight - 1.3 * imperialCoff)}${suffixW}`,
-            `${round(obj.startWeight - 3.4 * imperialCoff)}${suffixW}`,
-            `${round(obj.startWeight - 4.7 * imperialCoff)}${suffixW}`,
-          ];
-
-    const bmi = calculateBMI(obj.startWeight, customer.height, customer.system);
-    const metabolicAge = getMetabolicAge(customer.age);
-
-    function round(value: number) {
-      return Math.round(value * 100) / 100;
+    const readableState = getReadableState();
+    if (!readableState) {
+      navigate("/weight-loss");
+    } else {
+      setState(readableState);
     }
+  }, []);
 
-    setResults({
-      startWeight: `${round(obj.startWeight)}${suffixW}`,
-      endWeight: `${round(obj.endWeight)}${suffixW}`,
-      startDate: obj.startDate,
-      endDate: obj.endDate,
-      weightDiff: `-${round(obj.startWeight) - round(obj.endWeight)}${suffixW}`,
-      monthlyLoss: `-${round(
-        customer.system === "metric" ? 4.7 : 4.7 * imperialCoff
-      )}${suffixW}`,
-      lossByWeeks,
-      height: `${customer.height}${suffixH}`,
-      gender,
-      bmi,
-      metabolicAge,
-    });
-  }, [customer]);
-
-  const value = React.useMemo(() => {
-    return {
-      customer,
-      results,
-    };
-  }, [customer, results]);
-
-  if (results === null) {
+  if (state === null) {
     return null;
   }
 
-  // @ts-ignore
-  return <ProgramCtx.Provider value={value}>{children}</ProgramCtx.Provider>;
+  return (
+    <ReadableStateCtx.Provider value={state}>
+      {children}
+    </ReadableStateCtx.Provider>
+  );
 }
 
-function useProgram() {
-  const res = React.useContext(ProgramCtx);
+function useReadableState() {
+  const res = React.useContext(ReadableStateCtx);
   if (!res) {
-    throw Error("useProgram had to be used within ProgramProvider");
+    throw Error("useReadableState had to be used within ReadableStateProvider");
   }
 
   return res;
@@ -229,10 +156,9 @@ function useProgram() {
 
 export default function Page() {
   return (
-    <ProgramProvider>
+    <ReadableStateProvider>
       <Box bg="bg.50">
         <Header />
-
         <Hero />
         <ProductCarouselSection />
         <Summary />
@@ -243,15 +169,14 @@ export default function Page() {
         <AshwaRevivalSection />
         <ReviewsSection reviews={reviews} />
         <FAQSection />
-
         <Footer />
       </Box>
-    </ProgramProvider>
+    </ReadableStateProvider>
   );
 }
 
 const Hero = () => {
-  const program = useProgram();
+  const state = useReadableState();
 
   return (
     <Box backgroundColor={"brand.100"}>
@@ -298,10 +223,10 @@ const Hero = () => {
                   lineHeight={1.2}
                 >
                   <Text fontSize={"md"} fontWeight={"semibold"}>
-                    {program.results.startDate}
+                    {state.startDate}
                   </Text>
                   <Text fontSize={"4xl"} fontWeight={"bold"}>
-                    {program.results.startWeight}
+                    {state.startWeight}
                   </Text>
                 </Stack>
 
@@ -320,10 +245,10 @@ const Hero = () => {
                   lineHeight={1.2}
                 >
                   <Text fontSize={"md"} fontWeight={"semibold"}>
-                    {program.results.endDate}
+                    {state.endDate}
                   </Text>
                   <Text fontSize={"4xl"} fontWeight={"bold"}>
-                    {program.results.endWeight}
+                    {state.endWeight}
                   </Text>
                 </Stack>
               </Grid>
@@ -339,7 +264,7 @@ const Hero = () => {
                   fontWeight={"bold"}
                   textAlign={"center"}
                 >
-                  {program.results.weightDiff}
+                  {state.weightDiff}
                 </Text>
               </Box>
             </Stack>
@@ -374,7 +299,7 @@ const Hero = () => {
             <Stack>
               <Stack justifyContent={"end"} spacing={1} lineHeight={1.3} mb={6}>
                 <Text fontSize={"4xl"} fontWeight={"bold"} textAlign={"right"}>
-                  {program.results.monthlyLoss}
+                  {state.monthlyLoss}
                 </Text>
                 <Text textAlign={"right"}>In your first month</Text>
               </Stack>
@@ -395,7 +320,7 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {program.results.lossByWeeks[0]}
+                      {state.lossByWeeks[0]}
                     </Text>
                   </Stack>
 
@@ -406,7 +331,7 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {program.results.lossByWeeks[1]}
+                      {state.lossByWeeks[1]}
                     </Text>
                   </Stack>
 
@@ -417,7 +342,7 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {program.results.lossByWeeks[2]}
+                      {state.lossByWeeks[2]}
                     </Text>
                   </Stack>
 
@@ -428,7 +353,7 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {program.results.lossByWeeks[3]}
+                      {state.lossByWeeks[3]}
                     </Text>
                   </Stack>
                 </Grid>
@@ -505,7 +430,7 @@ const Hero = () => {
 };
 
 const Summary = () => {
-  const program = useProgram();
+  const state = useReadableState();
 
   return (
     <Box backgroundColor={"brand.100"} py={10}>
@@ -536,7 +461,7 @@ const Summary = () => {
             >
               <Icon as={IoMdFemale} boxSize={"36px"} />
               <Text fontSize={"3xl"} fontWeight={"bold"}>
-                {program.results.gender}
+                {state.gender}
               </Text>
               <Text color="gray.500">Gender</Text>
             </Stack>
@@ -552,7 +477,7 @@ const Summary = () => {
             >
               <Icon as={PiPersonBold} boxSize={"36px"} />
               <Text fontSize={"4xl"} fontWeight={"bold"}>
-                {program.customer.age}
+                {state.age}
               </Text>
               <Text color="gray.500">Age</Text>
             </Stack>
@@ -568,7 +493,7 @@ const Summary = () => {
             >
               <Icon as={LiaRulerVerticalSolid} boxSize={"36px"} />
               <Text fontSize={"4xl"} fontWeight={"bold"}>
-                {program.results.height}
+                {state.height}
               </Text>
               <Text color="gray.500">Height</Text>
             </Stack>
@@ -584,7 +509,7 @@ const Summary = () => {
             >
               <Icon as={RiScales2Line} boxSize={"36px"} />
               <Text fontSize={"4xl"} fontWeight={"bold"}>
-                {program.results.startWeight}
+                {state.startWeight}
               </Text>
               <Text color="gray.500">Weight</Text>
             </Stack>
@@ -608,7 +533,7 @@ const Summary = () => {
               <Icon as={IoMdSpeedometer} boxSize={"36px"} />
               <Text color="gray.500">Your BMI</Text>
               <Text fontSize={"4xl"} fontWeight={"bold"}>
-                {program.results.bmi}
+                {state.bmi}
               </Text>
               <BMIMeter bmi={27.68} />
             </Stack>
@@ -625,7 +550,7 @@ const Summary = () => {
               <Icon as={GiTreeBranch} boxSize={"36px"} />
               <Text color="gray.500">Metabolic age</Text>
               <Text fontSize={"4xl"} fontWeight={"bold"}>
-                {program.results.metabolicAge} years
+                {state.metabolicAge} years
               </Text>
             </Stack>
           </Grid>
