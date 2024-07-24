@@ -6,7 +6,7 @@ import { Link } from "gatsby";
 
 export function Footer() {
   return (
-    <Flex py={20} bg="shade.200" color="bg.700">
+    <Flex py={10} bg="white" color="bg.700">
       <Container as={Flex} maxWidth={1200} direction={"column"} gap={8}>
         <Flex direction={"column"} gap={2}>
           <Flex gap={4} alignItems={"center"} justifyContent={"center"}>

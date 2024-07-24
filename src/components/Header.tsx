@@ -4,10 +4,10 @@ import { Logo } from "./logo";
 import { Link } from "gatsby";
 
 export const Header = () => (
-  <Box bg="shade.100">
+  <Box bg="white">
     <Container as={Flex} py={3} alignItems={"center"} justifyContent={"center"}>
       <Link to="/">
-        <Logo height={"24px"} />
+        <Logo height={"34px"} />
       </Link>
     </Container>
   </Box>

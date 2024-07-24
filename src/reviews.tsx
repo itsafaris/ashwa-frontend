@@ -1,5 +1,6 @@
 import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
+import UGC1 from "@images/video-ugc-1.mp4";
 
 export type Review = {
   title: string;
@@ -18,7 +19,23 @@ export const topReviews: Review[] = [
     name: "Amanda E.",
     location: "Vermont",
     score: 5,
-    img: <StaticImage width={400} src="./images/review1.jpeg" alt="" />,
+    img: (
+      <video
+        playsInline={true}
+        loop={true}
+        autoPlay={true}
+        muted={true}
+        src={UGC1}
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          zIndex: 0,
+          height: "100%",
+          width: "100%",
+        }}
+      ></video>
+    ),
     hoursAgo: 12,
   },
   {
