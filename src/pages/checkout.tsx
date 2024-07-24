@@ -309,7 +309,7 @@ function ProductSelectionSection({ email }: { email?: string }) {
       ],
       mode: purchaseType === "one-off" ? "payment" : "subscription",
       successUrl: getPageUrl(product.id),
-      cancelUrl: `${websiteHostname}`,
+      cancelUrl: window.location.href,
       shippingAddressCollection: { allowedCountries: ["US"] },
       customerEmail: email,
     });
