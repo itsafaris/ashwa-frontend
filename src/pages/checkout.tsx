@@ -294,6 +294,10 @@ function ProductSelectionSection({ email }: { email?: string }) {
       },
     });
 
+    trackPixelEvent({
+      name: "InitiateCheckout",
+    });
+
     const stripe = await stripePromise.current;
 
     const { error } = await stripe!.redirectToCheckout({
