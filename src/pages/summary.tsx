@@ -192,12 +192,12 @@ const Hero = () => {
           >
             <Stack textAlign={["center", "center", "left"]}>
               <Heading fontSize={["4xl", "4xl", "5xl"]} maxW={"container.sm"}>
-                Fuel your weight loss with Calmr Premium
+                Fuel your weight loss with Calmr
               </Heading>
 
               <Text fontSize={"md"}>
-                Reach your goals faster and feel your best with our powerful
-                high-fiber formula.
+                Reach your goals faster and feel your best with our organic
+                aswhagandha based formula.
               </Text>
             </Stack>
 
@@ -291,8 +291,8 @@ const Hero = () => {
               </Heading>
 
               <Text fontSize={"md"}>
-                ColonBroom helps you gradually build your wellness goals and
-                achieve better results every month.
+                Calmr helps you gradually build your wellness goals and achieve
+                better results every month.
               </Text>
             </Stack>
 
@@ -689,7 +689,7 @@ const ProductCarouselSection = () => {
         <Flex py={4} flexWrap={"wrap"} gap={8} alignItems={"center"}>
           <Box flex={1} minWidth={300}>
             <Heading as="h1" fontWeight={"bold"}>
-              Most complete Blend of Ashwagandha for Modern Busy Women
+              Our most complete blend of Ashwagandha for busy women
             </Heading>
 
             <Flex alignItems={"center"} gap={2} py={2}>
@@ -703,22 +703,16 @@ const ProductCarouselSection = () => {
             </Flex>
 
             <Text mt={4}>
-              Our all-in-one supplement blend - the only one you'll need to{" "}
+              Our unique formula is designed to help you{" "}
               <Span fontWeight={"bold"}>combat stress</Span>,{" "}
-              <Span fontWeight={"bold"}>sharpen focus</Span>, and{" "}
-              <Span fontWeight={"bold"}>boost energy</Span>. This revolutionary
-              formula uniquely combines Ashwagandha, Rhodiola Extract, and
+              <Span fontWeight={"bold"}>curb cravings</Span>, and{" "}
+              <Span fontWeight={"bold"}>boost energy</Span>, making it the only
+              supplement you'll need on your weight loss journey. This
+              revolutionary blend combines Ashwagandha, Rhodiola Extract, and
               Bacopa with essential vitamins and minerals, creating a powerhouse
-              solution tailored specifically for the modern woman's needs.
+              solution tailored specifically for the modern woman aiming to shed
+              those extra pounds and maintain a healthy weight.
             </Text>
-
-            {/* <Flex direction={"column"} gap={1} py={6}>
-              {benefits.map((b) => (
-                <Text key={b} fontWeight={"semibold"} fontSize={"sm"}>
-                  {b}
-                </Text>
-              ))}
-            </Flex> */}
           </Box>
 
           <Box minWidth={340} flex={1}>
@@ -1388,7 +1382,7 @@ function HowItWorksSection() {
   return (
     <Container maxW={"container.xl"} my={16}>
       <Heading textAlign={"center"} my={10}>
-        How It Works
+        Conquer chaos. Weight loss will come naturally
       </Heading>
 
       <Grid
@@ -1410,9 +1404,10 @@ function HowItWorksSection() {
         <GridItem justifySelf={"start"}>
           <Text mb={8} maxW={"md"}>
             Over 40 million women in the US experience stress and anxiety every
-            day. We've already helped over 250,000 women find balance and
-            calmness in their lives. Take action now to improve your well-being
-            and mental clarity for good.
+            day, leading to unwanted weight gain and the dreaded "stress belly."
+            We've already helped over 250,000 women manage their stress and
+            achieve a healthier weight. Take action now to reduce your stress,
+            shed those extra pounds, and improve your overall well-being.
           </Text>
 
           <SimpleGrid flex={1} columns={[1, 1, 2]} spacing={2}>
@@ -1505,8 +1500,8 @@ function FactsFromCustomersSection() {
       fact: "Less time to fall asleep",
     },
     {
-      number: "78%",
-      fact: "No longer need their afternoon coffee",
+      number: "30%",
+      fact: "Drop in cortisol levels lead to a natual weight loss",
     },
   ];
   return (
