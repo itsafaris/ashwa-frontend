@@ -12,7 +12,7 @@ import {
   HeightSlide,
   LoadingSlide,
   MedicalConditionsSlide,
-  StressBellySlide,
+  StressFrequencySlide,
   SymptomsSlide,
   WeightGainSlide,
   WeightGoalSlide,
@@ -20,10 +20,10 @@ import {
 } from "@components/quiz/slides";
 import { ProgressIndicator } from "@lib/quiz-lib/public/progress";
 import { Logo } from "@components/logo";
-import { getTypedQuizState } from "src/quizstate";
+import { getCalculatedState, getTypedQuizState } from "src/quizstate";
 import { clearQuizState, loadQuizState, saveQuizState } from "src/localStorage";
 import { PageProps } from "gatsby";
-import { trackEvent } from "src/tracking";
+import { getPosthog, trackEvent } from "src/tracking";
 
 export function createPageParams(input: Partial<PageParams>): URLSearchParams {
   const s = new URLSearchParams();
@@ -91,12 +91,16 @@ export default function OnboardingQuiz(props: PageProps) {
       onTrackingEvent={(event) => {
         trackEvent(event);
       }}
+      onSlideSubmitted={({ quizObject }) => {
+        const s = getCalculatedState(quizObject.state);
+        // @ts-expect-error
+        delete s.version;
+        getPosthog()?.setPersonProperties(s);
+      }}
     >
       <QuizStateSaver gender={gender} />
       <QuizUI
-        progressComponent={
-          <ProgressIndicator logo={<Logo height={"28px"} />} />
-        }
+        progressComponent={<ProgressIndicator logo={<Logo height={"28px"} />} />}
         containerProps={{
           minH: "100vh",
           bg: "bg.50",
@@ -108,7 +112,7 @@ export default function OnboardingQuiz(props: PageProps) {
           <SymptomsSlide />
           <WeightGainSlide />
           <EmotionalEatingSlide />
-          <StressBellySlide />
+          <StressFrequencySlide />
           <CortisolGraphicSlide />
           <AlergiesSlide />
           <MedicalConditionsSlide />

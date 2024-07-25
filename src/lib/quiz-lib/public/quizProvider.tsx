@@ -1,12 +1,7 @@
 import React, { createContext, useContext, useEffect, useRef } from "react";
 import { devtools } from "valtio/utils";
 
-import {
-  QuizCtx,
-  QuizSlideState,
-  SelectorState,
-  createQuizState,
-} from "../internal/state";
+import { QuizCtx, QuizObject, SelectorState, createQuizState } from "../internal/state";
 import { QuizErrorEvent, TrackingEventCallback } from "./types";
 
 export type QuizProps = {
@@ -21,8 +16,8 @@ export type QuizConfigType = {
   onSlideChange?: (newSlide: { id: string }) => void;
   onSlideSubmitted?: (state: {
     id: string;
-    state: SelectorState;
-    getQuizState: () => Promise<QuizSlideState>;
+    slideState: SelectorState;
+    quizObject: QuizObject;
   }) => void;
   onTrackingEvent?: TrackingEventCallback;
 };

@@ -4,6 +4,17 @@ export function isProdMode() {
   return process.env.NODE_ENV === "production";
 }
 
+export function convertHeightToCm(feet: number, inches: number): number {
+  const feetToCm = feet * 30.48;
+  const inchesToCm = inches * 2.54;
+  return feetToCm + inchesToCm;
+}
+
+export function convertWeightToKg(pounds: number): number {
+  const poundsToKg = pounds * 0.45359237;
+  return poundsToKg;
+}
+
 export function calculateBMI(
   weight: number,
   height: number,

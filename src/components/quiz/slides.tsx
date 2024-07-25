@@ -1,11 +1,5 @@
 import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
-import {
-  LoadingState,
-  Selector,
-  Slide,
-  useQuizActions,
-  useSlideState,
-} from "@lib/quiz-lib";
+import { LoadingState, Selector, Slide, useQuizActions, useSlideState } from "@lib/quiz-lib";
 import {
   TbMoodConfuzed,
   TbMoodEmpty,
@@ -64,10 +58,10 @@ export function WeightGainSlide() {
   );
 }
 
-export function StressBellySlide() {
+export function StressFrequencySlide() {
   return (
     <Slide
-      id="stress-belly"
+      id="stress"
       type="single"
       variant="list"
       options={[
@@ -78,8 +72,8 @@ export function StressBellySlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        "Stress belly" refers to weight gain around the abdominal area. How
-        often do you feel stressed?
+        "Stress belly" refers to weight gain around the abdominal area. How often do you feel
+        stressed?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -92,8 +86,7 @@ export function CortisolGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        Cortisol (stress hormone) is often the reason why that "stress belly"
-        keeps coming back
+        Cortisol (stress hormone) is often the reason why that "stress belly" keeps coming back
       </QuizHeading>
       <StaticImage
         src="../../images/cortisol-graphic.jpg"
@@ -121,8 +114,8 @@ export function EmotionalEatingSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Stress can trigger emotional eating and cravings for high-calorie foods.
-        How often do you experience food cravings?
+        Stress can trigger emotional eating and cravings for high-calorie foods. How often do you
+        experience food cravings?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -207,8 +200,8 @@ export function SymptomsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Many factors can affect your well-being, but feeling stressed is one of
-        the most significant. Do you often experience:
+        Many factors can affect your well-being, but feeling stressed is one of the most
+        significant. Do you often experience:
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -237,9 +230,8 @@ export function AlergiesSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        To ensure <Span decoration={"underline"}>Calmr</Span> is safe for you to
-        use, please let us know if you have any of the following sensitivities
-        or allergies:
+        To ensure <Span decoration={"underline"}>Calmr</Span> is safe for you to use, please let us
+        know if you have any of the following sensitivities or allergies:
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -267,8 +259,8 @@ export function MedicalConditionsSlide() {
     >
       <QuizHeading color="text.main" mb={4}>
         You're doing amazing! To guarantee you have the best experience using{" "}
-        <Span decoration={"underline"}>Calmr</Span>, let us know if you have any
-        of the following medical conditions:
+        <Span decoration={"underline"}>Calmr</Span>, let us know if you have any of the following
+        medical conditions:
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -345,13 +337,7 @@ export function LoadingSlide() {
   const progressValue = s?.progressValue;
 
   return (
-    <Slide
-      id="loading"
-      type="loading"
-      variant="linear"
-      statusText={""}
-      autoProceed
-    >
+    <Slide id="loading" type="loading" variant="linear" statusText={""} autoProceed>
       <QuizHeading color="text.main" mb={4}>
         Determining your stress levels
       </QuizHeading>
@@ -359,14 +345,8 @@ export function LoadingSlide() {
         <Selector mt={0} mb={0} />
       </Stack>
       <Stack mt={4}>
-        <LoadingListItem
-          text="Evaluating your answers..."
-          isComplete={(progressValue ?? 0) > 25}
-        />
-        <LoadingListItem
-          text="Analyzing your results..."
-          isComplete={(progressValue ?? 0) > 50}
-        />
+        <LoadingListItem text="Evaluating your answers..." isComplete={(progressValue ?? 0) > 25} />
+        <LoadingListItem text="Analyzing your results..." isComplete={(progressValue ?? 0) > 50} />
         <LoadingListItem
           text="Determining your cortisol levels..."
           isComplete={(progressValue ?? 0) > 75}
@@ -384,13 +364,7 @@ export function LoadingSlide() {
   );
 }
 
-function LoadingListItem({
-  isComplete,
-  text,
-}: {
-  isComplete?: boolean;
-  text: string;
-}) {
+function LoadingListItem({ isComplete, text }: { isComplete?: boolean; text: string }) {
   return (
     <Flex gap={2} alignItems={"center"}>
       <Icon as={FaCheck} color={isComplete ? "text" : "text.100"} />
@@ -409,8 +383,7 @@ export function EmailSlide() {
       </QuizHeading>
       <Text>
         Enter your email and claim your FREE shipping and get{" "}
-        <Span decoration={"underline"}>Calmr</Span> at a limited-time,
-        discounted price!
+        <Span decoration={"underline"}>Calmr</Span> at a limited-time, discounted price!
       </Text>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -429,8 +402,8 @@ export function EmailSlide() {
         Unlock my results
       </NextButton>
       <Text mt={4} mb={7} fontSize={"xs"}>
-        🔒 We don't send spam or share your data. We treat your privacy with the
-        utmost care and respect.
+        🔒 We don't send spam or share your data. We treat your privacy with the utmost care and
+        respect.
       </Text>
     </Slide>
   );

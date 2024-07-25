@@ -138,9 +138,11 @@ export type SegmentDescriptor = {
   slideCount: number;
 };
 
-export type QuizState = ReturnType<typeof createQuizState>;
+export type QuizObject = ReturnType<typeof createQuizState>;
 
-export type QuizSlideState = QuizState["state"]["slideStateByID"];
+export type QuizState = QuizObject["state"];
+
+export type QuizSlideState = QuizState["slideStateByID"];
 
 function createSlideState(type: ISelectorType): SelectorState {
   return {
@@ -159,8 +161,8 @@ export function createQuizState(input: {
   // slides: SlideProps[];
   onSlideSubmitted?: (slideState: {
     id: string;
-    state: SelectorState;
-    getQuizState: () => Promise<QuizSlideState>;
+    slideState: SelectorState;
+    quizObject: QuizObject;
   }) => void;
   onTrackingEvent?: TrackingEventCallback;
 }) {
@@ -299,11 +301,8 @@ export function createQuizState(input: {
 
       input.onSlideSubmitted?.({
         id: currentSlide.id,
-        state: currentSlideState,
-        // @ts-expect-error
-        getQuizState: () => {
-          return snapshot(state.slideStateByID);
-        },
+        slideState: currentSlideState,
+        quizObject: { state, actions },
       });
 
       input.onTrackingEvent?.({
@@ -457,45 +456,49 @@ export function createQuizState(input: {
   return { state, actions };
 }
 
-type QuizCtxType = QuizState;
+type QuizCtxType = QuizObject;
 
 export function isSlideStateValid(
-  state: SelectorState,
-  quizState: QuizState["state"]
+  slideState: SelectorState,
+  quizState: QuizState
 ): boolean {
-  switch (state.type) {
+  switch (slideState.type) {
     case "single": {
-      return state.value != null;
+      return slideState.value != null;
     }
     case "multi": {
-      return state.value != null && state.value.length > 0;
+      return slideState.value != null && slideState.value.length > 0;
     }
     case "date": {
-      return state.value != null;
+      return slideState.value != null;
     }
     case "location": {
-      return state.value != null;
+      return slideState.value != null;
     }
     case "short-text": {
-      return state.value != null && state.value.trim() !== "";
+      return slideState.value != null && slideState.value.trim() !== "";
     }
     case "email": {
-      return state.value != null && validateEmail(state.value);
+      return slideState.value != null && validateEmail(slideState.value);
     }
     case "age": {
-      return state.value != null && state.value < 99 && state.value > 0;
+      return (
+        slideState.value != null &&
+        slideState.value < 99 &&
+        slideState.value > 0
+      );
     }
     case "height": {
-      if (!state.value) {
+      if (!slideState.value) {
         return false;
       }
       if (quizState.unitSystem === "imperial") {
-        return state.value.ft != null && state.value.in != null;
+        return slideState.value.ft != null && slideState.value.in != null;
       }
-      return state.value.cm != null;
+      return slideState.value.cm != null;
     }
     case "weight": {
-      return state.value != null;
+      return slideState.value != null;
     }
     default: {
       return true;

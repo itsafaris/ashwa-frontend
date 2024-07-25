@@ -48,6 +48,7 @@
     "@types/react-dom": "^18.2.19",
     "dotenv": "^16.4.5",
     "gatsby-plugin-tsconfig-paths": "^1.0.6",
+    "prettier": "^3.3.3",
     "typescript": "^5.3.3"
   }
 }
