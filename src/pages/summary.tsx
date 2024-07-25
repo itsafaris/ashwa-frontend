@@ -407,7 +407,7 @@ const Hero = () => {
           </Grid>
 
           <Box width={["full", "unset"]}>
-            <Link to="/checkout">
+            <Link to="/product-selection">
               <Button
                 size="lg"
                 mx="auto"
@@ -1659,7 +1659,7 @@ function IngredientsSection() {
 function CTAButton() {
   return (
     <Stack width={["full", "unset"]} alignItems="center">
-      <Link to="/checkout">
+      <Link to="/product-selection">
         <Button
           size="lg"
           mx="auto"
