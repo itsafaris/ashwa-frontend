@@ -22,7 +22,7 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
       <Container my={4}>
         <Stack spacing={4}>
           <Heading fontSize={"3xl"} textAlign={"center"} fontWeight={"semibold"}>
-            Weight Keeps Coming Back?
+            Is the high cortisol level the main cause of your weight gain?
           </Heading>
 
           <Stack mb={4}>
@@ -73,7 +73,7 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
           </Stack>
 
           <Stack my={4}>
-            <CTA text="Take a 1-min quiz to find the reason why your weight keeps comming back" />
+            <CTA text="Take a 1-min quiz to find out if Calmr is for you" />
           </Stack>
 
           <Stack spacing={2} alignItems={"center"} my={6}>
@@ -143,7 +143,7 @@ function ListItem({ text, ...rest }: { text: string } & ComponentProps<typeof Fl
   );
 }
 
-function CTA({ text = "Take a 1-min quiz to find the reason why" }: { text?: string }) {
+function CTA({ text = "Take a 1-min quiz to find out" }: { text?: string }) {
   return (
     <Stack alignItems={"center"} spacing={4}>
       <Text textAlign={"center"} fontWeight={"semibold"}>
