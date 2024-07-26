@@ -16,7 +16,6 @@ import { SEO } from "@components/SEO";
 import { createPageParams } from "./quiz";
 import { CheckIcon } from "@chakra-ui/icons";
 import { ComponentProps } from "react";
-import { Span } from "@components/components";
 
 export const Head: HeadFC = () => {
   return <SEO />;
