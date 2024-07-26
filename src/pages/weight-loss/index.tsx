@@ -21,6 +21,10 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
 
       <Container my={4}>
         <Stack spacing={4}>
+          <Heading fontSize={"3xl"} textAlign={"center"} fontWeight={"semibold"}>
+            Weight Keeps Coming Back?
+          </Heading>
+
           <Box bg="yellow.200" p={2} borderRadius={32}>
             <StaticImage
               src="../../images/landing-hero-img.jpg"
@@ -32,10 +36,6 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
           </Box>
 
           <Stack alignItems={"center"}>
-            <Heading fontSize={"3xl"} textAlign={"center"} fontWeight={"semibold"}>
-              Weight Keeps Coming Back?
-            </Heading>
-
             <Text fontWeight={"semibold"}>Take a 1-min quiz to find the reason why</Text>
           </Stack>
 
