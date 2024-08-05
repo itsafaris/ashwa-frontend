@@ -11,7 +11,6 @@ export type ProductMeta = {
   unitServingsCount: number;
   subtitle: string;
   image: React.ReactNode;
-  discountPercentage?: number;
 };
 
 export type Product = ProductMeta & {
@@ -81,21 +80,18 @@ const sub6 = {
 const oneOff1 = {
   id: "one-off-1",
   stripeID: "gid://shopify/ProductVariant/43142721372207",
-  discountPercentage: 20,
   ...common1,
 };
 
 const oneOff3 = {
   id: "one-off-3",
   stripeID: "gid://shopify/ProductVariant/43142721404975",
-  discountPercentage: 30,
   ...common3,
 };
 
 const oneOff6 = {
   id: "one-off-6",
   stripeID: "gid://shopify/ProductVariant/43142721437743",
-  discountPercentage: 43,
   ...common6,
 };
 
@@ -117,7 +113,7 @@ export function mergeWithStripeVariant(
   productMeta: ProductMeta,
   productVariant: ProductVariantFragment
 ): Product {
-  const discount = productMeta.discountPercentage ?? 0;
+  const discount = parseInt(productVariant.autoDiscount?.value ?? "0");
   const priceBefore = parseFloat(productVariant.price.amount);
   const priceNow = Math.ceil((1 - discount / 100) * priceBefore * 100) / 100;
   const unitPrice = priceNow;

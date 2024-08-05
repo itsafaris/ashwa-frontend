@@ -15,5 +15,9 @@ export const productVariantFragment = `#graphql
       amount
       currencyCode
     }
+    autoDiscount: metafield(namespace:"custom", key:"automatic_discount_percent") {
+      id
+      value
+    }
   }
 `;
