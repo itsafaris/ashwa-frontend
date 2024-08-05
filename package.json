@@ -13,7 +13,8 @@
     "build": "gatsby build",
     "serve": "gatsby serve",
     "clean": "gatsby clean",
-    "typecheck": "tsc --noEmit"
+    "typecheck": "tsc --noEmit",
+    "graphql-codegen": "graphql-codegen"
   },
   "dependencies": {
     "@chakra-ui/icons": "^2.1.1",
@@ -22,7 +23,11 @@
     "@emotion/styled": "^11.11.5",
     "@fontsource-variable/eb-garamond": "^5.0.19",
     "@fontsource-variable/open-sans": "^5.0.29",
+    "@shopify/api-codegen-preset": "^1.0.1",
+    "@shopify/hydrogen-react": "^2024.7.1",
+    "@shopify/storefront-api-client": "^1.0.1",
     "@stripe/stripe-js": "^4.1.0",
+    "ajv": "^8.17.1",
     "blaze-slider": "^1.9.3",
     "chakra-react-select": "^4.9.1",
     "framer-motion": "^11.2.14",

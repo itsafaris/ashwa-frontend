@@ -46,6 +46,7 @@ import { trackEvent } from "src/tracking";
 
 import BlazeSlider, { BlazeConfig } from "blaze-slider";
 import "blaze-slider/dist/blaze.css";
+import { ProductSelectionSection } from "@components/ProductSelection";
 
 function useBlazeSlider(config: BlazeConfig) {
   const sliderRef = React.useRef<BlazeSlider>();
@@ -132,12 +133,7 @@ const Banner = () => (
       maxW={["container.lg"]}
       fontSize={["sm", null, "md"]}
     >
-      <Flex
-        justifyContent={"center"}
-        alignItems={"center"}
-        gap={[0, 1, 1]}
-        flexWrap={"wrap"}
-      >
+      <Flex justifyContent={"center"} alignItems={"center"} gap={[0, 1, 1]} flexWrap={"wrap"}>
         <Flex gap={1}>
           <Text>Summer sale</Text>
         </Flex>
@@ -170,16 +166,13 @@ const MainHero = () => {
         textAlign={"center"}
         fontSize={"2xl"}
       >
-        Go From Frazzled to Fabulous with our unique Nature-based 5-Key Solution
-        to Modern Woman's Stress
+        Go From Frazzled to Fabulous with our unique Nature-based 5-Key Solution to Modern Woman's
+        Stress
       </Heading>
 
       <SimpleGrid columns={[1, 1, 2]}>
         <AspectRatio ratio={1} maxW={650}>
-          <StaticImage
-            src="../images/product3.png"
-            alt="ashwagandha supplement for women health"
-          />
+          <StaticImage src="../images/product3.png" alt="ashwagandha supplement for women health" />
         </AspectRatio>
 
         <Box>
@@ -208,8 +201,7 @@ const MainHero = () => {
             ))}
           </Flex>
           <Text textAlign={"center"} mt={4}>
-            On average, our customers start feeling positive effects within the
-            first week of use
+            On average, our customers start feeling positive effects within the first week of use
           </Text>
         </Box>
       </SimpleGrid>
@@ -337,12 +329,7 @@ const ProductCarouselSection = () => {
                 <div className="blaze-track-container">
                   <div className="blaze-track">
                     {images.map((it, idx) => (
-                      <AspectRatio
-                        className="keen-slider__slide"
-                        key={idx}
-                        ratio={1}
-                        mx="auto"
-                      >
+                      <AspectRatio className="keen-slider__slide" key={idx} ratio={1} mx="auto">
                         {it}
                       </AspectRatio>
                     ))}
@@ -394,11 +381,7 @@ const ProductCarouselSection = () => {
             </Flex>
           </Box>
           <Box flex={1} minWidth={300}>
-            <Text
-              color="purple.600"
-              fontWeight={"bold"}
-              textTransform={"uppercase"}
-            >
+            <Text color="purple.600" fontWeight={"bold"} textTransform={"uppercase"}>
               Summer Sale
             </Text>
             <Heading as="h1" fontSize="3xl">
@@ -417,10 +400,10 @@ const ProductCarouselSection = () => {
               Our all-in-one supplement blend - the only one you'll need to{" "}
               <Span fontWeight={"bold"}>combat stress</Span>,{" "}
               <Span fontWeight={"bold"}>sharpen focus</Span>, and{" "}
-              <Span fontWeight={"bold"}>boost energy</Span>. This revolutionary
-              formula uniquely combines Ashwagandha, Rhodiola Extract, and
-              Bacopa with essential vitamins and minerals, creating a powerhouse
-              solution tailored specifically for the modern woman's needs.
+              <Span fontWeight={"bold"}>boost energy</Span>. This revolutionary formula uniquely
+              combines Ashwagandha, Rhodiola Extract, and Bacopa with essential vitamins and
+              minerals, creating a powerhouse solution tailored specifically for the modern woman's
+              needs.
             </Text>
             <Flex direction={"column"} gap={1} py={6}>
               {benefits.map((b) => (
@@ -435,226 +418,6 @@ const ProductCarouselSection = () => {
     </Box>
   );
 };
-
-function ProductSelectionSection() {
-  const { websiteHostname, stripePublicKey } = siteConfig;
-
-  const stripePromise = React.useRef<Promise<Stripe | null> | null>(null);
-
-  const [purchaseType, setPurchaseType] =
-    React.useState<PurchaseType>("subscription");
-
-  const productList = getProducts(purchaseType);
-  const dynamicText =
-    purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
-
-  const handleClick = async (product: Product) => {
-    trackEvent({
-      name: "InitiateCheckout",
-      properties: {
-        productID: product.id,
-      },
-    });
-
-    const stripe = await stripePromise.current;
-
-    const { error } = await stripe!.redirectToCheckout({
-      lineItems: [
-        {
-          price: product.stripeID, // Replace with the ID of your price
-          quantity: purchaseType === "one-off" ? product.count : 1,
-        },
-      ],
-      mode: purchaseType === "one-off" ? "payment" : "subscription",
-      successUrl: getPageUrl(product.id),
-      cancelUrl: `${websiteHostname}`,
-      shippingAddressCollection: { allowedCountries: ["US"] },
-    });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-  };
-
-  React.useEffect(() => {
-    stripePromise.current = loadStripe(stripePublicKey);
-  }, []);
-
-  return (
-    <Container maxW={"container.lg"} id="pricing-section">
-      <Flex
-        my={4}
-        gap={1}
-        bg="bg.100"
-        borderRadius={"md"}
-        maxW={"max"}
-        mx="auto"
-        shadow={"inner"}
-      >
-        <Button
-          size="sm"
-          variant={purchaseType === "one-off" ? "solid" : "outline"}
-          colorScheme={"green"}
-          onClick={() => setPurchaseType("one-off")}
-          justifyContent={"start"}
-          leftIcon={
-            <Icon
-              as={purchaseType === "one-off" ? FaRegCheckCircle : FaRegCircle}
-            />
-          }
-        >
-          One time purchase
-        </Button>
-        <Button
-          size="sm"
-          variant={purchaseType === "subscription" ? "solid" : "outline"}
-          colorScheme={"green"}
-          gap={1}
-          justifyContent={"start"}
-          leftIcon={
-            <Icon
-              as={
-                purchaseType === "subscription" ? FaRegCheckCircle : FaRegCircle
-              }
-            />
-          }
-          onClick={() => setPurchaseType("subscription")}
-        >
-          <Text>Subscribe</Text>
-          <Badge colorScheme="primary">Sale %</Badge>
-        </Button>
-      </Flex>
-
-      <Flex gap={2} fontWeight={"bold"} mx="auto" width={"max"} my={4}>
-        <Text>Sale ends in: </Text>
-        <Timer color={"primary.600"} />
-      </Flex>
-
-      <SimpleGrid columns={[1, 1, 3]} gap={4}>
-        <ProductSelectItem
-          product={productList[0]}
-          badgeText={`Best value SAVE ${productList[0].discount}%`}
-          badgeBg="orange.400"
-          footerText={`${dynamicText}. Free shipping`}
-          onBuyClick={() => {
-            const product = productList[0];
-            handleClick(product);
-          }}
-        />
-        <ProductSelectItem
-          product={productList[1]}
-          badgeText={`Most popular SAVE ${productList[1].discount}%`}
-          badgeBg="purple.400"
-          footerText={`${dynamicText}. Free shipping`}
-          onBuyClick={() => {
-            const product = productList[1];
-            handleClick(product);
-          }}
-        />
-        <ProductSelectItem
-          product={productList[2]}
-          footerText={`${dynamicText}. Free shipping`}
-          onBuyClick={() => {
-            const product = productList[2];
-            handleClick(product);
-          }}
-        />
-      </SimpleGrid>
-    </Container>
-  );
-}
-
-function ProductSelectItem({
-  product,
-  badgeText,
-  badgeBg,
-  footerText,
-  onBuyClick,
-}: {
-  product: Product;
-  badgeText?: string;
-  badgeBg?: string;
-  footerText?: string;
-  onBuyClick: () => void;
-}) {
-  return (
-    <Box position={"relative"}>
-      <Box
-        color="white"
-        px={2}
-        py={1}
-        fontSize={"xs"}
-        bg={badgeBg}
-        textAlign={"center"}
-        fontWeight={"semibold"}
-        borderRadius={"sm"}
-        position={"absolute"}
-        top={1}
-        left={1}
-      >
-        {badgeText ?? "\u200b"}
-      </Box>
-      <Flex
-        direction={"column"}
-        bg="white"
-        p={4}
-        borderRadius={"md"}
-        border="1px solid"
-        borderColor={"bg.100"}
-      >
-        <SimpleGrid
-          columns={[2, 2, 1]}
-          alignItems={"center"}
-          gap={4}
-          flexWrap={"wrap"}
-        >
-          <Box p={[0, 6]}>{product.image}</Box>
-          <Box>
-            <Text fontSize={"lg"} fontWeight={"semibold"}>
-              {product.count} month supply
-            </Text>
-            <Text fontSize={"xs"} minHeight={"3em"}>
-              {product.subtitle}
-            </Text>
-            <Flex gap={2} mt={3} fontSize={"lg"}>
-              <Text fontWeight={"semibold"}>
-                ${product.unitPrice.toFixed(2)}
-              </Text>
-              <Text textDecoration={"line-through"} color={"red.400"}>
-                $
-                {(product.unitPrice / ((100 - product.discount) / 100)).toFixed(
-                  2
-                )}
-              </Text>
-            </Flex>
-            <Text fontSize={"sm"} color="gray.600">
-              Per bottle
-            </Text>
-
-            <Flex direction={"column"} gap={1} fontSize={"sm"} my={3}>
-              <Text>{product.count * product.unitServingsCount} servings</Text>
-              <Text>${(product.unitPrice / 30).toFixed(2)} per day</Text>
-              <Text>
-                {product.count} bottle{product.count === 1 ? "" : "s"} delivered
-              </Text>
-            </Flex>
-          </Box>
-        </SimpleGrid>
-
-        <Button
-          mt={3}
-          colorScheme="green"
-          rightIcon={<Icon as={FaArrowRight} />}
-          onClick={onBuyClick}
-        >
-          Order now
-        </Button>
-        <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
-          {footerText}
-        </Text>
-      </Flex>
-    </Box>
-  );
-}
 
 function BadgesSection() {
   return (
@@ -695,9 +458,8 @@ function RecommendedUsageSection() {
           width={100}
         />
         <Text flex={1} fontSize={"sm"}>
-          💡 We recommend starting with the{" "}
-          <Span fontWeight={"bold"}>3-month plan</Span> to achieve effective
-          results or a <Span fontWeight={"bold"}>6-month plan</Span> to form a
+          💡 We recommend starting with the <Span fontWeight={"bold"}>3-month plan</Span> to achieve
+          effective results or a <Span fontWeight={"bold"}>6-month plan</Span> to form a
           longer-lasting routine.
         </Text>
       </Container>
@@ -711,8 +473,7 @@ const AshwaRevivalSection = () => {
       title: "Anxiety Reduction",
       year: 2000,
       src: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2958355/",
-      summarized_outcome:
-        "56.5% reduction in anxiety scores on the Hamilton Anxiety Rating Scale",
+      summarized_outcome: "56.5% reduction in anxiety scores on the Hamilton Anxiety Rating Scale",
     },
     {
       title: "Stress Reduction",
@@ -766,13 +527,12 @@ const AshwaRevivalSection = () => {
 
         <Stack spacing={2} my={8}>
           <Text>
-            Ashwagandha's recent surge in popularity is no coincidence. This
-            ancient herb has captured modern attention due to a perfect storm of
-            factors.
+            Ashwagandha's recent surge in popularity is no coincidence. This ancient herb has
+            captured modern attention due to a perfect storm of factors.
           </Text>
           <Text>
-            Busy professionals are flocking to this stress-busting,
-            energy-boosting powerhouse as their secret weapon against burnouts.
+            Busy professionals are flocking to this stress-busting, energy-boosting powerhouse as
+            their secret weapon against burnouts.
           </Text>
         </Stack>
 
@@ -827,11 +587,7 @@ function TopReviewsSection({ reviews }: { reviews: Review[] }) {
         </Heading>
 
         <Grid
-          gridTemplateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(1, 1fr)",
-            "repeat(3, 1fr)",
-          ]}
+          gridTemplateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(3, 1fr)"]}
           alignItems={"center"}
           gap={3}
         >
@@ -886,20 +642,12 @@ function TopReviewsSection({ reviews }: { reviews: Review[] }) {
                     {review.title}
                   </Text>
 
-                  <Stack
-                    flexDirection={"row"}
-                    spacing={1}
-                    alignItems={"center"}
-                  >
+                  <Stack flexDirection={"row"} spacing={1} alignItems={"center"}>
                     <Icon as={IoPersonCircle} color="gray.400" boxSize={6} />
                     <Text>{review.name}</Text>
                   </Stack>
 
-                  <Stack
-                    flexDirection={"row"}
-                    spacing={1}
-                    alignItems={"center"}
-                  >
+                  <Stack flexDirection={"row"} spacing={1} alignItems={"center"}>
                     <Rating rating={review.score} />
                     <Text fontWeight={"semibold"} fontSize={"xs"}>
                       Verified Purchase
@@ -926,8 +674,7 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         </Heading>
         <Flex my={4} gap={2} justifyContent={"space-between"}>
           <Text fontSize={"sm"}>
-            Showing <Span decoration={"underline"}>most recent</Span> reviews
-            from{" "}
+            Showing <Span decoration={"underline"}>most recent</Span> reviews from{" "}
             <Span decoration={"underline"} whiteSpace={"nowrap"}>
               United States
             </Span>{" "}
@@ -942,31 +689,14 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
-              <Flex
-                key={idx}
-                bg="white"
-                border="1px solid"
-                borderColor={"bg.100"}
-              >
+              <Flex key={idx} bg="white" border="1px solid" borderColor={"bg.100"}>
                 <Flex direction={"column"} p={2} px={3} flex={1} gap={1}>
                   <Flex alignItems={"center"} gap={2}>
-                    <Icon
-                      as={IoPersonCircle}
-                      color="gray.400"
-                      boxSize={6}
-                    ></Icon>
+                    <Icon as={IoPersonCircle} color="gray.400" boxSize={6}></Icon>
                     <Text>{review.name}</Text>
                     <Flex alignItems={"center"} gap={1}>
-                      <Icon
-                        as={FaCheckCircle}
-                        color="green.400"
-                        boxSize={3}
-                      ></Icon>
-                      <Text
-                        fontWeight={"bold"}
-                        fontSize={"xs"}
-                        color="green.500"
-                      >
+                      <Icon as={FaCheckCircle} color="green.400" boxSize={3}></Icon>
+                      <Text fontWeight={"bold"} fontSize={"xs"} color="green.500">
                         Verified Purchase
                       </Text>
                     </Flex>
@@ -1030,10 +760,9 @@ function ComparisonSection() {
         </GridItem>
         <GridItem justifySelf={"start"}>
           <Text mb={8} maxW={"md"}>
-            Over 40 million women in the US experience stress and anxiety every
-            day. We've already helped over 250,000 women find balance and
-            calmness in their lives. Take action now to improve your well-being
-            and mental clarity for good.
+            Over 40 million women in the US experience stress and anxiety every day. We've already
+            helped over 250,000 women find balance and calmness in their lives. Take action now to
+            improve your well-being and mental clarity for good.
           </Text>
 
           <SimpleGrid flex={1} columns={[1, 1, 2]} spacing={2}>
@@ -1049,11 +778,7 @@ function ComparisonSection() {
                   gap={2}
                 >
                   <Icon as={FaCheck} />
-                  <Text
-                    whiteSpace={"nowrap"}
-                    fontWeight={"semibold"}
-                    fontSize={"sm"}
-                  >
+                  <Text whiteSpace={"nowrap"} fontWeight={"semibold"} fontSize={"sm"}>
                     {it}
                   </Text>
                 </Flex>
@@ -1071,11 +796,7 @@ function ComparisonSection() {
                   gap={2}
                 >
                   <Icon as={FaTimes} color="red.400" />
-                  <Text
-                    whiteSpace={"nowrap"}
-                    fontWeight={"semibold"}
-                    fontSize={"sm"}
-                  >
+                  <Text whiteSpace={"nowrap"} fontWeight={"semibold"} fontSize={"sm"}>
                     {it}
                   </Text>
                 </Flex>
@@ -1111,9 +832,8 @@ function FactsFromCustomersSection() {
           <Span textDecoration={"underline"}>for a fact</Span>
         </Heading>
         <Text textAlign={"center"} my={4}>
-          Based on our{" "}
-          <Span textDecoration={"underline"}>customer survey study</Span> ,
-          who've used our product for more than 3 weeks
+          Based on our <Span textDecoration={"underline"}>customer survey study</Span> , who've used
+          our product for more than 3 weeks
         </Text>
         <SimpleGrid
           columns={[1, 1, 3]}
@@ -1122,20 +842,11 @@ function FactsFromCustomersSection() {
           justifyItems={"center"}
         >
           {facts.map((fact, idx) => (
-            <Flex
-              key={idx}
-              direction={"column"}
-              alignItems={"center"}
-              maxW={"260px"}
-            >
+            <Flex key={idx} direction={"column"} alignItems={"center"} maxW={"260px"}>
               <Text fontSize={"6xl"} fontWeight={"bold"} fontFamily={"heading"}>
                 {fact.number}
               </Text>
-              <Text
-                textAlign={"center"}
-                fontSize={"sm"}
-                fontWeight={"semibold"}
-              >
+              <Text textAlign={"center"} fontSize={"sm"} fontWeight={"semibold"}>
                 {fact.fact}
               </Text>
             </Flex>
@@ -1227,12 +938,12 @@ function IngredientsSection() {
   return (
     <Container maxWidth={"container.lg"} my={16}>
       <Heading textAlign={"center"} my={10}>
-        Nature's Time-Tested <Span decoration={"underline"}>Trio</Span>:<br />{" "}
-        The Ultimate Stress-Busting Powerhouse
+        Nature's Time-Tested <Span decoration={"underline"}>Trio</Span>:<br /> The Ultimate
+        Stress-Busting Powerhouse
       </Heading>
       <Text textAlign={"center"} my={4} maxWidth={"xl"} mx="auto">
-        This powerful trio of adaptogenic herbs works synergistically to create
-        a comprehensive approach to{" "}
+        This powerful trio of adaptogenic herbs works synergistically to create a comprehensive
+        approach to{" "}
         <Span fontWeight={"bold"} decoration={"underline"}>
           stress management
         </Span>

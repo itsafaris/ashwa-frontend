@@ -1,21 +1,25 @@
 import { StaticImage } from "gatsby-plugin-image";
-import { siteConfig } from "./conf";
 import React from "react";
+import { ProductVariantFragment } from "types/storefront.generated";
 
 export type PurchaseType = "subscription" | "one-off";
 
-export type Product = {
+export type ProductMeta = {
   id: string;
   stripeID: string;
-  unitPrice: number;
-  discount: number;
   count: number;
   unitServingsCount: number;
   subtitle: string;
   image: React.ReactNode;
+  discountPercentage?: number;
 };
 
-const { stripeEnv } = siteConfig;
+export type Product = ProductMeta & {
+  unitPrice: number;
+  unitPriceBefore: number;
+  discount: number;
+  shopifyProductVariant: ProductVariantFragment;
+};
 
 const common1 = {
   count: 1,
@@ -58,71 +62,44 @@ const common6 = {
 
 const sub1 = {
   id: "sub-1",
-  stripeID:
-    stripeEnv === "test"
-      ? "price_1PdaBTCSMlpgjECRDWZ2LB0k"
-      : "price_1PfN5hCSMlpgjECRymGRUXV6",
-  unitPrice: 24.9,
-  discount: 40,
+  stripeID: "price_1PdaBTCSMlpgjECRDWZ2LB0k",
   ...common1,
 };
 
 const sub3 = {
   id: "sub-3",
-  stripeID:
-    stripeEnv === "test"
-      ? "price_1PdanGCSMlpgjECRerg53HTL"
-      : "price_1PfN51CSMlpgjECRe3Ax5mBo",
-  unitPrice: 19.9,
-  discount: 50,
+  stripeID: "price_1PdanGCSMlpgjECRerg53HTL",
   ...common3,
 };
 
 const sub6 = {
   id: "sub-6",
-  stripeID:
-    stripeEnv === "test"
-      ? "price_1Pdaj3CSMlpgjECRCIDtwNt2"
-      : "price_1PfN2UCSMlpgjECRDf9MCr2m",
-  unitPrice: 14.9,
-  discount: 60,
+  stripeID: "price_1Pdaj3CSMlpgjECRCIDtwNt2",
   ...common6,
 };
 
 const oneOff1 = {
   id: "one-off-1",
-  stripeID:
-    stripeEnv === "test"
-      ? "price_1PdZhuCSMlpgjECR1eJj9PFi"
-      : "price_1PdpSrCSMlpgjECROTMJLTEU",
-  unitPrice: 29.9,
-  discount: 30,
+  stripeID: "gid://shopify/ProductVariant/43142721372207",
+  discountPercentage: 20,
   ...common1,
 };
 
 const oneOff3 = {
   id: "one-off-3",
-  stripeID:
-    stripeEnv === "test"
-      ? "price_1PdZinCSMlpgjECR1m4HUs2n"
-      : "price_1PdpSpCSMlpgjECRn1EnzhdG",
-  unitPrice: 25.9,
-  discount: 40,
+  stripeID: "gid://shopify/ProductVariant/43142721404975",
+  discountPercentage: 30,
   ...common3,
 };
 
 const oneOff6 = {
   id: "one-off-6",
-  stripeID:
-    stripeEnv === "test"
-      ? "price_1PdaDOCSMlpgjECRPNMPPzRr"
-      : "price_1PdpSnCSMlpgjECRCONM7i7F",
-  unitPrice: 21.9,
-  discount: 50,
+  stripeID: "gid://shopify/ProductVariant/43142721437743",
+  discountPercentage: 43,
   ...common6,
 };
 
-const allProducts = [oneOff3, oneOff6, oneOff1, sub3, sub6, sub1];
+const allProducts: ProductMeta[] = [oneOff3, oneOff6, oneOff1, sub3, sub6, sub1];
 
 export const getProducts = (type: PurchaseType) => {
   if (type === "one-off") {
@@ -134,4 +111,35 @@ export const getProducts = (type: PurchaseType) => {
 
 export function getProduct(productID: string) {
   return allProducts.find((p) => p.id === productID);
+}
+
+export function mergeWithStripeVariant(
+  productMeta: ProductMeta,
+  productVariant: ProductVariantFragment
+): Product {
+  const discount = productMeta.discountPercentage ?? 0;
+  const priceBefore = parseFloat(productVariant.price.amount);
+  const priceNow = Math.ceil((1 - discount / 100) * priceBefore * 100) / 100;
+  const unitPrice = priceNow;
+  const unitPriceBefore = priceBefore;
+
+  return {
+    ...productMeta,
+    unitPrice,
+    unitPriceBefore,
+    discount,
+    shopifyProductVariant: productVariant,
+  };
+}
+
+export function mergeWithStripeVariants(variants: ProductVariantFragment[]): Product[] {
+  return getProducts("one-off")
+    .map((it) => {
+      const variant = variants.find((v) => v.id === it.stripeID);
+      if (!variant) {
+        return;
+      }
+      return mergeWithStripeVariant(it, variant);
+    })
+    .filter((it): it is Product => !!it);
 }

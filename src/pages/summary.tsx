@@ -138,11 +138,7 @@ function ReadableStateProvider({ children }: React.PropsWithChildren) {
     return null;
   }
 
-  return (
-    <ReadableStateCtx.Provider value={state}>
-      {children}
-    </ReadableStateCtx.Provider>
-  );
+  return <ReadableStateCtx.Provider value={state}>{children}</ReadableStateCtx.Provider>;
 }
 
 function useReadableState() {
@@ -196,32 +192,18 @@ const Hero = () => {
               </Heading>
 
               <Text fontSize={"md"}>
-                Reach your goals faster and feel your best with our organic
-                aswhagandha based formula.
+                Reach your goals faster and feel your best with our organic aswhagandha based
+                formula.
               </Text>
             </Stack>
 
-            <Stack
-              p={6}
-              backgroundColor={"white"}
-              borderRadius={"lg"}
-              alignItems={"left"}
-            >
+            <Stack p={6} backgroundColor={"white"} borderRadius={"lg"} alignItems={"left"}>
               <Text mb={5} fontWeight={"bold"} fontSize={"xl"}>
                 Weight estimate*
               </Text>
 
-              <Grid
-                width={"100%"}
-                alignItems={"center"}
-                gridTemplateColumns={"1fr auto 1fr"}
-              >
-                <Stack
-                  alignItems={"left"}
-                  textAlign={"left"}
-                  spacing={0}
-                  lineHeight={1.2}
-                >
+              <Grid width={"100%"} alignItems={"center"} gridTemplateColumns={"1fr auto 1fr"}>
+                <Stack alignItems={"left"} textAlign={"left"} spacing={0} lineHeight={1.2}>
                   <Text fontSize={"md"} fontWeight={"semibold"}>
                     {state.startDate}
                   </Text>
@@ -230,12 +212,7 @@ const Hero = () => {
                   </Text>
                 </Stack>
 
-                <Icon
-                  mx="auto"
-                  as={ArrowRight}
-                  boxSize="30px"
-                  color="pink.400"
-                />
+                <Icon mx="auto" as={ArrowRight} boxSize="30px" color="pink.400" />
 
                 <Stack
                   ml="auto"
@@ -282,17 +259,13 @@ const Hero = () => {
             p={6}
           >
             <Stack textAlign={["center", "center", "left"]}>
-              <Heading
-                fontSize={["3xl", "3xl", "4xl"]}
-                maxW={"container.sm"}
-                fontWeight={"bold"}
-              >
+              <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"} fontWeight={"bold"}>
                 Turn small wins into big achievements
               </Heading>
 
               <Text fontSize={"md"}>
-                Calmr helps you gradually build your wellness goals and achieve
-                better results every month.
+                Calmr helps you gradually build your wellness goals and achieve better results every
+                month.
               </Text>
             </Stack>
 
@@ -361,12 +334,7 @@ const Hero = () => {
                 <StaticImage src="../images/chart-2.jpg" alt="" />
               </Box>
 
-              <Grid
-                gridTemplateColumns={"repeat(4, 1fr)"}
-                zIndex={1}
-                width={"120%"}
-                mx={"-10%"}
-              >
+              <Grid gridTemplateColumns={"repeat(4, 1fr)"} zIndex={1} width={"120%"} mx={"-10%"}>
                 <Text
                   fontSize={"xs"}
                   textAlign={"center"}
@@ -436,11 +404,7 @@ const Summary = () => {
     <Box backgroundColor={"brand.100"} py={10}>
       <Container maxW={"container.lg"}>
         <Stack spacing={2} alignItems={"center"}>
-          <Heading
-            fontSize={["3xl", "3xl", "4xl"]}
-            maxW={"container.sm"}
-            mb={8}
-          >
+          <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"} mb={8}>
             Your Personal Summary
           </Heading>
 
@@ -579,15 +543,10 @@ const BMIMeter: React.FC<BMIMeterProps> = ({ bmi }) => {
   return (
     <Box position="relative" width="100%" height="12px">
       <Box display="flex" height="12px" width="100%">
-        <Box
-          bg="green.300"
-          width={`${((normalRange[1] - minBMI) / (maxBMI - minBMI)) * 100}%`}
-        />
+        <Box bg="green.300" width={`${((normalRange[1] - minBMI) / (maxBMI - minBMI)) * 100}%`} />
         <Box
           bg="yellow.300"
-          width={`${
-            ((badRange[1] - normalRange[1]) / (maxBMI - minBMI)) * 100
-          }%`}
+          width={`${((badRange[1] - normalRange[1]) / (maxBMI - minBMI)) * 100}%`}
         />
         <Box bg="red.300" flex="1" />
       </Box>
@@ -706,12 +665,11 @@ const ProductCarouselSection = () => {
               Our unique formula is designed to help you{" "}
               <Span fontWeight={"bold"}>combat stress</Span>,{" "}
               <Span fontWeight={"bold"}>curb cravings</Span>, and{" "}
-              <Span fontWeight={"bold"}>boost energy</Span>, making it the only
-              supplement you'll need on your weight loss journey. This
-              revolutionary blend combines Ashwagandha, Rhodiola Extract, and
-              Bacopa with essential vitamins and minerals, creating a powerhouse
-              solution tailored specifically for the modern woman aiming to shed
-              those extra pounds and maintain a healthy weight.
+              <Span fontWeight={"bold"}>boost energy</Span>, making it the only supplement you'll
+              need on your weight loss journey. This revolutionary blend combines Ashwagandha,
+              Rhodiola Extract, and Bacopa with essential vitamins and minerals, creating a
+              powerhouse solution tailored specifically for the modern woman aiming to shed those
+              extra pounds and maintain a healthy weight.
             </Text>
           </Box>
 
@@ -744,12 +702,7 @@ const ProductCarouselSection = () => {
                 <div className="blaze-track-container">
                   <div className="blaze-track">
                     {images.map((it, idx) => (
-                      <AspectRatio
-                        className="keen-slider__slide"
-                        key={idx}
-                        ratio={1}
-                        mx="auto"
-                      >
+                      <AspectRatio className="keen-slider__slide" key={idx} ratio={1} mx="auto">
                         {it}
                       </AspectRatio>
                     ))}
@@ -805,283 +758,13 @@ const ProductCarouselSection = () => {
   );
 };
 
-function ProductSelectionSection() {
-  const { websiteHostname, stripePublicKey } = siteConfig;
-
-  const stripePromise = React.useRef<Promise<Stripe | null> | null>(null);
-
-  const [purchaseType, setPurchaseType] =
-    React.useState<PurchaseType>("subscription");
-
-  const productList = getProducts(purchaseType);
-  const dynamicText =
-    purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
-
-  const handleClick = async (product: Product) => {
-    trackEvent({
-      name: "InitiateCheckout",
-      properties: {
-        productID: product.id,
-      },
-    });
-
-    const stripe = await stripePromise.current;
-
-    const { error } = await stripe!.redirectToCheckout({
-      lineItems: [
-        {
-          price: product.stripeID, // Replace with the ID of your price
-          quantity: purchaseType === "one-off" ? product.count : 1,
-        },
-      ],
-      mode: purchaseType === "one-off" ? "payment" : "subscription",
-      successUrl: getPageUrl(product.id),
-      cancelUrl: `${websiteHostname}`,
-      shippingAddressCollection: { allowedCountries: ["US"] },
-    });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-  };
-
-  React.useEffect(() => {
-    stripePromise.current = loadStripe(stripePublicKey);
-  }, []);
-
-  return (
-    <Container maxW={"container.lg"} id="pricing-section">
-      <Flex
-        my={4}
-        gap={1}
-        bg="bg.100"
-        borderRadius={"md"}
-        maxW={"max"}
-        mx="auto"
-        shadow={"inner"}
-      >
-        <Button
-          size="sm"
-          variant={purchaseType === "one-off" ? "solid" : "outline"}
-          colorScheme={"green"}
-          onClick={() => setPurchaseType("one-off")}
-          justifyContent={"start"}
-          leftIcon={
-            <Icon
-              as={purchaseType === "one-off" ? FaRegCheckCircle : FaRegCircle}
-            />
-          }
-        >
-          One time purchase
-        </Button>
-        <Button
-          size="sm"
-          variant={purchaseType === "subscription" ? "solid" : "outline"}
-          colorScheme={"green"}
-          gap={1}
-          justifyContent={"start"}
-          leftIcon={
-            <Icon
-              as={
-                purchaseType === "subscription" ? FaRegCheckCircle : FaRegCircle
-              }
-            />
-          }
-          onClick={() => setPurchaseType("subscription")}
-        >
-          <Text>Subscribe</Text>
-          <Badge colorScheme="primary">Sale %</Badge>
-        </Button>
-      </Flex>
-
-      <Flex gap={2} fontWeight={"bold"} mx="auto" width={"max"} my={4}>
-        <Text>Sale ends in: </Text>
-        <Timer color={"primary.600"} />
-      </Flex>
-
-      <SimpleGrid columns={[1, 1, 3]} gap={4}>
-        <ProductSelectItem
-          product={productList[0]}
-          badgeText={`Best value SAVE ${productList[0].discount}%`}
-          badgeBg="orange.400"
-          footerText={`${dynamicText}. Free shipping`}
-          onBuyClick={() => {
-            const product = productList[0];
-            handleClick(product);
-          }}
-        />
-        <ProductSelectItem
-          product={productList[1]}
-          badgeText={`Most popular SAVE ${productList[1].discount}%`}
-          badgeBg="purple.400"
-          footerText={`${dynamicText}. Free shipping`}
-          onBuyClick={() => {
-            const product = productList[1];
-            handleClick(product);
-          }}
-        />
-        <ProductSelectItem
-          product={productList[2]}
-          footerText={`${dynamicText}. Free shipping`}
-          onBuyClick={() => {
-            const product = productList[2];
-            handleClick(product);
-          }}
-        />
-      </SimpleGrid>
-    </Container>
-  );
-}
-
-function ProductSelectItem({
-  product,
-  badgeText,
-  badgeBg,
-  footerText,
-  onBuyClick,
-}: {
-  product: Product;
-  badgeText?: string;
-  badgeBg?: string;
-  footerText?: string;
-  onBuyClick: () => void;
-}) {
-  return (
-    <Box position={"relative"}>
-      <Box
-        color="white"
-        px={2}
-        py={1}
-        fontSize={"xs"}
-        bg={badgeBg}
-        textAlign={"center"}
-        fontWeight={"semibold"}
-        borderRadius={"sm"}
-        position={"absolute"}
-        top={1}
-        left={1}
-      >
-        {badgeText ?? "\u200b"}
-      </Box>
-      <Flex
-        direction={"column"}
-        bg="white"
-        p={4}
-        borderRadius={"md"}
-        border="1px solid"
-        borderColor={"bg.100"}
-      >
-        <SimpleGrid
-          columns={[2, 2, 1]}
-          alignItems={"center"}
-          gap={4}
-          flexWrap={"wrap"}
-        >
-          <Box p={[0, 6]}>{product.image}</Box>
-          <Box>
-            <Text fontSize={"lg"} fontWeight={"semibold"}>
-              {product.count} month supply
-            </Text>
-            <Text fontSize={"xs"} minHeight={"3em"}>
-              {product.subtitle}
-            </Text>
-            <Flex gap={2} mt={3} fontSize={"lg"}>
-              <Text fontWeight={"semibold"}>
-                ${product.unitPrice.toFixed(2)}
-              </Text>
-              <Text textDecoration={"line-through"} color={"red.400"}>
-                $
-                {(product.unitPrice / ((100 - product.discount) / 100)).toFixed(
-                  2
-                )}
-              </Text>
-            </Flex>
-            <Text fontSize={"sm"} color="gray.600">
-              Per bottle
-            </Text>
-
-            <Flex direction={"column"} gap={1} fontSize={"sm"} my={3}>
-              <Text>{product.count * product.unitServingsCount} servings</Text>
-              <Text>${(product.unitPrice / 30).toFixed(2)} per day</Text>
-              <Text>
-                {product.count} bottle{product.count === 1 ? "" : "s"} delivered
-              </Text>
-            </Flex>
-          </Box>
-        </SimpleGrid>
-
-        <Button
-          mt={3}
-          colorScheme="green"
-          rightIcon={<Icon as={FaArrowRight} />}
-          onClick={onBuyClick}
-        >
-          Order now
-        </Button>
-        <Text mt={2} fontSize={"sm"} color={"gray.600"} textAlign={"center"}>
-          {footerText}
-        </Text>
-      </Flex>
-    </Box>
-  );
-}
-
-function BadgesSection() {
-  return (
-    <SimpleGrid
-      mt={4}
-      columns={[1, 1, 3]}
-      bg="white"
-      py={4}
-      flexWrap={"wrap"}
-      spacing={3}
-      justifyItems={"center"}
-      color="gray.700"
-      id="reviews"
-    >
-      <Flex alignItems={"center"} gap={2}>
-        <Icon boxSize={6} as={FaShippingFast} />
-        <Text fontWeight={"bold"}>Free Shipping</Text>
-      </Flex>
-      <Flex alignItems={"center"} gap={2}>
-        <Icon boxSize={6} as={RiRefund2Line} />
-        <Text fontWeight={"bold"}>14-Day Money-back Guarantee</Text>
-      </Flex>
-      <Flex alignItems={"center"} gap={2}>
-        <Icon boxSize={6} as={LiaFlagUsaSolid} />
-        <Text fontWeight={"bold"}>Blended in the USA</Text>
-      </Flex>
-    </SimpleGrid>
-  );
-}
-
-function RecommendedUsageSection() {
-  return (
-    <Flex mt={4} py={4}>
-      <Container as={Flex} flexWrap={"wrap"} gap={3} alignItems={"center"}>
-        <StaticImage
-          src="../images/product2.png"
-          alt="bundle of 3 supplement bottles"
-          width={100}
-        />
-        <Text flex={1} fontSize={"sm"}>
-          💡 We recommend starting with the{" "}
-          <Span fontWeight={"bold"}>3-month plan</Span> to achieve effective
-          results or a <Span fontWeight={"bold"}>6-month plan</Span> to form a
-          longer-lasting routine.
-        </Text>
-      </Container>
-    </Flex>
-  );
-}
-
 const AshwaRevivalSection = () => {
   const studies = [
     {
       title: "Anxiety Reduction",
       year: 2000,
       src: "https://www.ncbi.nlm.nih.gov/pmc/articles/PMC2958355/",
-      summarized_outcome:
-        "56.5% reduction in anxiety scores on the Hamilton Anxiety Rating Scale",
+      summarized_outcome: "56.5% reduction in anxiety scores on the Hamilton Anxiety Rating Scale",
     },
     {
       title: "Stress Reduction",
@@ -1135,13 +818,12 @@ const AshwaRevivalSection = () => {
 
         <Stack spacing={2} my={8}>
           <Text>
-            Ashwagandha's recent surge in popularity is no coincidence. This
-            ancient herb has captured modern attention due to a perfect storm of
-            factors.
+            Ashwagandha's recent surge in popularity is no coincidence. This ancient herb has
+            captured modern attention due to a perfect storm of factors.
           </Text>
           <Text>
-            Busy professionals are flocking to this stress-busting,
-            energy-boosting powerhouse as their secret weapon against burnouts.
+            Busy professionals are flocking to this stress-busting, energy-boosting powerhouse as
+            their secret weapon against burnouts.
           </Text>
         </Stack>
 
@@ -1196,11 +878,7 @@ function TopReviewsSection({ reviews }: { reviews: Review[] }) {
         </Heading>
 
         <Grid
-          gridTemplateColumns={[
-            "repeat(1, 1fr)",
-            "repeat(1, 1fr)",
-            "repeat(3, 1fr)",
-          ]}
+          gridTemplateColumns={["repeat(1, 1fr)", "repeat(1, 1fr)", "repeat(3, 1fr)"]}
           alignItems={"center"}
           gap={3}
         >
@@ -1255,20 +933,12 @@ function TopReviewsSection({ reviews }: { reviews: Review[] }) {
                     {review.title}
                   </Text>
 
-                  <Stack
-                    flexDirection={"row"}
-                    spacing={1}
-                    alignItems={"center"}
-                  >
+                  <Stack flexDirection={"row"} spacing={1} alignItems={"center"}>
                     <Icon as={IoPersonCircle} color="gray.400" boxSize={6} />
                     <Text>{review.name}</Text>
                   </Stack>
 
-                  <Stack
-                    flexDirection={"row"}
-                    spacing={1}
-                    alignItems={"center"}
-                  >
+                  <Stack flexDirection={"row"} spacing={1} alignItems={"center"}>
                     <Rating rating={review.score} />
                     <Text fontWeight={"semibold"} fontSize={"xs"}>
                       Verified Purchase
@@ -1295,8 +965,7 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         </Heading>
         <Flex my={4} gap={2} justifyContent={"space-between"}>
           <Text fontSize={"sm"}>
-            Showing <Span decoration={"underline"}>most recent</Span> reviews
-            from{" "}
+            Showing <Span decoration={"underline"}>most recent</Span> reviews from{" "}
             <Span decoration={"underline"} whiteSpace={"nowrap"}>
               United States
             </Span>{" "}
@@ -1311,31 +980,14 @@ function ReviewsSection({ reviews }: { reviews: Review[] }) {
         <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
-              <Flex
-                key={idx}
-                bg="white"
-                border="1px solid"
-                borderColor={"bg.100"}
-              >
+              <Flex key={idx} bg="white" border="1px solid" borderColor={"bg.100"}>
                 <Flex direction={"column"} p={2} px={3} flex={1} gap={1}>
                   <Flex alignItems={"center"} gap={2}>
-                    <Icon
-                      as={IoPersonCircle}
-                      color="gray.400"
-                      boxSize={6}
-                    ></Icon>
+                    <Icon as={IoPersonCircle} color="gray.400" boxSize={6}></Icon>
                     <Text>{review.name}</Text>
                     <Flex alignItems={"center"} gap={1}>
-                      <Icon
-                        as={FaCheckCircle}
-                        color="green.400"
-                        boxSize={3}
-                      ></Icon>
-                      <Text
-                        fontWeight={"bold"}
-                        fontSize={"xs"}
-                        color="green.500"
-                      >
+                      <Icon as={FaCheckCircle} color="green.400" boxSize={3}></Icon>
+                      <Text fontWeight={"bold"} fontSize={"xs"} color="green.500">
                         Verified Purchase
                       </Text>
                     </Flex>
@@ -1403,21 +1055,15 @@ function HowItWorksSection() {
 
         <GridItem justifySelf={"start"}>
           <Text mb={8} maxW={"md"}>
-            Over 40 million women in the US experience stress and anxiety every
-            day, leading to unwanted weight gain and the dreaded "stress belly."
-            We've already helped over 250,000 women manage their stress and
-            achieve a healthier weight. Take action now to reduce your stress,
-            shed those extra pounds, and improve your overall well-being.
+            Over 40 million women in the US experience stress and anxiety every day, leading to
+            unwanted weight gain and the dreaded "stress belly." We've already helped over 250,000
+            women manage their stress and achieve a healthier weight. Take action now to reduce your
+            stress, shed those extra pounds, and improve your overall well-being.
           </Text>
 
           <SimpleGrid flex={1} columns={[1, 1, 2]} spacing={2}>
             <Stack p={3} borderRadius={"lg"}>
-              <Text
-                color="black"
-                fontWeight={"semibold"}
-                fontSize={"lg"}
-                mb={4}
-              >
+              <Text color="black" fontWeight={"semibold"} fontSize={"lg"} mb={4}>
                 Life before you start using Calmr
               </Text>
 
@@ -1433,11 +1079,7 @@ function HowItWorksSection() {
                     gap={2}
                   >
                     <Icon as={FaTimes} color="red.400" />
-                    <Text
-                      whiteSpace={"nowrap"}
-                      fontWeight={"semibold"}
-                      fontSize={"sm"}
-                    >
+                    <Text whiteSpace={"nowrap"} fontWeight={"semibold"} fontSize={"sm"}>
                       {it}
                     </Text>
                   </Flex>
@@ -1446,12 +1088,7 @@ function HowItWorksSection() {
             </Stack>
 
             <Stack backgroundColor="teal.400" p={3} borderRadius={"lg"}>
-              <Text
-                color="white"
-                fontWeight={"semibold"}
-                fontSize={"lg"}
-                mb={4}
-              >
+              <Text color="white" fontWeight={"semibold"} fontSize={"lg"} mb={4}>
                 Life after you start using Calmr
               </Text>
 
@@ -1467,11 +1104,7 @@ function HowItWorksSection() {
                     gap={2}
                   >
                     <Icon as={FaCheck} />
-                    <Text
-                      whiteSpace={"nowrap"}
-                      fontWeight={"semibold"}
-                      fontSize={"sm"}
-                    >
+                    <Text whiteSpace={"nowrap"} fontWeight={"semibold"} fontSize={"sm"}>
                       {it}
                     </Text>
                   </Flex>
@@ -1512,9 +1145,8 @@ function FactsFromCustomersSection() {
           <Span textDecoration={"underline"}>for a fact</Span>
         </Heading>
         <Text textAlign={"center"} my={4}>
-          Based on our{" "}
-          <Span textDecoration={"underline"}>customer survey study</Span> ,
-          who've used our product for more than 3 weeks
+          Based on our <Span textDecoration={"underline"}>customer survey study</Span> , who've used
+          our product for more than 3 weeks
         </Text>
         <SimpleGrid
           columns={[1, 1, 3]}
@@ -1523,20 +1155,11 @@ function FactsFromCustomersSection() {
           justifyItems={"center"}
         >
           {facts.map((fact, idx) => (
-            <Flex
-              key={idx}
-              direction={"column"}
-              alignItems={"center"}
-              maxW={"260px"}
-            >
+            <Flex key={idx} direction={"column"} alignItems={"center"} maxW={"260px"}>
               <Text fontSize={"6xl"} fontWeight={"bold"} fontFamily={"heading"}>
                 {fact.number}
               </Text>
-              <Text
-                textAlign={"center"}
-                fontSize={"sm"}
-                fontWeight={"semibold"}
-              >
+              <Text textAlign={"center"} fontSize={"sm"} fontWeight={"semibold"}>
                 {fact.fact}
               </Text>
             </Flex>
@@ -1596,12 +1219,12 @@ function IngredientsSection() {
   return (
     <Container maxWidth={"container.lg"} my={16}>
       <Heading textAlign={"center"} my={10}>
-        Meet The Fantastic <Span decoration={"underline"}>Trio</Span>:<br /> The
-        Ultimate Stress-Busting Powerhouse
+        Meet The Fantastic <Span decoration={"underline"}>Trio</Span>:<br /> The Ultimate
+        Stress-Busting Powerhouse
       </Heading>
       <Text textAlign={"center"} my={4} maxWidth={"xl"} mx="auto">
-        This powerful trio of adaptogenic herbs works synergistically to create
-        a comprehensive approach to{" "}
+        This powerful trio of adaptogenic herbs works synergistically to create a comprehensive
+        approach to{" "}
         <Span fontWeight={"bold"} decoration={"underline"}>
           stress management
         </Span>
