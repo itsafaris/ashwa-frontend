@@ -286,6 +286,12 @@ const ProductCarouselSection = () => {
       height={500}
       width={500}
     />,
+    <StaticImage
+      src="../images/carousel6.jpg"
+      alt="Ashwagandha Supplement"
+      height={500}
+      width={500}
+    />,
   ];
 
   return (

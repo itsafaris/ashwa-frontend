@@ -76,7 +76,7 @@ const FreeGift = () => {
             We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
           </Heading>
 
-          <StaticImage src="../images/free-gift.jpg" alt="" style={{ maxWidth: "250px" }} />
+          <StaticImage src="../images/free-gift.png" alt="" style={{ maxWidth: "250px" }} />
         </Stack>
 
         <JumptToPricingButton />
