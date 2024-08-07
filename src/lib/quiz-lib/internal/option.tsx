@@ -1,12 +1,4 @@
-import {
-  Box,
-  Button,
-  Flex,
-  Text,
-  chakra,
-  shouldForwardProp,
-  useTheme,
-} from "@chakra-ui/react";
+import { Box, Button, Flex, Text, chakra, shouldForwardProp, useTheme } from "@chakra-ui/react";
 import { isValidMotionProp, motion } from "framer-motion";
 import React, { ComponentProps } from "react";
 
@@ -18,29 +10,15 @@ const ChakraButton = chakra(motion.button, {
 
 export type OptionProps = OptionPropsSimple | OptionPropsPicture;
 
-function OptionInput({
-  type,
-  isSelected,
-}: {
-  type: "radio" | "checkbox";
-  isSelected: boolean;
-}) {
+function OptionInput({ type, isSelected }: { type: "radio" | "checkbox"; isSelected: boolean }) {
   const size = "20px";
   const theme = useTheme();
   switch (type) {
     case "checkbox": {
       return isSelected ? (
-        <CheckIcon
-          width={size}
-          height={size}
-          color={theme.colors.text["700"]}
-        />
+        <CheckIcon width={size} height={size} color={theme.colors.text["700"]} />
       ) : (
-        <CheckIconEmpty
-          width={size}
-          height={size}
-          color={theme.colors.text["200"]}
-        />
+        <CheckIconEmpty width={size} height={size} color={theme.colors.text["200"]} />
       );
     }
     case "radio": {
@@ -76,12 +54,7 @@ export function OptionSimple({
       {...rest}
     >
       {icon && (
-        <Flex
-          width={iconSize}
-          height={iconSize}
-          alignItems={"center"}
-          justifyContent={"center"}
-        >
+        <Flex width={iconSize} height={iconSize} alignItems={"center"} justifyContent={"center"}>
           {typeof icon === "string" ? (
             <Text fontSize={size === "small" ? "lg" : "3xl"}>{icon}</Text>
           ) : (
@@ -89,9 +62,11 @@ export function OptionSimple({
           )}
         </Flex>
       )}
+
       <Text
         textAlign={"start"}
         fontSize={size === "small" ? "sm" : "md"}
+        fontWeight={"semibold"}
         flexGrow={1}
         my={size === "small" ? 1 : 2}
         ml={size === "small" ? 2 : 3}
@@ -99,9 +74,7 @@ export function OptionSimple({
       >
         {text}
       </Text>
-      {size === "medium" && (
-        <OptionInput type={selectorIconType} isSelected={rest.isSelected} />
-      )}
+      {size === "medium" && <OptionInput type={selectorIconType} isSelected={rest.isSelected} />}
     </BaseOption>
   );
 }
@@ -140,11 +113,7 @@ type BaseOptionProps = {
   isSelected: boolean;
 } & Omit<ComponentProps<typeof Button>, "size">;
 
-function BaseOption({
-  isSelected,
-  children,
-  ...chakraButtonProps
-}: BaseOptionProps) {
+function BaseOption({ isSelected, children, ...chakraButtonProps }: BaseOptionProps) {
   return (
     <ChakraButton
       as={motion.button}

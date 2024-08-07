@@ -84,6 +84,7 @@ function CurrentSlide<T extends ISelectorType>(props: SlideComponentProps<T>) {
       maxWidth={"390px"}
       py={4}
       px={6}
+      position={"relative"}
       {...containerProps}
     >
       {children}

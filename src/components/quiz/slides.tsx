@@ -206,17 +206,17 @@ export function HealthStateSlide() {
       type="single"
       variant="list"
       options={[
-        { text: "Poor", icon: <Icon fontSize={"2xl"} as={TbMoodSadDizzy} /> },
+        { text: "Poor", icon: <Text fontSize={"2xl"}>😞</Text> },
         {
           text: "Could be better",
-          icon: <Icon fontSize={"2xl"} as={TbMoodConfuzed} />,
+          icon: <Text fontSize={"2xl"}>😕</Text>,
         },
-        { text: "Average", icon: <Icon fontSize={"2xl"} as={TbMoodEmpty} /> },
+        { text: "Average", icon: <Text fontSize={"2xl"}>😐</Text> },
         {
           text: "Pretty Good",
-          icon: <Icon fontSize={"2xl"} as={TbMoodSmile} />,
+          icon: <Text fontSize={"2xl"}>🙂</Text>,
         },
-        { text: "Great!", icon: <Icon fontSize={"2xl"} as={TbMoodHappy} /> },
+        { text: "Great!", icon: <Text fontSize={"2xl"}>😄</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
