@@ -1,12 +1,5 @@
 import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import { LoadingState, Selector, Slide, useQuizActions, useSlideState } from "@lib/quiz-lib";
-import {
-  TbMoodConfuzed,
-  TbMoodEmpty,
-  TbMoodHappy,
-  TbMoodSadDizzy,
-  TbMoodSmile,
-} from "react-icons/tb";
 
 import { NextButton, QuizHeading } from "./ui";
 import { StaticImage } from "gatsby-plugin-image";
@@ -23,10 +16,10 @@ export function GoalsSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Reduce stress and anxiety" },
-        { text: "Improve sleep quality" },
-        { text: "Manage weight more effectively" },
-        { text: "Loose weight" },
+        { text: "Reduce stress and anxiety", icon: <Text fontSize={"2xl"}>🧘‍♀️</Text> },
+        { text: "Improve sleep quality", icon: <Text fontSize={"2xl"}>💤</Text> },
+        { text: "Manage weight more effectively", icon: <Text fontSize={"2xl"}>⚖️</Text> },
+        { text: "Loose weight", icon: <Text fontSize={"2xl"}>🏋️‍♀️</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
@@ -74,8 +67,7 @@ export function LackOfSleepSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Poor sleep disrupts hormones, increases hunger, and slows metabolism. Do you struggle
-        falling or staying asleep?
+        Do you have trouble falling or staying asleep?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -99,8 +91,7 @@ export function StressFrequencySlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Stress raises cortisol, causes emotional eating and sleep issues. How often do you feel
-        stressed or anxious?
+        How often do you feel stressed or anxious?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -113,11 +104,13 @@ export function LackOfSleepGraphicSlide() {
   return (
     <Slide id="lack-of-sleep-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        Poor sleep quality increases obesity risk by 45%, and 1 in 3 U.S. adults routinely lack
-        adequate sleep.
+        <Text as="span" backgroundColor="red.200">
+          Poor sleep quality increases obesity risk by 40-60%
+        </Text>{" "}
+        due to disrupted hormones, increased hunger, and altered metabolism.
       </QuizHeading>
       <StaticImage
-        src="../../images/cortisol-graphic.jpg"
+        src="../../images/poor-sleep-graphic.jpg"
         alt="effects of lack of sleep for weight gain"
       />
       <Stack mt={4} mb={2}>
@@ -132,8 +125,10 @@ export function CortisolGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        75% of U.S. adults face moderate to high stress, 33% extreme stress, which result in weight
-        gain and health problems.
+        <Text as="span" backgroundColor="red.200">
+          Stress and anxiety is directly linked to weight problems
+        </Text>{" "}
+        due to risen cortisol, emotional eating and disrupted sleep.
       </QuizHeading>
       <StaticImage
         src="../../images/cortisol-graphic.jpg"
@@ -262,17 +257,17 @@ export function AlergiesSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Milk" },
-        { text: "Eggs" },
-        { text: "Peanuts" },
-        { text: "Tree Nuts" },
-        { text: "Fish" },
-        { text: "Shellfish" },
-        { text: "Soy" },
-        { text: "Wheat" },
-        { text: "Sesame" },
-        { text: "Other" },
-        { text: "None" },
+        { text: "Milk", icon: <Text fontSize={"2xl"}>🥛</Text> },
+        { text: "Eggs", icon: <Text fontSize={"2xl"}>🥚</Text> },
+        { text: "Peanuts", icon: <Text fontSize={"2xl"}>🥜</Text> },
+        { text: "Tree Nuts", icon: <Text fontSize={"2xl"}>🌰</Text> },
+        { text: "Fish", icon: <Text fontSize={"2xl"}>🐟</Text> },
+        { text: "Shellfish", icon: <Text fontSize={"2xl"}>🦐</Text> },
+        { text: "Soy", icon: <Text fontSize={"2xl"}>🫘</Text> },
+        { text: "Wheat", icon: <Text fontSize={"2xl"}>🌾</Text> },
+        { text: "Sesame", icon: <Text fontSize={"2xl"}>🌱</Text> },
+        { text: "Other", icon: <Text fontSize={"2xl"}>❓</Text> },
+        { text: "None", icon: <Text fontSize={"2xl"}>✅</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
@@ -320,11 +315,11 @@ export function OutcomesSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Increased productivity" },
-        { text: "Better mood" },
-        { text: "Improved physical health" },
-        { text: "Enhanced mental focus" },
-        { text: "Greater overall happiness" },
+        { text: "Increased productivity", icon: <Text fontSize={"2xl"}>📈</Text> },
+        { text: "Better mood", icon: <Text fontSize={"2xl"}>☀️</Text> },
+        { text: "Improved physical health", icon: <Text fontSize={"2xl"}>🏃‍♀️</Text> },
+        { text: "Enhanced mental focus", icon: <Text fontSize={"2xl"}>🧠</Text> },
+        { text: "Greater overall happiness", icon: <Text fontSize={"2xl"}>🌈</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
@@ -465,7 +460,7 @@ export function EmailSlide() {
           }
         }}
       >
-        Unlock my results
+        See my results
       </NextButton>
       <Text mt={4} mb={7} fontSize={"xs"}>
         🔒 We don't send spam or share your data. We treat your privacy with the utmost care and

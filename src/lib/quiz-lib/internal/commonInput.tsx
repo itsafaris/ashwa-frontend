@@ -7,11 +7,11 @@ export function commonInputStyles() {
       borderColor: "bg.600",
     },
     _placeholder: {
-      color: "text.400",
+      color: "text.300",
     },
-    borderColor: "bg.600",
+    borderColor: "bg.500",
     borderWidth: 1,
-    backgroundColor: "bg.200",
+    backgroundColor: "bg.100",
     color: "text.main",
   } satisfies InputProps | SelectProps;
 }
