@@ -55,7 +55,15 @@ export function SkipButton(props: ComponentProps<typeof Button>) {
 
 export function MyFormLabel(props: ComponentProps<typeof FormLabel>) {
   return (
-    <FormLabel color="text.900" fontSize={"sm"} {...props} lineHeight={1} />
+    <FormLabel
+      color="primary.600"
+      fontWeight={"semibold"}
+      mb={4}
+      fontSize={"sm"}
+      textAlign={"center"}
+      {...props}
+      lineHeight={1}
+    />
   );
 }
 
