@@ -12,15 +12,8 @@ export function Footer() {
           <Flex gap={4} alignItems={"center"} justifyContent={"center"}>
             <Logo height={"32px"} color={"primary.400"} />
           </Flex>
-          <Text textAlign={"center"} fontSize={"xl"} fontFamily={"heading"}>
-            Stress-Free Living For Modern Women
-          </Text>
         </Flex>
-        <SimpleGrid
-          columns={[1, 1, 2]}
-          alignItems={"center"}
-          justifyItems={"center"}
-        >
+        <SimpleGrid columns={[1, 1, 2]} alignItems={"center"} justifyItems={"center"}>
           <Flex direction={"column"} justifyContent={"center"}>
             <Text fontWeight={"semibold"}>Operational Address</Text>
             <Text>
@@ -45,12 +38,11 @@ export function Footer() {
             <Link to="/refund-policy">Refund policy</Link>
           </Flex>
           <Text my={4} fontSize={"xs"}>
-            The statements made on this website have not been evaluated by the
-            FDA (U.S. Food & Drug Administration). The products sold on this
-            website are not intended to diagnose, treat, cure, or prevent any
-            disease. The information provided by this website or this company is
-            not a substitute for a face-to-face consultation with your
-            physician, and should not be construed as individual medical advice.
+            The statements made on this website have not been evaluated by the FDA (U.S. Food & Drug
+            Administration). The products sold on this website are not intended to diagnose, treat,
+            cure, or prevent any disease. The information provided by this website or this company
+            is not a substitute for a face-to-face consultation with your physician, and should not
+            be construed as individual medical advice.
           </Text>
         </Flex>
       </Container>
