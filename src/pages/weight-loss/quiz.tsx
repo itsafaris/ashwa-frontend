@@ -10,8 +10,11 @@ import {
   GoalsSlide,
   HealthStateSlide,
   HeightSlide,
+  LackOfSleepGraphicSlide,
+  LackOfSleepSlide,
   LoadingSlide,
   MedicalConditionsSlide,
+  OutcomesSlide,
   StressFrequencySlide,
   SymptomsSlide,
   WeightGainSlide,
@@ -107,19 +110,22 @@ export default function OnboardingQuiz(props: PageProps) {
         }}
       >
         <Segment title="Progress">
-          <GoalsSlide />
           <HealthStateSlide />
           <SymptomsSlide />
-          <WeightGainSlide />
-          <EmotionalEatingSlide />
+          <LackOfSleepSlide />
+          <LackOfSleepGraphicSlide />
           <StressFrequencySlide />
           <CortisolGraphicSlide />
+          <EmotionalEatingSlide />
+          <WeightGainSlide />
+          <GoalsSlide />
           <AlergiesSlide />
           <MedicalConditionsSlide />
           <AgeSlide />
           <HeightSlide />
           <WeightSlide />
           <WeightGoalSlide />
+          <OutcomesSlide />
           <LoadingSlide />
           <EmailSlide />
         </Segment>
