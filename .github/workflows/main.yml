@@ -18,6 +18,8 @@ jobs:
         env:
           GATSBY_WEBSITE_HOSTNAME: https://trycalmr.com
           GATSBY_STRIPE_PUBLIC_KEY: pk_live_51PdZVqCSMlpgjECRHtH15CLT2Q2fdn5faGSPUrUnGdEwffHMuNsNLuU7olWduyZfRAWQnpWtchled4zCmT9cIk4j00oNyOrM9w
+          GATSBY_SHOPIFY_STORE_DOMAIN: https://calmrsupps.myshopify.com
+          GATSBY_SHOPIFY_PUBLIC_ACCESS_TOKEN: fbdbe2ed192dcc7faada6059ca9fef38
       - name: Netlify Deploy
         uses: nwtgck/actions-netlify@v3.0.0
         with:
