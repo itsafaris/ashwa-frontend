@@ -106,7 +106,7 @@ const Hero = () => {
               </Grid>
 
               <Box position={"relative"}>
-                <StaticImage src="../../images/chart-1.jpg" alt="" />
+                <StaticImage src="../images/chart-1.jpg" alt="" />
 
                 <Text
                   position={"absolute"}
@@ -194,7 +194,7 @@ const Hero = () => {
                   </Stack>
                 </Grid>
 
-                <StaticImage src="../../images/chart-2.jpg" alt="" />
+                <StaticImage src="../images/chart-2.jpg" alt="" />
               </Box>
 
               <Grid gridTemplateColumns={"repeat(4, 1fr)"} zIndex={1} width={"120%"} mx={"-10%"}>
