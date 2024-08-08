@@ -8,10 +8,10 @@ export function IngredientsSection() {
       name: "Ashwagandha",
       image: (
         <StaticImage
-          alt="ashwagandha root"
-          src="../../images/ashwa1.jpeg"
-          height={400}
-          objectFit="contain"
+          alt="Ashwagandha"
+          src="../../images/ingr-ashwa.jpg"
+          layout="fixed"
+          height={70}
         />
       ),
       mainValue: "🤺 Stress Warrior",
@@ -19,32 +19,30 @@ export function IngredientsSection() {
         "By lowering cortisol levels, Ashwagandha helps your body resist the physiological impacts of stress. It's not just about feeling relaxed - it's about empowering your body to thrive under pressure",
     },
     {
-      name: "Rhodiola",
-      mainValue: "🔋 Energy Amplifier",
+      name: "Green Coffee Bean Extract",
+      mainValue: "🌟 Metabolism Motivator",
       description:
-        "Combats both mental and physical fatigue, helping you tap into reserves of energy you didn't know you had",
+        "This extract is known for its weight loss properties, boosts metabolism and reduces the absorption of carbohydrates.",
       image: (
         <StaticImage
-          alt="Rhodiola rosea"
-          src="../../images/rhodiola-rosea.jpg"
-          height={400}
-          objectFit="contain"
+          alt="Green Coffee Bean Extract"
+          src="../../images/ingr-green-bean.jpg"
+          layout="fixed"
+          height={70}
         />
       ),
     },
     {
-      name: "Bacopa",
-      mainValue: "🧠 Memory Maestro",
+      name: "Melatonin",
+      mainValue: "🌙 Sleep Guardian",
       description:
-        "An herb that supports cognitive function, memory, and focus. It works synergistically with ashwagandha to enhance mental clarity",
-      image: (
-        <StaticImage
-          alt="Bacopa monnieri"
-          src="../../images/bacopa.jpg"
-          height={400}
-          objectFit="contain"
-        />
-      ),
+        "Melatonin is a hormone that regulates the sleep-wake cycle and helps to promote restful sleep",
+    },
+    {
+      name: "L-Carnitine Tartrate",
+      mainValue: "🔥 Fat Fighter",
+      description:
+        "L-Carnitine plays a role in the metabolism of fat by transporting fatty acids into the mitochondria, where they can be used for energy, thus aiding in weight loss.",
     },
   ];
 
@@ -53,22 +51,6 @@ export function IngredientsSection() {
       <Heading textAlign={"center"} my={10}>
         Meet The Fantastic <Span decoration={"underline"}>Formula</Span>
       </Heading>
-      <Text textAlign={"center"} my={4} maxWidth={"xl"} mx="auto">
-        This powerful trio of adaptogenic herbs works synergistically to create a comprehensive
-        approach to{" "}
-        <Span fontWeight={"bold"} decoration={"underline"}>
-          stress management
-        </Span>
-        ,{" "}
-        <Span fontWeight={"bold"} decoration={"underline"}>
-          cognitive enhancement
-        </Span>
-        , and{" "}
-        <Span fontWeight={"bold"} decoration={"underline"}>
-          overall well-being
-        </Span>
-        , providing a natural solution to the demands of modern life.
-      </Text>
 
       <Grid
         gridTemplateColumns={["auto", "auto", "40% 1fr"]}
@@ -77,11 +59,7 @@ export function IngredientsSection() {
         gap={6}
       >
         <Stack>
-          <StaticImage
-            alt="ashwagandha root"
-            src="../../images/ingredients.jpg"
-            objectFit="contain"
-          />
+          <StaticImage alt="" src="../../images/ingredients.jpg" objectFit="contain" />
         </Stack>
 
         <SimpleGrid
@@ -95,23 +73,25 @@ export function IngredientsSection() {
             <Flex
               key={idx}
               direction={"column"}
-              alignItems={"center"}
               bg="white"
               p={4}
               borderRadius={"lg"}
               boxShadow={"lg"}
             >
+              <Flex maxH={70} mb={5}>
+                {fact.image}
+              </Flex>
+
               <Text fontWeight={"semibold"} fontSize={"sm"}>
                 {fact.mainValue}
               </Text>
-              <Text fontSize={"2xl"} fontWeight={"bold"} fontFamily={"heading"}>
+
+              <Text fontSize={"2xl"} fontWeight={"bold"} fontFamily={"heading"} lineHeight={1.3}>
                 {fact.name}
               </Text>
 
-              <Flex maxH={70}>{fact.image}</Flex>
-
               <Box textAlign={"start"}>
-                <Text mt={2} mb={2} fontWeight={"bold"} fontSize={"sm"}>
+                <Text mt={2} mb={2} fontWeight={"bold"} fontSize={"sm"} color={"primary.700"}>
                   How does it work?
                 </Text>
                 <Text fontSize={"sm"}>{fact.description}</Text>
