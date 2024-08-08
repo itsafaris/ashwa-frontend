@@ -10,7 +10,7 @@ import { GiTreeBranch } from "react-icons/gi";
 import { Box, Heading, Text, Icon, Container, Stack, Grid } from "@chakra-ui/react";
 
 import { CTAButton } from "../components";
-import { useReadableState } from "../../pages/summary/ctx";
+import { useReadableState } from "../../pages/summary";
 import { StaticImage } from "gatsby-plugin-image";
 
 export const Summary = () => {
