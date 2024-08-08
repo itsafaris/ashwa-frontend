@@ -14,6 +14,7 @@ import {
   Icon,
   Container,
   Stack,
+  Grid,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaArrowRight, FaShippingFast } from "react-icons/fa";
@@ -59,26 +60,27 @@ export default function Page() {
 }
 const FreeGift = () => {
   return (
-    <Box bg="white">
+    <Box bg="white" pt={8}>
       <Container maxW={"container.lg"} as={Stack} spacing={4} py={8}>
-        <Stack
-          flexDirection={["column", "column", "row"]}
-          alignItems={"center"}
-          spacing={6}
-          width={"full"}
-          justifyContent={"space-between"}
-        >
-          <Heading
-            px={8}
-            textAlign={["center", "center", "left"]}
-            fontSize={["2xl", "2xl", "4xl"]}
-            maxW={"container.sm"}
-          >
-            We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
-          </Heading>
+        <Heading px={8} textAlign={"center"} fontSize={["3xl", "3xl", "4xl"]} mb={8}>
+          When you buy bundles, you also get
+        </Heading>
 
-          <StaticImage src="../images/free-gift.png" alt="" style={{ maxWidth: "250px" }} />
-        </Stack>
+        <Grid
+          gridTemplateColumns={["1fr", "1fr 1fr"]}
+          gap={5}
+          alignItems={"start"}
+          maxW={"container.sm"}
+          mx="auto"
+          mb={8}
+        >
+          <Stack alignItems={"center"}>
+            <StaticImage alt="" src="../images/free-gift-1.jpg" layout="constrained" />
+          </Stack>
+          <Stack alignItems={"center"}>
+            <StaticImage alt="" src="../images/free-gift-2.jpg" layout="constrained" />
+          </Stack>
+        </Grid>
 
         <JumptToPricingButton />
       </Container>
@@ -88,7 +90,7 @@ const FreeGift = () => {
 
 const Hero = () => {
   return (
-    <Box backgroundColor="brand.100" pt={6} pb={10}>
+    <Box backgroundColor="brand.100" pt={6} pb={5}>
       <Container maxW={"container.lg"} as={Stack} spacing={4}>
         <Heading
           mx="auto"
@@ -118,10 +120,10 @@ const SpecialOfferTimer = () => {
             alignItems={"center"}
             direction={["column", "row"]}
             justifyContent={"space-between"}
-            spacing={0}
+            spacing={[0, 4]}
           >
             <Timer color={"red.400"} fontSize={"3xl"} fontWeight={"semibold"} />
-            <Text fontSize={"sm"}>
+            <Text fontSize={["sm", "md"]} textAlign={"center"}>
               <Text as="span" fontWeight={"bold"}>
                 HURRY!
               </Text>{" "}
@@ -137,7 +139,7 @@ const SpecialOfferTimer = () => {
 const Banner = () => (
   <Box backgroundColor={"brand.100"} pt={4}>
     <Container maxW={"container.lg"} color="white">
-      <Stack bgGradient="linear(to-r, orange.400, primary.500)" px={4} py={3}>
+      <Stack bgGradient="linear(to-r, #f49d15, #ff4b4b)" px={4} py={3}>
         <Stack
           maxW={"container.sm"}
           width={"full"}
@@ -154,14 +156,14 @@ const Banner = () => (
               <Stack direction={"row"} alignItems={"center"}>
                 <Icon as={LiaShippingFastSolid} />
                 <Text textTransform={"uppercase"} fontWeight={"semibold"} fontSize={"xs"}>
-                  Free shipping
+                  Get free shipping
                 </Text>
               </Stack>
 
               <Stack direction={"row"} alignItems={"center"}>
                 <Icon as={IoBookOutline} />
                 <Text textTransform={"uppercase"} fontWeight={"semibold"} fontSize={"xs"}>
-                  Diet guide included
+                  + Effective Weight Loss Guide
                 </Text>
               </Stack>
             </Stack>
@@ -184,7 +186,7 @@ const Banner = () => (
 
 const BannerTop = () => (
   <Flex
-    bgGradient="linear(to-r, orange.400, primary.500)"
+    bgGradient="linear(to-r, #f49d15, #ff4b4b)"
     fontWeight={"semibold"}
     color="white"
     py={1}
@@ -215,7 +217,7 @@ function BadgesSection() {
   return (
     <SimpleGrid
       columns={[1, 1, 3]}
-      bg="white"
+      bg="primary.300"
       py={6}
       flexWrap={"wrap"}
       spacing={3}

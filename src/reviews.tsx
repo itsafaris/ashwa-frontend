@@ -36,7 +36,7 @@ export const topReviews: Review[] = [
         }}
       ></video>
     ),
-    productImg: <StaticImage src="./images/product2.png" alt="" />,
+    productImg: <StaticImage src="./images/product-2-small.png" alt="" />,
     hoursAgo: 12,
   },
   {
@@ -58,7 +58,7 @@ export const topReviews: Review[] = [
         }}
       ></video>
     ),
-    productImg: <StaticImage src="./images/product3.png" alt="" />,
+    productImg: <StaticImage src="./images/product-3-small.png" alt="" />,
     hoursAgo: 13,
   },
   {
@@ -67,7 +67,7 @@ export const topReviews: Review[] = [
     name: "Hazel V.",
     location: "Virginia",
     score: 5,
-    productImg: <StaticImage src="./images/product3.png" alt="" />,
+    productImg: <StaticImage src="./images/product-3-small.png" alt="" />,
     img: (
       <video
         playsInline={true}
@@ -89,7 +89,7 @@ export const topReviews: Review[] = [
     name: "Hazel V.",
     location: "Virginia",
     score: 4.7,
-    productImg: <StaticImage src="./images/product2.png" alt="" />,
+    productImg: <StaticImage src="./images/product-2-small.png" alt="" />,
     img: (
       <video
         playsInline={true}

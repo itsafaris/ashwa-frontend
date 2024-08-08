@@ -4,10 +4,10 @@ import {
   Container,
   Flex,
   Heading,
-  Icon,
   SimpleGrid,
   Stack,
   Text,
+  Icon,
 } from "@chakra-ui/react";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import React from "react";
@@ -19,6 +19,11 @@ import { trackEvent, trackPixelEvent } from "src/tracking";
 import { SafeCheckout } from "./SafeCheckout";
 import { FaArrowRight } from "react-icons/fa6";
 import { BuyNowButton } from "@shopify/hydrogen-react";
+import { StaticImage } from "gatsby-plugin-image";
+import { CgPill } from "react-icons/cg";
+import { MdLocalShipping } from "react-icons/md";
+import { IoMdSunny } from "react-icons/io";
+import { FaPrescriptionBottle } from "react-icons/fa6";
 
 export function ProductSelectionSection({ email }: { email?: string }) {
   const { websiteHostname, stripePublicKey } = siteConfig;
@@ -122,7 +127,8 @@ export function ProductSelectionSection({ email }: { email?: string }) {
               product={v1}
               badgeText={`Best value SAVE ${v1.discount}%`}
               badgeBg="pink.300"
-              footerText={`${dynamicText}. Free shipping`}
+              hasFreeGift
+              hasFreeShipping
               onBuyClick={() => {
                 handleClick(v1);
               }}
@@ -134,7 +140,8 @@ export function ProductSelectionSection({ email }: { email?: string }) {
               product={v2}
               badgeText={`Most popular SAVE ${v2.discount}%`}
               badgeBg="purple.300"
-              footerText={`${dynamicText}. Free shipping`}
+              hasFreeGift
+              hasFreeShipping
               onBuyClick={() => {
                 handleClick(v2);
               }}
@@ -144,7 +151,6 @@ export function ProductSelectionSection({ email }: { email?: string }) {
           {v3 && (
             <ProductSelectItem
               product={v3}
-              footerText={`${dynamicText}. Free shipping`}
               onBuyClick={() => {
                 handleClick(v3);
               }}
@@ -163,6 +169,8 @@ function ProductSelectItem({
   badgeText,
   badgeBg,
   footerText,
+  hasFreeGift = false,
+  hasFreeShipping = false,
   onBuyClick,
 }: {
   product: Product;
@@ -170,19 +178,28 @@ function ProductSelectItem({
   badgeBg?: string;
   footerText?: string;
   onBuyClick: () => void;
+  hasFreeGift?: boolean;
+  hasFreeShipping?: boolean;
 }) {
   return (
-    <Box position={"relative"}>
-      <Flex
-        direction={"column"}
-        bg="white"
-        p={4}
-        borderRadius={"md"}
-        border="1px solid"
-        borderColor={"bg.100"}
-        gap={2}
-      >
+    <Flex
+      direction={"column"}
+      bg="white"
+      p={4}
+      borderRadius={"md"}
+      border="1px solid"
+      borderColor={"bg.100"}
+      gap={2}
+      position={"relative"}
+      justifyContent={"space-between"}
+      height={"100%"}
+    >
+      {badgeText && (
         <Box
+          width={"full"}
+          position={"absolute"}
+          top={0}
+          left={0}
           color="white"
           px={2}
           py={1}
@@ -191,60 +208,101 @@ function ProductSelectItem({
           textAlign={"center"}
           fontWeight={"bold"}
           borderRadius={"sm"}
-          mx={-4}
-          mt={-4}
         >
-          {badgeText ?? "\u200b"}
+          {badgeText}
+        </Box>
+      )}
+
+      <SimpleGrid columns={[2, 2, 1]} alignItems={"center"} gap={4} flexWrap={"wrap"}>
+        <Box p={[0, 6]} position={"relative"}>
+          {product.image}
+
+          {hasFreeGift && (
+            <Box
+              position={"absolute"}
+              bottom={[0, 5]}
+              left={[0, 5]}
+              zIndex={0}
+              transform={"rotate(15deg)"}
+              width={["40%", "28%"]}
+            >
+              <StaticImage alt="" src="../images/free-gift-label.png" />
+            </Box>
+          )}
         </Box>
 
-        <SimpleGrid columns={[2, 2, 1]} alignItems={"center"} gap={4} flexWrap={"wrap"}>
-          <Box p={[0, 6]}>{product.image}</Box>
-          <Box>
-            <Text fontSize={"lg"} fontWeight={"bold"}>
-              {product.count} month supply
-            </Text>
-            <Text fontSize={"xs"} minHeight={"3em"}>
-              {product.subtitle}
-            </Text>
+        <Box mt={[6, 6, 0]}>
+          <Text fontSize={"sm"} minH={10} mb={2} fontWeight={"bold"} color="primary.600">
+            {product.subtitle}
+          </Text>
 
-            <Stack spacing={0}>
-              <Flex gap={2} mt={3} fontSize={"lg"}>
-                <Text fontWeight={"bold"}>${product.unitPrice.toFixed(2)}</Text>
-                <Text textDecoration={"line-through"} color={"red.400"}>
-                  ${product.unitPriceBefore}
-                </Text>
-              </Flex>
+          <Text fontSize={"lg"} fontWeight={"bold"}>
+            {product.count} month supply
+          </Text>
 
-              <Text fontSize={"xs"}>Per bottle</Text>
-            </Stack>
-
-            <Flex direction={"column"} gap={0} fontSize={"xs"} my={3}>
-              <Text>- {product.count * product.unitServingsCount} servings</Text>
-              <Text>- ${(product.unitPrice / 30).toFixed(2)} per day</Text>
-              <Text>
-                - {product.count} bottle{product.count === 1 ? "" : "s"} delivered
+          <Stack spacing={0}>
+            <Flex gap={2} mt={3} fontSize={"lg"}>
+              <Text fontWeight={"bold"}>${product.unitPrice.toFixed(2)}</Text>
+              <Text textDecoration={"line-through"} color={"red.400"}>
+                ${product.unitPriceBefore}
               </Text>
             </Flex>
-          </Box>
-        </SimpleGrid>
 
-        <Button
-          as={BuyNowButton}
-          variantId={product.stripeID}
-          quantity={product.count}
-          colorScheme="green"
-          rightIcon={<Icon as={FaArrowRight} />}
-          // onClick={onBuyClick}
-          borderRadius={"full"}
-          size={"lg"}
-        >
-          Order now
-        </Button>
+            <Text fontSize={"xs"}>Per bottle</Text>
+          </Stack>
 
+          <Flex direction={"column"} gap={0} fontSize={"xs"} fontWeight={"semibold"} my={3}>
+            <Stack direction={"row"} gap={2} alignItems={"center"}>
+              <Icon as={CgPill} />
+              <Text>{product.count * product.unitServingsCount} servings</Text>
+            </Stack>
+
+            <Stack direction={"row"} gap={2} alignItems={"center"}>
+              <Icon as={IoMdSunny} />
+              <Text>${(product.unitPrice / 30).toFixed(2)} per day</Text>
+            </Stack>
+
+            <Stack direction={"row"} gap={2} alignItems={"center"}>
+              <Icon as={FaPrescriptionBottle} />
+              <Text>
+                {product.count} bottle{product.count === 1 ? "" : "s"} delivered
+              </Text>
+            </Stack>
+
+            {hasFreeShipping && (
+              <Stack
+                direction={"row"}
+                gap={2}
+                alignItems={"center"}
+                backgroundColor={"green.200"}
+                mr="auto"
+              >
+                <Icon as={MdLocalShipping} />
+                <Text>FREE shipping</Text>
+              </Stack>
+            )}
+          </Flex>
+        </Box>
+      </SimpleGrid>
+
+      <Button
+        as={BuyNowButton}
+        variantId={product.stripeID}
+        quantity={product.count}
+        colorScheme="green"
+        rightIcon={<Icon as={FaArrowRight} />}
+        // onClick={onBuyClick}
+        borderRadius={"full"}
+        size={"lg"}
+      >
+        Order now
+      </Button>
+
+      {footerText && (
         <Text fontSize={"xs"} textAlign={"center"}>
           {footerText}
         </Text>
-      </Flex>
-    </Box>
+      )}
+    </Flex>
   );
 }

@@ -27,7 +27,7 @@ const common1 = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product1.png"}
+      src={"./images/product-1.jpg"}
       placeholder="blurred"
     />
   ),
@@ -40,7 +40,7 @@ const common3 = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product2.png"}
+      src={"./images/product-2.jpg"}
       placeholder="blurred"
     />
   ),
@@ -53,7 +53,7 @@ const common6 = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product3.png"}
+      src={"./images/product-3.jpg"}
       placeholder="blurred"
     />
   ),
