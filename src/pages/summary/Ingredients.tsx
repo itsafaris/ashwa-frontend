@@ -77,6 +77,8 @@ export function IngredientsSection() {
               p={4}
               borderRadius={"lg"}
               boxShadow={"lg"}
+              border="1px solid"
+              borderColor={"bg.100"}
             >
               <Flex maxH={70} mb={5}>
                 {fact.image}

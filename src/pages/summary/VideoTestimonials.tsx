@@ -8,9 +8,18 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
     <Box backgroundColor={"white"} py={10}>
       <Container maxW={"container.lg"}>
         <Stack spacing={6} alignItems={"center"}>
-          <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"} textAlign={"center"}>
-            Users experience massive changes in less than a month
-          </Heading>
+          <Stack alignItems={"center"}>
+            <Rating rating={5} size="normal" />
+
+            <Heading
+              lineHeight={1.2}
+              fontSize={["3xl", "3xl", "4xl"]}
+              maxW={"container.sm"}
+              textAlign={"center"}
+            >
+              Users experience <br /> massive changes in less than a month
+            </Heading>
+          </Stack>
 
           <Grid
             gridTemplateColumns={["1fr 1fr", "1fr 1fr", "1fr 1fr 1fr 1fr"]}
@@ -41,6 +50,8 @@ function TopReview({ review }: { review: Review }) {
       position={"relative"}
       spacing={0}
       boxShadow={"0px 8px 10px 0px #a3a3a3"}
+      border="1px solid"
+      borderColor={"bg.100"}
     >
       {review.img && (
         <Flex width={"100%"} position={"relative"}>

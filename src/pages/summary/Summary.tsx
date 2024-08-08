@@ -161,13 +161,20 @@ export const Summary = () => {
             justifyContent={"space-between"}
             spacing={1}
             p={6}
+            border="1px solid"
+            borderColor={"bg.100"}
           >
             <Grid
               gridTemplateColumns={["1fr", "1fr 1fr"]}
               gridTemplateRows={["auto auto", "1fr"]}
               gap={2}
+              alignItems={"center"}
             >
               <Stack py={3} px={[3, 3, 10]}>
+                <Stack alignItems={["center", "start"]} mb={3}>
+                  <StaticImage alt="" src="../../images/woman-photo-1.jpg" width={170} />
+                </Stack>
+
                 <Heading textAlign={["center", "left"]} fontSize={["3xl", "3xl", "3xl"]}>
                   Some headline bla bla bla
                 </Heading>
@@ -176,7 +183,7 @@ export const Summary = () => {
                   In your first month
                 </Text>
 
-                <Stack display={["none", "none", "flex"]} mt={8}>
+                <Stack display={["none", "none", "flex"]} mt={5}>
                   <CTAButton alignItems={"left"} width={"260px"} />
                 </Stack>
               </Stack>

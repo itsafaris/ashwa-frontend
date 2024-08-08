@@ -31,7 +31,14 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
         <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
-              <Flex key={idx} bg="white" border="1px solid" borderColor={"bg.100"} boxShadow={"lg"}>
+              <Flex
+                key={idx}
+                bg="white"
+                borderRadius={"lg"}
+                border="1px solid"
+                borderColor={"bg.100"}
+                boxShadow={"lg"}
+              >
                 <Flex direction={"column"} p={2} px={3} flex={1} gap={1}>
                   <Flex alignItems={"center"} gap={2}>
                     <Icon as={IoPersonCircle} color="gray.400" boxSize={6}></Icon>

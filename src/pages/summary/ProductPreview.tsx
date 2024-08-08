@@ -5,6 +5,7 @@ export function ProductPreview() {
   return (
     <Container maxW={"container.lg"}>
       <Grid
+        gridTemplateColumns={["1fr", "1fr", "1fr 1fr"]}
         gridTemplateAreas={[
           '"image image" "text text"',
           '"image image" "text text"',
@@ -28,11 +29,11 @@ export function ProductPreview() {
           </Text>
         </Stack>
 
-        <Box gridArea={"image"} mx="auto" maxW={"500px"} display={["none", "block"]}>
+        <Box gridArea={"image"} mx="auto" display={["none", "block"]}>
           <StaticImage src="../../images/product-preview-desktop.jpg" alt="" />
         </Box>
 
-        <Box gridArea={"image"} mx="auto" maxW={"500px"} display={["block", "none"]}>
+        <Box gridArea={"image"} mx="auto" display={["block", "none"]}>
           <StaticImage src="../../images/product-preview-mobile.jpg" alt="" />
         </Box>
       </Grid>
