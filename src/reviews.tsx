@@ -1,6 +1,9 @@
 import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
-import UGC1 from "@images/video-ugc-1.mp4";
+import UGC1 from "@images/user-video-1.mp4";
+import UGC2 from "@images/user-video-2.mp4";
+import UGC3 from "@images/user-video-3.mp4";
+import UGC4 from "@images/video-ugc-1.mp4";
 
 export type Review = {
   title: string;
@@ -10,12 +13,13 @@ export type Review = {
   score: number;
   hoursAgo: number;
   img?: React.JSX.Element;
+  productImg?: React.JSX.Element;
 };
 
 export const topReviews: Review[] = [
   {
     title: "Enhances weight loss!",
-    text: "I've been taking these pills every day and I gotta say they've really helped with my weight loss. They almost feel like a little boost for my metabolism. I'm really happy with them.",
+    text: "Sleeping better and less brain fog",
     name: "Amanda E.",
     location: "Vermont",
     score: 5,
@@ -27,33 +31,78 @@ export const topReviews: Review[] = [
         muted={true}
         src={UGC1}
         style={{
-          position: "absolute",
-          top: 0,
-          left: 0,
-          zIndex: 0,
           height: "100%",
           width: "100%",
         }}
       ></video>
     ),
+    productImg: <StaticImage src="./images/product2.png" alt="" />,
     hoursAgo: 12,
   },
   {
     title: "Helped me manage stress",
-    text: "Really helped me manage my stress. After a few weeks of taking them, I started to feel calmer. Will be purchasing again",
+    text: "Sleeping better and less brain fog",
     name: "Clara S.",
     location: "Georgia",
     score: 4,
-    img: <StaticImage width={400} src="./images/review2.jpeg" alt="" />,
+    img: (
+      <video
+        playsInline={true}
+        loop={true}
+        autoPlay={true}
+        muted={true}
+        src={UGC2}
+        style={{
+          height: "100%",
+          width: "100%",
+        }}
+      ></video>
+    ),
+    productImg: <StaticImage src="./images/product3.png" alt="" />,
     hoursAgo: 13,
   },
   {
     title: "One of my favorites",
-    text: "So much energy and better fallin a sleep",
+    text: "Sleeping better and less brain fog",
+    name: "Hazel V.",
+    location: "Virginia",
+    score: 5,
+    productImg: <StaticImage src="./images/product3.png" alt="" />,
+    img: (
+      <video
+        playsInline={true}
+        loop={true}
+        autoPlay={true}
+        muted={true}
+        src={UGC3}
+        style={{
+          height: "100%",
+          width: "100%",
+        }}
+      ></video>
+    ),
+    hoursAgo: 19,
+  },
+  {
+    title: "One of my favorites",
+    text: "Sleeping better and less brain fog",
     name: "Hazel V.",
     location: "Virginia",
     score: 4.7,
-    img: <StaticImage width={400} src="./images/review4.jpeg" alt="" />,
+    productImg: <StaticImage src="./images/product2.png" alt="" />,
+    img: (
+      <video
+        playsInline={true}
+        loop={true}
+        autoPlay={true}
+        muted={true}
+        src={UGC4}
+        style={{
+          height: "100%",
+          width: "100%",
+        }}
+      ></video>
+    ),
     hoursAgo: 19,
   },
 ];
@@ -65,7 +114,7 @@ export const reviews: Review[] = [
     name: "Sarah J.",
     location: "Vermont",
     score: 4.8,
-    img: <StaticImage width={400} src="./images/review1.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review1.jpg" alt="" />,
     hoursAgo: 12,
   },
   {
@@ -74,7 +123,7 @@ export const reviews: Review[] = [
     name: "Jane T.",
     location: "Georgia",
     score: 4.5,
-    img: <StaticImage width={400} src="./images/review2.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review2.jpg" alt="" />,
     hoursAgo: 13,
   },
   {
@@ -91,7 +140,7 @@ export const reviews: Review[] = [
     name: "Emily R.",
     location: "Virginia",
     score: 4.7,
-    img: <StaticImage width={400} src="./images/review4.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review4.jpg" alt="" />,
     hoursAgo: 15,
   },
   {
@@ -100,7 +149,7 @@ export const reviews: Review[] = [
     name: "Ashley L.",
     location: "North Carolina",
     score: 4.9,
-    img: <StaticImage width={400} src="./images/review5.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review5.jpg" alt="" />,
     hoursAgo: 17,
   },
   {
@@ -134,7 +183,7 @@ export const reviews: Review[] = [
     name: "Lisa M.",
     location: "North Carolina",
     score: 4.6,
-    img: <StaticImage width={400} src="./images/review6.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review6.jpg" alt="" />,
     hoursAgo: 19,
   },
   {
@@ -150,7 +199,7 @@ export const reviews: Review[] = [
     text: "I get pretty moody sometimes, but this stuff helps level me out. Hubby's noticed too. Feeling more like myself again",
     name: "Amanda B.",
     location: "Georgia",
-    img: <StaticImage width={400} src="./images/review3.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review3.jpg" alt="" />,
     score: 4.7,
     hoursAgo: 22,
   },

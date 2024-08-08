@@ -29,6 +29,7 @@ import { trackPixelEvent } from "src/tracking";
 import "blaze-slider/dist/blaze.css";
 import { loadQuizState, SavedState } from "src/localStorage";
 import { ProductSelectionSection } from "@components/ProductSelection";
+import { Recommendation } from "@components/Recommendation";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -99,25 +100,7 @@ const Hero = () => {
           We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
         </Heading>
 
-        <Stack flexDir={"row"} alignItems={"center"} spacing={4} maxW={"container.sm"} mx="auto">
-          <StaticImage
-            src="../images/product2.png"
-            alt="bundle of 3 supplement bottles"
-            width={80}
-          />
-
-          <Text flex={1} fontSize={"sm"}>
-            We recommend starting with the{" "}
-            <Span fontWeight={"bold"} textDecoration={"underline"}>
-              3-month plan
-            </Span>{" "}
-            to achieve effective results or a{" "}
-            <Span fontWeight={"bold"} textDecoration={"underline"}>
-              6-month plan
-            </Span>{" "}
-            to form a longer-lasting routine.
-          </Text>
-        </Stack>
+        <Recommendation />
       </Container>
     </Box>
   );
