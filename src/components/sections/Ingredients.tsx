@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Text, SimpleGrid, Container, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
-import { Span } from "@components/components";
+import { Span } from "../components";
 
 export function IngredientsSection() {
   const ingredients = [

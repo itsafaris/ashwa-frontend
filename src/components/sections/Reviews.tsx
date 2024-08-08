@@ -1,9 +1,8 @@
 import { Box, Flex, Heading, Text, Icon, Container, Stack } from "@chakra-ui/react";
 import { IoPersonCircle } from "react-icons/io5";
 import { FaCheckCircle } from "react-icons/fa";
-import { Rating, Span } from "@components/components";
+import { Rating, Span, CTAButton } from "../components";
 import { Review } from "../../reviews";
-import { CTAButton } from "./components";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 

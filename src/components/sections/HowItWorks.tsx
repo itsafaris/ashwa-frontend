@@ -12,7 +12,7 @@ import {
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaCheck, FaTimes } from "react-icons/fa";
-import { CTAButton } from "./components";
+import { CTAButton } from "../components";
 
 const comparisonData = [
   {

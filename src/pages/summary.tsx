@@ -1,3 +1,18 @@
+import { type HeadFC, navigate } from "gatsby";
+
+import { reviews, topReviews } from "../reviews";
+import { Header } from "@components/Header";
+import { Footer } from "@components/Footer";
+import { SEO } from "@components/SEO";
+import { VideoTestimonials } from "@components/sections/VideoTestimonials";
+import { HowItWorksSection } from "@components/sections/HowItWorks";
+import { FAQSection } from "@components/sections/FAQ";
+
+import { ProductPreview } from "@components/sections/ProductPreview";
+import { ReviewsSection } from "@components/sections/Reviews";
+import { Summary } from "@components/sections/Summary";
+import { AshwaRevivalSection } from "@components/sections/Research";
+import { IngredientsSection } from "@components/sections/Ingredients";
 import { Link } from "gatsby";
 
 import { FaArrowRight as ArrowRight } from "react-icons/fa6";
@@ -6,10 +21,36 @@ import { Box, Heading, Text, Button, Icon, Container, Stack, Grid } from "@chakr
 import { StaticImage } from "gatsby-plugin-image";
 import { FaArrowRight } from "react-icons/fa6";
 
-import { useReadableState } from "./ctx";
 import { Recommendation } from "@components/Recommendation";
 
-export const Hero = () => {
+import React from "react";
+import { getReadableState, ReadableState } from "src/utils";
+
+export const Head: HeadFC = () => {
+  return <SEO />;
+};
+
+export default function Page() {
+  return (
+    <ReadableStateProvider>
+      <Box>
+        <Header />
+        <Hero />
+        <ProductPreview />
+        <VideoTestimonials reviews={topReviews} />
+        <Summary />
+        <IngredientsSection />
+        <HowItWorksSection />
+        <ReviewsSection reviews={reviews} />
+        <FAQSection />
+        <AshwaRevivalSection />
+        <Footer />
+      </Box>
+    </ReadableStateProvider>
+  );
+}
+
+const Hero = () => {
   const state = useReadableState();
 
   return (
@@ -231,3 +272,33 @@ export const Hero = () => {
     </Box>
   );
 };
+
+export const ReadableStateCtx = React.createContext<ReadableState | null>(null);
+
+export function ReadableStateProvider({ children }: React.PropsWithChildren) {
+  const [state, setState] = React.useState<ReadableState | null>(null);
+
+  React.useEffect(() => {
+    const readableState = getReadableState();
+    if (!readableState) {
+      navigate("/weight-loss");
+    } else {
+      setState(readableState);
+    }
+  }, []);
+
+  if (state === null) {
+    return null;
+  }
+
+  return <ReadableStateCtx.Provider value={state}>{children}</ReadableStateCtx.Provider>;
+}
+
+export function useReadableState() {
+  const res = React.useContext(ReadableStateCtx);
+  if (!res) {
+    throw Error("useReadableState had to be used within ReadableStateProvider");
+  }
+
+  return res;
+}

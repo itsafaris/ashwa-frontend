@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Text, Container, Stack } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
-import { CTAButton } from "./components";
+import { CTAButton } from "../components";
 
 export const AshwaRevivalSection = () => {
   const studies = [

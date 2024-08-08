@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Text, Container, Stack, Grid } from "@chakra-ui/react";
 
-import { Rating } from "../../components/components";
+import { Rating } from "../components";
 import { Review } from "../../reviews";
 
 export function VideoTestimonials({ reviews }: { reviews: Review[] }) {

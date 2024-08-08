@@ -1,7 +1,10 @@
-import { Flex, Icon, Text, TextProps } from "@chakra-ui/react";
-import React, { ComponentProps, useEffect, useState } from "react";
-import { FaRegStar, FaStar, FaStarHalf, FaStarHalfAlt } from "react-icons/fa";
+import { Flex, Icon, Text, TextProps, Button, Stack, StackProps } from "@chakra-ui/react";
+import { ComponentProps, useEffect, useState } from "react";
+import { FaRegStar, FaStar, FaStarHalfAlt } from "react-icons/fa";
 import { useGlobalState } from "../RootWrapper";
+
+import { Link } from "gatsby";
+import { FaArrowRight } from "react-icons/fa6";
 
 export function Span(props: ComponentProps<typeof Text>) {
   return <Text as="span" {...props}></Text>;
@@ -82,4 +85,28 @@ function formatTimestamp(timestamp: number): {
     minutes: minutes.toString().padStart(2, "0"),
     seconds: seconds.toString().padStart(2, "0"),
   };
+}
+
+export function CTAButton(props: StackProps) {
+  return (
+    <Stack width={["full", "unset"]} alignItems="center" {...props}>
+      <Link to="/product-selection">
+        <Button
+          size="lg"
+          mx="auto"
+          variant={"solid"}
+          colorScheme={"pink"}
+          borderRadius={"full"}
+          width={"100%"}
+          py={7}
+          px={10}
+        >
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <Text lineHeight={1}>See the product</Text>
+            <Icon as={FaArrowRight} />
+          </Stack>
+        </Button>
+      </Link>
+    </Stack>
+  );
 }
