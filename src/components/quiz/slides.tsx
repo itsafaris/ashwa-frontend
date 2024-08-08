@@ -1,12 +1,5 @@
 import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import { LoadingState, Selector, Slide, useQuizActions, useSlideState } from "@lib/quiz-lib";
-import {
-  TbMoodConfuzed,
-  TbMoodEmpty,
-  TbMoodHappy,
-  TbMoodSadDizzy,
-  TbMoodSmile,
-} from "react-icons/tb";
 
 import { NextButton, QuizHeading } from "./ui";
 import { StaticImage } from "gatsby-plugin-image";
@@ -23,14 +16,15 @@ export function GoalsSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Reduce stress and anxiety" },
-        { text: "Improve energy levels" },
-        { text: "Manage weight more effectively" },
-        { text: "Enhance overall well-being" },
+        { text: "Reduce stress and anxiety", icon: <Text fontSize={"2xl"}>🧘‍♀️</Text> },
+        { text: "Improve sleep quality", icon: <Text fontSize={"2xl"}>💤</Text> },
+        { text: "Manage weight more effectively", icon: <Text fontSize={"2xl"}>⚖️</Text> },
+        { text: "Loose weight", icon: <Text fontSize={"2xl"}>🏋️‍♀️</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        What are your goals?
+        To ensure we provide you with the most effective experience, please let us know what're your
+        main goals?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -49,7 +43,31 @@ export function WeightGainSlide() {
       options={[{ text: "Yes" }, { text: "No" }]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Have you gained weight in the last year?
+        Have you experienced unexplained weight gain over the past 12 months?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+    </Slide>
+  );
+}
+
+export function LackOfSleepSlide() {
+  return (
+    <Slide
+      id="lack-of-sleep"
+      type="single"
+      variant="list"
+      options={[
+        { text: "Always" },
+        { text: "Often" },
+        { text: "Occasionally" },
+        { text: "Rarely" },
+        { text: "Never" },
+      ]}
+    >
+      <QuizHeading color="text.main" mb={4}>
+        Do you have trouble falling or staying asleep?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -65,15 +83,15 @@ export function StressFrequencySlide() {
       type="single"
       variant="list"
       options={[
-        { text: "Almost every day" },
-        { text: "A few times a week" },
+        { text: "Constantly" },
+        { text: "Frequently" },
         { text: "Occasionally" },
         { text: "Rarely" },
+        { text: "Never" },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        "Stress belly" refers to weight gain around the abdominal area. How often do you feel
-        stressed?
+        How often do you feel stressed or anxious?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -82,11 +100,35 @@ export function StressFrequencySlide() {
   );
 }
 
+export function LackOfSleepGraphicSlide() {
+  return (
+    <Slide id="lack-of-sleep-graphic" type="filler">
+      <QuizHeading color="text.main" mb={4}>
+        <Text as="span" backgroundColor="red.200">
+          Poor sleep quality increases obesity risk by 40-60%
+        </Text>{" "}
+        due to disrupted hormones, increased hunger, and altered metabolism.
+      </QuizHeading>
+      <StaticImage
+        src="../../images/poor-sleep-graphic.jpg"
+        alt="effects of lack of sleep for weight gain"
+      />
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton mt={4}>Next</NextButton>
+    </Slide>
+  );
+}
+
 export function CortisolGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        Cortisol (stress hormone) is often the reason why that "stress belly" keeps coming back
+        <Text as="span" backgroundColor="red.200">
+          Stress and anxiety is directly linked to weight problems
+        </Text>{" "}
+        due to risen cortisol, emotional eating and disrupted sleep.
       </QuizHeading>
       <StaticImage
         src="../../images/cortisol-graphic.jpg"
@@ -104,22 +146,23 @@ export function EmotionalEatingSlide() {
   return (
     <Slide
       id="emotional-eating"
-      type="single"
+      type="multi"
       variant="list"
       options={[
-        { text: "Frequently" },
-        { text: "Sometimes" },
-        { text: "Rarely" },
-        { text: "Never" },
+        { text: "Overeating" },
+        { text: "Stress-induced eating" },
+        { text: "Irregular meal times" },
+        { text: "Fast food consumption" },
+        { text: "None of these" },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Stress can trigger emotional eating and cravings for high-calorie foods. How often do you
-        experience food cravings?
+        On occasion, are you prone to…
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
+      <NextButton mt={4}>Next</NextButton>
     </Slide>
   );
 }
@@ -158,21 +201,21 @@ export function HealthStateSlide() {
       type="single"
       variant="list"
       options={[
-        { text: "Poor", icon: <Icon fontSize={"2xl"} as={TbMoodSadDizzy} /> },
+        { text: "Poor", icon: <Text fontSize={"2xl"}>😞</Text> },
         {
           text: "Could be better",
-          icon: <Icon fontSize={"2xl"} as={TbMoodConfuzed} />,
+          icon: <Text fontSize={"2xl"}>😕</Text>,
         },
-        { text: "Average", icon: <Icon fontSize={"2xl"} as={TbMoodEmpty} /> },
+        { text: "Average", icon: <Text fontSize={"2xl"}>😐</Text> },
         {
           text: "Pretty Good",
-          icon: <Icon fontSize={"2xl"} as={TbMoodSmile} />,
+          icon: <Text fontSize={"2xl"}>🙂</Text>,
         },
-        { text: "Great!", icon: <Icon fontSize={"2xl"} as={TbMoodHappy} /> },
+        { text: "Great!", icon: <Text fontSize={"2xl"}>😄</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        To get a more precise score, what is your current health state?
+        Hey! We'd like to get to know you better. How are you doing health-wise?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -188,20 +231,16 @@ export function SymptomsSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Headaches" },
-        { text: "Poor sleep" },
-        { text: "Digestive Issues" },
-        { text: "Weight Gain" },
-        { text: "Anxiety" },
-        { text: "Mood swings" },
-        { text: "Brain fog" },
+        { text: "Weight bouncing back" },
+        { text: "Hunger/cravings" },
         { text: "Low energy" },
-        { text: "Impaired learning" },
+        { text: "Brain fog" },
+        { text: "Mood swings" },
+        { text: "None" },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Many factors can affect your well-being, but feeling stressed is one of the most
-        significant. Do you often experience:
+        Do you struggle with any of the following issues?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -218,20 +257,21 @@ export function AlergiesSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Wheat and gluten" },
-        { text: "Lactose" },
-        { text: "Nuts" },
-        { text: "Fish" },
-        { text: "Sea food" },
-        { text: "Citrus fruits" },
-        { text: "Strawberries" },
-        { text: "None" },
-        { text: "Other" },
+        { text: "Milk", icon: <Text fontSize={"2xl"}>🥛</Text> },
+        { text: "Eggs", icon: <Text fontSize={"2xl"}>🥚</Text> },
+        { text: "Peanuts", icon: <Text fontSize={"2xl"}>🥜</Text> },
+        { text: "Tree Nuts", icon: <Text fontSize={"2xl"}>🌰</Text> },
+        { text: "Fish", icon: <Text fontSize={"2xl"}>🐟</Text> },
+        { text: "Shellfish", icon: <Text fontSize={"2xl"}>🦐</Text> },
+        { text: "Soy", icon: <Text fontSize={"2xl"}>🫘</Text> },
+        { text: "Wheat", icon: <Text fontSize={"2xl"}>🌾</Text> },
+        { text: "Sesame", icon: <Text fontSize={"2xl"}>🌱</Text> },
+        { text: "Other", icon: <Text fontSize={"2xl"}>❓</Text> },
+        { text: "None", icon: <Text fontSize={"2xl"}>✅</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        To ensure <Span decoration={"underline"}>Calmr</Span> is safe for you to use, please let us
-        know if you have any of the following sensitivities or allergies:
+        Please inform us of any sensitivities or allergies to tailor our recommendations.
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -258,9 +298,33 @@ export function MedicalConditionsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        You're doing amazing! To guarantee you have the best experience using{" "}
-        <Span decoration={"underline"}>Calmr</Span>, let us know if you have any of the following
-        medical conditions:
+        Your health and comfort are our top priorities. Do you have any of these medical conditions?
+      </QuizHeading>
+      <Stack mt={4} mb={2}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+      <NextButton mt={4}>Next</NextButton>
+    </Slide>
+  );
+}
+
+export function OutcomesSlide() {
+  return (
+    <Slide
+      id="outcomes"
+      type="multi"
+      variant="list"
+      options={[
+        { text: "Increased productivity", icon: <Text fontSize={"2xl"}>📈</Text> },
+        { text: "Better mood", icon: <Text fontSize={"2xl"}>☀️</Text> },
+        { text: "Improved physical health", icon: <Text fontSize={"2xl"}>🏃‍♀️</Text> },
+        { text: "Enhanced mental focus", icon: <Text fontSize={"2xl"}>🧠</Text> },
+        { text: "Greater overall happiness", icon: <Text fontSize={"2xl"}>🌈</Text> },
+      ]}
+    >
+      <QuizHeading color="text.main" mb={4}>
+        Imagine waking up completely refreshed and feeling leaner. How would this improve your daily
+        life and well-being?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -339,20 +403,20 @@ export function LoadingSlide() {
   return (
     <Slide id="loading" type="loading" variant="linear" statusText={""} autoProceed>
       <QuizHeading color="text.main" mb={4}>
-        Determining your stress levels
+        Preparing our recommendations
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
       <Stack mt={4}>
         <LoadingListItem text="Evaluating your answers..." isComplete={(progressValue ?? 0) > 25} />
-        <LoadingListItem text="Analyzing your results..." isComplete={(progressValue ?? 0) > 50} />
+        <LoadingListItem text="Analyzing results..." isComplete={(progressValue ?? 0) > 50} />
         <LoadingListItem
-          text="Determining your cortisol levels..."
+          text="Determining your stress levels..."
           isComplete={(progressValue ?? 0) > 75}
         />
         <LoadingListItem
-          text="Building your summary..."
+          text="Building recommendations..."
           isComplete={(progressValue ?? 0) === 100}
         />
       </Stack>
@@ -379,12 +443,9 @@ export function EmailSlide() {
   return (
     <Slide id="your-email" type="email" placeholder="Enter your email">
       <QuizHeading color="text.main" mb={4}>
-        Your results are ready!
+        Your results and recommendations are ready!
       </QuizHeading>
-      <Text>
-        Enter your email and claim your FREE shipping and get{" "}
-        <Span decoration={"underline"}>Calmr</Span> at a limited-time, discounted price!
-      </Text>
+      <Text>Enter your email to see result, claim FREE shipping and get a limited-time offer!</Text>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
@@ -399,7 +460,7 @@ export function EmailSlide() {
           }
         }}
       >
-        Unlock my results
+        See my results
       </NextButton>
       <Text mt={4} mb={7} fontSize={"xs"}>
         🔒 We don't send spam or share your data. We treat your privacy with the utmost care and
