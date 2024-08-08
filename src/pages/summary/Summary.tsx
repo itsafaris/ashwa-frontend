@@ -20,7 +20,7 @@ export const Summary = () => {
     <Box backgroundColor={"brand.100"} py={10}>
       <Container maxW={"container.lg"}>
         <Stack spacing={2} alignItems={"center"}>
-          <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"} mb={6}>
+          <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"} mb={6} mt={12}>
             Your Personal Summary
           </Heading>
 
@@ -33,15 +33,15 @@ export const Summary = () => {
             <Stack
               px={3}
               py={4}
-              backgroundColor="white"
+              backgroundColor="primary.200"
               borderRadius={"lg"}
               width={"100%"}
               alignItems={"center"}
               justifyContent={"space-between"}
               spacing={1}
             >
-              <Icon as={IoMdFemale} boxSize={"30px"} color="gray.400" />
-              <Text color="gray.500" fontWeight={"semibold"} fontSize={"sm"}>
+              <Icon as={IoMdFemale} boxSize={"30px"} color="primary.500" />
+              <Text color="primary.700" fontWeight={"semibold"} fontSize={"sm"}>
                 Gender
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
@@ -52,15 +52,15 @@ export const Summary = () => {
             <Stack
               px={3}
               py={4}
-              backgroundColor="white"
+              backgroundColor="primary.200"
               borderRadius={"lg"}
               width={"100%"}
               alignItems={"center"}
               justifyContent={"space-between"}
               spacing={1}
             >
-              <Icon as={PiPersonBold} boxSize={"30px"} color="gray.400" />
-              <Text color="gray.500" fontWeight={"semibold"} fontSize={"sm"}>
+              <Icon as={PiPersonBold} boxSize={"30px"} color="primary.500" />
+              <Text color="primary.700" fontWeight={"semibold"} fontSize={"sm"}>
                 Age
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
@@ -71,15 +71,15 @@ export const Summary = () => {
             <Stack
               px={3}
               py={4}
-              backgroundColor="white"
+              backgroundColor="primary.200"
               borderRadius={"lg"}
               width={"100%"}
               alignItems={"center"}
               justifyContent={"space-between"}
               spacing={1}
             >
-              <Icon as={LiaRulerVerticalSolid} boxSize={"30px"} color="gray.400" />
-              <Text color="gray.500" fontWeight={"semibold"} fontSize={"sm"}>
+              <Icon as={LiaRulerVerticalSolid} boxSize={"30px"} color="primary.500" />
+              <Text color="primary.700" fontWeight={"semibold"} fontSize={"sm"}>
                 Height
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
@@ -90,15 +90,15 @@ export const Summary = () => {
             <Stack
               px={3}
               py={4}
-              backgroundColor="white"
+              backgroundColor="primary.200"
               borderRadius={"lg"}
               width={"100%"}
               alignItems={"center"}
               justifyContent={"space-between"}
               spacing={1}
             >
-              <Icon as={RiScales2Line} boxSize={"30px"} color="gray.400" />
-              <Text color="gray.500" fontWeight={"semibold"} fontSize={"sm"}>
+              <Icon as={RiScales2Line} boxSize={"30px"} color="primary.500" />
+              <Text color="primary.700" fontWeight={"semibold"} fontSize={"sm"}>
                 Weight
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
@@ -116,15 +116,15 @@ export const Summary = () => {
             <Stack
               px={3}
               py={4}
-              backgroundColor="white"
+              backgroundColor="primary.200"
               borderRadius={"lg"}
               width={"100%"}
               alignItems={"center"}
               justifyContent={"space-between"}
               spacing={1}
             >
-              <Icon as={IoMdSpeedometer} boxSize={"30px"} color="gray.400" />
-              <Text color="gray.500" fontWeight={"semibold"} fontSize={"sm"}>
+              <Icon as={IoMdSpeedometer} boxSize={"30px"} color="primary.500" />
+              <Text color="primary.700" fontWeight={"semibold"} fontSize={"sm"}>
                 Your BMI
               </Text>
               <Text fontSize={"3xl"} fontWeight={"bold"}>
@@ -136,15 +136,15 @@ export const Summary = () => {
             <Stack
               px={3}
               py={4}
-              backgroundColor="white"
+              backgroundColor="primary.200"
               borderRadius={"lg"}
               width={"100%"}
               alignItems={"center"}
               justifyContent={"space-between"}
               spacing={1}
             >
-              <Icon as={GiTreeBranch} boxSize={"30px"} color="gray.400" />
-              <Text color="gray.500" fontWeight={"semibold"} fontSize={"sm"}>
+              <Icon as={GiTreeBranch} boxSize={"30px"} color="primary.500" />
+              <Text color="primary.700" fontWeight={"semibold"} fontSize={"sm"}>
                 Metabolic age
               </Text>
               <Text fontSize={"3xl"} fontWeight={"bold"}>
