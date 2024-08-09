@@ -15,7 +15,13 @@ export function Footer() {
         </Flex>
 
         <Flex direction={"column"} gap={2}>
-          <Flex gap={4} justifyContent={"center"} textDecoration={"underline"}>
+          <Flex
+            fontSize={"sm"}
+            gap={3}
+            justifyContent={"center"}
+            textDecoration={"underline"}
+            wrap={"wrap"}
+          >
             <Link to="/terms-of-service">Terms of Service</Link>
             <Link to="/privacy-policy">Privacy policy</Link>
             <Link to="/shipping-policy">Shipping policy</Link>
@@ -23,6 +29,7 @@ export function Footer() {
             <Link to="/about-us">About us</Link>
             <Link to="/faq">FAQs</Link>
           </Flex>
+
           <Text my={4} fontSize={"xs"}>
             The statements made on this website have not been evaluated by the FDA (U.S. Food & Drug
             Administration). The products sold on this website are not intended to diagnose, treat,
