@@ -3,7 +3,7 @@ import * as React from "react";
 import UGC1 from "@images/user-video-1.mp4";
 import UGC2 from "@images/user-video-2.mp4";
 import UGC3 from "@images/user-video-3.mp4";
-import UGC4 from "@images/video-ugc-1.mp4";
+import UGC4 from "@images/video-ugc-4.mp4";
 
 export type Review = {
   title: string;
@@ -74,7 +74,7 @@ export const topReviews: Review[] = [
         loop={true}
         autoPlay={true}
         muted={true}
-        src={UGC3}
+        src={UGC4}
         style={{
           height: "100%",
           width: "100%",
@@ -96,7 +96,7 @@ export const topReviews: Review[] = [
         loop={true}
         autoPlay={true}
         muted={true}
-        src={UGC4}
+        src={UGC3}
         style={{
           height: "100%",
           width: "100%",
@@ -165,7 +165,7 @@ export const reviews: Review[] = [
     text: "I feel sharper since I started taking this. Words come easier, and I'm killing it at work. Plus, no weird side effects. Love it!",
     name: "Susie W.",
     location: "Oregon",
-    img: <StaticImage width={400} src="./images/review7.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review8.jpeg" alt="" />,
     score: 4.8,
     hoursAgo: 18,
   },

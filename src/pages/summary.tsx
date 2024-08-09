@@ -1,4 +1,4 @@
-import { type HeadFC, navigate } from "gatsby";
+import { type HeadFC } from "gatsby";
 
 import { reviews, topReviews } from "../reviews";
 import { Header } from "@components/Header";
@@ -23,8 +23,7 @@ import { FaArrowRight } from "react-icons/fa6";
 
 import { Recommendation } from "@components/Recommendation";
 
-import React from "react";
-import { getReadableState, ReadableState } from "src/utils";
+import { ReadableStateProvider, useReadableState } from "@components/sections/summaryCtx";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -272,33 +271,3 @@ const Hero = () => {
     </Box>
   );
 };
-
-export const ReadableStateCtx = React.createContext<ReadableState | null>(null);
-
-export function ReadableStateProvider({ children }: React.PropsWithChildren) {
-  const [state, setState] = React.useState<ReadableState | null>(null);
-
-  React.useEffect(() => {
-    const readableState = getReadableState();
-    if (!readableState) {
-      navigate("/weight-loss");
-    } else {
-      setState(readableState);
-    }
-  }, []);
-
-  if (state === null) {
-    return null;
-  }
-
-  return <ReadableStateCtx.Provider value={state}>{children}</ReadableStateCtx.Provider>;
-}
-
-export function useReadableState() {
-  const res = React.useContext(ReadableStateCtx);
-  if (!res) {
-    throw Error("useReadableState had to be used within ReadableStateProvider");
-  }
-
-  return res;
-}

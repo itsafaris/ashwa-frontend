@@ -18,7 +18,7 @@ export type SiteConfig = {
 export const siteConfig: SiteConfig = {
   brandName: "Calmr",
   version: pkgjson.version,
-  image: "/images/meta-image.jpg",
+  image: "/images/facts-image.jpg",
   title: `Most complete Blend of Ashwagandha for Modern Busy Women`,
   description:
     "Our all-in-one supplement blend - the only one you'll need to combat stress, sharpen focus, and boost energy. This revolutionary formula uniquely combines Ashwagandha, Rhodiola Extract, and Bacopa with essential vitamins and minerals, creating a powerhouse solution tailored specifically for the modern woman's needs.",
