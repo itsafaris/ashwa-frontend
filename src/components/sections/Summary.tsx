@@ -10,8 +10,9 @@ import { GiTreeBranch } from "react-icons/gi";
 import { Box, Heading, Text, Icon, Container, Stack, Grid } from "@chakra-ui/react";
 
 import { CTAButton } from "../components";
-import { useReadableState } from "../../pages/summary";
+
 import { StaticImage } from "gatsby-plugin-image";
+import { useReadableState } from "./summaryCtx";
 
 export const Summary = () => {
   const state = useReadableState();
