@@ -1,4 +1,4 @@
-import { Flex, Icon, Stack, Text } from "@chakra-ui/react";
+import { Box, Flex, Icon, Stack, Text } from "@chakra-ui/react";
 import { LoadingState, Selector, Slide, useQuizActions, useSlideState } from "@lib/quiz-lib";
 
 import { NextButton, QuizHeading } from "./ui";
@@ -23,8 +23,10 @@ export function GoalsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        To ensure we provide you with the most effective experience, please let us know what're your
-        main goals?
+        What are your{" "}
+        <Text as="span" textDecor={"underline"}>
+          main goals?
+        </Text>
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -104,15 +106,17 @@ export function LackOfSleepGraphicSlide() {
   return (
     <Slide id="lack-of-sleep-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        <Text as="span" backgroundColor="red.200">
-          Poor sleep quality increases obesity risk by 40-60%
-        </Text>{" "}
-        due to disrupted hormones, increased hunger, and altered metabolism.
+        Poor sleep disrupts hormones, metabolism, increases hunger, and{" "}
+        <Text as="span" backgroundColor="#ffc5c5">
+          reduces the body's ability to naturally lose weight by 60%
+        </Text>
       </QuizHeading>
-      <StaticImage
-        src="../../images/poor-sleep-graphic.jpg"
-        alt="effects of lack of sleep for weight gain"
-      />
+      <Box p={4} bg="white">
+        <StaticImage
+          src="../../images/poor-sleep-graphic.jpg"
+          alt="effects of lack of sleep for weight gain"
+        />
+      </Box>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
@@ -125,15 +129,18 @@ export function CortisolGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        <Text as="span" backgroundColor="red.200">
-          Stress and anxiety is directly linked to weight problems
-        </Text>{" "}
-        due to risen cortisol, emotional eating and disrupted sleep.
+        High stress increases cortisol production by up to 3 times,
+        <Text as="span" backgroundColor="#ffc5c5">
+          {" "}
+          leading to stubborn weight gain.
+        </Text>
       </QuizHeading>
-      <StaticImage
-        src="../../images/cortisol-graphic.jpg"
-        alt="effects of cortisol for weight gain"
-      />
+      <Box p={6} bg="white">
+        <StaticImage
+          src="../../images/cortisol-graphic.jpg"
+          alt="effects of cortisol for weight gain"
+        />
+      </Box>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
       </Stack>
@@ -215,7 +222,7 @@ export function HealthStateSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Hey! We'd like to get to know you better. How are you doing health-wise?
+        Hey! To get to know you better, tell us your current health state
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -271,7 +278,7 @@ export function AlergiesSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Please inform us of any sensitivities or allergies to tailor our recommendations.
+        Do you have any sensitivities or allergies?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -298,7 +305,7 @@ export function MedicalConditionsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Your health and comfort are our top priorities. Do you have any of these medical conditions?
+        Your health is our top priority. Do you have any of these medical conditions?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -323,8 +330,8 @@ export function OutcomesSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Imagine waking up completely refreshed and feeling leaner. How would this improve your daily
-        life and well-being?
+        Last thing! Imagine waking up completely refreshed and feeling leaner. How would this
+        improve your well-being?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -403,7 +410,7 @@ export function LoadingSlide() {
   return (
     <Slide id="loading" type="loading" variant="linear" statusText={""} autoProceed>
       <QuizHeading color="text.main" mb={4}>
-        Preparing our recommendations
+        Preparing your results and recommendations
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -443,7 +450,7 @@ export function EmailSlide() {
   return (
     <Slide id="your-email" type="email" placeholder="Enter your email">
       <QuizHeading color="text.main" mb={4}>
-        Your results and recommendations are ready!
+        Great job! Your results and recommendations are ready!
       </QuizHeading>
       <Text>Enter your email to see result, claim FREE shipping and get a limited-time offer!</Text>
       <Stack mt={4} mb={2}>

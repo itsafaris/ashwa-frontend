@@ -119,12 +119,12 @@ export default function OnboardingQuiz(props: PageProps) {
           <EmotionalEatingSlide />
           <WeightGainSlide />
           <GoalsSlide />
-          <AlergiesSlide />
-          <MedicalConditionsSlide />
           <AgeSlide />
           <HeightSlide />
           <WeightSlide />
           <WeightGoalSlide />
+          <AlergiesSlide />
+          <MedicalConditionsSlide />
           <OutcomesSlide />
           <LoadingSlide />
           <EmailSlide />

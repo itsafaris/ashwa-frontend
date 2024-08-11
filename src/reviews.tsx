@@ -165,7 +165,7 @@ export const reviews: Review[] = [
     text: "I feel sharper since I started taking this. Words come easier, and I'm killing it at work. Plus, no weird side effects. Love it!",
     name: "Susie W.",
     location: "Oregon",
-    img: <StaticImage width={400} src="./images/review8.jpeg" alt="" />,
+    img: <StaticImage width={400} src="./images/review7.jpg" alt="" />,
     score: 4.8,
     hoursAgo: 18,
   },

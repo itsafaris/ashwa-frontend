@@ -48,9 +48,9 @@ export default function Page() {
     <Box bg="bg.50">
       <BannerTop />
       <Header />
-      <Hero />
       <Banner />
       <SpecialOfferTimer />
+      <Hero />
       <ProductSelectionSection email={quizState?.email} />
       <BadgesSection />
       <FreeGift />
@@ -70,7 +70,7 @@ const FreeGift = () => {
           gridTemplateColumns={["1fr", "1fr 1fr"]}
           gap={5}
           alignItems={"start"}
-          maxW={"container.sm"}
+          maxW={["260px", "600px"]}
           mx="auto"
           mb={8}
         >
@@ -90,7 +90,7 @@ const FreeGift = () => {
 
 const Hero = () => {
   return (
-    <Box backgroundColor="brand.100" pt={6} pb={5}>
+    <Box backgroundColor="primary.100" pt={10} pb={3}>
       <Container maxW={"container.lg"} as={Stack} spacing={4}>
         <Heading
           mx="auto"
@@ -99,10 +99,12 @@ const Hero = () => {
           fontSize={["2xl", "2xl", "4xl"]}
           maxW={"container.sm"}
         >
-          We Did It: Combat Stress and Shed Pounds with Our All-in-One Solution!
+          Combat Stress and Shed Pounds with Our All-in-One Solution by Choosing your plan now
         </Heading>
 
-        <Recommendation />
+        <Box mt={1}>
+          <Recommendation />
+        </Box>
       </Container>
     </Box>
   );
@@ -110,9 +112,9 @@ const Hero = () => {
 
 const SpecialOfferTimer = () => {
   return (
-    <Box backgroundColor={"brand.100"} pt={3}>
+    <Box backgroundColor={"primary.100"} pt={1}>
       <Container maxW={"container.lg"}>
-        <Stack backgroundColor="white" px={4} py={3} width={"full"} mx="auto">
+        <Stack backgroundColor="pink.200" px={4} py={2} width={"full"} mx="auto">
           <Stack
             maxW={"container.sm"}
             width={"full"}
@@ -122,8 +124,8 @@ const SpecialOfferTimer = () => {
             justifyContent={"space-between"}
             spacing={[0, 4]}
           >
-            <Timer color={"red.400"} fontSize={"3xl"} fontWeight={"semibold"} />
-            <Text fontSize={["sm", "md"]} textAlign={"center"}>
+            <Timer color={"pink.800"} fontSize={"3xl"} fontWeight={"semibold"} />
+            <Text fontSize={["sm", "md"]} textAlign={"center"} color="pink.900">
               <Text as="span" fontWeight={"bold"}>
                 HURRY!
               </Text>{" "}
@@ -137,9 +139,9 @@ const SpecialOfferTimer = () => {
 };
 
 const Banner = () => (
-  <Box backgroundColor={"brand.100"} pt={4}>
+  <Box backgroundColor={"primary.100"} pt={4}>
     <Container maxW={"container.lg"} color="white">
-      <Stack bgGradient="linear(to-r, #f49d15, #ff4b4b)" px={4} py={3}>
+      <Stack bgGradient="linear(to-r, pink.300, pink.500)" px={4} py={3}>
         <Stack
           maxW={"container.sm"}
           width={"full"}
@@ -186,7 +188,7 @@ const Banner = () => (
 
 const BannerTop = () => (
   <Flex
-    bgGradient="linear(to-r, #f49d15, #ff4b4b)"
+    bgGradient="linear(to-r, pink.300, pink.500)"
     fontWeight={"semibold"}
     color="white"
     py={1}
@@ -217,7 +219,7 @@ function BadgesSection() {
   return (
     <SimpleGrid
       columns={[1, 1, 3]}
-      bg="primary.300"
+      bg="primary.200"
       py={6}
       flexWrap={"wrap"}
       spacing={3}
@@ -238,7 +240,7 @@ function BadgesSection() {
 
       <Flex alignItems={"center"} gap={2}>
         <Icon boxSize={6} as={LiaFlagUsaSolid} />
-        <Text fontWeight={"bold"}>Blended in the USA</Text>
+        <Text fontWeight={"bold"}>Made in the USA</Text>
       </Flex>
     </SimpleGrid>
   );

@@ -76,12 +76,8 @@ export function ProductSelectionSection({ email }: { email?: string }) {
   const v3 = mainProductOneOffVariants[2];
 
   return (
-    <Box backgroundColor={"brand.100"} py={8}>
+    <Box backgroundColor={"primary.100"} pt={3} pb={8}>
       <Container maxW={"container.lg"} id="pricing-section">
-        <Heading mx="auto" mb={6} px={8} textAlign={"center"}>
-          Choose your plan
-        </Heading>
-
         {/* <Grid gridTemplateColumns={"1fr 1fr"} gap={1} mx="auto" maxW={"450px"}>
           <Button
             size="md"
@@ -125,8 +121,8 @@ export function ProductSelectionSection({ email }: { email?: string }) {
           {v1 && (
             <ProductSelectItem
               product={v1}
-              badgeText={`Best value SAVE ${v1.discount}%`}
-              badgeBg="pink.300"
+              badgeText={`Most popular SAVE ${v1.discount}%`}
+              badgeBg="purple.300"
               hasFreeGift
               hasFreeShipping
               onBuyClick={() => {
@@ -138,7 +134,7 @@ export function ProductSelectionSection({ email }: { email?: string }) {
           {v2 && (
             <ProductSelectItem
               product={v2}
-              badgeText={`Most popular SAVE ${v2.discount}%`}
+              badgeText={`Best value SAVE ${v2.discount}%`}
               badgeBg="purple.300"
               hasFreeGift
               hasFreeShipping
