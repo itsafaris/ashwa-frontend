@@ -58,8 +58,13 @@ export function IngredientsSection() {
         alignItems={"center"}
         gap={6}
       >
-        <Stack>
-          <StaticImage alt="" src="../../images/ingredients.jpg" objectFit="contain" />
+        <Stack alignItems={"center"}>
+          <StaticImage
+            alt=""
+            src="../../images/ingredients.jpg"
+            objectFit="contain"
+            style={{ maxWidth: "400px" }}
+          />
         </Stack>
 
         <SimpleGrid

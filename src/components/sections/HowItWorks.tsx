@@ -13,6 +13,8 @@ import {
 import { StaticImage } from "gatsby-plugin-image";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { CTAButton } from "../components";
+import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowDown } from "react-icons/fa6";
 
 const comparisonData = [
   {
@@ -53,11 +55,11 @@ export function HowItWorksSection() {
         </Box>
 
         <Grid gap={8} templateColumns={["1fr", "1fr", "repeat(3, 1fr)"]} alignItems={"center"}>
-          <GridItem>
+          <GridItem alignItems={"center"} mx="auto">
             <StaticImage
               src="../../images/how-it-works.jpg"
-              alt="stressed woman"
-              style={{ borderRadius: 16 }}
+              alt="how it works"
+              style={{ borderRadius: 16, maxWidth: "400px" }}
             />
           </GridItem>
 
@@ -134,7 +136,11 @@ function Header() {
         How it works
       </Heading>
 
-      <Grid gridTemplateColumns={["1fr", "repeat(3, 1fr)"]} gap={[8, 3]}>
+      <Grid
+        gridTemplateColumns={["1fr", "1fr auto 1fr auto 1fr"]}
+        gap={[8, 3]}
+        alignItems={"center"}
+      >
         <Stack alignItems={"center"} spacing={2}>
           <StaticImage alt="" src="../../images/how-to-1.png" height={80} layout="fixed" />
 
@@ -149,6 +155,9 @@ function Header() {
           </Text>
         </Stack>
 
+        <Icon display={["none", "block"]} as={FaArrowRight} mx={"auto"} color="primary.800" />
+        <Icon display={["block", "none"]} as={FaArrowDown} mx={"auto"} color="primary.800" />
+
         <Stack alignItems={"center"} spacing={2}>
           <StaticImage alt="" src="../../images/how-to-2.png" height={80} layout="fixed" />
 
@@ -162,6 +171,9 @@ function Header() {
             Enjoy your <br /> deep night sleep
           </Text>
         </Stack>
+
+        <Icon display={["none", "block"]} as={FaArrowRight} mx={"auto"} color="primary.800" />
+        <Icon display={["block", "none"]} as={FaArrowDown} mx={"auto"} color="primary.800" />
 
         <Stack alignItems={"center"} spacing={2}>
           <StaticImage alt="" src="../../images/how-to-3.png" height={80} layout="fixed" />

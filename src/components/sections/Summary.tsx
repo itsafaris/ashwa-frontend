@@ -131,7 +131,8 @@ export const Summary = () => {
               <Text fontSize={"3xl"} fontWeight={"bold"}>
                 {state.bmi}
               </Text>
-              <BMIMeter bmi={27.68} />
+
+              <BMIMeter bmi={state.bmi} />
             </Stack>
 
             <Stack
@@ -214,7 +215,7 @@ const BMIMeter: React.FC<BMIMeterProps> = ({ bmi }) => {
   const normalRange = [18.5, 24.9];
   const badRange = [25, 29.9];
 
-  const bmiPosition = ((bmi - minBMI) / (maxBMI - minBMI)) * 100;
+  const bmiPosition = bmi >= maxBMI ? 100 : bmi <= minBMI ? 0 : (bmi * 100) / maxBMI;
 
   return (
     <Box position="relative" width="100%" height="12px">

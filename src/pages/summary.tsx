@@ -70,7 +70,7 @@ const Hero = () => {
               </Heading>
 
               <Text fontSize={"md"}>
-                Reach your goals faster and feel your best with our organic aswhagandha based
+                Reach your goals faster and feel your best with our unique aswhagandha based
                 formula.
               </Text>
             </Stack>
@@ -82,7 +82,9 @@ const Hero = () => {
 
               <Grid width={"100%"} alignItems={"center"} gridTemplateColumns={"1fr auto 1fr"}>
                 <Stack alignItems={"left"} textAlign={"left"} spacing={0} lineHeight={1.2}>
-                  <Text fontSize={"sm"}>{state.startDate}</Text>
+                  <Text fontSize={"sm"} fontWeight={"semibold"}>
+                    {state.startDate}
+                  </Text>
                   <Text fontSize={"3xl"} fontWeight={"bold"}>
                     {state.startWeight}
                   </Text>
@@ -97,7 +99,9 @@ const Hero = () => {
                   spacing={0}
                   lineHeight={1.2}
                 >
-                  <Text fontSize={"sm"}>{state.endDate}</Text>
+                  <Text fontSize={"sm"} fontWeight={"semibold"}>
+                    {state.endDate}
+                  </Text>
                   <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"right"}>
                     {state.endWeight}
                   </Text>
