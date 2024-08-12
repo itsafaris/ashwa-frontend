@@ -2,9 +2,8 @@ import { Container, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import PolicyRenderer, {
-  PolicyRendererData,
-} from "../components/PolicyRenderer";
+import PolicyRenderer, { PolicyRendererData } from "../components/PolicyRenderer";
+import { siteConfig } from "src/conf";
 
 const data: PolicyRendererData = [
   {
@@ -113,7 +112,7 @@ const data: PolicyRendererData = [
     title: "Contact Us",
     content: [
       {
-        text: "If you have any questions about this Shipping Policy, You can contact us by sending an email: info@calmr.com",
+        text: `If you have any questions about this Shipping Policy, You can contact us by sending an email: ${siteConfig.email}`,
       },
     ],
   },

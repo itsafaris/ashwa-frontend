@@ -2,9 +2,8 @@ import { Container, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import PolicyRenderer, {
-  PolicyRendererData,
-} from "../components/PolicyRenderer";
+import PolicyRenderer, { PolicyRendererData } from "../components/PolicyRenderer";
+import { siteConfig } from "src/conf";
 
 const data: PolicyRendererData = [
   {
@@ -38,7 +37,7 @@ const data: PolicyRendererData = [
         text: "Calmr is based in the USA. Our address is 110 Innovation Blvd, Wilmington, DE 19805, USA.",
       },
       {
-        text: "If you have any questions, feel free to contact us at info@calmr.com.",
+        text: `If you have any questions, feel free to contact us at ${siteConfig.email}`,
       },
       {
         text: "For more information about our products and services, visit our website at www.trycalmr.com.",

@@ -2,9 +2,8 @@ import { Container, Stack, Text } from "@chakra-ui/react";
 import React from "react";
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";
-import PolicyRenderer, {
-  PolicyRendererData,
-} from "../components/PolicyRenderer";
+import PolicyRenderer, { PolicyRendererData } from "../components/PolicyRenderer";
+import { siteConfig } from "src/conf";
 
 const data: PolicyRendererData = [
   {
@@ -22,13 +21,13 @@ const data: PolicyRendererData = [
     title: "How to Initiate a Return",
     content: [
       {
-        text: "To start a return, please contact us at info@calmr.com.",
+        text: `To start a return, please contact us at ${siteConfig.email}`,
       },
       {
         text: "If your return is approved, we will send you a return shipping label along with instructions on how and where to send your package. Items returned without first requesting a return will not be accepted.",
       },
       {
-        text: "For any questions regarding returns, you can always reach us at info@calmr.com.",
+        text: `For any questions regarding returns, you can always reach us at ${siteConfig.email}`,
       },
     ],
   },
@@ -47,7 +46,7 @@ const data: PolicyRendererData = [
         text: "Certain items are non-returnable, including perishable goods, custom products (such as special orders or personalized items), and personal care goods (such as beauty products). We also do not accept returns for hazardous materials, flammable liquids, or gases.",
       },
       {
-        text: "If you have questions or concerns about a specific item, please contact us at info@calmr.com.",
+        text: `If you have questions or concerns about a specific item, please contact us at ${siteConfig.email}`,
       },
       {
         text: "Unfortunately, we cannot accept returns on sale items or gift cards.",
@@ -80,7 +79,7 @@ const data: PolicyRendererData = [
         text: "Please note it may take some time for your bank or credit card company to process and post the refund.",
       },
       {
-        text: "If more than 15 business days have passed since your return was approved and you have not received your refund, please contact us at info@calmr.com.",
+        text: `If more than 15 business days have passed since your return was approved and you have not received your refund, please contact us at ${siteConfig.email}`,
       },
     ],
   },

@@ -6,6 +6,7 @@ export type SiteConfig = {
   websiteHostname: string;
   brandName: string;
   title: string;
+  email: string;
   stripePublicKey: string;
   stripeEnv: "live" | "test";
   version: string;
@@ -18,6 +19,7 @@ export type SiteConfig = {
 export const siteConfig: SiteConfig = {
   brandName: "Calmr",
   version: pkgjson.version,
+  email: "info@trycalmr.com",
   image: "/images/facts-image.jpg",
   title: `Most complete Blend of Ashwagandha for Modern Busy Women`,
   description:
