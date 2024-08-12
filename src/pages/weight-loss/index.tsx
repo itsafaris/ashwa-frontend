@@ -29,16 +29,21 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
             fontWeight={"bold"}
             color="primary.800"
           >
-            Combat Stress and Shed Pounds with Our All-in-One Solution
+            Combat Stress and{" "}
+            <Text as="span" textDecoration={"underline"}>
+              Shed Pounds
+            </Text>{" "}
+            with Our All-in-One Solution
           </Heading>
 
           <Stack mt={3} mb={6} alignItems={"center"} spacing={4}>
             <Text
               textAlign={"center"}
               fontWeight={"semibold"}
-              fontSize={"sm"}
+              fontSize={"md"}
               maxW={"200px"}
               mb={3}
+              color="primary.800"
             >
               Take a 1-min quiz to see if Calmr can help you!
             </Text>
