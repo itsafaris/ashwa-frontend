@@ -24,6 +24,7 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Recommendation } from "@components/Recommendation";
 
 import { ReadableStateProvider, useReadableState } from "@components/sections/summaryCtx";
+import { Span } from "@components/components";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -65,13 +66,17 @@ const Hero = () => {
             justifyContent={"space-between"}
           >
             <Stack textAlign={["center", "center", "left"]}>
-              <Heading fontSize={["4xl", "4xl", "5xl"]} maxW={"container.sm"}>
-                Fuel your weight loss with Calmr
+              <Heading fontSize={["2xl", "2xl", "3xl"]} maxW={"container.sm"}>
+                Our product is a perfect match for your{" "}
+                <Span textDecoration={"underline"}>improved sleep</Span> and{" "}
+                <Span textDecoration={"underline"}>maximized fat burn</Span>
               </Heading>
 
-              <Text fontSize={"md"}>
-                Reach your goals faster and feel your best with our unique aswhagandha based
-                formula.
+              <Text fontSize={"lg"} mt={4}>
+                <Span fontWeight={"bold"} fontSize={"xl"}>
+                  83%
+                </Span>{" "}
+                of our users with the same answers started losing pounds in the first few weeks.
               </Text>
             </Stack>
 
@@ -120,6 +125,7 @@ const Hero = () => {
                   textAlign={"center"}
                 >
                   {state.weightDiff}
+                  {state.weightSuffix}
                 </Text>
               </Box>
             </Stack>

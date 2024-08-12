@@ -100,7 +100,8 @@ export type ReadableState = {
   startDate: string;
   endWeight: string;
   endDate: string;
-  weightDiff: string;
+  weightDiff: number;
+  weightSuffix: string;
   monthlyLoss: string;
   lossByWeeks: string[];
   height: string;
@@ -168,7 +169,8 @@ export function getReadableState(): ReadableState | undefined {
     endWeight: `${round(weightGoal)}${suffixW}`,
     startDate: program.startDate,
     endDate: program.endDate,
-    weightDiff: `-${round(weight) - round(weightGoal)}${suffixW}`,
+    weightDiff: -1 * Math.abs(round(weightGoal) - round(weight)),
+    weightSuffix: suffixW,
     monthlyLoss: `-${round(unitSystem === "metric" ? 4.7 : 4.7 * imperialCoff)}${suffixW}`,
     lossByWeeks,
     height: `${height}${suffixH}`,

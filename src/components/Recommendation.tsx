@@ -13,14 +13,10 @@ export function Recommendation() {
 
       <Text flex={1} fontSize={"sm"} fontWeight={"semibold"}>
         We recommend starting with the{" "}
-        <Span fontWeight={"bold"} textDecoration={"underline"} backgroundColor={"primary.300"}>
+        <Span fontWeight={"bold"} textDecoration={"underline"}>
           3-month plan
         </Span>{" "}
-        to achieve effective results or a{" "}
-        <Span fontWeight={"bold"} textDecoration={"underline"} backgroundColor={"primary.300"}>
-          6-month plan
-        </Span>{" "}
-        to form a longer-lasting routine.
+        to achieve the most effective results in the shortest time.
       </Text>
     </Stack>
   );

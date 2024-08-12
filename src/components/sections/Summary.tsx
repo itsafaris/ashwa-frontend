@@ -177,13 +177,9 @@ export const Summary = () => {
                   <StaticImage alt="" src="../../images/woman-photo-1.jpg" width={170} />
                 </Stack>
 
-                <Heading textAlign={["center", "left"]} fontSize={["3xl", "3xl", "3xl"]}>
-                  Some headline bla bla bla
+                <Heading textAlign={["center", "left"]} fontSize={"2xl"}>
+                  92% of our customers report significant results in their first month of use
                 </Heading>
-
-                <Text textAlign={["center", "left"]} fontSize={"sm"}>
-                  In your first month
-                </Text>
 
                 <Stack display={["none", "none", "flex"]} mt={5}>
                   <CTAButton alignItems={"left"} width={"260px"} />
