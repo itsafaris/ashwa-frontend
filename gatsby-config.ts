@@ -40,7 +40,7 @@ const config: GatsbyConfig = {
         apiKey: "phc_8GZnMTIRMuj7aNKBpluPe46MiqUaFn4RiuH4TtCnmme",
         apiHost: "https://us.i.posthog.com",
         head: true,
-        isEnabledDevMode: true,
+        isEnabledDevMode: false,
         initOptions: {
           autocapture: false,
           debug: !isProdMode(),
