@@ -18,28 +18,28 @@ import { FaArrowDown } from "react-icons/fa6";
 
 const comparisonData = [
   {
+    your_product: "Drift off to sleep effortlessly",
+    competitors: "Struggle to fall asleep",
+  },
+  {
+    your_product: "Deep, blissful full night sleep",
+    competitors: "Tossing and turning all night",
+  },
+  {
+    your_product: "Control late-night cravings easily",
+    competitors: "Tempted by late-night snacks",
+  },
+  {
     your_product: "Handles stress with ease",
     competitors: "Overwhelmed by daily stress",
   },
   {
-    your_product: "Enjoys steady, all-day energy",
-    competitors: "Struggles with energy crashes",
+    your_product: "Wake up feeling energized",
+    competitors: "Zombie mode until noon",
   },
   {
-    your_product: "Sleeps soundly, wakes refreshed",
-    competitors: "Tosses and turns at night",
-  },
-  {
-    your_product: "Skin glows with vitality",
-    competitors: "Skin looks dull and tired",
-  },
-  {
-    your_product: "Balanced mood, stronger connections",
-    competitors: "Mood swings affect relationships",
-  },
-  {
-    your_product: "Crushing goals, living vibrantly",
-    competitors: "Feels stuck in a rut",
+    your_product: "Supercharged and thriving",
+    competitors: "Running on empty",
   },
 ];
 
