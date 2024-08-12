@@ -64,7 +64,7 @@ export const topReviews: Review[] = [
   {
     title: "One of my favorites",
     text: "Sleeping better and less brain fog",
-    name: "Hazel V.",
+    name: "Susie W.",
     location: "Virginia",
     score: 5,
     productImg: <StaticImage src="./images/product-3-small.png" alt="" />,
@@ -84,7 +84,7 @@ export const topReviews: Review[] = [
     hoursAgo: 19,
   },
   {
-    title: "One of my favorites",
+    title: "Sleeping better and less brain fog",
     text: "Sleeping better and less brain fog",
     name: "Hazel V.",
     location: "Virginia",
@@ -118,6 +118,15 @@ export const reviews: Review[] = [
     hoursAgo: 12,
   },
   {
+    title: "-34 pounds in 7 weeks",
+    text: "Love it! FINALLY my weight is starting to slowly budge!",
+    name: "Amanda B.",
+    location: "Georgia",
+    img: <StaticImage width={400} src="./images/review3.jpg" alt="" />,
+    score: 4.7,
+    hoursAgo: 22,
+  },
+  {
     title: "Sleep like a baby now",
     text: "Used to toss and turn all night, but since I started taking ashwagandha, I'm out like a light. Wake up feeling refreshed too. Win-win!",
     name: "Jane T.",
@@ -145,7 +154,7 @@ export const reviews: Review[] = [
   },
   {
     title: "More energy",
-    text: "So far so good. Second week. Seem to have more energy, sleeping better and less brain fog",
+    text: "So far so good. Second week. Seem to have more energy, sleeping better and less brain fog in the morning",
     name: "Ashley L.",
     location: "North Carolina",
     score: 4.9,
@@ -161,8 +170,8 @@ export const reviews: Review[] = [
     hoursAgo: 17,
   },
   {
-    title: "Bye bye brain fog",
-    text: "I feel sharper since I started taking this. Words come easier, and I'm killing it at work. Plus, no weird side effects. Love it!",
+    title: "Feeling refreshed in the morning",
+    text: "I wake up feeling sooooo much better since I started them (almost 2 months in). And I'm 11 pounds off. So far so good",
     name: "Susie W.",
     location: "Oregon",
     img: <StaticImage width={400} src="./images/review7.jpg" alt="" />,
@@ -178,8 +187,8 @@ export const reviews: Review[] = [
     hoursAgo: 19,
   },
   {
-    title: "Focus on point",
-    text: "WFH was killing my concentration. Since taking this, I'm way more productive",
+    title: "Stress is a killer",
+    text: "Taking care of your stress issues is probably the best thing you can do for your body. Everything else becomes so easy after...",
     name: "Lisa M.",
     location: "North Carolina",
     score: 4.6,
@@ -195,17 +204,8 @@ export const reviews: Review[] = [
     hoursAgo: 19,
   },
   {
-    title: "Helping with my mood swings",
-    text: "I get pretty moody sometimes, but this stuff helps level me out. Hubby's noticed too. Feeling more like myself again",
-    name: "Amanda B.",
-    location: "Georgia",
-    img: <StaticImage width={400} src="./images/review3.jpg" alt="" />,
-    score: 4.7,
-    hoursAgo: 22,
-  },
-  {
     title: "I was sceptical",
-    text: "But it actually works! I'm less emotional and less tired.",
+    text: "But it actually works! I'm less emotional and less tired. And I fall asleep much quicker",
     name: "Caroline P.",
     location: "Colorado",
     score: 4.2,

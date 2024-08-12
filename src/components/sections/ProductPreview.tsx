@@ -41,7 +41,7 @@ export function ProductPreview() {
         </Stack>
 
         <Box gridArea={"image"} mx="auto" display={["none", "block"]}>
-          <StaticImage src="../../images/product-preview-desktop.jpg" alt="" />
+          <StaticImage src="../../images/product-preview-desktop.jpg" alt="" width={460} />
         </Box>
 
         <Box gridArea={"image"} mx="auto" display={["block", "none"]}>

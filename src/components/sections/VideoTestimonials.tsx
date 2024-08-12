@@ -72,7 +72,7 @@ function TopReview({ review }: { review: Review }) {
         {review.productImg && <Flex ml="-30px">{review.productImg}</Flex>}
 
         <Stack fontSize={"xs"} spacing={0}>
-          <Text fontWeight={"semibold"}>"{review.text}"</Text>
+          <Text fontWeight={"semibold"}>"{review.title}"</Text>
           <Text>{review.name}</Text>
         </Stack>
       </Grid>
