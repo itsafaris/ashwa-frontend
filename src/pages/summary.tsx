@@ -231,7 +231,7 @@ const Hero = () => {
               ml="auto"
               display={["none", "none", "flex"]}
             >
-              <Heading fontSize={["2xl", "2xl", "4xl"]} maxW={"container.sm"} fontWeight={"bold"}>
+              <Heading fontSize={["2xl", "2xl", "3xl"]} maxW={"container.sm"} fontWeight={"bold"}>
                 Turn small wins into big achievements
               </Heading>
 

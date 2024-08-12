@@ -29,12 +29,18 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
             fontWeight={"bold"}
             color="primary.800"
           >
-            Is the high cortisol level the main cause of your weight gain?
+            Combat Stress and Shed Pounds with Our All-in-One Solution
           </Heading>
 
-          <Stack mt={4} mb={6} alignItems={"center"} spacing={4}>
-            <Text textAlign={"center"} fontWeight={"semibold"}>
-              Take a 1-min quiz to see your results
+          <Stack mt={3} mb={6} alignItems={"center"} spacing={4}>
+            <Text
+              textAlign={"center"}
+              fontWeight={"semibold"}
+              fontSize={"sm"}
+              maxW={"200px"}
+              mb={3}
+            >
+              Take a 1-min quiz to see if Calmr can help you!
             </Text>
 
             <CTA />
@@ -140,13 +146,13 @@ export default function WeightLossPage(props: IWeightLossPageProps) {
 
           <Stack mt={8} mb={8} alignItems={"center"} spacing={4}>
             <Heading
-              lineHeight={1.2}
+              lineHeight={1.3}
               fontSize={"2xl"}
               textAlign={"center"}
               fontWeight={"bold"}
               color="primary.800"
             >
-              Take a 1-min quiz to see your results
+              Take a 1-min quiz to see if <br /> Calmr can help you!
             </Heading>
 
             <CTA />
