@@ -29,6 +29,7 @@ const common1 = {
       alt="ashwagandha supplements bottle"
       src={"./images/product-1.jpg"}
       placeholder="blurred"
+      width={240}
     />
   ),
 };
@@ -42,6 +43,7 @@ const common3 = {
       alt="ashwagandha supplements bottle"
       src={"./images/product-2.jpg"}
       placeholder="blurred"
+      width={240}
     />
   ),
 };
@@ -55,6 +57,7 @@ const common6 = {
       alt="ashwagandha supplements bottle"
       src={"./images/product-3.jpg"}
       placeholder="blurred"
+      width={240}
     />
   ),
 };
