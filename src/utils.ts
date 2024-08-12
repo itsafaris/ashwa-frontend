@@ -1,4 +1,4 @@
-import { loadQuizState } from "./localStorage";
+import { loadQuizState, SavedState } from "./localStorage";
 
 export function isProdMode() {
   return process.env.NODE_ENV === "production";
@@ -66,12 +66,33 @@ export function calcProgramDates(
   endDateObj.setMonth(startDateObj.getMonth() + monthsNeeded);
 
   return {
-    startDate: `${
-      monthNames[startDateObj.getMonth()]
-    } ${startDateObj.getFullYear()}`,
+    startDate: `${monthNames[startDateObj.getMonth()]} ${startDateObj.getFullYear()}`,
     endDate: `${monthNames[endDateObj.getMonth()]} ${endDateObj.getFullYear()}`,
   };
 }
+
+// const savedStateMock: SavedState = {
+//   version: 1,
+//   unitSystem: "metric",
+//   email: "dsad@dfsf.cm",
+//   age: 55,
+//   height: {
+//     cm: 170,
+//     ft: null,
+//     in: null,
+//   },
+//   weight: 200,
+//   weightGoal: 60,
+//   goals: ["Manage weight more effectively"],
+//   healthState: "Poor",
+//   stressFrequency: "Rarely",
+//   symptoms: ["Weight bouncing back", "Hunger/cravings"],
+//   medicalConditions: ["Other"],
+//   emotionalEating: "",
+//   weightGain: "No",
+//   alergies: ["Sesame", "Other"],
+//   gender: "female",
+// };
 
 export type ReadableState = {
   age: number;
@@ -103,8 +124,8 @@ export function getReadableState(): ReadableState | undefined {
         ? state.height.cm
         : null
       : state.height.ft && state.height.in
-      ? state.height.ft * 12 + state.height.in
-      : null
+        ? state.height.ft * 12 + state.height.in
+        : null
     : null;
   const gender = state.gender;
   const age = state.age;
@@ -148,9 +169,7 @@ export function getReadableState(): ReadableState | undefined {
     startDate: program.startDate,
     endDate: program.endDate,
     weightDiff: `-${round(weight) - round(weightGoal)}${suffixW}`,
-    monthlyLoss: `-${round(
-      unitSystem === "metric" ? 4.7 : 4.7 * imperialCoff
-    )}${suffixW}`,
+    monthlyLoss: `-${round(unitSystem === "metric" ? 4.7 : 4.7 * imperialCoff)}${suffixW}`,
     lossByWeeks,
     height: `${height}${suffixH}`,
     gender: gender === "female" ? "Female" : "Male",
