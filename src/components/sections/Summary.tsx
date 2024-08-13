@@ -12,10 +12,11 @@ import { Box, Heading, Text, Icon, Container, Stack, Grid } from "@chakra-ui/rea
 import { CTAButton } from "../components";
 
 import { StaticImage } from "gatsby-plugin-image";
-import { useReadableState } from "./summaryCtx";
+import { useSummaryState } from "./summaryCtx";
+import { capitalizeFirstLetter } from "src/utils";
 
 export const Summary = () => {
-  const state = useReadableState();
+  const state = useSummaryState();
 
   return (
     <Box backgroundColor={"brand.100"} py={10}>
@@ -46,7 +47,7 @@ export const Summary = () => {
                 Gender
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
-                {state.gender}
+                {capitalizeFirstLetter(state.gender)}
               </Text>
             </Stack>
 
@@ -85,6 +86,7 @@ export const Summary = () => {
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
                 {state.height}
+                {state.heightUnits}
               </Text>
             </Stack>
 
@@ -103,7 +105,8 @@ export const Summary = () => {
                 Weight
               </Text>
               <Text fontSize={"2xl"} fontWeight={"bold"}>
-                {state.startWeight}
+                {state.weightStart}
+                {state.weightUnits}
               </Text>
             </Stack>
           </Grid>

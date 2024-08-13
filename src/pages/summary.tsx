@@ -23,8 +23,9 @@ import { FaArrowRight } from "react-icons/fa6";
 
 import { Recommendation } from "@components/Recommendation";
 
-import { ReadableStateProvider, useReadableState } from "@components/sections/summaryCtx";
+import { SummaryStateProvider, useSummaryState } from "@components/sections/summaryCtx";
 import { Span } from "@components/components";
+import { getReadableDateTime } from "src/utils";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -32,7 +33,7 @@ export const Head: HeadFC = () => {
 
 export default function Page() {
   return (
-    <ReadableStateProvider>
+    <SummaryStateProvider>
       <Box>
         <Header />
         <Hero />
@@ -46,12 +47,12 @@ export default function Page() {
         <AshwaRevivalSection />
         <Footer />
       </Box>
-    </ReadableStateProvider>
+    </SummaryStateProvider>
   );
 }
 
 const Hero = () => {
-  const state = useReadableState();
+  const state = useSummaryState();
 
   return (
     <Box backgroundColor={"brand.100"}>
@@ -88,10 +89,11 @@ const Hero = () => {
               <Grid width={"100%"} alignItems={"center"} gridTemplateColumns={"1fr auto 1fr"}>
                 <Stack alignItems={"left"} textAlign={"left"} spacing={0} lineHeight={1.2}>
                   <Text fontSize={"sm"} fontWeight={"semibold"}>
-                    {state.startDate}
+                    {getReadableDateTime(state.weightStartTime)}
                   </Text>
                   <Text fontSize={"3xl"} fontWeight={"bold"}>
-                    {state.startWeight}
+                    {state.weightStart}
+                    {state.weightUnits}
                   </Text>
                 </Stack>
 
@@ -105,10 +107,11 @@ const Hero = () => {
                   lineHeight={1.2}
                 >
                   <Text fontSize={"sm"} fontWeight={"semibold"}>
-                    {state.endDate}
+                    {getReadableDateTime(state.weightEndTime)}
                   </Text>
                   <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"right"}>
-                    {state.endWeight}
+                    {state.weightEnd}
+                    {state.weightUnits}
                   </Text>
                 </Stack>
               </Grid>
@@ -125,7 +128,7 @@ const Hero = () => {
                   textAlign={"center"}
                 >
                   {state.weightDiff}
-                  {state.weightSuffix}
+                  {state.weightUnits}
                 </Text>
               </Box>
             </Stack>
@@ -142,7 +145,8 @@ const Hero = () => {
             <Stack p={6} backgroundColor="white" borderRadius={"lg"}>
               <Stack justifyContent={"end"} spacing={1} lineHeight={1.3} mb={6}>
                 <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"right"}>
-                  {state.monthlyLoss}
+                  {state.weightAvgMonthlyLoss}
+                  {state.weightUnits}
                 </Text>
                 <Text textAlign={"right"} fontSize={"sm"}>
                   In your first month
@@ -165,7 +169,8 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {state.lossByWeeks[0]}
+                      {state.weightLossByWeeks[0]}
+                      {state.weightUnits}
                     </Text>
                   </Stack>
 
@@ -176,7 +181,8 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {state.lossByWeeks[1]}
+                      {state.weightLossByWeeks[1]}
+                      {state.weightUnits}
                     </Text>
                   </Stack>
 
@@ -187,7 +193,8 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {state.lossByWeeks[2]}
+                      {state.weightLossByWeeks[2]}
+                      {state.weightUnits}
                     </Text>
                   </Stack>
 
@@ -198,7 +205,8 @@ const Hero = () => {
                       textAlign={"center"}
                       mb={2}
                     >
-                      {state.lossByWeeks[3]}
+                      {state.weightLossByWeeks[3]}
+                      {state.weightUnits}
                     </Text>
                   </Stack>
                 </Grid>

@@ -1,10 +1,10 @@
 import { Box, Heading, Text, Container, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
-import { useReadableState } from "./summaryCtx";
+import { useSummaryState } from "./summaryCtx";
 import { Span } from "@components/components";
 
 export function ProductPreview() {
-  const state = useReadableState();
+  const state = useSummaryState();
 
   return (
     <Container maxW={"container.lg"}>
@@ -26,8 +26,8 @@ export function ProductPreview() {
           <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"}>
             Lose an average of{" "}
             <Span color="primary.600" fontWeight={"bold"} textDecoration={"underline"}>
-              {Math.abs(state.weightDiff)}
-              {state.weightSuffix}
+              {state.weightDiff}
+              {state.weightUnits}
             </Span>{" "}
             in only 90 days -
             <br /> while also sleeping better.

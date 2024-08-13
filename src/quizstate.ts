@@ -9,7 +9,7 @@ import {
   Snapshot,
   WeightState,
 } from "@lib/quiz-lib";
-import { convertHeightToCm, convertWeightToKg } from "./utils";
+import { toHeightMetric, toWeightMetric } from "./utils";
 
 export type QuizStateTyped = ReturnType<typeof getTypedQuizState>;
 
@@ -24,23 +24,16 @@ export function getTypedQuizState(quizState: QuizState | Snapshot<QuizState>) {
   const height = (slideState["height"] as HeightState)?.value;
   const weight = (slideState["weight"] as WeightState)?.value;
   const weightGoal = (slideState["weight-goal"] as WeightState)?.value;
-  const goals = (slideState["goals"] as MultiState)?.value?.map(
-    (it) => it.value
-  );
+  const goals = (slideState["goals"] as MultiState)?.value?.map((it) => it.value);
   const healthState = (slideState["health-state"] as SingleState)?.value?.value;
   const stressFrequency = (slideState["stress"] as SingleState)?.value?.value;
-  const symptoms = (slideState["symptoms"] as MultiState)?.value?.map(
-    (it) => it.value
-  );
-  const emotionalEating = (slideState["emotional-eating"] as SingleState)?.value
-    ?.value;
+  const symptoms = (slideState["symptoms"] as MultiState)?.value?.map((it) => it.value);
+  const emotionalEating = (slideState["emotional-eating"] as SingleState)?.value?.value;
   const weightGain = (slideState["weight-gain"] as SingleState)?.value?.value;
-  const medicalConditions = (
-    slideState["medical-conditions"] as MultiState
-  )?.value?.map((it) => it.value);
-  const alergies = (slideState["alergies"] as MultiState)?.value?.map(
+  const medicalConditions = (slideState["medical-conditions"] as MultiState)?.value?.map(
     (it) => it.value
   );
+  const alergies = (slideState["alergies"] as MultiState)?.value?.map((it) => it.value);
 
   return {
     version: STATE_VERSION, // IMPORTANT - change this if making breaking changes to the state object
@@ -67,7 +60,7 @@ export function getCalculatedState(quizState: QuizState | Snapshot<QuizState>) {
   let heightInCM: number | null = null;
   if (s.height) {
     if (s.unitSystem === "imperial") {
-      heightInCM = convertHeightToCm(s.height.ft ?? 0, s.height.in ?? 0);
+      heightInCM = toHeightMetric(s.height.ft ?? 0, s.height.in ?? 0);
     } else {
       heightInCM = s.height.cm;
     }
@@ -76,7 +69,7 @@ export function getCalculatedState(quizState: QuizState | Snapshot<QuizState>) {
   let weightInKG: number | null = null;
   if (s.weight) {
     if (s.unitSystem === "imperial") {
-      weightInKG = convertWeightToKg(s.weight);
+      weightInKG = toWeightMetric(s.weight);
     } else {
       weightInKG = s.weight;
     }
@@ -85,7 +78,7 @@ export function getCalculatedState(quizState: QuizState | Snapshot<QuizState>) {
   let weightGoalInKG: number | null = null;
   if (s.weightGoal) {
     if (s.unitSystem === "imperial") {
-      weightGoalInKG = convertWeightToKg(s.weightGoal);
+      weightGoalInKG = toWeightMetric(s.weightGoal);
     } else {
       weightGoalInKG = s.weightGoal;
     }
@@ -96,7 +89,6 @@ export function getCalculatedState(quizState: QuizState | Snapshot<QuizState>) {
     heightInCM,
     weightInKG,
     weightGoalInKG,
-    weightDiffInKG:
-      weightGoalInKG && weightInKG ? weightGoalInKG - weightInKG : null,
+    weightDiffInKG: weightGoalInKG && weightInKG ? weightGoalInKG - weightInKG : null,
   };
 }
