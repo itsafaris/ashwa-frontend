@@ -131,6 +131,7 @@ const Hero = () => {
                   fontWeight={"bold"}
                   textAlign={"center"}
                 >
+                  {state.weightDiff > 0 ? "-" : ""}
                   {state.weightDiff}
                   {state.weightUnits}
                 </Text>

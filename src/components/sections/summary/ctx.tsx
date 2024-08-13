@@ -2,7 +2,7 @@ import { navigate } from "gatsby";
 import React from "react";
 import { SummaryState } from "./types";
 import { getSummaryState } from "./utils";
-import { loadQuizState } from "src/localStorage";
+import { loadQuizState, SavedState } from "src/localStorage";
 
 // const savedStateMock: SavedState = {
 //   version: 1,
@@ -15,7 +15,7 @@ import { loadQuizState } from "src/localStorage";
 //     in: null,
 //   },
 //   weight: 200,
-//   weightGoal: 60,
+//   weightGoal: 200,
 //   goals: ["Manage weight more effectively"],
 //   healthState: "Poor",
 //   stressFrequency: "Rarely",
