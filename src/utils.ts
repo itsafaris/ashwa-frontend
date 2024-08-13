@@ -29,9 +29,7 @@ export function toHeightMetric(feet: number, inches: number): number {
   return feetToCm + inchesToCm;
 }
 
-export function getReadableDateTime(time: number): string {
-  const date = new Date(time);
-
+export function getReadableDateTime(date: Date): string {
   return `${MONTH_NAMES[date.getMonth()]} ${date.getFullYear()}`;
 }
 

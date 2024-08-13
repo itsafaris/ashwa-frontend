@@ -1,86 +1,10 @@
-import { navigate } from "gatsby";
-import React from "react";
-import { SavedState, loadQuizState } from "../../localStorage";
-import { WEIGHT_COFF_IMPERIAL } from "src/utils";
-
-// const savedStateMock: SavedState = {
-//   version: 1,
-//   unitSystem: "metric",
-//   email: "dsad@dfsf.cm",
-//   age: 55,
-//   height: {
-//     cm: 170,
-//     ft: null,
-//     in: null,
-//   },
-//   weight: 200,
-//   weightGoal: 60,
-//   goals: ["Manage weight more effectively"],
-//   healthState: "Poor",
-//   stressFrequency: "Rarely",
-//   symptoms: ["Weight bouncing back", "Hunger/cravings"],
-//   medicalConditions: ["Other"],
-//   emotionalEating: "",
-//   weightGain: "No",
-//   alergies: ["Sesame", "Other"],
-//   gender: "female",
-// };
-
-export type SummaryState = {
-  weightStartTime: number;
-  weightEndTime: number;
-  weightEnd: number;
-  weightStart: number;
-  weightDiff: number;
-  weightLossByWeeks: number[];
-  weightAvgMonthlyLoss: number;
-  weightUnits: string;
-  height: number;
-  heightUnits: string;
-  gender: string;
-  bmi: number;
-  age: number;
-  metabolicAge: number;
-};
-
-export const SummaryStateCtx = React.createContext<SummaryState | null>(null);
-
-export function SummaryStateProvider({ children }: React.PropsWithChildren) {
-  const [state, setState] = React.useState<SummaryState | null>(null);
-
-  React.useEffect(() => {
-    const summaryState = getSummaryState();
-    if (!summaryState) {
-      navigate("/weight-loss");
-    } else {
-      setState(summaryState);
-    }
-  }, []);
-
-  if (state === null) {
-    return null;
-  }
-
-  return <SummaryStateCtx.Provider value={state}>{children}</SummaryStateCtx.Provider>;
-}
-
-export function useSummaryState() {
-  const res = React.useContext(SummaryStateCtx);
-  if (!res) {
-    throw Error("useSummaryState had to be used within SummaryStateProvider");
-  }
-
-  return res;
-}
+import { SavedState } from "../../../localStorage";
+import { WEIGHT_COFF_IMPERIAL } from "../../../utils";
+import { SummaryState } from "./types";
 
 const AVG_MONTHLY_WEIGHT_LOSS_METRIC = 4.7;
 
-export function getSummaryState(): SummaryState | undefined {
-  const state = loadQuizState();
-  if (!state) {
-    return;
-  }
-
+export function getSummaryState(state: SavedState): SummaryState | undefined {
   if (
     state.weight == null ||
     state.weightGoal == null ||
@@ -99,21 +23,15 @@ export function getSummaryState(): SummaryState | undefined {
 
   const weightUnits = getWeightUnits(state.unitSystem);
   const weightDiff = getWeightDiff(state.weight, state.weightGoal);
-  const weightAvgMonthlyLoss = getAvgMonthlyWeightLoss(state.unitSystem);
+  const weightAvgMonthlyLoss = round(getAvgMonthlyWeightLoss(state.unitSystem));
   const weightLossByWeeks = getMonthlyWeightLossByWeeks(state.weight, state.unitSystem);
-  const { weightStartTime, weightEndTime } = getWeightLossEstimate(
-    state.weight,
-    state.weightGoal,
-    state.unitSystem
-  );
 
   return {
     weightStart: round(state.weight),
     weightEnd: round(state.weightGoal),
     weightDiff: round(weightDiff),
-    weightStartTime,
-    weightEndTime,
     weightUnits,
+    weightLossDuration: getWeightLossDuration(state.weight, state.weightGoal, state.unitSystem),
     weightAvgMonthlyLoss,
     weightLossByWeeks,
     height,
@@ -125,25 +43,15 @@ export function getSummaryState(): SummaryState | undefined {
   };
 }
 
-function getWeightLossEstimate(
+function getWeightLossDuration(
   startWeight: number,
   endWeight: number,
   unitSystem: SavedState["unitSystem"]
-): {
-  weightStartTime: number;
-  weightEndTime: number;
-} {
+): number {
   const weightLossPerMonth = getAvgMonthlyWeightLoss(unitSystem);
   const weightDiff = getWeightDiff(startWeight, endWeight);
   const monthCount = startWeight <= endWeight ? 0 : Math.ceil(weightDiff / weightLossPerMonth);
-  const start = new Date();
-  const end = new Date();
-  end.setMonth(start.getMonth() + monthCount);
-
-  return {
-    weightStartTime: start.getTime(),
-    weightEndTime: end.getTime(),
-  };
+  return monthCount;
 }
 
 function getMonthlyWeightLossByWeeks(weightStart: number, unitSystem: SavedState["unitSystem"]) {

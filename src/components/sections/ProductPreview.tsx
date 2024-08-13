@@ -1,6 +1,6 @@
 import { Box, Heading, Text, Container, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
-import { useSummaryState } from "./summaryCtx";
+import { useSummaryState } from "./summary/ctx";
 import { Span } from "@components/components";
 
 export function ProductPreview() {

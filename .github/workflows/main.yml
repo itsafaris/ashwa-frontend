@@ -15,6 +15,7 @@ jobs:
       - uses: oven-sh/setup-bun@v2
       - run: bun install --frozen-lockfile
       - run: bun run build
+      - run: bun run test
         env:
           GATSBY_WEBSITE_HOSTNAME: https://trycalmr.com
           GATSBY_STRIPE_PUBLIC_KEY: pk_live_51PdZVqCSMlpgjECRHtH15CLT2Q2fdn5faGSPUrUnGdEwffHMuNsNLuU7olWduyZfRAWQnpWtchled4zCmT9cIk4j00oNyOrM9w

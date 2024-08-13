@@ -23,7 +23,7 @@ import { FaArrowRight } from "react-icons/fa6";
 
 import { Recommendation } from "@components/Recommendation";
 
-import { SummaryStateProvider, useSummaryState } from "@components/sections/summaryCtx";
+import { SummaryStateProvider, useSummaryState } from "@components/sections/summary/ctx";
 import { Span } from "@components/components";
 import { getReadableDateTime } from "src/utils";
 
@@ -53,6 +53,10 @@ export default function Page() {
 
 const Hero = () => {
   const state = useSummaryState();
+
+  const startDate = new Date();
+  const endDate = new Date();
+  endDate.setMonth(startDate.getMonth() + state.weightLossDuration);
 
   return (
     <Box backgroundColor={"brand.100"}>
@@ -89,7 +93,7 @@ const Hero = () => {
               <Grid width={"100%"} alignItems={"center"} gridTemplateColumns={"1fr auto 1fr"}>
                 <Stack alignItems={"left"} textAlign={"left"} spacing={0} lineHeight={1.2}>
                   <Text fontSize={"sm"} fontWeight={"semibold"}>
-                    {getReadableDateTime(state.weightStartTime)}
+                    {getReadableDateTime(startDate)}
                   </Text>
                   <Text fontSize={"3xl"} fontWeight={"bold"}>
                     {state.weightStart}
@@ -107,7 +111,7 @@ const Hero = () => {
                   lineHeight={1.2}
                 >
                   <Text fontSize={"sm"} fontWeight={"semibold"}>
-                    {getReadableDateTime(state.weightEndTime)}
+                    {getReadableDateTime(endDate)}
                   </Text>
                   <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"right"}>
                     {state.weightEnd}

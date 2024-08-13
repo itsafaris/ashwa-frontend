@@ -12,7 +12,7 @@ import { Box, Heading, Text, Icon, Container, Stack, Grid } from "@chakra-ui/rea
 import { CTAButton } from "../components";
 
 import { StaticImage } from "gatsby-plugin-image";
-import { useSummaryState } from "./summaryCtx";
+import { useSummaryState } from "./summary/ctx";
 import { capitalizeFirstLetter } from "src/utils";
 
 export const Summary = () => {
