@@ -116,9 +116,12 @@ export function mergeWithStripeVariant(
   productMeta: ProductMeta,
   productVariant: ProductVariantFragment
 ): Product {
-  const discount = parseInt(productVariant.autoDiscount?.value ?? "0");
   const priceBefore = parseFloat(productVariant.price.amount);
-  const priceNow = Math.ceil((1 - discount / 100) * priceBefore * 100) / 100;
+  const priceNow = parseFloat(
+    productVariant.priceAfterDiscount?.value ?? productVariant.price.amount
+  );
+  const discount = Math.round(((priceBefore - priceNow) / priceBefore) * 100);
+
   const unitPrice = priceNow;
   const unitPriceBefore = priceBefore;
 
