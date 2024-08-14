@@ -75,11 +75,11 @@ const Hero = () => {
             <Stack textAlign={["center", "center", "left"]}>
               <Heading color="primary.700" fontSize={["3xl", "3xl", "3xl"]} maxW={"container.sm"}>
                 Our Product Is a Perfect Match For Your{" "}
-                <Span textDecoration={"underline"} color="black">
+                <Span textDecoration={"underline"} color="primary.900">
                   Improved Sleep
                 </Span>{" "}
                 and{" "}
-                <Span textDecoration={"underline"} color="black">
+                <Span textDecoration={"underline"} color="primary.900">
                   Maximized Fat Burn
                 </Span>
               </Heading>
@@ -251,7 +251,12 @@ const Hero = () => {
               ml="auto"
               display={["none", "none", "flex"]}
             >
-              <Heading fontSize={["2xl", "2xl", "3xl"]} maxW={"container.sm"} fontWeight={"bold"}>
+              <Heading
+                fontSize={["2xl", "2xl", "3xl"]}
+                maxW={"container.sm"}
+                fontWeight={"bold"}
+                color="primary.900"
+              >
                 Turn Small Wins Into Big Achievements
               </Heading>
 
