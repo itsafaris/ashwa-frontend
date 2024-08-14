@@ -85,10 +85,10 @@ function getHeight(
   unitSystem: SavedState["unitSystem"]
 ) {
   return unitSystem === "metric"
-    ? height.cm
+    ? height.cm != null
       ? height.cm
       : null
-    : height.ft && height.in
+    : height.ft != null && height.in != null
       ? height.ft * 12 + height.in
       : null;
 }
