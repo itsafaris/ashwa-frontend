@@ -26,11 +26,11 @@ export function ProductPreview() {
           <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"}>
             Lose an average of{" "}
             <Span color="primary.600" fontWeight={"bold"} textDecoration={"underline"}>
-              {state.weightDiff}
+              {Math.round(state.weightAvgMonthlyLoss * 3)}
               {state.weightUnits}
             </Span>{" "}
             in only 90 days -
-            <br /> while also sleeping better.
+            <br /> while also sleeping better*
           </Heading>
 
           <Text fontSize={"md"} mt={4}>

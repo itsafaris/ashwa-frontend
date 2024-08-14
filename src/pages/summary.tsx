@@ -71,10 +71,15 @@ const Hero = () => {
             justifyContent={"space-between"}
           >
             <Stack textAlign={["center", "center", "left"]}>
-              <Heading fontSize={["2xl", "2xl", "3xl"]} maxW={"container.sm"}>
-                Our product is a perfect match for your{" "}
-                <Span textDecoration={"underline"}>improved sleep</Span> and{" "}
-                <Span textDecoration={"underline"}>maximized fat burn</Span>
+              <Heading color="primary.700" fontSize={["3xl", "3xl", "3xl"]} maxW={"container.sm"}>
+                Our Product Is a Perfect Match For Your{" "}
+                <Span textDecoration={"underline"} color="black">
+                  Improved Sleep
+                </Span>{" "}
+                and{" "}
+                <Span textDecoration={"underline"} color="black">
+                  Maximized Fat Burn
+                </Span>
               </Heading>
 
               <Text fontSize={"lg"} mt={4}>
@@ -154,7 +159,7 @@ const Hero = () => {
                   {state.weightUnits}
                 </Text>
                 <Text textAlign={"right"} fontSize={"sm"}>
-                  In your first month
+                  In your first month*
                 </Text>
               </Stack>
 
@@ -245,7 +250,7 @@ const Hero = () => {
               display={["none", "none", "flex"]}
             >
               <Heading fontSize={["2xl", "2xl", "3xl"]} maxW={"container.sm"} fontWeight={"bold"}>
-                Turn small wins into big achievements
+                Turn Small Wins Into Big Achievements
               </Heading>
 
               <Text fontSize={"md"}>

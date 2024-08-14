@@ -4,18 +4,41 @@ import { SummaryState } from "./types";
 import { getSummaryState } from "./utils";
 import { loadQuizState, SavedState } from "src/localStorage";
 
-// const savedStateMock: SavedState = {
+// const savedStateMetricMock: SavedState = {
 //   version: 1,
 //   unitSystem: "metric",
 //   email: "dsad@dfsf.cm",
-//   age: 55,
+//   age: 43,
 //   height: {
 //     cm: 170,
 //     ft: null,
 //     in: null,
 //   },
-//   weight: 200,
-//   weightGoal: 200,
+//   weight: 100,
+//   weightGoal: 75,
+//   goals: ["Manage weight more effectively"],
+//   healthState: "Poor",
+//   stressFrequency: "Rarely",
+//   symptoms: ["Weight bouncing back", "Hunger/cravings"],
+//   medicalConditions: ["Other"],
+//   emotionalEating: "",
+//   weightGain: "No",
+//   alergies: ["Sesame", "Other"],
+//   gender: "female",
+// };
+
+// const savedStateImperialMock: SavedState = {
+//   version: 1,
+//   unitSystem: "imperial",
+//   email: "dsad@dfsf.cm",
+//   age: 43,
+//   height: {
+//     cm: null,
+//     ft: 5,
+//     in: 7,
+//   },
+//   weight: 203,
+//   weightGoal: 203,
 //   goals: ["Manage weight more effectively"],
 //   healthState: "Poor",
 //   stressFrequency: "Rarely",

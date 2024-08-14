@@ -2,7 +2,7 @@ import { SavedState } from "../../../localStorage";
 import { WEIGHT_COFF_IMPERIAL } from "../../../utils";
 import { SummaryState } from "./types";
 
-const AVG_MONTHLY_WEIGHT_LOSS_METRIC = 4.7;
+const AVG_MONTHLY_WEIGHT_LOSS_METRIC = 4.3;
 
 export function getSummaryState(state: SavedState): SummaryState | undefined {
   if (
@@ -23,13 +23,13 @@ export function getSummaryState(state: SavedState): SummaryState | undefined {
 
   const weightUnits = getWeightUnits(state.unitSystem);
   const weightDiff = getWeightDiff(state.weight, state.weightGoal);
-  const weightAvgMonthlyLoss = round(getAvgMonthlyWeightLoss(state.unitSystem));
+  const weightAvgMonthlyLoss = roundTo(getAvgMonthlyWeightLoss(state.unitSystem));
   const weightLossByWeeks = getMonthlyWeightLossByWeeks(state.weight, state.unitSystem);
 
   return {
-    weightStart: round(state.weight),
-    weightEnd: round(state.weightGoal),
-    weightDiff: round(weightDiff),
+    weightStart: roundTo(state.weight),
+    weightEnd: roundTo(state.weightGoal),
+    weightDiff: roundTo(weightDiff),
     weightUnits,
     weightLossDuration: getWeightLossDuration(state.weight, state.weightGoal, state.unitSystem),
     weightAvgMonthlyLoss,
@@ -55,17 +55,29 @@ function getWeightLossDuration(
 }
 
 function getMonthlyWeightLossByWeeks(weightStart: number, unitSystem: SavedState["unitSystem"]) {
-  const weeklyLossMetric = [0, 1.3, 3.4, AVG_MONTHLY_WEIGHT_LOSS_METRIC];
+  const weeklyLossMetric = [
+    AVG_MONTHLY_WEIGHT_LOSS_METRIC * 0,
+    AVG_MONTHLY_WEIGHT_LOSS_METRIC * 0.3,
+    AVG_MONTHLY_WEIGHT_LOSS_METRIC * 0.6,
+    AVG_MONTHLY_WEIGHT_LOSS_METRIC * 1,
+  ];
   const weeklyLoss =
     unitSystem === "metric" ? weeklyLossMetric : weeklyLossMetric.map(toImperialWeight);
 
-  return weeklyLoss.map((it) => round(weightStart - it));
+  return weeklyLoss.map((it) => {
+    const diff = weightStart - it;
+
+    return roundTo(diff, 1);
+  });
 }
 
 function getAvgMonthlyWeightLoss(unitSystem: SavedState["unitSystem"]) {
-  return unitSystem === "metric"
-    ? AVG_MONTHLY_WEIGHT_LOSS_METRIC
-    : toImperialWeight(AVG_MONTHLY_WEIGHT_LOSS_METRIC);
+  const res =
+    unitSystem === "metric"
+      ? AVG_MONTHLY_WEIGHT_LOSS_METRIC
+      : toImperialWeight(AVG_MONTHLY_WEIGHT_LOSS_METRIC);
+
+  return roundTo(res, 1);
 }
 
 function getHeight(
@@ -81,8 +93,10 @@ function getHeight(
       : null;
 }
 
-function round(value: number) {
-  return Math.round(value * 100) / 100;
+function roundTo(value: number, decimalPlaces: number = 2) {
+  const num = Math.pow(10, decimalPlaces);
+
+  return Math.round(value * num) / num;
 }
 
 function getWeightDiff(start: number, end: number) {

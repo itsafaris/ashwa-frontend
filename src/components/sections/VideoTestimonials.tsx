@@ -1,6 +1,6 @@
 import { Box, Flex, Heading, Text, Container, Stack, Grid } from "@chakra-ui/react";
 
-import { Rating } from "../components";
+import { CTAButton, Rating } from "../components";
 import { Review } from "../../reviews";
 
 export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
@@ -33,6 +33,10 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
               return <TopReview review={it} key={idx} />;
             })}
           </Grid>
+        </Stack>
+
+        <Stack mt={12}>
+          <CTAButton />
         </Stack>
       </Container>
     </Box>
