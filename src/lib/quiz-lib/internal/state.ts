@@ -1,19 +1,11 @@
 import { createContext, useContext } from "react";
 import { INTERNAL_Snapshot, proxy, ref, snapshot, useSnapshot } from "valtio";
-import {
-  ISelectorType,
-  LogicDefinition,
-  SlideProps,
-  TrackingEventCallback,
-} from "../public/types";
+import { ISelectorType, LogicDefinition, SlideProps, TrackingEventCallback } from "../public/types";
 import { getPosInBounds, validateEmail } from "./utils";
 import { getSlideProperties } from "./tracking";
 
 // E.g. GetSlideStateType<'multi'>
-export type GetSlideStateType<T extends ISelectorType> = Extract<
-  SelectorState,
-  { type: T }
->;
+export type GetSlideStateType<T extends ISelectorType> = Extract<SelectorState, { type: T }>;
 
 // re-export valtio utility to create a snapshot type
 export type Snapshot<T> = INTERNAL_Snapshot<T>;
@@ -102,8 +94,17 @@ export type WeightState = {
 export type BaseSelectorState = {
   attempts: number;
   confirmed: boolean;
-  isValueValid: boolean;
+  validation: SelectorValidation;
 };
+
+export type SelectorValidation =
+  | {
+      isValid: true;
+    }
+  | {
+      isValid: false;
+      message: string;
+    };
 
 export type SelectorValue = Readonly<{ value: string; idx: number }>;
 
@@ -149,7 +150,9 @@ function createSlideState(type: ISelectorType): SelectorState {
     type,
     attempts: 0,
     confirmed: false,
-    isValueValid: true,
+    validation: {
+      isValid: true,
+    },
   };
 }
 
@@ -216,9 +219,7 @@ export function createQuizState(input: {
         return;
       }
       if (!this.slideStateByID[this.currentSlide.id]) {
-        this.slideStateByID[this.currentSlide.id] = createSlideState(
-          this.currentSlide.type
-        );
+        this.slideStateByID[this.currentSlide.id] = createSlideState(this.currentSlide.type);
       }
       const s = this.slideStateByID[this.currentSlide.id];
       return {
@@ -268,11 +269,16 @@ export function createQuizState(input: {
       }
 
       const currentSlideState = state.slideStateByID[state.currentSlideID!];
+      const validation = isSlideStateValid(state.currentSlideState, state);
 
-      if (!isSlideStateValid(state.currentSlideState, state)) {
+      if (!validation.isValid) {
         currentSlideState.attempts++;
         currentSlideState.confirmed = false;
-        currentSlideState.isValueValid = false;
+        currentSlideState.validation = {
+          isValid: false,
+          message: validation.message,
+        };
+
         return false;
       }
 
@@ -287,17 +293,23 @@ export function createQuizState(input: {
 
       const currentSlideState = state.slideStateByID[state.currentSlideID!];
       const currentSlide = state.currentSlide;
+      const validation = isSlideStateValid(state.currentSlideState, state);
 
-      if (!isSlideStateValid(state.currentSlideState, state)) {
+      if (!validation.isValid) {
         currentSlideState.attempts++;
         currentSlideState.confirmed = false;
-        currentSlideState.isValueValid = false;
+        currentSlideState.validation = {
+          isValid: false,
+          message: validation.message,
+        };
         return false;
       }
 
       currentSlideState.confirmed = true;
       currentSlideState.attempts = 0;
-      currentSlideState.isValueValid = true;
+      currentSlideState.validation = {
+        isValid: true,
+      };
 
       input.onSlideSubmitted?.({
         id: currentSlide.id,
@@ -309,8 +321,7 @@ export function createQuizState(input: {
         name: "slide-submitted",
         properties: {
           ...getSlideProperties(currentSlide),
-          slideValue:
-            "value" in currentSlideState ? currentSlideState.value : null,
+          slideValue: "value" in currentSlideState ? currentSlideState.value : null,
         },
       });
 
@@ -384,9 +395,7 @@ export function createQuizState(input: {
       if (!slideState.value) {
         slideState.value = [];
       }
-      const optionIdx = slideState.value.findIndex(
-        (o) => o.value === value.value
-      );
+      const optionIdx = slideState.value.findIndex((o) => o.value === value.value);
       if (optionIdx === -1) {
         slideState.value.push(value);
       } else {
@@ -461,47 +470,195 @@ type QuizCtxType = QuizObject;
 export function isSlideStateValid(
   slideState: SelectorState,
   quizState: QuizState
-): boolean {
+): SelectorValidation {
   switch (slideState.type) {
     case "single": {
-      return slideState.value != null;
+      return slideState.value != null
+        ? { isValid: true }
+        : { isValid: false, message: "Please select one option" };
     }
     case "multi": {
-      return slideState.value != null && slideState.value.length > 0;
+      return slideState.value != null && slideState.value.length > 0
+        ? { isValid: true }
+        : { isValid: false, message: "Please select one or more options" };
     }
     case "date": {
-      return slideState.value != null;
+      return slideState.value != null
+        ? { isValid: true }
+        : { isValid: false, message: "Please enter the date" };
     }
     case "location": {
-      return slideState.value != null;
+      return slideState.value != null
+        ? { isValid: true }
+        : { isValid: false, message: "Please enter the location" };
     }
     case "short-text": {
-      return slideState.value != null && slideState.value.trim() !== "";
+      return slideState.value != null && slideState.value.trim() !== ""
+        ? { isValid: true }
+        : { isValid: false, message: "Please enter value" };
     }
     case "email": {
-      return slideState.value != null && validateEmail(slideState.value);
+      return slideState.value != null && validateEmail(slideState.value)
+        ? { isValid: true }
+        : { isValid: false, message: "Please enter a valid email address" };
     }
     case "age": {
-      return (
-        slideState.value != null &&
-        slideState.value < 99 &&
-        slideState.value > 0
-      );
+      if (slideState.value == null) {
+        return {
+          isValid: false,
+          message: "Please enter age",
+        };
+      }
+
+      if (slideState.value < 18) {
+        return {
+          isValid: false,
+          message: "Age must be 18 or greater",
+        };
+      }
+
+      if (slideState.value > 120) {
+        return {
+          isValid: false,
+          message: "Age cannot be greater than 120.",
+        };
+      }
+
+      return {
+        isValid: true,
+      };
     }
     case "height": {
-      if (!slideState.value) {
-        return false;
+      if (slideState.value == null) {
+        return {
+          isValid: false,
+          message: "Please enter the height",
+        };
       }
+
       if (quizState.unitSystem === "imperial") {
-        return slideState.value.ft != null && slideState.value.in != null;
+        if (slideState.value.ft == null) {
+          return {
+            isValid: false,
+            message: "Please enter the height in feet",
+          };
+        }
+
+        if (slideState.value.ft < 4) {
+          return {
+            isValid: false,
+            message: "Height in feet must be 4 or greater",
+          };
+        }
+
+        if (slideState.value.ft > 8) {
+          return {
+            isValid: false,
+            message: "Height in feet cannot be greater than 8",
+          };
+        }
+
+        if (slideState.value.in == null) {
+          return {
+            isValid: false,
+            message: "Please enter the height in inches",
+          };
+        }
+
+        if (slideState.value.in < 0) {
+          return {
+            isValid: false,
+            message: "Height in inches must be 0 or greater",
+          };
+        }
+
+        if (slideState.value.in > 11) {
+          return {
+            isValid: false,
+            message: "Height in inches cannot be greater than 11",
+          };
+        }
+
+        return {
+          isValid: true,
+        };
       }
-      return slideState.value.cm != null;
+
+      if (slideState.value.cm == null) {
+        return {
+          isValid: false,
+          message: "Please enter the height",
+        };
+      }
+
+      if (slideState.value.cm < 140) {
+        return {
+          isValid: false,
+          message: "Height must be 140 or greater",
+        };
+      }
+
+      if (slideState.value.cm > 250) {
+        return {
+          isValid: false,
+          message: "Height cannot be greater than 250",
+        };
+      }
+
+      return {
+        isValid: true,
+      };
     }
     case "weight": {
-      return slideState.value != null;
+      if (slideState.value == null) {
+        return {
+          isValid: false,
+          message: "Please enter the weight",
+        };
+      }
+
+      if (quizState.unitSystem === "imperial") {
+        if (slideState.value < 88) {
+          return {
+            isValid: false,
+            message: "Weight must be 88 or greater",
+          };
+        }
+
+        if (slideState.value > 700) {
+          return {
+            isValid: false,
+            message: "Weight cannot be greater than 700",
+          };
+        }
+
+        return {
+          isValid: true,
+        };
+      }
+
+      if (slideState.value < 40) {
+        return {
+          isValid: false,
+          message: "Weight must be 40 or greater",
+        };
+      }
+
+      if (slideState.value > 300) {
+        return {
+          isValid: false,
+          message: "Weight cannot be greater than 300",
+        };
+      }
+
+      return {
+        isValid: true,
+      };
     }
     default: {
-      return true;
+      return {
+        isValid: true,
+      };
     }
   }
 }

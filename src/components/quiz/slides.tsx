@@ -1,5 +1,13 @@
 import { Box, Flex, Icon, Stack, Text } from "@chakra-ui/react";
-import { LoadingState, Selector, Slide, useQuizActions, useSlideState } from "@lib/quiz-lib";
+import {
+  LoadingState,
+  Selector,
+  Slide,
+  useQuizActions,
+  useQuizSnapshot,
+  useQuizState,
+  useSlideState,
+} from "@lib/quiz-lib";
 
 import { NextButton, QuizHeading } from "./ui";
 import { StaticImage } from "gatsby-plugin-image";
@@ -8,6 +16,8 @@ import { FaCheck } from "react-icons/fa";
 import { navigate } from "gatsby";
 import { trackPixelEvent } from "src/tracking";
 import { UnitSystemPicker } from "@lib/quiz-lib/internal/unitsystem";
+import { getTypedQuizState } from "src/quizstate";
+import React from "react";
 
 export function GoalsSlide() {
   return (
@@ -389,15 +399,45 @@ export function WeightSlide() {
 }
 
 export function WeightGoalSlide() {
+  const stateSnapshot = useQuizSnapshot();
+  const stateTyped = getTypedQuizState(stateSnapshot);
+  const actions = useQuizActions();
+
+  const [isValid, setIsValid] = React.useState<boolean>(true);
+
   return (
     <Slide id="weight-goal" type="weight">
       <QuizHeading color="text.main" mb={4}>
         What's your weight <Span decoration={"underline"}>goal</Span>?
       </QuizHeading>
-      <Stack mt={4} mb={2}>
+      <Stack mt={4} mb={2} position={"relative"}>
         <Selector mt={0} mb={0} />
+
+        {!isValid && (
+          <Text position={"absolute"} bottom={0} color="red.300" fontSize={"md"}>
+            Can't set goal higher than current weight
+          </Text>
+        )}
       </Stack>
-      <NextButton>Next</NextButton>
+
+      <NextButton
+        onClick={() => {
+          setIsValid(true);
+
+          if (
+            stateTyped.weight &&
+            stateTyped.weightGoal &&
+            stateTyped.weightGoal > stateTyped.weight
+          ) {
+            setIsValid(false);
+            return;
+          }
+
+          actions.submitQuestion();
+        }}
+      >
+        Next
+      </NextButton>
     </Slide>
   );
 }

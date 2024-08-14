@@ -90,9 +90,9 @@ export function Height({}: HeightProps) {
         </Flex>
       )}
 
-      {!state.isValueValid && state.attempts > 0 && (
+      {!state.validation.isValid && state.attempts > 0 && (
         <Text position={"absolute"} bottom={0} color="red.300" fontSize={"md"}>
-          Please enter a valid height
+          {state.validation.message}
         </Text>
       )}
     </FormControl>
