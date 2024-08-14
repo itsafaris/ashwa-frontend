@@ -296,7 +296,7 @@ export function createQuizState(input: {
         return false;
       }
 
-      const isValid = this.checkQuestion();
+      const isValid = actions.checkQuestion();
       if (!isValid) {
         return false;
       }
