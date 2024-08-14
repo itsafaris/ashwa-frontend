@@ -17,7 +17,7 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
               maxW={"container.sm"}
               textAlign={"center"}
             >
-              Users experience <br /> massive changes in less than a month
+              Users experience <br /> changes in less than a month
             </Heading>
           </Stack>
 

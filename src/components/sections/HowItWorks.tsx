@@ -1,15 +1,4 @@
-import {
-  Box,
-  Flex,
-  Heading,
-  Text,
-  SimpleGrid,
-  Icon,
-  Container,
-  GridItem,
-  Stack,
-  Grid,
-} from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Icon, Container, GridItem, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaCheck, FaTimes } from "react-icons/fa";
 import { CTAButton } from "../components";
@@ -76,7 +65,7 @@ export function HowItWorksSection() {
               <Flex direction={"column"} gap={"1px"} bg="gray.300">
                 {theirs.map((it, idx) => (
                   <Flex
-                    key={it}
+                    key={idx}
                     py={3}
                     px={3}
                     backgroundColor="primary.100"
@@ -186,7 +175,7 @@ function Header() {
             fontSize={"lg"}
           >
             Greet your morning
-            <br /> weighting less
+            <br /> weighting less*
           </Text>
         </Stack>
       </Grid>

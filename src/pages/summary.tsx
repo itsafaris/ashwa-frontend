@@ -26,6 +26,7 @@ import { Recommendation } from "@components/Recommendation";
 import { SummaryStateProvider, useSummaryState } from "@components/sections/summary/ctx";
 import { Span } from "@components/components";
 import { getReadableDateTime } from "src/utils";
+import { Disclaimer } from "@components/sections/Disclaimer";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -43,6 +44,7 @@ export default function Page() {
         <IngredientsSection />
         <HowItWorksSection />
         <ReviewsSection reviews={reviews} />
+        <Disclaimer />
         <FAQSection />
         <AshwaRevivalSection />
         <Footer />
