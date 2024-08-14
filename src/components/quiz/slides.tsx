@@ -429,7 +429,11 @@ export function WeightGoalSlide() {
             stateTyped.weightGoal &&
             stateTyped.weightGoal > stateTyped.weight
           ) {
-            setIsValid(false);
+            const isValid = actions.checkQuestion();
+            if (isValid) {
+              setIsValid(false);
+            }
+
             return;
           }
 
