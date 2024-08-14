@@ -278,9 +278,14 @@ export function createQuizState(input: {
           isValid: false,
           message: validation.message,
         };
-
         return false;
       }
+
+      currentSlideState.confirmed = true;
+      currentSlideState.attempts = 0;
+      currentSlideState.validation = {
+        isValid: true,
+      };
 
       return true;
     },
@@ -291,25 +296,13 @@ export function createQuizState(input: {
         return false;
       }
 
-      const currentSlideState = state.slideStateByID[state.currentSlideID!];
-      const currentSlide = state.currentSlide;
-      const validation = isSlideStateValid(state.currentSlideState, state);
-
-      if (!validation.isValid) {
-        currentSlideState.attempts++;
-        currentSlideState.confirmed = false;
-        currentSlideState.validation = {
-          isValid: false,
-          message: validation.message,
-        };
+      const isValid = this.checkQuestion();
+      if (!isValid) {
         return false;
       }
 
-      currentSlideState.confirmed = true;
-      currentSlideState.attempts = 0;
-      currentSlideState.validation = {
-        isValid: true,
-      };
+      const currentSlideState = state.slideStateByID[state.currentSlideID!];
+      const currentSlide = state.currentSlide;
 
       input.onSlideSubmitted?.({
         id: currentSlide.id,
