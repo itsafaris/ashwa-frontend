@@ -30,7 +30,7 @@ export function Selector(props: ComponentProps<typeof Box> & SelectorProps) {
     if (!isActive || !slideState) {
       return;
     }
-    if (!slideState.isValid && slideState.attempts > 0) {
+    if (!slideState.validation.isValid && slideState.attempts > 0) {
       handleFlash();
     }
   }, [isActive, slideState, slideState?.attempts]);
