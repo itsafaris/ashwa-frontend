@@ -14,6 +14,7 @@ export interface IRootWrapperProps {}
 type GlobalContextType = {
   pageLoadedAt: number;
   mainProduct?: ProductFragment;
+  freeGiftProduct?: ProductFragment;
   mainProductOneOffVariants: Product[];
 };
 
@@ -22,6 +23,7 @@ const GlobalCtx = React.createContext<GlobalContextType>({} as any);
 export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
   const [globalState, setGlobalState] = React.useState<GlobalContextType>({
     pageLoadedAt: Date.now(),
+    freeGiftProduct: undefined,
     mainProduct: undefined,
     mainProductOneOffVariants: [],
   });
@@ -31,21 +33,25 @@ export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
   }, []);
 
   async function loadProducts() {
-    const res = await client.request(getProductQuery, {
-      variables: { handle: "calmer-1-month-supply" },
-    });
+    const [res1, res2] = await Promise.all([
+      client.request(getProductQuery, {
+        variables: { handle: "free-gift-optimal-weight-loss-cheat-sheet-pdf-book" },
+      }),
+      client.request(getProductQuery, {
+        variables: { handle: "calmer-1-month-supply" },
+      }),
+    ]);
 
-    const mainProduct = res.data?.product;
-    if (!mainProduct) {
-      return;
-    }
+    const freeGiftProduct = res1.data?.product;
+    const mainProduct = res2.data?.product;
 
     setGlobalState((p) => ({
       ...p,
-      mainProduct: res.data?.product ?? undefined,
-      mainProductOneOffVariants: mergeWithStripeVariants(
-        mainProduct.variants.edges.map((it) => it.node)
-      ),
+      freeGiftProduct: freeGiftProduct ?? undefined,
+      mainProduct: mainProduct ?? undefined,
+      mainProductOneOffVariants: mainProduct
+        ? mergeWithStripeVariants(mainProduct.variants.edges.map((it) => it.node))
+        : [],
     }));
   }
 
