@@ -274,7 +274,13 @@ function CTA(props: StackProps) {
 
         <Stack py={2} px={2} backgroundColor={"#b44e9a"} borderRadius={"5px"}>
           <Text color="white" textAlign={"center"} fontWeight={"semibold"} fontSize={"sm"}>
-            SUMMER SALE Save up to 50%
+            <Text fontWeight={"black"} as="span">
+              SUMMER SALE
+            </Text>{" "}
+            Save up to{" "}
+            <Text fontWeight={"black"} as="span">
+              50%
+            </Text>
           </Text>
         </Stack>
       </Stack>
