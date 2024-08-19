@@ -1,4 +1,4 @@
-import { Box, Container, Flex, SimpleGrid, Stack, Text, Icon } from "@chakra-ui/react";
+import { Box, Container, Flex, SimpleGrid, Stack, Text, Icon, Grid } from "@chakra-ui/react";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import React from "react";
 import { siteConfig } from "src/conf";
@@ -173,16 +173,32 @@ function ProductSelectItem({
           {product.image}
 
           {hasFreeGift && (
-            <Box
+            <Grid
+              gridTemplateColumns="1fr 1fr"
+              alignItems={"center"}
               position={"absolute"}
-              bottom={[0, 5]}
-              left={[0, 5]}
+              bottom={[-3, 5]}
               zIndex={0}
-              transform={"rotate(15deg)"}
-              width={["40%", "28%"]}
+              gap={0}
+              width={["70%", "50%"]}
             >
-              <StaticImage alt="" src="../images/free-gift-label.png" />
-            </Box>
+              <StaticImage
+                alt=""
+                src="../images/free-gift-label.png"
+                width={100}
+                style={{
+                  transform: "rotate(15deg)",
+                  marginLeft: "auto",
+                }}
+              />
+
+              <StaticImage
+                alt=""
+                src="../images/free-gift-1-sm.png"
+                width={100}
+                style={{ marginRight: "auto" }}
+              />
+            </Grid>
           )}
         </Box>
 
