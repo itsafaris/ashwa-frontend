@@ -96,10 +96,10 @@ const Hero = () => {
           mx="auto"
           px={8}
           textAlign={"center"}
-          fontSize={["2xl", "2xl", "4xl"]}
+          fontSize={["3xl", "3xl", "4xl"]}
           maxW={"container.sm"}
         >
-          Combat Stress and Shed Pounds with Our All-in-One Solution by Choosing your plan now
+          Lose Weight For Under $1 Per Day!
         </Heading>
 
         <Box mt={1}>
@@ -177,7 +177,7 @@ const Banner = () => (
             </Text>
 
             <Text textTransform={"uppercase"} fontWeight={"bold"} fontSize={"4xl"}>
-              60%
+              50%
             </Text>
           </Stack>
         </Stack>
@@ -208,7 +208,7 @@ const BannerTop = () => (
         </Flex>
       </Flex>
       <Text>⚡</Text>
-      <Text textAlign={"center"}>60% OFF</Text>
+      <Text textAlign={"center"}>50% OFF</Text>
       <Text>⚡</Text>
       <Text textAlign={"center"}>Free Shipping</Text>
     </Container>

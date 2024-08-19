@@ -74,13 +74,13 @@ const Hero = () => {
           >
             <Stack textAlign={["center", "center", "left"]}>
               <Heading color="primary.700" fontSize={["3xl", "3xl", "3xl"]} maxW={"container.sm"}>
-                Our Product Is a Perfect Match For Your{" "}
+                Calmr Is a Perfect Match For Your{" "}
                 <Span textDecoration={"underline"} color="primary.900">
-                  Improved Sleep
+                  Maximized Fat Burn
                 </Span>{" "}
                 and{" "}
                 <Span textDecoration={"underline"} color="primary.900">
-                  Maximized Fat Burn
+                  Improved Sleep
                 </Span>
               </Heading>
 

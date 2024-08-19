@@ -1,211 +1,283 @@
-import { Box, Button, Container, Flex, Heading, Icon, Stack, Text } from "@chakra-ui/react";
+import {
+  Box,
+  Button,
+  Container,
+  Flex,
+  Heading,
+  Icon,
+  Stack,
+  StackProps,
+  Text,
+} from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { Footer } from "@components/Footer";
-import { Header } from "@components/Header";
+
 import { HeadFC, Link } from "gatsby";
 import { SEO } from "@components/SEO";
 import { createPageParams } from "./quiz";
 import { FaArrowRight } from "react-icons/fa6";
+import { Logo } from "@components/logo";
+import { FaCheck } from "react-icons/fa";
+import { IoMdFemale } from "react-icons/io";
+import { IoMdMale } from "react-icons/io";
+
+import bgImageLG from "../../images/lp-hero-image-lg.jpg";
 
 export const Head: HeadFC = () => {
   return <SEO />;
 };
 
-export interface IWeightLossPageProps {}
+const outcomes = ["Lose weight", "Boost metabolism", "Reduce stress", "Improve sleep quality"];
 
-export default function WeightLossPage(props: IWeightLossPageProps) {
+export default function WeightLossPage() {
   return (
-    <Box bg="primary.100">
-      <Header />
+    <Box>
+      <Box backgroundColor="#38283f" position={"relative"}>
+        <Stack
+          position={"absolute"}
+          zIndex={0}
+          backgroundColor={"#00000045"}
+          top={0}
+          left={0}
+          width={"100%"}
+          height={"100%"}
+          justifyContent={"space-between"}
+        >
+          <Box height={"40%"} width={"100%"} bgGradient={"linear(to-b, #000000bf, transparent)"} />
 
-      <Container my={4} py={6}>
-        <Stack spacing={4}>
-          <Heading
-            lineHeight={1.2}
-            fontSize={"3xl"}
-            textAlign={"center"}
-            fontWeight={"bold"}
-            color="primary.800"
+          <Box height={"40%"} width={"100%"} bgGradient={"linear(to-b, transparent, #38283f)"} />
+        </Stack>
+
+        <Container px={0} maxW={["unset"]}>
+          <Box
+            backgroundImage={`url(${bgImageLG})`}
+            backgroundRepeat={"no-repeat"}
+            backgroundPosition={"center"}
+            backgroundSize={"cover"}
+            px={4}
+            pt={6}
+            pb={8}
           >
-            Combat Stress and{" "}
-            <Text as="span" textDecoration={"underline"}>
-              Shed Pounds
-            </Text>{" "}
-            with Our All-in-One Solution
-          </Heading>
+            <Stack zIndex={1} position={"relative"} width={"100%"} height={"100%"} spacing={0}>
+              <Logo height={"50px"} fill="white" />
 
-          <Stack mt={3} mb={6} alignItems={"center"} spacing={4}>
-            <Text
-              textAlign={"center"}
-              fontWeight={"semibold"}
-              fontSize={"md"}
-              maxW={"200px"}
-              mb={3}
-              color="primary.800"
-            >
-              Take a 1-min quiz to see if Calmr can help you!
-            </Text>
-
-            <CTA />
-          </Stack>
-
-          <Stack p={4} backgroundColor={"white"} boxShadow={"lg"}>
-            <Stack pt={1} pb={2}>
-              <Text fontWeight={"semibold"} fontSize={"xl"} color={"gray.900"} lineHeight={1.3}>
-                Hey, I'm Jessica, and I've been using Calmr for 5 months!
-              </Text>
-              <Text fontSize={10} color="gray.600" mb={3}>
-                17 July, 2024 | 1 MIN READ
-              </Text>
-
-              <Text fontSize={"sm"} color="gray.700">
-                Stress was a big part of my life, and no matter what I did, my cortisol levels
-                stayed high.
-              </Text>
-            </Stack>
-
-            <StaticImage
-              src="../../images/customer-before-after-1.jpg"
-              alt="women using ashwagandha supplements"
-            />
-
-            <Stack spacing={4} pt={2} fontSize={"sm"} color="gray.700">
-              <Text>
-                I started using Calmr about five months ago, and slowly, my stress began to ease.
-              </Text>
-
-              <Text>
-                More surprisingly,{" "}
-                <Text
-                  backgroundColor={"primary.200"}
-                  as="span"
+              <Stack mx="auto">
+                <Heading
+                  lineHeight={1.2}
+                  fontSize={["3xl", "4xl", "5xl"]}
+                  textAlign={"center"}
                   fontWeight={"bold"}
-                  textDecor={"underline"}
-                  color={"gray.900"}
+                  color="white"
+                  mt={10}
                 >
-                  I've lost 29 pounds without any major diet changes
-                </Text>{" "}
-                and feel lighter, both physically and mentally. My stomach issues have also eased
-                up, making daily activities more comfortable.
-              </Text>
+                  Trouble Losing Weight?
+                  <br />
+                  Find The Reason Why
+                </Heading>
 
-              <Text>
-                Although I'm still on this journey, I'm curious to see what the final results will
-                be.
-              </Text>
-            </Stack>
+                <Stack mt={14} alignItems={"left"} spacing={1}>
+                  {outcomes.map((it, idx) => {
+                    return (
+                      <Stack
+                        key={idx}
+                        direction={"row"}
+                        alignItems={"center"}
+                        gap={3}
+                        backgroundColor={"#212121c7"}
+                        mr="auto"
+                        px={2}
+                        py={1}
+                        color={"white"}
+                        fontWeight={"semibold"}
+                        fontSize={["md", "lg"]}
+                        borderRadius={"5px"}
+                      >
+                        <Icon as={FaCheck} color={"green.300"} />
+                        <Text>{it}</Text>
+                      </Stack>
+                    );
+                  })}
+                </Stack>
+              </Stack>
 
-            <Stack spacing={10} mt={12}>
               <Text
-                mx="auto"
-                maxW={"200px"}
+                mt={14}
                 textAlign={"center"}
                 fontWeight={"bold"}
-                fontSize={"sm"}
-                color="gray.900"
+                fontSize={"xl"}
+                color="white"
+                fontFamily={"serif"}
               >
-                Benefits of Calmr ingredients are covered in
+                Select your gender
               </Text>
 
-              <Stack pb={4}>
-                <Flex
-                  wrap={"wrap"}
-                  gap={[6, 10]}
-                  justifyContent={"center"}
-                  alignItems={"center"}
-                  opacity={0.4}
-                >
-                  <StaticImage
-                    style={{ flexShrink: 0 }}
-                    height={28}
-                    src="../../images/media1.png"
-                    alt="media logo"
-                  />
+              <CTA mt={3} />
+            </Stack>
+          </Box>
+        </Container>
+      </Box>
 
-                  <StaticImage
-                    style={{ flexShrink: 0 }}
-                    height={28}
-                    src="../../images/media2.png"
-                    alt="media logo"
-                  />
+      <Box position={"relative"}>
+        <Box
+          position={"absolute"}
+          zIndex={0}
+          backgroundColor={"#38283f"}
+          top={0}
+          left={0}
+          width={"100%"}
+          height={"50%"}
+        />
 
-                  <StaticImage
-                    style={{ flexShrink: 0 }}
-                    height={46}
-                    src="../../images/media3.png"
-                    alt="media logo"
-                  />
+        <Container px={0} backgroundColor="white">
+          <Stack
+            p={4}
+            pt={6}
+            pb={10}
+            borderRadius={"xl"}
+            backgroundColor={"white"}
+            boxShadow={"2xl"}
+            spacing={6}
+            mx={4}
+            zIndex={1}
+            position={"relative"}
+          >
+            <Text
+              mx="auto"
+              maxW={"200px"}
+              textAlign={"center"}
+              fontWeight={"semibold"}
+              fontSize={"xs"}
+              color="gray.500"
+              textTransform={"uppercase"}
+            >
+              Benefits of Calmr ingredients covered in:
+            </Text>
 
-                  <StaticImage
-                    style={{ flexShrink: 0 }}
-                    height={52}
-                    src="../../images/media4.png"
-                    alt="media logo"
-                  />
-                </Flex>
+            <Stack opacity={0.8} spacing={6}>
+              <StaticImage
+                style={{ flexShrink: 0, margin: "auto" }}
+                height={23}
+                layout="fixed"
+                src="../../images/media1.png"
+                alt="media logo"
+              />
+
+              <Stack direction={"row"} alignItems={"center"} mx="auto" spacing={6}>
+                <StaticImage
+                  style={{ flexShrink: 0 }}
+                  height={43}
+                  layout="fixed"
+                  src="../../images/media4.png"
+                  alt="media logo"
+                />
+
+                <StaticImage
+                  style={{ flexShrink: 0 }}
+                  height={38}
+                  layout="fixed"
+                  src="../../images/media3.png"
+                  alt="media logo"
+                />
               </Stack>
+
+              <StaticImage
+                style={{ flexShrink: 0, margin: "auto" }}
+                height={23}
+                layout="fixed"
+                src="../../images/media2.png"
+                alt="media logo"
+              />
             </Stack>
           </Stack>
-
-          <Stack mt={8} mb={8} alignItems={"center"} spacing={4}>
-            <Heading
-              lineHeight={1.3}
-              fontSize={"2xl"}
-              textAlign={"center"}
-              fontWeight={"bold"}
-              color="primary.800"
-            >
-              Take a 1-min quiz to see if <br /> Calmr can help you!
-            </Heading>
-
-            <CTA />
-          </Stack>
-        </Stack>
-      </Container>
+        </Container>
+      </Box>
 
       <Footer />
     </Box>
   );
 }
 
-function CTA() {
+function CTA(props: StackProps) {
   return (
-    <Flex gap={2} width={"100%"}>
-      <Button
-        borderRadius={"full"}
-        as={Link}
-        size={"lg"}
-        py={7}
-        flex={1}
-        colorScheme="teal"
-        to={`quiz?${createPageParams({
-          resetState: true,
-          gender: "male",
-        }).toString()}`}
-      >
-        <Stack direction={"row"} alignItems={"center"} spacing={2}>
-          <Text lineHeight={1}>Male</Text>
-          <Icon as={FaArrowRight} />
-        </Stack>
-      </Button>
+    <Stack maxW={"container.sm"} mx="auto" {...props}>
+      <Flex gap={2} width={"100%"}>
+        <Button
+          borderRadius={"full"}
+          as={Link}
+          size={"lg"}
+          py={7}
+          flex={1}
+          color={"white"}
+          backgroundColor={"#20BF8E"}
+          _hover={{
+            backgroundColor: "#168f6a",
+          }}
+          _focus={{
+            backgroundColor: "#20BF8E",
+          }}
+          to={`quiz?${createPageParams({
+            resetState: true,
+            gender: "male",
+          }).toString()}`}
+        >
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <Icon as={IoMdMale} />
+            <Text lineHeight={1}>Male</Text>
+            <Icon as={FaArrowRight} />
+          </Stack>
+        </Button>
 
-      <Button
-        borderRadius={"full"}
-        as={Link}
-        flex={1}
-        size={"lg"}
-        py={7}
-        colorScheme="pink"
-        to={`quiz?${createPageParams({
-          resetState: true,
-          gender: "female",
-        }).toString()}`}
-      >
-        <Stack direction={"row"} alignItems={"center"} spacing={2}>
-          <Text lineHeight={1}>Female</Text>
-          <Icon as={FaArrowRight} />
+        <Button
+          borderRadius={"full"}
+          as={Link}
+          flex={1}
+          size={"lg"}
+          py={7}
+          to={`quiz?${createPageParams({
+            resetState: true,
+            gender: "female",
+          }).toString()}`}
+          color={"white"}
+          backgroundColor={"#C88AB8"}
+          _hover={{
+            backgroundColor: "#a16a93",
+          }}
+          _focus={{
+            backgroundColor: "#C88AB8",
+          }}
+        >
+          <Stack direction={"row"} alignItems={"center"} spacing={2}>
+            <Icon as={IoMdFemale} />
+            <Text lineHeight={1}>Female</Text>
+            <Icon as={FaArrowRight} />
+          </Stack>
+        </Button>
+      </Flex>
+
+      <Stack spacing={0}>
+        <Stack spacing={0} direction={"row"} alignItems={"center"} justifyContent={"space-around"}>
+          <Box
+            width={0}
+            height={0}
+            borderLeft={"10px solid transparent"}
+            borderRight={"10px solid transparent"}
+            borderBottom={"10px solid #b44e9a"}
+          />
+          <Box
+            width={0}
+            height={0}
+            borderLeft={"10px solid transparent"}
+            borderRight={"10px solid transparent"}
+            borderBottom={"10px solid #b44e9a"}
+          />
         </Stack>
-      </Button>
-    </Flex>
+
+        <Stack py={2} px={2} backgroundColor={"#b44e9a"} borderRadius={"5px"}>
+          <Text color="white" textAlign={"center"} fontWeight={"semibold"} fontSize={"sm"}>
+            SUMMER SALE Save up to 50%
+          </Text>
+        </Stack>
+      </Stack>
+    </Stack>
   );
 }
