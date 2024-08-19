@@ -1,29 +1,19 @@
-import {
-  Box,
-  Button,
-  Container,
-  Flex,
-  Heading,
-  SimpleGrid,
-  Stack,
-  Text,
-  Icon,
-} from "@chakra-ui/react";
+import { Box, Container, Flex, SimpleGrid, Stack, Text, Icon } from "@chakra-ui/react";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import React from "react";
 import { siteConfig } from "src/conf";
-import { getPageUrl } from "src/pages/purchase-success";
+
 import { Product, PurchaseType } from "src/products";
 import { useGlobalState } from "src/RootWrapper";
-import { trackEvent, trackPixelEvent } from "src/tracking";
+import { trackEvent } from "src/tracking";
 import { SafeCheckout } from "./SafeCheckout";
 import { FaArrowRight } from "react-icons/fa6";
-import { BuyNowButton } from "@shopify/hydrogen-react";
 import { StaticImage } from "gatsby-plugin-image";
 import { CgPill } from "react-icons/cg";
 import { MdLocalShipping } from "react-icons/md";
 import { IoMdSunny } from "react-icons/io";
 import { FaPrescriptionBottle } from "react-icons/fa6";
+import { BuyNowButton } from "./BuyNowButton";
 
 export function ProductSelectionSection({ email }: { email?: string }) {
   const { websiteHostname, stripePublicKey } = siteConfig;
@@ -34,38 +24,6 @@ export function ProductSelectionSection({ email }: { email?: string }) {
   const [purchaseType, setPurchaseType] = React.useState<PurchaseType>("subscription");
 
   const dynamicText = purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
-
-  const handleClick = async (product: Product) => {
-    trackEvent({
-      name: "InitiateCheckout",
-      properties: {
-        productID: product.id,
-      },
-    });
-
-    trackPixelEvent({
-      name: "InitiateCheckout",
-    });
-
-    const stripe = await stripePromise.current;
-
-    const { error } = await stripe!.redirectToCheckout({
-      lineItems: [
-        {
-          price: product.stripeID, // Replace with the ID of your price
-          quantity: purchaseType === "one-off" ? product.count : 1,
-        },
-      ],
-      mode: purchaseType === "one-off" ? "payment" : "subscription",
-      successUrl: getPageUrl(product.id),
-      cancelUrl: window.location.href,
-      shippingAddressCollection: { allowedCountries: ["US"] },
-      customerEmail: email,
-    });
-    // If `redirectToCheckout` fails due to a browser or network
-    // error, display the localized error message to your customer
-    // using `error.message`.
-  };
 
   React.useEffect(() => {
     stripePromise.current = loadStripe(stripePublicKey);
@@ -125,9 +83,6 @@ export function ProductSelectionSection({ email }: { email?: string }) {
               badgeBg="purple.300"
               hasFreeGift
               hasFreeShipping
-              onBuyClick={() => {
-                handleClick(v1);
-              }}
             />
           )}
 
@@ -138,20 +93,10 @@ export function ProductSelectionSection({ email }: { email?: string }) {
               badgeBg="purple.300"
               hasFreeGift
               hasFreeShipping
-              onBuyClick={() => {
-                handleClick(v2);
-              }}
             />
           )}
 
-          {v3 && (
-            <ProductSelectItem
-              product={v3}
-              onBuyClick={() => {
-                handleClick(v3);
-              }}
-            />
-          )}
+          {v3 && <ProductSelectItem product={v3} />}
         </SimpleGrid>
         <SafeCheckout />
         {/* <RiskFreeGuaranteed /> */}
@@ -167,16 +112,30 @@ function ProductSelectItem({
   footerText,
   hasFreeGift = false,
   hasFreeShipping = false,
-  onBuyClick,
 }: {
   product: Product;
   badgeText?: string;
   badgeBg?: string;
   footerText?: string;
-  onBuyClick: () => void;
   hasFreeGift?: boolean;
   hasFreeShipping?: boolean;
 }) {
+  const { freeGiftProduct } = useGlobalState();
+
+  const lines = [
+    {
+      merchandiseId: product.stripeID,
+      quantity: product.count,
+    },
+  ];
+
+  if (freeGiftProduct) {
+    lines.push({
+      merchandiseId: freeGiftProduct.variants.edges[0].node.id,
+      quantity: 1,
+    });
+  }
+
   return (
     <Flex
       direction={"column"}
@@ -281,18 +240,24 @@ function ProductSelectItem({
         </Box>
       </SimpleGrid>
 
-      <Button
-        as={BuyNowButton}
-        variantId={product.stripeID}
-        quantity={product.count}
+      <BuyNowButton
+        lines={lines}
         colorScheme="green"
         rightIcon={<Icon as={FaArrowRight} />}
-        // onClick={onBuyClick}
+        onClick={() => {
+          trackEvent({
+            name: "InitiateCheckout",
+            properties: {
+              productID: product.id,
+              value: product.unitPrice * product.count,
+            },
+          });
+        }}
         borderRadius={"full"}
         size={"lg"}
       >
         Order now
-      </Button>
+      </BuyNowButton>
 
       {footerText && (
         <Text fontSize={"xs"} textAlign={"center"}>
