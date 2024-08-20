@@ -20,7 +20,6 @@ import { Logo } from "@components/logo";
 import { FaCheck } from "react-icons/fa";
 import { IoMdFemale } from "react-icons/io";
 import { IoMdMale } from "react-icons/io";
-
 import bgImageLG from "../../images/lp-hero-image-lg.jpg";
 
 export const Head: HeadFC = () => {
@@ -36,16 +35,15 @@ export default function WeightLossPage() {
         <Stack
           position={"absolute"}
           zIndex={0}
-          backgroundColor={"#00000045"}
+          backgroundColor={"#00000025"}
           top={0}
           left={0}
           width={"100%"}
           height={"100%"}
           justifyContent={"space-between"}
         >
-          <Box height={"40%"} width={"100%"} bgGradient={"linear(to-b, #000000bf, transparent)"} />
-
-          <Box height={"40%"} width={"100%"} bgGradient={"linear(to-b, transparent, #38283f)"} />
+          <Box height={"50%"} width={"100%"} bgGradient={"linear(to-b, #000000bf, transparent)"} />
+          <Box height={"50%"} width={"100%"} bgGradient={"linear(to-b, transparent, #38283f)"} />
         </Stack>
 
         <Container px={0} maxW={["unset"]}>
