@@ -18,8 +18,8 @@ export type Review = {
 
 export const topReviews: Review[] = [
   {
-    title: "Enhances weight loss!",
-    text: "Sleeping better and less brain fog",
+    title: "Gone down to a size 8",
+    text: "",
     name: "Amanda E.",
     location: "Vermont",
     score: 5,
@@ -40,8 +40,8 @@ export const topReviews: Review[] = [
     hoursAgo: 12,
   },
   {
-    title: "Helped me manage stress",
-    text: "Sleeping better and less brain fog",
+    title: "I'm in my 3rd month already!",
+    text: "",
     name: "Clara S.",
     location: "Georgia",
     score: 4,
@@ -62,8 +62,8 @@ export const topReviews: Review[] = [
     hoursAgo: 13,
   },
   {
-    title: "One of my favorites",
-    text: "Sleeping better and less brain fog",
+    title: "Enhances weight loss!",
+    text: "",
     name: "Susie W.",
     location: "Virginia",
     score: 5,
@@ -84,8 +84,8 @@ export const topReviews: Review[] = [
     hoursAgo: 19,
   },
   {
-    title: "Sleeping better and less brain fog",
-    text: "Sleeping better and less brain fog",
+    title: "Helped me manage stress",
+    text: "",
     name: "Hazel V.",
     location: "Virginia",
     score: 4.7,
@@ -110,7 +110,7 @@ export const topReviews: Review[] = [
 export const reviews: Review[] = [
   {
     title: "Game changer for weight loss!",
-    text: "OMG, I've been taking calmr for a couple months and I've lost 21 pound so far. I feel healthier and more confident!",
+    text: "OMG, I've been taking Sleep & Burn for a couple months and I've lost 21 pound so far. I feel healthier and more confident!",
     name: "Sarah J.",
     location: "Vermont",
     score: 4.8,

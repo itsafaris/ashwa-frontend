@@ -49,7 +49,10 @@ export function IngredientsSection() {
   return (
     <Container maxWidth={"container.lg"} my={16}>
       <Heading textAlign={"center"} my={10}>
-        Meet The Fantastic <Span decoration={"underline"}>Formula</Span>
+        Meet The Fantastic{" "}
+        <Span decoration={"underline"} color="primary.600">
+          Formula
+        </Span>
       </Heading>
 
       <Grid

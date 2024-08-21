@@ -111,7 +111,6 @@ export default function Page() {
       <ReviewsSection reviews={reviews} />
       <ProductSelectionSection />
       <FAQSection />
-      {/* <MainHero /> */}
       <Footer />
     </Box>
   );

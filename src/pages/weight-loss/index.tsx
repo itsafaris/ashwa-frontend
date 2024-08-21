@@ -148,7 +148,7 @@ export default function WeightLossPage() {
               color="gray.500"
               textTransform={"uppercase"}
             >
-              Benefits of Calmr ingredients covered in:
+              Benefits of Sleep & Burn ingredients covered in:
             </Text>
 
             <Stack opacity={0.8} spacing={6}>

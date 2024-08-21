@@ -24,9 +24,10 @@ import { FaArrowRight } from "react-icons/fa6";
 import { Recommendation } from "@components/Recommendation";
 
 import { SummaryStateProvider, useSummaryState } from "@components/sections/summary/ctx";
-import { Span } from "@components/components";
+import { CTAButton, Span } from "@components/components";
 import { getReadableDateTime } from "src/utils";
 import { Disclaimer } from "@components/sections/Disclaimer";
+import { SmallWinsSection } from "@components/sections/SmallWins";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -35,21 +36,49 @@ export const Head: HeadFC = () => {
 export default function Page() {
   return (
     <SummaryStateProvider>
-      <Box>
-        <Header />
-        <Hero />
-        <ProductPreview />
-        <VideoTestimonials reviews={topReviews} />
-        <Summary />
-        <IngredientsSection />
-        <HowItWorksSection />
-        <ReviewsSection reviews={reviews} />
-        <Disclaimer />
-        <FAQSection />
-        <AshwaRevivalSection />
-        <Footer />
-      </Box>
+      <PageContents />
     </SummaryStateProvider>
+  );
+}
+
+function PageContents() {
+  const summaryState = useSummaryState();
+
+  return (
+    <Box>
+      <Header />
+      <Hero />
+      <ProductPreview
+        weightAvgMonthlyLoss={summaryState.weightAvgMonthlyLoss}
+        weightUnits={summaryState.weightUnits}
+      />
+
+      <Stack>
+        <VideoTestimonials reviews={topReviews} />
+        <CTAButton mb={12} />
+      </Stack>
+
+      <Summary />
+      <IngredientsSection />
+
+      <Stack backgroundColor={"#f3eef2"}>
+        <HowItWorksSection />
+        <CTAButton mb={10} />
+      </Stack>
+
+      <Stack>
+        <ReviewsSection reviews={reviews} />
+        <CTAButton />
+      </Stack>
+
+      <Disclaimer
+        weightAvgMonthlyLoss={summaryState.weightAvgMonthlyLoss}
+        weightUnits={summaryState.weightUnits}
+      />
+      <FAQSection />
+      <AshwaRevivalSection />
+      <Footer />
+    </Box>
   );
 }
 
@@ -73,20 +102,20 @@ const Hero = () => {
             justifyContent={"space-between"}
           >
             <Stack textAlign={["center", "center", "left"]}>
-              <Heading color="primary.700" fontSize={["3xl", "3xl", "3xl"]} maxW={"container.sm"}>
-                Calmr Is a Perfect Match For Your{" "}
-                <Span textDecoration={"underline"} color="primary.900">
+              <Heading color="primary.800" fontSize={["3xl", "3xl", "3xl"]} maxW={"container.sm"}>
+                Sleep & Burn Is a Perfect Match For Your{" "}
+                <Span textDecoration={"underline"} color="black">
                   Maximized Fat Burn
                 </Span>{" "}
                 and{" "}
-                <Span textDecoration={"underline"} color="primary.900">
+                <Span textDecoration={"underline"} color="black">
                   Improved Sleep
                 </Span>
               </Heading>
 
               <Text fontSize={"lg"} mt={4}>
                 <Span fontWeight={"bold"} fontSize={"xl"}>
-                  83%
+                  92%
                 </Span>{" "}
                 of our users with the same answers started losing pounds in the first few weeks.
               </Text>
@@ -146,126 +175,11 @@ const Hero = () => {
             </Stack>
           </Grid>
 
-          <Grid
-            gridTemplateColumns={["auto", "auto", "1fr 1fr"]}
-            gridTemplateAreas={["auto auto", "auto auto", "auto"]}
-            alignItems={"center"}
-            gap={6}
-            width={"full"}
-            justifyContent={"space-between"}
-          >
-            <Stack p={6} backgroundColor="white" borderRadius={"lg"}>
-              <Stack justifyContent={"end"} spacing={1} lineHeight={1.3} mb={6}>
-                <Text fontSize={"3xl"} fontWeight={"bold"} textAlign={"right"}>
-                  {state.weightAvgMonthlyLoss}
-                  {state.weightUnits}
-                </Text>
-                <Text textAlign={"right"} fontSize={"sm"}>
-                  In your first month*
-                </Text>
-              </Stack>
-
-              <Box position={"relative"}>
-                <Grid
-                  gridTemplateColumns={"repeat(4, 1fr)"}
-                  zIndex={1}
-                  position={"absolute"}
-                  width={"120%"}
-                  height={"100%"}
-                  left={"-10%"}
-                >
-                  <Stack height={"0%"} justifyContent={"end"}>
-                    <Text
-                      fontSize={["sm", "md", "lg"]}
-                      fontWeight={"semibold"}
-                      textAlign={"center"}
-                      mb={2}
-                    >
-                      {state.weightLossByWeeks[0]}
-                      {state.weightUnits}
-                    </Text>
-                  </Stack>
-
-                  <Stack height={"15%"} justifyContent={"end"}>
-                    <Text
-                      fontSize={["sm", "md", "lg"]}
-                      fontWeight={"semibold"}
-                      textAlign={"center"}
-                      mb={2}
-                    >
-                      {state.weightLossByWeeks[1]}
-                      {state.weightUnits}
-                    </Text>
-                  </Stack>
-
-                  <Stack height={"46%"} justifyContent={"end"}>
-                    <Text
-                      fontSize={["sm", "md", "lg"]}
-                      fontWeight={"semibold"}
-                      textAlign={"center"}
-                      mb={2}
-                    >
-                      {state.weightLossByWeeks[2]}
-                      {state.weightUnits}
-                    </Text>
-                  </Stack>
-
-                  <Stack height={"69%"} justifyContent={"end"}>
-                    <Text
-                      fontSize={["sm", "md", "lg"]}
-                      fontWeight={"semibold"}
-                      textAlign={"center"}
-                      mb={2}
-                    >
-                      {state.weightLossByWeeks[3]}
-                      {state.weightUnits}
-                    </Text>
-                  </Stack>
-                </Grid>
-
-                <StaticImage src="../images/chart-2.jpg" alt="" />
-              </Box>
-
-              <Grid gridTemplateColumns={"repeat(4, 1fr)"} zIndex={1} width={"120%"} mx={"-10%"}>
-                <Text fontSize={"sm"} textAlign={"center"}>
-                  Week 1
-                </Text>
-
-                <Text fontSize={"sm"} textAlign={"center"}>
-                  Week 2
-                </Text>
-
-                <Text fontSize={"sm"} textAlign={"center"}>
-                  Week 3
-                </Text>
-
-                <Text fontSize={"sm"} textAlign={"center"}>
-                  Week 4
-                </Text>
-              </Grid>
-            </Stack>
-
-            <Stack
-              textAlign={["center", "center", "right"]}
-              maxW={"90%"}
-              ml="auto"
-              display={["none", "none", "flex"]}
-            >
-              <Heading
-                fontSize={["2xl", "2xl", "3xl"]}
-                maxW={"container.sm"}
-                fontWeight={"bold"}
-                color="primary.900"
-              >
-                Turn Small Wins Into Big Achievements
-              </Heading>
-
-              <Text fontSize={"md"}>
-                Calmr helps you gradually build your wellness goals and achieve better results every
-                month.
-              </Text>
-            </Stack>
-          </Grid>
+          <SmallWinsSection
+            weightAvgMonthlyLoss={state.weightAvgMonthlyLoss}
+            weightUnits={state.weightUnits}
+            weightLossByWeeks={state.weightLossByWeeks}
+          />
 
           <Stack
             width={"100%"}

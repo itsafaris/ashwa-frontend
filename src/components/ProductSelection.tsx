@@ -3,7 +3,7 @@ import { loadStripe, Stripe } from "@stripe/stripe-js";
 import React from "react";
 import { siteConfig } from "src/conf";
 
-import { Product, PurchaseType } from "src/products";
+import { Product } from "src/products";
 import { useGlobalState } from "src/RootWrapper";
 import { trackEvent } from "src/tracking";
 import { SafeCheckout } from "./SafeCheckout";
@@ -15,15 +15,11 @@ import { IoMdSunny } from "react-icons/io";
 import { FaPrescriptionBottle } from "react-icons/fa6";
 import { BuyNowButton } from "./BuyNowButton";
 
-export function ProductSelectionSection({ email }: { email?: string }) {
-  const { websiteHostname, stripePublicKey } = siteConfig;
+export function ProductSelectionSection() {
+  const { stripePublicKey } = siteConfig;
   const { mainProductOneOffVariants } = useGlobalState();
 
   const stripePromise = React.useRef<Promise<Stripe | null> | null>(null);
-
-  const [purchaseType, setPurchaseType] = React.useState<PurchaseType>("subscription");
-
-  const dynamicText = purchaseType === "one-off" ? "One-time payment" : "Cancel anytime";
 
   React.useEffect(() => {
     stripePromise.current = loadStripe(stripePublicKey);
@@ -34,47 +30,8 @@ export function ProductSelectionSection({ email }: { email?: string }) {
   const v3 = mainProductOneOffVariants[2];
 
   return (
-    <Box backgroundColor={"primary.100"} pt={3} pb={8}>
+    <Box id={"product-selection"} backgroundColor={"primary.100"} pt={3} pb={8}>
       <Container maxW={"container.lg"} id="pricing-section">
-        {/* <Grid gridTemplateColumns={"1fr 1fr"} gap={1} mx="auto" maxW={"450px"}>
-          <Button
-            size="md"
-            variant={purchaseType === "one-off" ? "solid" : "outline"}
-            colorScheme={"green"}
-            onClick={() => setPurchaseType("one-off")}
-            px={1}
-            borderRadius={"full"}
-          >
-            <Stack direction={"row"} alignItems={"center"} spacing={1}>
-              <Icon as={purchaseType === "one-off" ? FaRegCheckCircle : FaRegCircle} />
-              <Text textTransform={"uppercase"} fontSize={"xs"} fontWeight={"bold"}>
-                One-time purchase
-              </Text>
-            </Stack>
-          </Button>
-
-          <Button
-            size="md"
-            variant={purchaseType === "subscription" ? "solid" : "outline"}
-            colorScheme={"green"}
-            onClick={() => setPurchaseType("subscription")}
-            px={1}
-            borderRadius={"full"}
-          >
-            <Stack direction={"row"} alignItems={"center"} spacing={1}>
-              <Icon as={purchaseType === "subscription" ? FaRegCheckCircle : FaRegCircle} />
-
-              <Text textTransform={"uppercase"} fontSize={"xs"} fontWeight={"bold"}>
-                Subscribe
-              </Text>
-
-              <Badge colorScheme="primary" p={1}>
-                Sale %
-              </Badge>
-            </Stack>
-          </Button>
-        </Grid> */}
-
         <SimpleGrid columns={[1, 1, 3]} gap={4} mt={4}>
           {v1 && (
             <ProductSelectItem

@@ -3,9 +3,7 @@ import { StaticImage } from "gatsby-plugin-image";
 import { useSummaryState } from "./summary/ctx";
 import { Span } from "@components/components";
 
-export function ProductPreview() {
-  const state = useSummaryState();
-
+export function ProductPreview(props: { weightAvgMonthlyLoss: number; weightUnits: string }) {
   return (
     <Container maxW={"container.lg"}>
       <Grid
@@ -24,14 +22,17 @@ export function ProductPreview() {
       >
         <Stack gridArea={"text"}>
           <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"}>
+            Your New Weight Loss Journey
+          </Heading>
+          {/* <Heading fontSize={["3xl", "3xl", "4xl"]} maxW={"container.sm"}>
             Lose an average of{" "}
             <Span color="primary.600" fontWeight={"bold"} textDecoration={"underline"}>
-              {Math.round(state.weightAvgMonthlyLoss * 3)}
-              {state.weightUnits}
+              {Math.round(props.weightAvgMonthlyLoss * 3)}
+              {props.weightUnits}
             </Span>{" "}
             in only 90 days -
             <br /> while also sleeping better*
-          </Heading>
+          </Heading> */}
 
           <Text fontSize={"md"} mt={4}>
             Our carefully crafted formula works in harmony with your body's natural rhythms. By
