@@ -11,6 +11,7 @@ import {
   IconButton,
   Stack,
   Button,
+  Grid,
 } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
@@ -125,9 +126,17 @@ export const ProductCarouselSection = (props: {
           }
         `}
       />
+
       <Container maxW={["container.sm", null, "container.lg"]}>
-        <Flex py={4} flexWrap={"wrap"} gap={8}>
-          <Box minWidth={340} flex={1}>
+        <Grid
+          py={4}
+          gridTemplateColumns={["auto", "auto", "1fr 1fr"]}
+          gridTemplateAreas={['"headline" "image"', '"headline" "image"', '"image headline"']}
+          gap={8}
+          width={"full"}
+          justifyContent={"space-between"}
+        >
+          <Box gridArea={"image"} minWidth={340} flex={1}>
             <Box className="blaze-slider" ref={elRef} position={"relative"}>
               <IconButton
                 aria-label="arrow left"
@@ -206,9 +215,14 @@ export const ProductCarouselSection = (props: {
             </Flex>
           </Box>
 
-          <Stack alignItems={["center", "center", "start"]} flex={1} minWidth={300}>
+          <Stack
+            gridArea="headline"
+            alignItems={["center", "center", "start"]}
+            flex={1}
+            minWidth={300}
+          >
             <Heading
-              fontSize={["4xl", "4xl", "5xl"]}
+              fontSize={["3xl", "4xl", "5xl"]}
               maxW={"container.sm"}
               textAlign={["center", "center", "left"]}
             >
@@ -220,7 +234,7 @@ export const ProductCarouselSection = (props: {
               In Only 90 Days*
             </Heading>
 
-            <Flex alignItems={"center"} gap={2} py={2}>
+            <Flex alignItems={"center"} gap={2} py={[0, 0, 2]}>
               <Text fontSize={"sm"}>4.7</Text>
               <Rating />
               <a href="#reviews">
@@ -230,10 +244,15 @@ export const ProductCarouselSection = (props: {
               </a>
             </Flex>
 
-            <Text mt={4} fontSize={["md", "md", "lg"]} textAlign={["center", "center", "left"]}>
-              Introducing our all-in-one fat burner designed to support stress reduction, and sleep
-              quality. This formula contains metabolism-boosting ingredients for a comprehensive
-              solution to your weight management goals.*
+            <Text
+              mt={[2, 2, 4]}
+              fontSize={["md", "md", "lg"]}
+              textAlign={["center", "center", "left"]}
+            >
+              Introducing our <Span fontWeight={"bold"}>all-in-one fat burner</Span> designed to
+              support stress reduction, and sleep quality. This formula contains metabolism-boosting
+              ingredients for a comprehensive solution to{" "}
+              <Span fontWeight={"bold"}>your weight management goals</Span>.*
             </Text>
 
             <Stack width={["full", "unset"]} alignItems="center" mt={6}>
@@ -254,7 +273,7 @@ export const ProductCarouselSection = (props: {
               </Link>
             </Stack>
           </Stack>
-        </Flex>
+        </Grid>
       </Container>
     </Box>
   );

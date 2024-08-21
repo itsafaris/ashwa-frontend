@@ -35,8 +35,12 @@ export default function Page() {
     <Box bg="bg.50">
       <SpecialOfferBannerTop />
       <Header />
-      <SpecialOfferBanner />
-      <SpecialOfferTimer />
+      <Box backgroundColor={"primary.100"} pt={4}>
+        <SpecialOfferBanner />
+      </Box>
+      <Box backgroundColor={"primary.100"} pt={1}>
+        <SpecialOfferTimer />
+      </Box>
       <Hero />
       <ProductSelectionSection />
       <FreeShippingSection />

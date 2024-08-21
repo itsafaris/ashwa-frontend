@@ -36,6 +36,8 @@ import {
 } from "@components/sections/summary/utils";
 import { ProductCarouselSection } from "@components/sections/ProductCarousel";
 import { StaticImage } from "gatsby-plugin-image";
+import { SpecialOfferBanner } from "@components/sections/SpecialOfferBanner";
+import { SpecialOfferTimer } from "@components/sections/SpecialOfferTimer";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -48,13 +50,18 @@ export default function Page() {
 
   return (
     <Box>
-      <SpecialOfferBannerTop />
+      {/* <SpecialOfferBannerTop /> */}
       <Header />
 
-      <ProductCarouselSection
-        weightAvgMonthlyLoss={weightAvgMonthlyLoss}
-        weightUnits={weightUnits}
-      />
+      <SpecialOfferBanner />
+      <SpecialOfferTimer />
+
+      <Box pt={[1, 4]}>
+        <ProductCarouselSection
+          weightAvgMonthlyLoss={weightAvgMonthlyLoss}
+          weightUnits={weightUnits}
+        />
+      </Box>
 
       <Box pt={6} bg="primary.100" px={4}>
         <Recommendation />
