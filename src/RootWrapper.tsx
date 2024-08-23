@@ -8,6 +8,7 @@ import { getProductQuery } from "@lib/shopify/queries/product";
 import { ProductFragment } from "types/storefront.generated";
 
 import { mergeWithStripeVariants, Product } from "./products";
+import { getPosthog } from "./tracking";
 
 export interface IRootWrapperProps {}
 
@@ -29,6 +30,15 @@ export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
   });
 
   React.useEffect(() => {
+    let hash = window.location.hash;
+    if (hash) {
+      hash = hash.slice(1, hash.length);
+      const [paramName, paramValue] = hash.split("=");
+      if (paramName === "userid") {
+        getPosthog()?.identify(paramValue);
+      }
+    }
+
     loadProducts();
   }, []);
 
