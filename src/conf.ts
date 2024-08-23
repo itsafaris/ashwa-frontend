@@ -21,9 +21,9 @@ export const siteConfig: SiteConfig = {
   version: pkgjson.version,
   email: "info@trycalmr.com",
   image: "/images/facts-image.jpg",
-  title: `Most complete Blend of Ashwagandha for Modern Busy Women`,
+  title: `Combat Stress and Shed Pounds with an All-in-One Solution`,
   description:
-    "Our all-in-one supplement blend - the only one you'll need to combat stress, sharpen focus, and boost energy. This revolutionary formula uniquely combines Ashwagandha, Rhodiola Extract, and Bacopa with essential vitamins and minerals, creating a powerhouse solution tailored specifically for the modern woman's needs.",
+    "Our carefully crafted formula works in harmony with your body's natural rhythms. By improving your sleep quality and supporting your metabolism, it contributes to your weight management efforts.",
   websiteHostname: process.env.GATSBY_WEBSITE_HOSTNAME ?? `http://localhost:8000`,
   stripePublicKey,
   stripeEnv,

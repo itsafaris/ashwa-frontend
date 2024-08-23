@@ -11,9 +11,9 @@ import { Box, Heading, Text, Icon, Container, Stack, Grid } from "@chakra-ui/rea
 
 import { CTAButton } from "../components";
 
-import { StaticImage } from "gatsby-plugin-image";
 import { useSummaryState } from "./summary/ctx";
 import { capitalizeFirstLetter } from "src/utils";
+import { CustomerOutcomes } from "./CustomerOutcomes";
 
 export const Summary = () => {
   const state = useSummaryState();
@@ -158,45 +158,10 @@ export const Summary = () => {
             </Stack>
           </Grid>
 
-          <Stack
-            backgroundColor="white"
-            borderRadius={"lg"}
-            width={"100%"}
-            alignItems={"center"}
-            justifyContent={"space-between"}
-            spacing={1}
-            p={6}
-            border="1px solid"
-            borderColor={"bg.100"}
-          >
-            <Grid
-              gridTemplateColumns={["1fr", "1fr 1fr"]}
-              gridTemplateRows={["auto auto", "1fr"]}
-              gap={2}
-              alignItems={"center"}
-            >
-              <Stack py={3} px={[3, 3, 10]}>
-                <Stack alignItems={["center", "start"]} mb={3}>
-                  <StaticImage alt="" src="../../images/woman-photo-1.jpg" width={170} />
-                </Stack>
-
-                <Heading textAlign={["center", "left"]} fontSize={"2xl"}>
-                  92% of our customers report significant results in their first month of use
-                </Heading>
-
-                <Stack display={["none", "none", "flex"]} mt={5}>
-                  <CTAButton alignItems={"left"} width={"260px"} />
-                </Stack>
-              </Stack>
-
-              <Stack py={3} px={[3, 3, 10]}>
-                <StaticImage alt="" src="../../images/summary-outcome-graph.jpg" />
-              </Stack>
-            </Grid>
-          </Stack>
+          <CustomerOutcomes />
         </Stack>
 
-        <Stack mt={12} display={["flex", "flex", "none"]}>
+        <Stack mt={8}>
           <CTAButton />
         </Stack>
       </Container>

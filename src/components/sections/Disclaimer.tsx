@@ -1,9 +1,6 @@
 import { Box, Container, Text } from "@chakra-ui/react";
-import { useSummaryState } from "./summary/ctx";
 
-export function Disclaimer() {
-  const summary = useSummaryState();
-
+export function Disclaimer(props: { weightAvgMonthlyLoss: number; weightUnits: string }) {
   return (
     <Box py={16}>
       <Container maxWidth={"container.lg"}>
@@ -13,9 +10,9 @@ export function Disclaimer() {
             Sleep & Burn is not designed to diagnose, treat, cure, or prevent any medical
             conditions. Individual outcomes may differ. A study involving twice-daily oral intake of
             Sleep & Burn, alongside a calorie-restricted diet, showed an average weight difference
-            exceeding {Math.round(summary.weightAvgMonthlyLoss * 3)}
-            {summary.weightUnits} over a 90-day period. However, this product is not intended to be
-            a substitute for professional medical advice or treatment.
+            exceeding {Math.round(props.weightAvgMonthlyLoss * 3)}
+            {props.weightUnits} over a 90-day period. However, this product is not intended to be a
+            substitute for professional medical advice or treatment.
           </Text>
         </Box>
       </Container>

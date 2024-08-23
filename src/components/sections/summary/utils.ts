@@ -24,7 +24,7 @@ export function getSummaryState(state: SavedState): SummaryState | undefined {
   const weightUnits = getWeightUnits(state.unitSystem);
   const weightDiff = getWeightDiff(state.weight, state.weightGoal);
   const weightAvgMonthlyLoss = roundTo(getAvgMonthlyWeightLoss(state.unitSystem));
-  const weightLossByWeeks = getMonthlyWeightLossByWeeks(state.weight, state.unitSystem);
+  const weightLossByWeeks = getMonthlyWeightLossResultsByWeeks(state.weight, state.unitSystem);
 
   return {
     weightStart: roundTo(state.weight),
@@ -54,15 +54,25 @@ function getWeightLossDuration(
   return monthCount;
 }
 
-function getMonthlyWeightLossByWeeks(weightStart: number, unitSystem: SavedState["unitSystem"]) {
+export function getMonthlyWeightLossByWeeks(unitSystem: SavedState["unitSystem"]) {
   const weeklyLossMetric = [
     AVG_MONTHLY_WEIGHT_LOSS_METRIC * 0,
     AVG_MONTHLY_WEIGHT_LOSS_METRIC * 0.3,
     AVG_MONTHLY_WEIGHT_LOSS_METRIC * 0.6,
     AVG_MONTHLY_WEIGHT_LOSS_METRIC * 1,
   ];
+
   const weeklyLoss =
     unitSystem === "metric" ? weeklyLossMetric : weeklyLossMetric.map(toImperialWeight);
+
+  return weeklyLoss.map((it) => roundTo(it, 1));
+}
+
+function getMonthlyWeightLossResultsByWeeks(
+  weightStart: number,
+  unitSystem: SavedState["unitSystem"]
+) {
+  const weeklyLoss = getMonthlyWeightLossByWeeks(unitSystem);
 
   return weeklyLoss.map((it) => {
     const diff = weightStart - it;
@@ -71,7 +81,7 @@ function getMonthlyWeightLossByWeeks(weightStart: number, unitSystem: SavedState
   });
 }
 
-function getAvgMonthlyWeightLoss(unitSystem: SavedState["unitSystem"]) {
+export function getAvgMonthlyWeightLoss(unitSystem: SavedState["unitSystem"]) {
   const res =
     unitSystem === "metric"
       ? AVG_MONTHLY_WEIGHT_LOSS_METRIC

@@ -13,6 +13,7 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
         <Heading my={6} textAlign={"center"}>
           Real Stories, Real Results
         </Heading>
+
         <Flex my={4} gap={2} justifyContent={"space-between"}>
           <Text fontSize={"sm"}>
             Showing <Span decoration={"underline"}>most recent</Span> reviews from{" "}
@@ -27,6 +28,7 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
             / {TOTAL_NUMBER_OF_REVIEWS}
           </Text>
         </Flex>
+
         <Flex direction={"column"} gap={3}>
           {reviews.map((review, idx) => {
             return (
@@ -75,10 +77,6 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
             );
           })}
         </Flex>
-
-        <Stack mt={12}>
-          <CTAButton />
-        </Stack>
       </Container>
     </Box>
   );

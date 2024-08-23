@@ -37,7 +37,7 @@ export function HowItWorksSection() {
   const theirs = comparisonData.map((it) => it.competitors);
 
   return (
-    <Box py={16} backgroundColor={"#f3eef2"}>
+    <Box py={12} backgroundColor={"#f3eef2"}>
       <Container maxW={"container.lg"}>
         <Box display={["none", "none", "block"]} mb={14} maxW={"container.md"} mx="auto">
           <Header />
@@ -59,7 +59,7 @@ export function HowItWorksSection() {
           <GridItem>
             <Stack p={3} borderRadius={"lg"}>
               <Text color="black" fontWeight={"semibold"} fontSize={"lg"} px={3}>
-                Life before you start using Calmr
+                Life before you start using Sleep & Burn
               </Text>
 
               <Flex direction={"column"} gap={"1px"} bg="gray.300">
@@ -85,7 +85,7 @@ export function HowItWorksSection() {
           <GridItem>
             <Stack backgroundColor="secondary.200" p={3} borderRadius={"lg"}>
               <Text color="black" fontWeight={"semibold"} fontSize={"lg"} px={3}>
-                Life after you start using Calmr
+                Life after you start using Sleep & Burn
               </Text>
 
               <Flex direction={"column"} gap={"1px"} bg="secondary.300">
@@ -109,10 +109,6 @@ export function HowItWorksSection() {
             </Stack>
           </GridItem>
         </Grid>
-
-        <Stack mt={12}>
-          <CTAButton />
-        </Stack>
       </Container>
     </Box>
   );
@@ -122,7 +118,7 @@ function Header() {
   return (
     <Stack>
       <Heading mb={10} textAlign={"center"}>
-        How it works
+        How Sleep & Burn Works
       </Heading>
 
       <Grid

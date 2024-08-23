@@ -8,7 +8,7 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
     <Box backgroundColor={"white"} py={10}>
       <Container maxW={"container.lg"}>
         <Stack spacing={6} alignItems={"center"}>
-          <Stack alignItems={"center"}>
+          <Stack alignItems={"center"} mb={5}>
             <Rating rating={5} size="normal" />
 
             <Heading
@@ -17,7 +17,10 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
               maxW={"container.sm"}
               textAlign={"center"}
             >
-              Users experience <br /> changes in less than a month
+              These Women Saw a Significant Difference In{" "}
+              <Text as="span" color="primary.600" textDecoration={"underline"}>
+                Under 90 Days!
+              </Text>
             </Heading>
           </Stack>
 
@@ -33,10 +36,6 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
               return <TopReview review={it} key={idx} />;
             })}
           </Grid>
-        </Stack>
-
-        <Stack mt={12}>
-          <CTAButton />
         </Stack>
       </Container>
     </Box>
