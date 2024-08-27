@@ -1,12 +1,13 @@
-import { Container, Flex, Stack, Heading, Spinner } from "@chakra-ui/react";
+import { Container, Flex, Heading, Spinner, Stack, Text } from "@chakra-ui/react";
 import React from "react";
-import { Footer } from "../components/Footer";
 import { Header } from "../components/Header";
+import { Footer } from "../components/Footer";
+import { siteConfig } from "src/conf";
 
 import { client } from "@lib/shopify/client";
-import { getPrivacyPolicy } from "@lib/shopify/queries/shop";
+import { getTermsOfService } from "@lib/shopify/queries/shop";
 
-export default function PrivacyPolicyPage() {
+export default function TermsAndConditionsPage() {
   const [htmlString, setHTMLString] = React.useState<string | null>(null);
   const [loading, setLoading] = React.useState<boolean>(false);
 
@@ -14,12 +15,12 @@ export default function PrivacyPolicyPage() {
     async function getPolicy() {
       setLoading(true);
 
-      const res = await client.request(getPrivacyPolicy);
+      const res = await client.request(getTermsOfService);
 
       if (res.errors) {
         console.error(res.errors);
-      } else if (res.data?.shop?.privacyPolicy) {
-        setHTMLString(res.data.shop.privacyPolicy.body);
+      } else if (res.data?.shop?.termsOfService) {
+        setHTMLString(res.data.shop.termsOfService.body);
       }
 
       setLoading(false);
@@ -33,7 +34,7 @@ export default function PrivacyPolicyPage() {
       <Header />
       <Container maxW={"container.lg"}>
         <Stack spacing={8} my={10}>
-          <Heading>Privacy Policy</Heading>
+          <Heading>Terms and Conditions</Heading>
 
           {loading && <Spinner mx="auto" mt={16} />}
           {htmlString && (

@@ -22,10 +22,10 @@ export function Footer() {
             textDecoration={"underline"}
             wrap={"wrap"}
           >
-            <Link to="/terms-of-service">Terms of Service</Link>
-            <Link to="/privacy-policy">Privacy policy</Link>
-            <Link to="/shipping-policy">Shipping policy</Link>
-            <Link to="/refund-policy">Refund policy</Link>
+            <Link to="/terms-and-conditions">Terms and Conditions</Link>
+            <Link to="/privacy-policy">Privacy Policy</Link>
+            <Link to="/shipping-policy">Shipping Policy</Link>
+            <Link to="/refund-policy">Return & Refund Policy</Link>
             <Link to="/about-us">About us</Link>
             <Link to="/faq">FAQs</Link>
           </Flex>
