@@ -31,11 +31,13 @@ export function Footer() {
           </Flex>
 
           <Text my={4} fontSize={"xs"}>
-            The statements made on this website have not been evaluated by the FDA (U.S. Food & Drug
-            Administration). The products sold on this website are not intended to diagnose, treat,
-            cure, or prevent any disease. The information provided by this website or this company
-            is not a substitute for a face-to-face consultation with your physician, and should not
-            be construed as individual medical advice.
+            Disclaimer: The Food and Drug Administration has not assessed the content and claims
+            presented on this site. These products are not designed to identify, cure, alleviate, or
+            avert any medical condition. It should not replace professional medical guidance or
+            treatment. Please seek advice from a licensed healthcare professional for medical
+            decision-making. A balanced diet and regular physical activity are essential for
+            achieving and sustaining weight reduction. This product is not a substitute for medical
+            expertise or intervention.
           </Text>
 
           <Text fontSize={"xs"} textAlign={"center"}>
