@@ -1,30 +1,58 @@
-import { Flex, Text, Container } from "@chakra-ui/react";
+import { Flex, Text, Container, Stack, Box } from "@chakra-ui/react";
+import { Timer } from "@components/components";
 
 export const SpecialOfferBannerTop = () => (
-  <Flex
-    bgGradient="linear(to-r, pink.300, pink.500)"
-    fontWeight={"semibold"}
-    color="white"
-    py={1}
-    px={3}
-  >
-    <Container
-      as={Flex}
-      gap={0}
-      alignItems={"center"}
-      justifyContent={"space-between"}
-      maxW={["container.lg"]}
-      fontSize={["sm", null, "md"]}
+  <Stack spacing={0}>
+    <Box
+      bgGradient="linear(to-r, orange.300, orange.500)"
+      fontWeight={"semibold"}
+      color="white"
+      py={1}
     >
-      <Flex justifyContent={"center"} alignItems={"center"} gap={[0, 1, 1]} flexWrap={"wrap"}>
-        <Flex gap={1}>
-          <Text>Summer sale</Text>
-        </Flex>
-      </Flex>
-      <Text>⚡</Text>
-      <Text textAlign={"center"}>50% OFF</Text>
-      <Text>⚡</Text>
-      <Text textAlign={"center"}>Free Shipping</Text>
-    </Container>
-  </Flex>
+      <Container
+        as={Flex}
+        gap={0}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        maxW={["container.sm"]}
+        fontSize={["sm", null, "md"]}
+      >
+        <Text>SUMMER SALE</Text>
+
+        <Text>⚡</Text>
+
+        <Text textAlign={"center"} fontWeight={"bold"}>
+          50% OFF
+        </Text>
+
+        <Text>⚡</Text>
+
+        <Text textAlign={"right"}>Free Shipping</Text>
+      </Container>
+    </Box>
+
+    <Box
+      bgGradient="linear(to-r, orange.400, orange.200)"
+      fontWeight={"semibold"}
+      color="white"
+      py={1}
+    >
+      <Container
+        as={Flex}
+        gap={0}
+        alignItems={"center"}
+        justifyContent={"space-between"}
+        maxW={["container.sm"]}
+        fontSize={["sm", null, "md"]}
+      >
+        <Timer color={"white"} fontSize={["2xl", "3xl"]} fontWeight={"semibold"} />
+        <Text fontSize={["sm", "md"]} textAlign={"center"} color="orange.800">
+          <Text as="span" fontWeight={"bold"}>
+            HURRY!
+          </Text>{" "}
+          Offer expires soon
+        </Text>
+      </Container>
+    </Box>
+  </Stack>
 );

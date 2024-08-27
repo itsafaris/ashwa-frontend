@@ -129,7 +129,8 @@ export const ProductCarouselSection = (props: {
 
       <Container maxW={["container.sm", null, "container.lg"]}>
         <Grid
-          py={4}
+          pt={[2, 4]}
+          pb={4}
           gridTemplateColumns={["auto", "auto", "1fr 1fr"]}
           gridTemplateAreas={['"headline" "image"', '"headline" "image"', '"image headline"']}
           gap={8}
@@ -234,7 +235,25 @@ export const ProductCarouselSection = (props: {
               In Only 90 Days*
             </Heading>
 
-            <Flex alignItems={"center"} gap={2} py={[0, 0, 2]}>
+            <Text
+              mt={[2, 2, 4]}
+              fontSize={["md", "md", "lg"]}
+              textAlign={["center", "center", "left"]}
+              display={["none", "block"]}
+            >
+              Introducing our <Span fontWeight={"bold"}>all-in-one fat burner</Span> designed to
+              support stress reduction, and sleep quality. This formula contains metabolism-boosting
+              ingredients for a comprehensive solution to{" "}
+              <Span fontWeight={"bold"}>your weight management goals</Span>*
+            </Text>
+
+            <Text mt={2} fontSize={"md"} textAlign={"center"} display={["block", "none"]}>
+              <Span fontWeight={"bold"}>All-in-one fat burner</Span> designed to support metabolism,
+              stress reduction, and sleep quality, offering a comprehensive approach to{" "}
+              <Span fontWeight={"bold"}>weight management*</Span>
+            </Text>
+
+            <Flex alignItems={"center"} gap={2} py={[0, 0, 2]} mt={6} mb={0}>
               <Text fontSize={"sm"}>4.7</Text>
               <Rating />
               <a href="#reviews">
@@ -244,18 +263,7 @@ export const ProductCarouselSection = (props: {
               </a>
             </Flex>
 
-            <Text
-              mt={[2, 2, 4]}
-              fontSize={["md", "md", "lg"]}
-              textAlign={["center", "center", "left"]}
-            >
-              Introducing our <Span fontWeight={"bold"}>all-in-one fat burner</Span> designed to
-              support stress reduction, and sleep quality. This formula contains metabolism-boosting
-              ingredients for a comprehensive solution to{" "}
-              <Span fontWeight={"bold"}>your weight management goals</Span>.*
-            </Text>
-
-            <Stack width={["full", "unset"]} alignItems="center" mt={6}>
+            <Stack width={["full", "unset"]} alignItems="center">
               <Link to="/sleep-and-burn/#product-selection">
                 <Button
                   size="lg"

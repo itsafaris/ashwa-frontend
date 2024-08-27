@@ -4,7 +4,7 @@ import { Logo } from "./logo";
 export const Header = () => (
   <Box bg="white">
     <Container as={Flex} py={3} alignItems={"center"} justifyContent={"center"}>
-      <Logo height={"45px"} />
+      <Logo height={["35px", "45px"]} />
     </Container>
   </Box>
 );
