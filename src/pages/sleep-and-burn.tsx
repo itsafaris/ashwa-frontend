@@ -52,7 +52,9 @@ export default function Page() {
     <Box>
       <SpecialOfferBannerTop />
 
-      <Header />
+      <Box mt={16}>
+        <Header />
+      </Box>
 
       <Box>
         <ProductCarouselSection

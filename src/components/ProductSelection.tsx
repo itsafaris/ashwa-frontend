@@ -37,7 +37,7 @@ export function ProductSelectionSection() {
             <ProductSelectItem
               product={v1}
               badgeText={`Most popular SAVE ${v1.discount}%`}
-              badgeBg="purple.300"
+              badgeBg="orange.400"
               hasFreeGift
               hasFreeShipping
             />
@@ -47,7 +47,7 @@ export function ProductSelectionSection() {
             <ProductSelectItem
               product={v2}
               badgeText={`Best value SAVE ${v2.discount}%`}
-              badgeBg="purple.300"
+              badgeBg="orange.400"
               hasFreeGift
               hasFreeShipping
             />

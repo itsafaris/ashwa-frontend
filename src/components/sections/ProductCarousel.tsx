@@ -228,7 +228,7 @@ export const ProductCarouselSection = (props: {
               textAlign={["center", "center", "left"]}
             >
               Lose an Average Of{" "}
-              <Span color="primary.600" fontWeight={"bold"}>
+              <Span color="pink.600" fontWeight={"bold"}>
                 {Math.round(props.weightAvgMonthlyLoss * 3)}
                 {props.weightUnits}
               </Span>{" "}
