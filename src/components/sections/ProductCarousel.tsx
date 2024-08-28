@@ -235,22 +235,10 @@ export const ProductCarouselSection = (props: {
               In Only 90 Days*
             </Heading>
 
-            <Text
-              mt={[2, 2, 4]}
-              fontSize={["md", "md", "lg"]}
-              textAlign={["center", "center", "left"]}
-              display={["none", "block"]}
-            >
-              Introducing our <Span fontWeight={"bold"}>all-in-one fat burner</Span> designed to
-              support stress reduction, and sleep quality. This formula contains metabolism-boosting
-              ingredients for a comprehensive solution to{" "}
-              <Span fontWeight={"bold"}>your weight management goals</Span>*
-            </Text>
-
-            <Text mt={2} fontSize={"md"} textAlign={"center"} display={["block", "none"]}>
-              <Span fontWeight={"bold"}>All-in-one fat burner</Span> designed to support metabolism,
-              stress reduction, and sleep quality, offering a comprehensive approach to{" "}
-              <Span fontWeight={"bold"}>weight management*</Span>
+            <Text mt={2} fontSize={"md"} textAlign={["center", "start"]}>
+              Our <Span fontWeight={"bold"}> best-selling fat burn formula</Span> accelerates weight
+              loss by synchronizing metabolism, improving sleep, and reducing stress for
+              comprehensive, results-driven <Span fontWeight={"bold"}>weight management*</Span>
             </Text>
 
             <Flex alignItems={"center"} gap={2} py={[0, 0, 2]} mt={6} mb={0}>
