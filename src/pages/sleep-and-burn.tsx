@@ -50,13 +50,13 @@ export default function Page() {
 
   return (
     <Box>
-      {/* <SpecialOfferBannerTop /> */}
-      <Header />
+      <SpecialOfferBannerTop />
 
-      <SpecialOfferBanner />
-      <SpecialOfferTimer />
+      <Box mt={16}>
+        <Header />
+      </Box>
 
-      <Box pt={[1, 4]}>
+      <Box>
         <ProductCarouselSection
           weightAvgMonthlyLoss={weightAvgMonthlyLoss}
           weightUnits={weightUnits}
