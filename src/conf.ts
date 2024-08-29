@@ -14,6 +14,8 @@ export type SiteConfig = {
   description: string;
   shopifyStoreDomain?: string;
   shopifyPublicAccessToken?: string;
+  posthogApiKey: string;
+  posthogApiHost: string;
 };
 
 export const siteConfig: SiteConfig = {
@@ -29,4 +31,6 @@ export const siteConfig: SiteConfig = {
   stripeEnv,
   shopifyStoreDomain: process.env.GATSBY_SHOPIFY_STORE_DOMAIN,
   shopifyPublicAccessToken: process.env.GATSBY_SHOPIFY_PUBLIC_ACCESS_TOKEN,
+  posthogApiKey: "phc_8GZnMTIRMuj7aNKBpluPe46MiqUaFn4RiuH4TtCnmme",
+  posthogApiHost: "https://us.i.posthog.com",
 };

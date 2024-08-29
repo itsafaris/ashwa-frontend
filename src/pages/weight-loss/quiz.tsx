@@ -26,7 +26,8 @@ import { Logo } from "@components/logo";
 import { getCalculatedState, getTypedQuizState } from "src/quizstate";
 import { clearQuizState, loadQuizState, saveQuizState } from "src/localStorage";
 import { PageProps } from "gatsby";
-import { getPosthog, trackEvent } from "src/tracking";
+import { trackEvent } from "src/tracking";
+import posthog from "posthog-js";
 
 export function createPageParams(input: Partial<PageParams>): URLSearchParams {
   const s = new URLSearchParams();
@@ -98,7 +99,7 @@ export default function OnboardingQuiz(props: PageProps) {
         const s = getCalculatedState(quizObject.state);
         // @ts-expect-error
         delete s.version;
-        getPosthog()?.setPersonProperties(s);
+        posthog.setPersonProperties(s);
       }}
     >
       <QuizStateSaver gender={gender} />

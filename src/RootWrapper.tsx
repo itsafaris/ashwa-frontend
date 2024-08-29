@@ -6,9 +6,9 @@ import { siteConfig } from "./conf";
 import { client } from "@lib/shopify/client";
 import { getProductQuery } from "@lib/shopify/queries/product";
 import { ProductFragment } from "types/storefront.generated";
+import posthog from "posthog-js";
 
 import { mergeWithStripeVariants, Product } from "./products";
-import { getPosthog } from "./tracking";
 
 export interface IRootWrapperProps {}
 
@@ -35,7 +35,7 @@ export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
       hash = hash.slice(1, hash.length);
       const [paramName, paramValue] = hash.split("=");
       if (paramName === "userid") {
-        getPosthog()?.identify(paramValue);
+        posthog.identify(paramValue);
       }
     }
 

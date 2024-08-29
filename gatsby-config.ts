@@ -35,22 +35,6 @@ const config: GatsbyConfig = {
     },
 
     {
-      resolve: `gatsby-plugin-posthog`,
-      options: {
-        apiKey: "phc_8GZnMTIRMuj7aNKBpluPe46MiqUaFn4RiuH4TtCnmme",
-        apiHost: "https://us.i.posthog.com",
-        head: true,
-        isEnabledDevMode: false,
-        initOptions: {
-          autocapture: false,
-          debug: !isProdMode(),
-          disable_session_recording: !isProdMode(),
-          enable_heatmaps: true,
-        } satisfies Partial<PostHogConfig>,
-      },
-    },
-
-    {
       resolve: `gatsby-plugin-facebook-pixel`,
       options: {
         pixelId: "1151210512780170",
