@@ -4,7 +4,6 @@ import posthog from "posthog-js";
 
 import pkgjson from "./package.json";
 import { RootWrapper } from "./src/RootWrapper";
-import { getPosthog } from "./src/tracking";
 import { siteConfig } from "./src/conf";
 import { isProdMode } from "./src/utils";
 
@@ -29,7 +28,7 @@ export const onClientEntry: GatsbyBrowser["onClientEntry"] = () => {
     },
   });
 
-  getPosthog()?.register({
+  posthog.register({
     frontend_version: pkgjson.version,
   });
 };
