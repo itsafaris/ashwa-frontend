@@ -25,12 +25,11 @@ export function BuyNowButton(props: BuyNowButtonProps): JSX.Element {
 
     if (res.errors) {
       console.error(res.errors);
-      return;
-    }
-
-    if (res.data?.cartCreate?.cart) {
+    } else if (res.data?.cartCreate?.cart) {
       window.location.href = res.data.cartCreate.cart?.checkoutUrl;
     }
+
+    setLoading(false);
   };
 
   return (
