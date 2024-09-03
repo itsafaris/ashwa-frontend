@@ -18,7 +18,6 @@ import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
 import { SEO } from "@components/SEO";
 
-import { ProductSelectionSection } from "@components/ProductSelection";
 import { FreeShippingSection } from "@components/sections/FreeShipping";
 import { Recommendation } from "@components/Recommendation";
 import { FAQSection } from "@components/sections/FAQ";
@@ -27,17 +26,15 @@ import { ReviewsSection } from "@components/sections/Reviews";
 import { HowItWorksSection } from "@components/sections/HowItWorks";
 import { IngredientsSection } from "@components/sections/Ingredients";
 import { VideoTestimonials } from "@components/sections/VideoTestimonials";
-import { SpecialOfferBannerTop } from "@components/sections/SpecialOfferBannerTop";
 import { ProductPreview } from "@components/sections/ProductPreview";
 import { CustomerOutcomes } from "@components/sections/CustomerOutcomes";
 import {
   getAvgMonthlyWeightLoss,
   getMonthlyWeightLossByWeeks,
 } from "@components/sections/summary/utils";
-import { ProductCarouselSection } from "@components/sections/ProductCarousel";
+
+import { HeroSection } from "@components/SleepAndBurn/HeroSection";
 import { StaticImage } from "gatsby-plugin-image";
-import { SpecialOfferBanner } from "@components/sections/SpecialOfferBanner";
-import { SpecialOfferTimer } from "@components/sections/SpecialOfferTimer";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -50,24 +47,16 @@ export default function Page() {
 
   return (
     <Box>
-      <SpecialOfferBannerTop />
+      {/* <SpecialOfferBannerTop /> */}
 
-      <Box mt={16}>
-        <Header />
-      </Box>
+      <Header />
 
-      <Box>
-        <ProductCarouselSection
-          weightAvgMonthlyLoss={weightAvgMonthlyLoss}
-          weightUnits={weightUnits}
-        />
-      </Box>
+      <HeroSection weightAvgMonthlyLoss={weightAvgMonthlyLoss} weightUnits={weightUnits} />
 
       <Box pt={6} bg="primary.100" px={4}>
         <Recommendation />
       </Box>
 
-      <ProductSelectionSection />
       <FreeShippingSection />
 
       <Stack spacing={0}>
@@ -104,7 +93,7 @@ export default function Page() {
 
       <Disclaimer weightAvgMonthlyLoss={weightAvgMonthlyLoss} weightUnits={weightUnits} />
       <FAQSection />
-      <ProductSelectionSection />
+
       <Footer />
     </Box>
   );

@@ -12,11 +12,14 @@ interface BuyNowButtonPropsBase {
 export type BuyNowButtonProps = ComponentProps<typeof Button> & BuyNowButtonPropsBase;
 
 export function BuyNowButton(props: BuyNowButtonProps): JSX.Element {
-  const { lines, children, ...passthroughProps } = props;
+  const { lines, children, onClick, ...rest } = props;
   const [loading, setLoading] = useState<boolean>(false);
 
-  const handleBuyNow = async () => {
+  const handleBuyNow = async (e: React.MouseEvent<HTMLButtonElement>) => {
+    onClick?.(e);
+
     setLoading(true);
+
     const res = await client.request(createCartMutation, {
       variables: {
         lineItems: lines,
@@ -33,7 +36,7 @@ export function BuyNowButton(props: BuyNowButtonProps): JSX.Element {
   };
 
   return (
-    <Button isLoading={loading} {...passthroughProps} onClick={handleBuyNow}>
+    <Button isLoading={loading} {...rest} onClick={handleBuyNow}>
       {children}
     </Button>
   );
