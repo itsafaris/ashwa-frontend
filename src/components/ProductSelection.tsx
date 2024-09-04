@@ -1,23 +1,38 @@
-import { Box, Container, Flex, SimpleGrid, Stack, Text, Icon, Grid } from "@chakra-ui/react";
+import {
+  Box,
+  Container,
+  Flex,
+  SimpleGrid,
+  Stack,
+  Text,
+  Icon,
+  Grid,
+  Heading,
+  Button,
+  Badge,
+} from "@chakra-ui/react";
 import { loadStripe, Stripe } from "@stripe/stripe-js";
 import React from "react";
 import { siteConfig } from "src/conf";
 
-import { Product } from "src/products";
+import { Product, PurchaseType } from "src/products";
 import { useGlobalState } from "src/RootWrapper";
 import { trackEvent } from "src/tracking";
 import { SafeCheckout } from "./SafeCheckout";
-import { FaArrowRight } from "react-icons/fa6";
+import { FaArrowRight, FaRegCircle } from "react-icons/fa6";
 import { StaticImage } from "gatsby-plugin-image";
 import { CgPill } from "react-icons/cg";
 import { MdLocalShipping } from "react-icons/md";
 import { IoMdSunny } from "react-icons/io";
 import { FaPrescriptionBottle } from "react-icons/fa6";
-import { BuyNowButton } from "./BuyNowButton";
+import { BuyNowButton, BuyNowButtonProps } from "./BuyNowButton";
+import { FaRegCheckCircle } from "react-icons/fa";
+import { ProductFragment } from "types/storefront.generated";
 
 export function ProductSelectionSection() {
   const { stripePublicKey } = siteConfig;
-  const { mainProductOneOffVariants } = useGlobalState();
+  const { mainProductOneOffVariants, freeGiftProduct } = useGlobalState();
+  const [purchaseType, setPurchaseType] = React.useState<PurchaseType>("subscription");
 
   const stripePromise = React.useRef<Promise<Stripe | null> | null>(null);
 
@@ -32,10 +47,55 @@ export function ProductSelectionSection() {
   return (
     <Box id={"product-selection"} backgroundColor={"primary.100"} pt={3} pb={8}>
       <Container maxW={"container.lg"} id="pricing-section">
+        <Heading mx="auto" mb={6} px={8} textAlign={"center"}>
+          Choose your plan
+        </Heading>
+
+        <Grid gridTemplateColumns={"1fr 1fr"} gap={1} mx="auto" maxW={"450px"}>
+          <Button
+            size="md"
+            variant={purchaseType === "one-off" ? "solid" : "outline"}
+            colorScheme={"green"}
+            onClick={() => setPurchaseType("one-off")}
+            px={1}
+            borderRadius={"full"}
+          >
+            <Stack direction={"row"} alignItems={"center"} spacing={1}>
+              <Icon as={purchaseType === "one-off" ? FaRegCheckCircle : FaRegCircle} />
+              <Text textTransform={"uppercase"} fontSize={"xs"} fontWeight={"bold"}>
+                One-time purchase
+              </Text>
+            </Stack>
+          </Button>
+
+          <Button
+            size="md"
+            variant={purchaseType === "subscription" ? "solid" : "outline"}
+            colorScheme={"green"}
+            onClick={() => setPurchaseType("subscription")}
+            px={1}
+            borderRadius={"full"}
+          >
+            <Stack direction={"row"} alignItems={"center"} spacing={1}>
+              <Icon as={purchaseType === "subscription" ? FaRegCheckCircle : FaRegCircle} />
+
+              <Text textTransform={"uppercase"} fontSize={"xs"} fontWeight={"bold"}>
+                Subscribe
+              </Text>
+
+              <Badge colorScheme="green" p={1}>
+                Sale %
+              </Badge>
+            </Stack>
+          </Button>
+        </Grid>
+
         <SimpleGrid columns={[1, 1, 3]} gap={4} mt={4}>
           {v1 && (
             <ProductSelectItem
+              purchaseType={purchaseType}
               product={v1}
+              giftProduct={freeGiftProduct}
               badgeText={`Most popular SAVE ${v1.discount}%`}
               badgeBg="orange.400"
               hasFreeGift
@@ -45,7 +105,9 @@ export function ProductSelectionSection() {
 
           {v2 && (
             <ProductSelectItem
+              purchaseType={purchaseType}
               product={v2}
+              giftProduct={freeGiftProduct}
               badgeText={`Best value SAVE ${v2.discount}%`}
               badgeBg="orange.400"
               hasFreeGift
@@ -53,7 +115,7 @@ export function ProductSelectionSection() {
             />
           )}
 
-          {v3 && <ProductSelectItem product={v3} />}
+          {v3 && <ProductSelectItem purchaseType={purchaseType} product={v3} />}
         </SimpleGrid>
         <SafeCheckout />
         {/* <RiskFreeGuaranteed /> */}
@@ -63,34 +125,59 @@ export function ProductSelectionSection() {
 }
 
 function ProductSelectItem({
+  purchaseType,
   product,
+  giftProduct,
   badgeText,
   badgeBg,
   footerText,
   hasFreeGift = false,
   hasFreeShipping = false,
 }: {
+  purchaseType: PurchaseType;
   product: Product;
+  giftProduct?: ProductFragment;
   badgeText?: string;
   badgeBg?: string;
   footerText?: string;
   hasFreeGift?: boolean;
   hasFreeShipping?: boolean;
 }) {
-  const { freeGiftProduct } = useGlobalState();
+  function getLines() {
+    const lines: BuyNowButtonProps["lines"] = [];
 
-  const lines = [
-    {
+    const mainProductLineItem: BuyNowButtonProps["lines"][number] = {
       merchandiseId: product.stripeID,
       quantity: product.count,
-    },
-  ];
+    };
 
-  if (freeGiftProduct) {
-    lines.push({
-      merchandiseId: freeGiftProduct.variants.edges[0].node.id,
-      quantity: 1,
-    });
+    if (purchaseType === "subscription" && product.subscriptionPlan) {
+      mainProductLineItem.sellingPlanId = product.subscriptionPlanID;
+    }
+
+    lines.push(mainProductLineItem);
+
+    if (hasFreeGift && giftProduct) {
+      lines.push({
+        merchandiseId: giftProduct.variants.edges[0].node.id,
+        quantity: 1,
+      });
+    }
+
+    return lines;
+  }
+
+  let unitPrice = product.unitPrice;
+  let unitPriceBefore = product.unitPriceBefore;
+
+  if (
+    purchaseType === "subscription" &&
+    product.subscriptionPlan &&
+    product.subscriptionPlan.priceAdjustmentAmountOff
+  ) {
+    const amountOff = product.subscriptionPlan.priceAdjustmentAmountOff.amount;
+    unitPrice = product.unitPrice - amountOff;
+    unitPriceBefore = product.unitPriceBefore - amountOff;
   }
 
   return (
@@ -170,9 +257,9 @@ function ProductSelectItem({
 
           <Stack spacing={0}>
             <Flex gap={2} mt={3} fontSize={"lg"}>
-              <Text fontWeight={"bold"}>${product.unitPrice.toFixed(2)}</Text>
+              <Text fontWeight={"bold"}>${unitPrice.toFixed(2)}</Text>
               <Text textDecoration={"line-through"} color={"red.400"}>
-                ${product.unitPriceBefore}
+                ${unitPriceBefore.toFixed(2)}
               </Text>
             </Flex>
 
@@ -187,7 +274,7 @@ function ProductSelectItem({
 
             <Stack direction={"row"} gap={2} alignItems={"center"}>
               <Icon as={IoMdSunny} />
-              <Text>${(product.unitPrice / 30).toFixed(2)} per day</Text>
+              <Text>${(unitPrice / 30).toFixed(2)} per day</Text>
             </Stack>
 
             <Stack direction={"row"} gap={2} alignItems={"center"}>
@@ -214,7 +301,7 @@ function ProductSelectItem({
       </SimpleGrid>
 
       <BuyNowButton
-        lines={lines}
+        lines={getLines()}
         colorScheme="green"
         rightIcon={<Icon as={FaArrowRight} />}
         onClick={() => {

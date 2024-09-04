@@ -8,7 +8,7 @@ import { getProductQuery } from "@lib/shopify/queries/product";
 import { ProductFragment } from "types/storefront.generated";
 import posthog from "posthog-js";
 
-import { mergeWithStripeVariants, Product } from "./products";
+import { mergeWithStripeProduct, Product } from "./products";
 
 export interface IRootWrapperProps {}
 
@@ -59,9 +59,7 @@ export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
       ...p,
       freeGiftProduct: freeGiftProduct ?? undefined,
       mainProduct: mainProduct ?? undefined,
-      mainProductOneOffVariants: mainProduct
-        ? mergeWithStripeVariants(mainProduct.variants.edges.map((it) => it.node))
-        : [],
+      mainProductOneOffVariants: mainProduct ? mergeWithStripeProduct(mainProduct) : [],
     }));
   }
 
