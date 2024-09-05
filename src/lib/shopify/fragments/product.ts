@@ -1,5 +1,6 @@
 import imageFragment from "./image";
 import { productVariantFragment } from "./productVariant";
+import { sellingPlanFragment } from "./sellingPlan";
 import seoFragment from "./seo";
 
 const productFragment = `#graphql
@@ -32,6 +33,20 @@ const productFragment = `#graphql
         }
       }
     }
+    sellingPlanGroups(first: 10) {
+      edges {
+        node {
+          name 
+          sellingPlans(first: 10) {
+            edges {
+              node {
+                ...sellingPlan
+              }
+            }
+          }
+        }
+      }
+    }
     featuredImage {
       ...image
     }
@@ -51,6 +66,7 @@ const productFragment = `#graphql
   ${imageFragment}
   ${seoFragment}
   ${productVariantFragment}
+  ${sellingPlanFragment}
 `;
 
 export default productFragment;

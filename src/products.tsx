@@ -1,11 +1,17 @@
+import { flattenConnection } from "@shopify/hydrogen-react";
 import { StaticImage } from "gatsby-plugin-image";
 import React from "react";
-import { ProductVariantFragment } from "types/storefront.generated";
+import {
+  ProductFragment,
+  ProductVariantFragment,
+  SellingPlanFragment,
+} from "types/storefront.generated";
 
 export type PurchaseType = "subscription" | "one-off";
 
 export type ProductMeta = {
   id: string;
+  subscriptionPlanID: string;
   stripeID: string;
   count: number;
   unitServingsCount: number;
@@ -13,14 +19,24 @@ export type ProductMeta = {
   image: React.ReactNode;
 };
 
-export type Product = ProductMeta & {
+export type ProductShopifyData = {
   unitPrice: number;
   unitPriceBefore: number;
-  discount: number;
   shopifyProductVariant: ProductVariantFragment;
+  subscriptionPlan?: {
+    title: string;
+    priceAdjustmentAmountOff?: {
+      amount: number;
+    };
+  };
 };
 
-const common1 = {
+export type Product = ProductMeta & ProductShopifyData;
+
+const productMeta1: ProductMeta = {
+  id: "bundle-1",
+  stripeID: "gid://shopify/ProductVariant/43142721372207",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1473183791",
   count: 1,
   unitServingsCount: 30,
   subtitle: "Ideal solution for trying out",
@@ -34,7 +50,10 @@ const common1 = {
   ),
 };
 
-const common3 = {
+const productMeta3: ProductMeta = {
+  id: "bundle-3",
+  stripeID: "gid://shopify/ProductVariant/43142721404975",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1473216559",
   count: 3,
   unitServingsCount: 30,
   subtitle: "Great for building new habits",
@@ -48,7 +67,10 @@ const common3 = {
   ),
 };
 
-const common6 = {
+const productMeta6: ProductMeta = {
+  id: "bundle-6",
+  stripeID: "gid://shopify/ProductVariant/43142721437743",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1473249327",
   count: 6,
   unitServingsCount: 30,
   subtitle: "For achieving the most sustainable results",
@@ -62,50 +84,10 @@ const common6 = {
   ),
 };
 
-const sub1 = {
-  id: "sub-1",
-  stripeID: "price_1PdaBTCSMlpgjECRDWZ2LB0k",
-  ...common1,
-};
+const allProducts: ProductMeta[] = [productMeta1, productMeta3, productMeta6];
 
-const sub3 = {
-  id: "sub-3",
-  stripeID: "price_1PdanGCSMlpgjECRerg53HTL",
-  ...common3,
-};
-
-const sub6 = {
-  id: "sub-6",
-  stripeID: "price_1Pdaj3CSMlpgjECRCIDtwNt2",
-  ...common6,
-};
-
-const oneOff1 = {
-  id: "one-off-1",
-  stripeID: "gid://shopify/ProductVariant/43142721372207",
-  ...common1,
-};
-
-const oneOff3 = {
-  id: "one-off-3",
-  stripeID: "gid://shopify/ProductVariant/43142721404975",
-  ...common3,
-};
-
-const oneOff6 = {
-  id: "one-off-6",
-  stripeID: "gid://shopify/ProductVariant/43142721437743",
-  ...common6,
-};
-
-const allProducts: ProductMeta[] = [oneOff3, oneOff6, oneOff1, sub3, sub6, sub1];
-
-export const getProducts = (type: PurchaseType) => {
-  if (type === "one-off") {
-    return [oneOff3, oneOff6, oneOff1];
-  }
-
-  return [sub3, sub6, sub1];
+export const getProducts = () => {
+  return [productMeta3, productMeta6, productMeta1];
 };
 
 export function getProduct(productID: string) {
@@ -114,34 +96,56 @@ export function getProduct(productID: string) {
 
 export function mergeWithStripeVariant(
   productMeta: ProductMeta,
-  productVariant: ProductVariantFragment
+  productVariant: ProductVariantFragment,
+  sellingPlan?: SellingPlanFragment
 ): Product {
   const priceBefore = parseFloat(productVariant.price.amount);
   const priceNow = parseFloat(
     productVariant.priceAfterDiscount?.value ?? productVariant.price.amount
   );
-  const discount = Math.round(((priceBefore - priceNow) / priceBefore) * 100);
 
   const unitPrice = priceNow;
   const unitPriceBefore = priceBefore;
 
-  return {
+  const p: Product = {
     ...productMeta,
     unitPrice,
     unitPriceBefore,
-    discount,
     shopifyProductVariant: productVariant,
   };
+
+  if (sellingPlan) {
+    const priceAdjustment = sellingPlan.priceAdjustments[0];
+    const amountOff = priceAdjustment?.adjustmentValue?.adjustmentAmount;
+
+    p.subscriptionPlan = {
+      title: sellingPlan.name,
+    };
+
+    if (amountOff) {
+      p.subscriptionPlan!.priceAdjustmentAmountOff = {
+        amount: parseFloat(amountOff.amount),
+      };
+    }
+  }
+
+  return p;
 }
 
-export function mergeWithStripeVariants(variants: ProductVariantFragment[]): Product[] {
-  return getProducts("one-off")
-    .map((it) => {
-      const variant = variants.find((v) => v.id === it.stripeID);
+export function mergeWithStripeProduct(product: ProductFragment): Product[] {
+  const variants = product.variants.edges.map((it) => it.node);
+  const sellingPlans = flattenConnection(product.sellingPlanGroups).flatMap((group) =>
+    flattenConnection(group.sellingPlans)
+  );
+
+  return getProducts()
+    .map((productMeta) => {
+      const variant = variants.find((v) => v.id === productMeta.stripeID);
       if (!variant) {
         return;
       }
-      return mergeWithStripeVariant(it, variant);
+      const sellingPlan = sellingPlans.find((p) => p.id === productMeta.subscriptionPlanID);
+      return mergeWithStripeVariant(productMeta, variant, sellingPlan);
     })
     .filter((it): it is Product => !!it);
 }
