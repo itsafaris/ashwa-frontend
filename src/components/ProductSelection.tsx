@@ -30,15 +30,8 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { ProductFragment } from "types/storefront.generated";
 
 export function ProductSelectionSection() {
-  const { stripePublicKey } = siteConfig;
   const { mainProductOneOffVariants, freeGiftProduct } = useGlobalState();
   const [purchaseType, setPurchaseType] = React.useState<PurchaseType>("subscription");
-
-  const stripePromise = React.useRef<Promise<Stripe | null> | null>(null);
-
-  React.useEffect(() => {
-    stripePromise.current = loadStripe(stripePublicKey);
-  }, []);
 
   const v1 = mainProductOneOffVariants[0];
   const v2 = mainProductOneOffVariants[1];
