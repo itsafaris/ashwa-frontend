@@ -22,7 +22,6 @@ export type ProductMeta = {
 export type ProductShopifyData = {
   unitPrice: number;
   unitPriceBefore: number;
-  discount: number;
   shopifyProductVariant: ProductVariantFragment;
   subscriptionPlan?: {
     title: string;
@@ -37,7 +36,7 @@ export type Product = ProductMeta & ProductShopifyData;
 const productMeta1: ProductMeta = {
   id: "bundle-1",
   stripeID: "gid://shopify/ProductVariant/43142721372207",
-  subscriptionPlanID: "gid://shopify/SellingPlan/1471053871",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1473183791",
   count: 1,
   unitServingsCount: 30,
   subtitle: "Ideal solution for trying out",
@@ -54,7 +53,7 @@ const productMeta1: ProductMeta = {
 const productMeta3: ProductMeta = {
   id: "bundle-3",
   stripeID: "gid://shopify/ProductVariant/43142721404975",
-  subscriptionPlanID: "gid://shopify/SellingPlan/1471119407",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1473216559",
   count: 3,
   unitServingsCount: 30,
   subtitle: "Great for building new habits",
@@ -71,7 +70,7 @@ const productMeta3: ProductMeta = {
 const productMeta6: ProductMeta = {
   id: "bundle-6",
   stripeID: "gid://shopify/ProductVariant/43142721437743",
-  subscriptionPlanID: "gid://shopify/SellingPlan/1471152175",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1473249327",
   count: 6,
   unitServingsCount: 30,
   subtitle: "For achieving the most sustainable results",
@@ -104,7 +103,6 @@ export function mergeWithStripeVariant(
   const priceNow = parseFloat(
     productVariant.priceAfterDiscount?.value ?? productVariant.price.amount
   );
-  const discount = Math.round(((priceBefore - priceNow) / priceBefore) * 100);
 
   const unitPrice = priceNow;
   const unitPriceBefore = priceBefore;
@@ -113,7 +111,6 @@ export function mergeWithStripeVariant(
     ...productMeta,
     unitPrice,
     unitPriceBefore,
-    discount,
     shopifyProductVariant: productVariant,
   };
 
@@ -137,8 +134,9 @@ export function mergeWithStripeVariant(
 
 export function mergeWithStripeProduct(product: ProductFragment): Product[] {
   const variants = product.variants.edges.map((it) => it.node);
-  const mainSellingGroup = flattenConnection(product.sellingPlanGroups)[0];
-  const sellingPlans = flattenConnection(mainSellingGroup.sellingPlans);
+  const sellingPlans = flattenConnection(product.sellingPlanGroups).flatMap((group) =>
+    flattenConnection(group.sellingPlans)
+  );
 
   return getProducts()
     .map((productMeta) => {

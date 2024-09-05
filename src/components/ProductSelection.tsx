@@ -96,7 +96,7 @@ export function ProductSelectionSection() {
               purchaseType={purchaseType}
               product={v1}
               giftProduct={freeGiftProduct}
-              badgeText={`Most popular SAVE ${v1.discount}%`}
+              badgeTextPrefix={`Most popular SAVE`}
               badgeBg="orange.400"
               hasFreeGift
               hasFreeShipping
@@ -108,7 +108,7 @@ export function ProductSelectionSection() {
               purchaseType={purchaseType}
               product={v2}
               giftProduct={freeGiftProduct}
-              badgeText={`Best value SAVE ${v2.discount}%`}
+              badgeTextPrefix={`Best value SAVE`}
               badgeBg="orange.400"
               hasFreeGift
               hasFreeShipping
@@ -128,7 +128,7 @@ function ProductSelectItem({
   purchaseType,
   product,
   giftProduct,
-  badgeText,
+  badgeTextPrefix,
   badgeBg,
   footerText,
   hasFreeGift = false,
@@ -137,7 +137,7 @@ function ProductSelectItem({
   purchaseType: PurchaseType;
   product: Product;
   giftProduct?: ProductFragment;
-  badgeText?: string;
+  badgeTextPrefix?: string;
   badgeBg?: string;
   footerText?: string;
   hasFreeGift?: boolean;
@@ -180,6 +180,9 @@ function ProductSelectItem({
     unitPriceBefore = product.unitPriceBefore - amountOff;
   }
 
+  let discountPercentage = Math.ceil((1 - unitPrice / unitPriceBefore) * 100);
+  let badgeText = [badgeTextPrefix || "", `${discountPercentage}%`].join(" ");
+
   return (
     <Flex
       direction={"column"}
@@ -193,7 +196,7 @@ function ProductSelectItem({
       justifyContent={"space-between"}
       height={"100%"}
     >
-      {badgeText && (
+      {badgeTextPrefix && (
         <Box
           width={"full"}
           position={"absolute"}
