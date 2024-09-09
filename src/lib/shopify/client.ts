@@ -7,6 +7,6 @@ if (!siteConfig.shopifyStoreDomain) {
 
 export const client = createStorefrontApiClient({
   storeDomain: siteConfig.shopifyStoreDomain,
-  apiVersion: "2023-10",
+  apiVersion: "2024-07",
   publicAccessToken: siteConfig.shopifyPublicAccessToken,
 });
