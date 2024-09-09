@@ -1,7 +1,5 @@
-import { Flex, Heading, Text, Icon, Stack, Button, List, ListItem } from "@chakra-ui/react";
-import { FaArrowRight } from "react-icons/fa";
+import { Flex, Heading, Text, Stack } from "@chakra-ui/react";
 import { Rating, Span } from "@components/components";
-import { Link } from "gatsby";
 import { ProductSelector } from "../ProductSelector";
 import { useGlobalState } from "src/RootWrapper";
 
@@ -9,23 +7,23 @@ const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
 const usps = [
   {
-    emoji: "🎁",
+    emoji: "🔥",
     text: "Lose weight",
   },
   {
-    emoji: "🎁",
+    emoji: "🍕",
     text: "Control late-night cravings",
   },
   {
-    emoji: "🎁",
+    emoji: "😴",
     text: "Have deep full night sleep",
   },
   {
-    emoji: "🎁",
+    emoji: "🧘‍♀️",
     text: "Handle stress with ease",
   },
   {
-    emoji: "🎁",
+    emoji: "🌞",
     text: "Wake up feeling energized",
   },
 ];
@@ -35,18 +33,16 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
 
   return (
     <Stack spacing={0} gridArea="content" alignItems={["center", "center", "start"]} flex={1}>
-      <Flex alignItems={"center"} gap={2}>
-        <Text fontSize={"sm"}>4.7</Text>
+      <Flex alignItems={"center"} gap={2} fontSize={"sm"} fontWeight={"semibold"}>
         <Rating />
+        <Text>4.7/5</Text>
         <a href="#reviews">
-          <Text fontSize={"sm"} decoration={"underline"}>
-            {TOTAL_NUMBER_OF_REVIEWS} Reviews
-          </Text>
+          <Text>{TOTAL_NUMBER_OF_REVIEWS} reviews</Text>
         </a>
       </Flex>
 
       <Heading
-        fontSize={["3xl", "4xl", "5xl"]}
+        fontSize={["4xl", "4xl", "5xl"]}
         maxW={"container.sm"}
         textAlign={["center", "center", "left"]}
       >
@@ -58,50 +54,31 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
         In Only 90 Days*
       </Heading>
 
-      <Text fontSize={"md"} textAlign={["center", "start"]}>
-        Our <Span fontWeight={"bold"}> best-selling fat burn formula</Span> accelerates weight loss
+      <Text mt={5} fontSize={"md"} textAlign={["center", "start"]}>
+        <Span fontWeight={"bold"}>Our best-selling fat burn formula</Span> accelerates weight loss
         by synchronizing metabolism, improving sleep, and reducing stress for comprehensive,
-        results-driven <Span fontWeight={"bold"}>weight management*</Span>
+        results-driven weight management*. <Span fontWeight={"bold"}>Take 2 pills a day to:</Span>
       </Text>
 
-      <Text fontWeight={"bold"}>Take 2 pills a day to:</Text>
-
-      <List>
+      <Stack mt={6} spacing={1} fontWeight={"semibold"} color={"pink.800"}>
         {usps.map((it, idx) => {
           return (
-            <ListItem key={idx}>
-              <Stack direction={"row"} alignItems={"center"}>
-                <Text>{it.emoji}</Text>
-                <Text>{it.text}</Text>
-              </Stack>
-            </ListItem>
+            <Stack key={idx} direction={"row"} alignItems={"center"}>
+              <Text>•</Text>
+              <Text>{it.emoji}</Text>
+              <Text>{it.text}</Text>
+            </Stack>
           );
         })}
-      </List>
+      </Stack>
 
-      <Text fontWeight={"bold"}>Choose your bundle:</Text>
+      <Text mt={8} mb={5} fontWeight={"bold"}>
+        Choose your bundle:
+      </Text>
 
       {mainProductOneOffVariants.length > 0 && (
         <ProductSelector products={mainProductOneOffVariants} />
       )}
-
-      <Stack width={["full", "unset"]} alignItems="center">
-        <Link to="/sleep-and-burn/#product-selection">
-          <Button
-            size="lg"
-            mx="auto"
-            variant={"solid"}
-            borderRadius={"full"}
-            width={"100%"}
-            py={7}
-            px={10}
-            colorScheme={"pink"}
-            rightIcon={<Icon as={FaArrowRight} />}
-          >
-            Get Sleep & Burn
-          </Button>
-        </Link>
-      </Stack>
     </Stack>
   );
 }

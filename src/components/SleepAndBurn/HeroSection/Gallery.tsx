@@ -59,38 +59,38 @@ export function Gallery() {
     <StaticImage
       src="../../../images/carousel1.jpg"
       alt="Sleep & Burn Supplement"
-      height={500}
-      width={500}
+      height={700}
+      width={700}
     />,
     <StaticImage
       src="../../../images/carousel2.jpg"
       alt="Sleep & Burn Supplement"
-      height={500}
-      width={500}
+      height={700}
+      width={700}
     />,
     <StaticImage
       src="../../../images/carousel3.jpg"
       alt="Sleep & Burn Supplement"
-      height={500}
-      width={500}
+      height={700}
+      width={700}
     />,
     <StaticImage
       src="../../../images/carousel4.jpg"
       alt="Sleep & Burn Supplement"
-      height={500}
-      width={500}
+      height={700}
+      width={700}
     />,
     <StaticImage
       src="../../../images/carousel5.jpg"
       alt="Sleep & Burn Supplement"
-      height={500}
-      width={500}
+      height={700}
+      width={700}
     />,
     <StaticImage
       src="../../../images/carousel6.jpg"
       alt="Sleep & Burn Supplement"
-      height={500}
-      width={500}
+      height={700}
+      width={700}
     />,
   ];
 
@@ -143,7 +143,7 @@ export function Gallery() {
         </div>
       </Box>
 
-      <Flex alignItems={"center"} gap={3} mt={2}>
+      <Flex alignItems={"center"} gap={1}>
         <Flex flex={1} gap={2} justifyContent={"start"} flexWrap={"wrap"} ref={thumbsContainer}>
           {images.map((it, idx) => (
             <AspectRatio

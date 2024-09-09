@@ -12,12 +12,12 @@ export const HeroSection = (props: { weightAvgMonthlyLoss: number; weightUnits: 
           gridTemplateColumns={["1fr", "1fr", "repeat(2, 1fr)"]}
           gridTemplateAreas={[
             `
-              "content"
-              "gallery"
+            "gallery"
+            "content"
             `,
             `
-              "content"
-              "gallery"
+            "gallery"
+            "content"
             `,
             `
               "gallery content"
