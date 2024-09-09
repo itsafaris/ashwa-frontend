@@ -1,13 +1,9 @@
 import * as React from "react";
 import { type HeadFC } from "gatsby";
 
-import { LiaShippingFastSolid } from "react-icons/lia";
-import { IoBookOutline } from "react-icons/io5";
-
-import { Box, Flex, Heading, Text, Button, Icon, Container, Stack, Grid } from "@chakra-ui/react";
+import { Box, Heading, Button, Icon, Container, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaArrowRight } from "react-icons/fa";
-import { Timer } from "../components/components";
 
 import { Header } from "../components/Header";
 import { Footer } from "../components/Footer";

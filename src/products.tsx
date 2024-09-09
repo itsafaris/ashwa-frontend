@@ -17,6 +17,10 @@ export type ProductMeta = {
   unitServingsCount: number;
   subtitle: string;
   image: React.ReactNode;
+  hasFreeShipping?: boolean;
+  hasFreeGift?: boolean;
+  giftProduct?: ProductFragment;
+  badge?: { title: string; showDiscount: boolean };
 };
 
 export type ProductShopifyData = {
@@ -43,9 +47,9 @@ const productMeta1: ProductMeta = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product-1.jpg"}
+      src={"./images/product-1.png"}
       placeholder="blurred"
-      width={240}
+      width={110}
     />
   ),
 };
@@ -60,11 +64,14 @@ const productMeta3: ProductMeta = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product-2.jpg"}
+      src={"./images/product-3.png"}
       placeholder="blurred"
-      width={240}
+      width={110}
     />
   ),
+  hasFreeShipping: true,
+  hasFreeGift: true,
+  badge: { title: "Most Popular", showDiscount: true },
 };
 
 const productMeta6: ProductMeta = {
@@ -77,17 +84,20 @@ const productMeta6: ProductMeta = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product-3.jpg"}
+      src={"./images/product-6.png"}
       placeholder="blurred"
-      width={240}
+      width={110}
     />
   ),
+  hasFreeShipping: true,
+  hasFreeGift: true,
+  badge: { title: "Best Value", showDiscount: true },
 };
 
 const allProducts: ProductMeta[] = [productMeta1, productMeta3, productMeta6];
 
 export const getProducts = () => {
-  return [productMeta3, productMeta6, productMeta1];
+  return [productMeta6, productMeta3, productMeta1];
 };
 
 export function getProduct(productID: string) {
@@ -97,7 +107,8 @@ export function getProduct(productID: string) {
 export function mergeWithStripeVariant(
   productMeta: ProductMeta,
   productVariant: ProductVariantFragment,
-  sellingPlan?: SellingPlanFragment
+  sellingPlan?: SellingPlanFragment,
+  giftProduct?: ProductFragment
 ): Product {
   const priceBefore = parseFloat(productVariant.price.amount);
   const priceNow = parseFloat(
@@ -113,6 +124,10 @@ export function mergeWithStripeVariant(
     unitPriceBefore,
     shopifyProductVariant: productVariant,
   };
+
+  if (productMeta.hasFreeGift && giftProduct) {
+    p.giftProduct = giftProduct;
+  }
 
   if (sellingPlan) {
     const priceAdjustment = sellingPlan.priceAdjustments[0];
@@ -132,7 +147,10 @@ export function mergeWithStripeVariant(
   return p;
 }
 
-export function mergeWithStripeProduct(product: ProductFragment): Product[] {
+export function mergeWithStripeProduct(
+  product: ProductFragment,
+  giftProduct?: ProductFragment
+): Product[] {
   const variants = product.variants.edges.map((it) => it.node);
   const sellingPlans = flattenConnection(product.sellingPlanGroups).flatMap((group) =>
     flattenConnection(group.sellingPlans)
@@ -144,8 +162,9 @@ export function mergeWithStripeProduct(product: ProductFragment): Product[] {
       if (!variant) {
         return;
       }
+
       const sellingPlan = sellingPlans.find((p) => p.id === productMeta.subscriptionPlanID);
-      return mergeWithStripeVariant(productMeta, variant, sellingPlan);
+      return mergeWithStripeVariant(productMeta, variant, sellingPlan, giftProduct);
     })
     .filter((it): it is Product => !!it);
 }

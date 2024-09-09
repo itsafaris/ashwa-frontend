@@ -30,7 +30,7 @@ import { FaRegCheckCircle } from "react-icons/fa";
 import { ProductFragment } from "types/storefront.generated";
 
 export function ProductSelectionSection() {
-  const { mainProductOneOffVariants, freeGiftProduct } = useGlobalState();
+  const { mainProductOneOffVariants } = useGlobalState();
   const [purchaseType, setPurchaseType] = React.useState<PurchaseType>("subscription");
 
   const v1 = mainProductOneOffVariants[0];
@@ -88,10 +88,8 @@ export function ProductSelectionSection() {
             <ProductSelectItem
               purchaseType={purchaseType}
               product={v1}
-              giftProduct={freeGiftProduct}
               badgeTextPrefix={`Most popular SAVE`}
               badgeBg="orange.400"
-              hasFreeGift
               hasFreeShipping
             />
           )}
@@ -100,10 +98,8 @@ export function ProductSelectionSection() {
             <ProductSelectItem
               purchaseType={purchaseType}
               product={v2}
-              giftProduct={freeGiftProduct}
               badgeTextPrefix={`Best value SAVE`}
               badgeBg="orange.400"
-              hasFreeGift
               hasFreeShipping
             />
           )}
@@ -120,20 +116,16 @@ export function ProductSelectionSection() {
 function ProductSelectItem({
   purchaseType,
   product,
-  giftProduct,
   badgeTextPrefix,
   badgeBg,
   footerText,
-  hasFreeGift = false,
   hasFreeShipping = false,
 }: {
   purchaseType: PurchaseType;
   product: Product;
-  giftProduct?: ProductFragment;
   badgeTextPrefix?: string;
   badgeBg?: string;
   footerText?: string;
-  hasFreeGift?: boolean;
   hasFreeShipping?: boolean;
 }) {
   function getLines() {
@@ -150,9 +142,9 @@ function ProductSelectItem({
 
     lines.push(mainProductLineItem);
 
-    if (hasFreeGift && giftProduct) {
+    if (product.giftProduct) {
       lines.push({
-        merchandiseId: giftProduct.variants.edges[0].node.id,
+        merchandiseId: product.giftProduct.variants.edges[0].node.id,
         quantity: 1,
       });
     }
@@ -212,7 +204,7 @@ function ProductSelectItem({
         <Box p={[0, 6]} position={"relative"}>
           {product.image}
 
-          {hasFreeGift && (
+          {product.giftProduct && (
             <Grid
               gridTemplateColumns="1fr 1fr"
               alignItems={"center"}

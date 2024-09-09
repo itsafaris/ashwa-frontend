@@ -1,5 +1,5 @@
 import * as React from "react";
-import { Box, Flex, Icon, AspectRatio, IconButton } from "@chakra-ui/react";
+import { Box, Flex, Icon, AspectRatio, IconButton, Stack } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaArrowLeft, FaArrowRight } from "react-icons/fa";
 import { css, Global } from "@emotion/react";
@@ -19,7 +19,7 @@ function useBlazeSlider(config: BlazeConfig) {
   return { elRef, sliderRef };
 }
 
-export function ImageSlider() {
+export function Gallery() {
   const thumbsContainer = React.useRef<HTMLDivElement>(null);
   const { elRef, sliderRef } = useBlazeSlider({
     all: {
@@ -95,7 +95,7 @@ export function ImageSlider() {
   ];
 
   return (
-    <Box gridArea={"image"} minWidth={340} flex={1}>
+    <Stack gridArea={"gallery"} flex={1}>
       <Global
         styles={css`
           .slider_thumbnail.active {
@@ -117,6 +117,7 @@ export function ImageSlider() {
           zIndex={1}
           onClick={() => sliderRef.current?.prev()}
         />
+
         <IconButton
           aria-label="arrow right"
           variant={"ghost"}
@@ -175,6 +176,6 @@ export function ImageSlider() {
           ))}
         </Flex>
       </Flex>
-    </Box>
+    </Stack>
   );
 }

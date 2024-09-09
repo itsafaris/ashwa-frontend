@@ -15,7 +15,6 @@ export interface IRootWrapperProps {}
 type GlobalContextType = {
   pageLoadedAt: number;
   mainProduct?: ProductFragment;
-  freeGiftProduct?: ProductFragment;
   mainProductOneOffVariants: Product[];
 };
 
@@ -24,7 +23,6 @@ const GlobalCtx = React.createContext<GlobalContextType>({} as any);
 export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
   const [globalState, setGlobalState] = React.useState<GlobalContextType>({
     pageLoadedAt: Date.now(),
-    freeGiftProduct: undefined,
     mainProduct: undefined,
     mainProductOneOffVariants: [],
   });
@@ -52,14 +50,15 @@ export function RootWrapper(props: React.PropsWithChildren<IRootWrapperProps>) {
       }),
     ]);
 
-    const freeGiftProduct = res1.data?.product;
-    const mainProduct = res2.data?.product;
+    const freeGiftProduct = res1.data?.product ?? undefined;
+    const mainProduct = res2.data?.product ?? undefined;
 
     setGlobalState((p) => ({
       ...p,
-      freeGiftProduct: freeGiftProduct ?? undefined,
-      mainProduct: mainProduct ?? undefined,
-      mainProductOneOffVariants: mainProduct ? mergeWithStripeProduct(mainProduct) : [],
+      mainProduct,
+      mainProductOneOffVariants: mainProduct
+        ? mergeWithStripeProduct(mainProduct, freeGiftProduct)
+        : [],
     }));
   }
 

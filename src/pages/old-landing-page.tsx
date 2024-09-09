@@ -172,7 +172,7 @@ const MainHero = () => {
       <SimpleGrid columns={[1, 1, 2]}>
         <AspectRatio ratio={1} maxW={650}>
           <StaticImage
-            src="../images/product-3.jpg"
+            src="../images/product-6.png"
             alt="ashwagandha supplement for women health"
           />
         </AspectRatio>
@@ -461,7 +461,7 @@ function RecommendedUsageSection() {
     <Flex mt={4} py={4}>
       <Container as={Flex} flexWrap={"wrap"} gap={3} alignItems={"center"}>
         <StaticImage
-          src="../images/product-2.jpg"
+          src="../images/product-3.png"
           alt="bundle of 3 supplement bottles"
           width={100}
         />

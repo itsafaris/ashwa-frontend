@@ -2,7 +2,7 @@ import { Flex, Heading, Text, Icon, Stack, Button, List, ListItem } from "@chakr
 import { FaArrowRight } from "react-icons/fa";
 import { Rating, Span } from "@components/components";
 import { Link } from "gatsby";
-import { ProductSelection } from "../ProductSelection";
+import { ProductSelector } from "../ProductSelector";
 import { useGlobalState } from "src/RootWrapper";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
@@ -33,18 +33,8 @@ const usps = [
 export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: string }) {
   const { mainProductOneOffVariants } = useGlobalState();
 
-  const bundle1 = mainProductOneOffVariants[0];
-  const bundle2 = mainProductOneOffVariants[1];
-  const bundle3 = mainProductOneOffVariants[2];
-
   return (
-    <Stack
-      spacing={0}
-      gridArea="headline"
-      alignItems={["center", "center", "start"]}
-      flex={1}
-      minWidth={300}
-    >
+    <Stack spacing={0} gridArea="content" alignItems={["center", "center", "start"]} flex={1}>
       <Flex alignItems={"center"} gap={2}>
         <Text fontSize={"sm"}>4.7</Text>
         <Rating />
@@ -91,8 +81,8 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
 
       <Text fontWeight={"bold"}>Choose your bundle:</Text>
 
-      {bundle1 && bundle2 && bundle3 && (
-        <ProductSelection bundle1={bundle1} bundle2={bundle2} bundle3={bundle3} />
+      {mainProductOneOffVariants.length > 0 && (
+        <ProductSelector products={mainProductOneOffVariants} />
       )}
 
       <Stack width={["full", "unset"]} alignItems="center">

@@ -1,22 +1,33 @@
 import { Box, Container, Grid } from "@chakra-ui/react";
-import { ImageSlider } from "./ImageSlider";
+import { Gallery } from "./Gallery";
 import { Content } from "./Content";
 
 export const HeroSection = (props: { weightAvgMonthlyLoss: number; weightUnits: string }) => {
   return (
-    <Box bg="white">
+    <Box bg="brand.50">
       <Container maxW={["container.sm", null, "container.xl"]}>
         <Grid
           pt={[2, 4]}
           pb={4}
-          gridTemplateColumns={["auto", "auto", "1fr 1fr"]}
-          gridTemplateAreas={['"headline" "image"', '"headline" "image"', '"image headline"']}
+          gridTemplateColumns={["1fr", "1fr", "repeat(2, 1fr)"]}
+          gridTemplateAreas={[
+            `
+              "content"
+              "gallery"
+            `,
+            `
+              "content"
+              "gallery"
+            `,
+            `
+              "gallery content"
+            `,
+          ]}
           gap={8}
           width={"full"}
           justifyContent={"space-between"}
         >
-          <ImageSlider />
-
+          <Gallery />
           <Content
             weightAvgMonthlyLoss={props.weightAvgMonthlyLoss}
             weightUnits={props.weightUnits}
