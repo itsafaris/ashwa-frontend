@@ -5,7 +5,7 @@ import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
 import { SEO } from "@components/SEO";
 import { VideoTestimonials } from "@components/sections/VideoTestimonials";
-import { HowItWorksSection } from "@components/sections/HowItWorks";
+import { ComparisonSection } from "@components/sections/ComparisonSection";
 import { FAQSection } from "@components/sections/FAQ";
 
 import { ProductPreview } from "@components/sections/ProductPreview";
@@ -62,7 +62,7 @@ function PageContents() {
       <IngredientsSection />
 
       <Stack backgroundColor={"#f3eef2"}>
-        <HowItWorksSection />
+        <ComparisonSection />
         <CTAButton mb={10} />
       </Stack>
 
