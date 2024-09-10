@@ -1,7 +1,6 @@
 import { StaticImage } from "gatsby-plugin-image";
 import * as React from "react";
 import UGC1 from "@images/user-video-1.mp4";
-import UGC2 from "@images/user-video-2.mp4";
 import UGC3 from "@images/user-video-3.mp4";
 import UGC5 from "@images/user-video-4.mp4";
 import UGC4 from "@images/video-ugc-4.mp4";
@@ -56,7 +55,7 @@ export const topReviews: Review[] = [
         style={{
           height: "100%",
           width: "100%",
-          filter: "brightness(90%)",
+          // filter: "brightness(90%)",
         }}
       ></video>
     ),
