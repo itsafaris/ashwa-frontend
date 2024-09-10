@@ -12,17 +12,17 @@ export const SpecialOfferBannerTop = () => (
     zIndex={5}
     top={0}
   >
-    <Container maxW={"container.sm"} fontSize={["sm", "sm", "sm"]}>
+    <Container maxW={"container.sm"} fontSize={["xs", "sm", "sm"]}>
       <Stack flexDirection={"row"} justifyContent={"space-between"} alignItems={"center"}>
         <Stack spacing={0} lineHeight={1.2}>
-          <Text>SUMMER SALE! 🔥</Text>
-          <Text fontSize={"lg"}>50% OFF </Text>
+          <Text>SUMMER SALE!</Text>
+          <Text fontSize={"lg"}>50% OFF🔥</Text>
         </Stack>
 
-        <Text fontSize={"xl"}></Text>
-
         <Stack spacing={0} alignItems={"end"} lineHeight={1.2}>
-          <Text>HURRY! Offer expires soon:</Text>
+          <Text textAlign={"right"} textTransform={"uppercase"}>
+            HURRY! Offer expires soon:
+          </Text>
           <Timer fontSize={["xl", "2xl"]} />
         </Stack>
       </Stack>

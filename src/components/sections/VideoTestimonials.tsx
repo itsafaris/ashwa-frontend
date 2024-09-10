@@ -60,6 +60,7 @@ function TopReview({ review }: { review: Review }) {
       boxShadow={"0px 8px 10px 0px #a3a3a3"}
       border="1px solid"
       borderColor={"bg.100"}
+      height={"100%"}
     >
       {review.img && (
         <Flex width={"100%"} position={"relative"}>
@@ -79,7 +80,7 @@ function TopReview({ review }: { review: Review }) {
               backgroundColor={"green.500"}
             >
               <Text fontWeight={"bold"} fontSize={"xs"} color={"white"}>
-                Verified Purchase
+                Verified Buyer
               </Text>
               <Icon as={FaCheck} color={"white"} boxSize={3} />
             </Stack>
@@ -89,16 +90,16 @@ function TopReview({ review }: { review: Review }) {
 
       <Grid
         alignItems={"center"}
-        gridTemplateColumns={"50px 1fr"}
+        gridTemplateColumns={["40px 1fr", "50px 1fr"]}
         px={2}
         py={2}
-        height={"90px"}
+        height={["100px", "90px"]}
         gap={2}
       >
         {review.productImg && <Flex>{review.productImg}</Flex>}
 
         <Stack spacing={0}>
-          <Text fontWeight={"bold"} fontSize={"sm"} lineHeight={1.2}>
+          <Text fontWeight={"bold"} fontSize={["xs", "sm"]} lineHeight={1.2}>
             "{review.title}"
           </Text>
           <Text fontSize={"xs"}>{review.name}</Text>

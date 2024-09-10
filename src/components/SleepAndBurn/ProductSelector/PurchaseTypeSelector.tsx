@@ -12,7 +12,7 @@ export function PurchaseTypeSelector({
   onChange: (type: PurchaseType) => void;
 }) {
   return (
-    <Grid gridTemplateColumns={"1fr 1fr"} gap={1} mx="auto" maxW={"400px"} width={"100%"}>
+    <Grid gridTemplateColumns={["1fr", "1fr 1fr"]} gap={1} mx="auto" maxW={"400px"} width={"100%"}>
       <Button
         size="md"
         variant={purchaseType === "one-off" ? "solid" : "outline"}
