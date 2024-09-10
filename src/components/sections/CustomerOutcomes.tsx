@@ -32,7 +32,7 @@ export function CustomerOutcomes() {
         </Stack>
 
         <Stack py={3} px={[3, 3, 10]}>
-          <StaticImage alt="" src="../../images/summary-outcome-graph.jpg" />
+          <StaticImage alt="Outcomes" src="../../images/summary-outcome-graph.jpg" />
         </Stack>
       </Grid>
     </Stack>
