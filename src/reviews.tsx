@@ -55,7 +55,7 @@ export const topReviews: Review[] = [
         style={{
           height: "100%",
           width: "100%",
-          // filter: "brightness(90%)",
+          filter: "brightness(90%)",
         }}
       ></video>
     ),
