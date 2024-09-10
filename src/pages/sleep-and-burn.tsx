@@ -49,17 +49,15 @@ export default function Page() {
 
       <ComparisonSection />
 
-      <IngredientsSection />
-
-      <Stack backgroundColor={"#f3eef2"} spacing={0}>
-        <CTAButton mb={10} />
-      </Stack>
+      <FAQSection />
 
       <ReviewsSection reviews={reviews} />
+
+      <IngredientsSection />
+
       <CTAButton />
 
       <Disclaimer weightAvgMonthlyLoss={weightAvgMonthlyLoss} weightUnits={weightUnits} />
-      <FAQSection />
 
       <Footer />
     </Box>

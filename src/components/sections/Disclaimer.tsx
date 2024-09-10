@@ -2,7 +2,7 @@ import { Box, Container, Text } from "@chakra-ui/react";
 
 export function Disclaimer(props: { weightAvgMonthlyLoss: number; weightUnits: string }) {
   return (
-    <Box py={16}>
+    <Box py={10}>
       <Container maxWidth={"container.lg"}>
         <Box p={6} border={"1px solid black"}>
           <Text fontSize={"sm"}>

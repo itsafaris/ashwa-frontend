@@ -77,6 +77,8 @@ export function ReviewsSection({ reviews }: { reviews: Review[] }) {
             );
           })}
         </Flex>
+
+        <CTAButton mt={10} />
       </Container>
     </Box>
   );
