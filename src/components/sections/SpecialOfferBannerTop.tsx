@@ -16,7 +16,7 @@ export const SpecialOfferBannerTop = () => (
       <Stack flexDirection={"row"} justifyContent={"space-between"} alignItems={"center"}>
         <Stack spacing={0} lineHeight={1.2}>
           <Text>SUMMER SALE! 🔥</Text>
-          <Text fontSize={"lg"}>50% OFF</Text>
+          <Text fontSize={"lg"}>50% OFF </Text>
         </Stack>
 
         <Text fontSize={"xl"}></Text>
