@@ -4,8 +4,7 @@ import { ProductSelector } from "../ProductSelector";
 import { useGlobalState } from "src/RootWrapper";
 import { Shipping } from "@components/sections/Shipping";
 import { QuickFAQ } from "./QuickFAQ";
-
-const TOTAL_NUMBER_OF_REVIEWS = 1247;
+import { UserRating } from "../UserRating";
 
 const usps = [
   {
@@ -35,13 +34,7 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
 
   return (
     <Stack spacing={0} gridArea="content" alignItems={["center", "center", "start"]} flex={1}>
-      <Flex alignItems={"center"} gap={2} fontSize={"sm"} fontWeight={"semibold"}>
-        <Rating />
-        <Text>4.7/5</Text>
-        <a href="#reviews">
-          <Text>{TOTAL_NUMBER_OF_REVIEWS} reviews</Text>
-        </a>
-      </Flex>
+      <UserRating />
 
       <Heading
         mt={2}

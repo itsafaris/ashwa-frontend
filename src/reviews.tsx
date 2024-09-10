@@ -36,11 +36,11 @@ export const topReviews: Review[] = [
         }}
       ></video>
     ),
-    productImg: <StaticImage src="./images/product-2-small.png" alt="" />,
+    productImg: <StaticImage width={100} src="./images/product-6-small.png" alt="" />,
     hoursAgo: 12,
   },
   {
-    title: "I'm in my 3rd month already!",
+    title: "In my 3rd month already!",
     text: "",
     name: "Clara S.",
     location: "Georgia",
@@ -58,7 +58,7 @@ export const topReviews: Review[] = [
         }}
       ></video>
     ),
-    productImg: <StaticImage src="./images/product-3-small.png" alt="" />,
+    productImg: <StaticImage width={100} src="./images/product-3-small.png" alt="" />,
     hoursAgo: 13,
   },
   {
@@ -67,7 +67,7 @@ export const topReviews: Review[] = [
     name: "Susie W.",
     location: "Virginia",
     score: 5,
-    productImg: <StaticImage src="./images/product-3-small.png" alt="" />,
+    productImg: <StaticImage width={100} src="./images/product-1-small.png" alt="" />,
     img: (
       <video
         playsInline={true}
@@ -84,12 +84,12 @@ export const topReviews: Review[] = [
     hoursAgo: 19,
   },
   {
-    title: "Helped me manage stress",
+    title: "Helps me manage stress",
     text: "",
     name: "Hazel V.",
     location: "Virginia",
     score: 4.7,
-    productImg: <StaticImage src="./images/product-2-small.png" alt="" />,
+    productImg: <StaticImage width={100} src="./images/product-6-small.png" alt="" />,
     img: (
       <video
         playsInline={true}

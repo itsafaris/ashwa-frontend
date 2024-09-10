@@ -1,7 +1,10 @@
-import { Box, Flex, Heading, Text, Container, Stack, Grid } from "@chakra-ui/react";
+import { Box, Flex, Heading, Text, Container, Stack, Grid, Icon } from "@chakra-ui/react";
 
 import { CTAButton, Rating } from "../components";
 import { Review } from "../../reviews";
+
+import { FaCheck } from "react-icons/fa";
+import { UserRating } from "@components/SleepAndBurn/UserRating";
 
 export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
   return (
@@ -9,7 +12,7 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
       <Container maxW={"container.lg"}>
         <Stack spacing={6} alignItems={"center"}>
           <Stack alignItems={"center"} mb={5}>
-            <Rating rating={5} size="normal" />
+            <UserRating />
 
             <Heading
               lineHeight={1.2}
@@ -64,19 +67,39 @@ function TopReview({ review }: { review: Review }) {
 
           <Stack spacing={0} position={"absolute"} bottom={2} left={2}>
             <Rating rating={review.score} size="small" />
-            <Text fontWeight={"bold"} fontSize={"xs"} color={"white"}>
-              Verified Purchase
-            </Text>
+
+            <Stack
+              mt={2}
+              direction={"row"}
+              alignItems={"center"}
+              px={2}
+              borderRadius="full"
+              backgroundColor={"green.500"}
+            >
+              <Text fontWeight={"bold"} fontSize={"xs"} color={"white"}>
+                Verified Purchase
+              </Text>
+              <Icon as={FaCheck} color={"white"} boxSize={3} />
+            </Stack>
           </Stack>
         </Flex>
       )}
 
-      <Grid alignItems={"center"} gridTemplateColumns={"45px 1fr"} p={2} height={"100px"} gap={2}>
-        {review.productImg && <Flex ml="-30px">{review.productImg}</Flex>}
+      <Grid
+        alignItems={"center"}
+        gridTemplateColumns={"50px 1fr"}
+        px={2}
+        py={2}
+        height={"90px"}
+        gap={2}
+      >
+        {review.productImg && <Flex>{review.productImg}</Flex>}
 
-        <Stack fontSize={"xs"} spacing={0}>
-          <Text fontWeight={"semibold"}>"{review.title}"</Text>
-          <Text>{review.name}</Text>
+        <Stack spacing={0}>
+          <Text fontWeight={"bold"} fontSize={"sm"} lineHeight={1.2}>
+            "{review.title}"
+          </Text>
+          <Text fontSize={"xs"}>{review.name}</Text>
         </Stack>
       </Grid>
     </Stack>

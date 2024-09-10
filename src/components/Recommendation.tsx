@@ -4,11 +4,11 @@ import { StaticImage } from "gatsby-plugin-image";
 
 export function Recommendation() {
   return (
-    <Stack flexDir={"row"} alignItems={"center"} spacing={4} maxW={"container.sm"} mx="auto">
+    <Stack p={3} flexDir={"row"} alignItems={"center"} spacing={4} maxW={"container.sm"} mx="auto">
       <StaticImage
-        src="../images/product-3-small.png"
+        src="../images/product-6-small.png"
         alt="bundle of 6 supplement bottles"
-        width={90}
+        width={80}
       />
 
       <Text flex={1} fontSize={"sm"}>
