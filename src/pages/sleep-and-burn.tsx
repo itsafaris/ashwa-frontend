@@ -22,6 +22,7 @@ import { HeroSection } from "@components/SleepAndBurn/HeroSection";
 import { MediaSection } from "@components/SleepAndBurn/MediaSection";
 import { ChartsSection } from "@components/SleepAndBurn/ChartsSection";
 import { CTAButton } from "@components/components";
+import { SpecialOfferBannerTop } from "@components/sections/SpecialOfferBannerTop";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -34,7 +35,7 @@ export default function Page() {
 
   return (
     <Box>
-      {/* <SpecialOfferBannerTop /> */}
+      <SpecialOfferBannerTop />
 
       <Header />
       <HeroSection weightAvgMonthlyLoss={weightAvgMonthlyLoss} weightUnits={weightUnits} />

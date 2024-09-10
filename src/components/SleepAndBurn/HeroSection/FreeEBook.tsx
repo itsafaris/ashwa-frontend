@@ -8,7 +8,7 @@ export function FreeEBook() {
       mx="auto"
       mt={6}
       backgroundColor={"#FFD600"}
-      py={2}
+      py={1}
       px={4}
       borderRadius={"lg"}
       direction={"row"}

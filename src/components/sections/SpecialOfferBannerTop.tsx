@@ -8,15 +8,15 @@ export const SpecialOfferBannerTop = () => (
     bgGradient="linear(to-r, orange.400, orange.300)"
     fontWeight={"semibold"}
     color="white"
-    py={2}
+    py={1}
     zIndex={5}
     top={0}
   >
-    <Container maxW={"container.sm"} fontSize={["sm", "md", "md"]}>
+    <Container maxW={"container.sm"} fontSize={["sm", "sm", "sm"]}>
       <Stack flexDirection={"row"} justifyContent={"space-between"} alignItems={"center"}>
         <Stack spacing={0} lineHeight={1.2}>
           <Text>SUMMER SALE! 🔥</Text>
-          <Text fontSize={"xl"}>50% OFF</Text>
+          <Text fontSize={"lg"}>50% OFF</Text>
         </Stack>
 
         <Text fontSize={"xl"}></Text>

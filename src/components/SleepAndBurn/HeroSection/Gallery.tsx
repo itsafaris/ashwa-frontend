@@ -57,7 +57,7 @@ export function Gallery() {
 
   const images = [
     <StaticImage
-      src="../../../images/carousel1.png"
+      src="../../../images/carousel1.jpg"
       alt="Sleep & Burn Supplement"
       height={700}
       width={700}
@@ -149,7 +149,7 @@ export function Gallery() {
             <AspectRatio
               key={idx}
               ratio={1}
-              w={"60px"}
+              w={["50px", "60px"]}
               border={"1px solid"}
               borderColor={"bg.200"}
               borderRadius={"md"}

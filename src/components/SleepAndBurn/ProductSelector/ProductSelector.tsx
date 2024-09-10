@@ -22,9 +22,10 @@ export function ProductSelector({ products }: { products: Product[] }) {
       <PurchaseTypeSelector purchaseType={purchaseType} onChange={setPurchaseType} />
 
       <SimpleGrid columns={[1, 1, 1, products.length]} gap={3}>
-        {products.map((it) => {
+        {products.map((it, idx) => {
           return (
             <ProductItem
+              key={idx}
               product={it}
               purchaseType={purchaseType}
               isSelected={selectedProduct.id === it.id}
