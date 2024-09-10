@@ -1,81 +1,36 @@
-import { Box, Container, Stack, Text } from "@chakra-ui/react";
+import { Box, Container, Grid, Stack, Text } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 
 export function MediaSection() {
   return (
-    <Box position={"relative"}>
-      <Box
-        position={"absolute"}
-        zIndex={0}
-        backgroundColor={"#38283f"}
-        top={0}
-        left={0}
-        width={"100%"}
-        height={"100%"}
-      />
+    <Stack p={4} pt={6} pb={10} backgroundColor={"brand.50"} spacing={6}>
+      <Text mx="auto" textAlign={"center"} fontWeight={"semibold"} fontSize={"xs"}>
+        BENEFITS OF OUR INGREDIENTS ARE RESEARCHED BY:
+      </Text>
 
-      <Container px={0} backgroundColor="white">
-        <Stack
-          p={4}
-          pt={6}
-          pb={10}
-          borderRadius={"xl"}
-          backgroundColor={"white"}
-          boxShadow={"2xl"}
-          spacing={6}
-          mx={4}
-          zIndex={1}
-          position={"relative"}
-        >
-          <Text
-            mx="auto"
-            maxW={"200px"}
-            textAlign={"center"}
-            fontWeight={"semibold"}
-            fontSize={"xs"}
-            color="gray.500"
-            textTransform={"uppercase"}
-          >
-            Benefits of Sleep & Burn ingredients covered in:
-          </Text>
+      <Grid
+        gridTemplateColumns={[
+          "repeat(2, 1fr)",
+          "repeat(2, 1fr)",
+          "repeat(3, 1fr)",
+          "repeat(5, 1fr)",
+        ]}
+        alignItems={"center"}
+        opacity={1}
+        maxW={"container.lg"}
+        mx="auto"
+        gap={0}
+      >
+        <StaticImage height={70} src="../../images/media1.png" alt="media logo" />
 
-          <Stack opacity={0.8} spacing={6}>
-            <StaticImage
-              style={{ flexShrink: 0, margin: "auto" }}
-              height={23}
-              layout="fixed"
-              src="../../images/media1.png"
-              alt="media logo"
-            />
+        <StaticImage height={70} src="../../images/media2.png" alt="media logo" />
 
-            <Stack direction={"row"} alignItems={"center"} mx="auto" spacing={6}>
-              <StaticImage
-                style={{ flexShrink: 0 }}
-                height={43}
-                layout="fixed"
-                src="../../images/media4.png"
-                alt="media logo"
-              />
+        <StaticImage height={70} src="../../images/media3.png" alt="media logo" />
 
-              <StaticImage
-                style={{ flexShrink: 0 }}
-                height={38}
-                layout="fixed"
-                src="../../images/media3.png"
-                alt="media logo"
-              />
-            </Stack>
+        <StaticImage height={70} src="../../images/media4.png" alt="media logo" />
 
-            <StaticImage
-              style={{ flexShrink: 0, margin: "auto" }}
-              height={23}
-              layout="fixed"
-              src="../../images/media2.png"
-              alt="media logo"
-            />
-          </Stack>
-        </Stack>
-      </Container>
-    </Box>
+        <StaticImage height={70} src="../../images/media5.png" alt="media logo" />
+      </Grid>
+    </Stack>
   );
 }
