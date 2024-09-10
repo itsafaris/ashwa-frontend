@@ -21,6 +21,11 @@ export const onClientEntry: GatsbyBrowser["onClientEntry"] = () => {
     disable_compression: true,
     advanced_disable_feature_flags_on_first_load: true,
     advanced_disable_feature_flags: true,
+    bootstrap: {
+      featureFlags: {
+        "shop-version-2": "shop-version-2",
+      },
+    },
   });
 
   posthog.register({
