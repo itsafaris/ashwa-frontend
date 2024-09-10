@@ -2,6 +2,8 @@ import { Flex, Heading, Text, Stack } from "@chakra-ui/react";
 import { Rating, Span } from "@components/components";
 import { ProductSelector } from "../ProductSelector";
 import { useGlobalState } from "src/RootWrapper";
+import { Shipping } from "@components/sections/Shipping";
+import { QuickFAQ } from "./QuickFAQ";
 
 const TOTAL_NUMBER_OF_REVIEWS = 1247;
 
@@ -42,6 +44,7 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
       </Flex>
 
       <Heading
+        mt={2}
         fontSize={["4xl", "4xl", "5xl"]}
         maxW={"container.sm"}
         textAlign={["center", "center", "left"]}
@@ -60,7 +63,7 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
         results-driven weight management*. <Span fontWeight={"bold"}>Take 2 pills a day to:</Span>
       </Text>
 
-      <Stack mt={6} spacing={1} fontWeight={"semibold"} color={"pink.800"}>
+      <Stack mt={6} spacing={1} fontWeight={"bold"} fontSize={"md"}>
         {usps.map((it, idx) => {
           return (
             <Stack key={idx} direction={"row"} alignItems={"center"}>
@@ -79,6 +82,10 @@ export function Content(props: { weightAvgMonthlyLoss: number; weightUnits: stri
       {mainProductOneOffVariants.length > 0 && (
         <ProductSelector products={mainProductOneOffVariants} />
       )}
+
+      <Shipping mt={6} />
+
+      <QuickFAQ />
     </Stack>
   );
 }

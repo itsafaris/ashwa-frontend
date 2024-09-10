@@ -28,6 +28,7 @@ export const HeroSection = (props: { weightAvgMonthlyLoss: number; weightUnits: 
           justifyContent={"space-between"}
         >
           <Gallery />
+
           <Content
             weightAvgMonthlyLoss={props.weightAvgMonthlyLoss}
             weightUnits={props.weightUnits}

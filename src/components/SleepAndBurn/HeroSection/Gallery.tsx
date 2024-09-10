@@ -57,7 +57,7 @@ export function Gallery() {
 
   const images = [
     <StaticImage
-      src="../../../images/carousel1.jpg"
+      src="../../../images/carousel1.png"
       alt="Sleep & Burn Supplement"
       height={700}
       width={700}

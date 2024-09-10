@@ -13,7 +13,7 @@ import { trackPixelEvent } from "src/tracking";
 import "blaze-slider/dist/blaze.css";
 import { ProductSelectionSection } from "@components/ProductSelection";
 import { Recommendation } from "@components/Recommendation";
-import { FreeShippingSection } from "@components/sections/FreeShipping";
+import { Shipping } from "@components/sections/Shipping";
 import { SpecialOfferBannerTop } from "@components/sections/SpecialOfferBannerTop";
 import { SpecialOfferBanner } from "@components/sections/SpecialOfferBanner";
 import { SpecialOfferTimer } from "@components/sections/SpecialOfferTimer";
@@ -39,7 +39,7 @@ export default function Page() {
       </Box>
       <Hero />
       <ProductSelectionSection />
-      <FreeShippingSection />
+      <Shipping />
       <FreeGift />
       <Footer />
     </Box>

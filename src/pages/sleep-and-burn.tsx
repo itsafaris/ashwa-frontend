@@ -18,8 +18,7 @@ import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
 import { SEO } from "@components/SEO";
 
-import { FreeShippingSection } from "@components/sections/FreeShipping";
-import { Recommendation } from "@components/Recommendation";
+import { Shipping } from "@components/sections/Shipping";
 import { FAQSection } from "@components/sections/FAQ";
 import { Disclaimer } from "@components/sections/Disclaimer";
 import { ReviewsSection } from "@components/sections/Reviews";
@@ -35,6 +34,7 @@ import {
 
 import { HeroSection } from "@components/SleepAndBurn/HeroSection";
 import { StaticImage } from "gatsby-plugin-image";
+import { MediaSection } from "@components/SleepAndBurn/MediaSection";
 
 export const Head: HeadFC = () => {
   return <SEO />;
@@ -53,11 +53,7 @@ export default function Page() {
 
       <HeroSection weightAvgMonthlyLoss={weightAvgMonthlyLoss} weightUnits={weightUnits} />
 
-      <Box pt={6} bg="primary.100" px={4}>
-        <Recommendation />
-      </Box>
-
-      <FreeShippingSection />
+      <MediaSection />
 
       <Stack spacing={0}>
         <VideoTestimonials reviews={topReviews} />
