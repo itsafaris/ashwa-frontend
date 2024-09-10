@@ -29,10 +29,34 @@ export function QuickFAQ() {
 
         <AccordionPanel pb={4}>
           <Stack alignItems={"center"} spacing={6}>
-            <Text fontSize={"sm"}>
-              SUGGESTED USE: As a dietary supplement take two (2) capsules before bedtime or as
-              directed by your healthcare professional.
-            </Text>
+            <Stack spacing={0}>
+              <Text fontSize={"sm"} fontWeight={"bold"}>
+                TAKE TWO A DAY
+              </Text>
+              <Text fontSize={"sm"}>
+                As a dietary supplement take two (2) capsules before bedtime or as directed by your
+                healthcare professional.
+              </Text>
+            </Stack>
+
+            <Stack spacing={0}>
+              <Text fontSize={"sm"} fontWeight={"bold"}>
+                30 DAY SUPPLY
+              </Text>
+              <Text fontSize={"sm"}>
+                A single bottle of Sleep & Burn contains 60 capsules, which is enough for a full
+                month's supply.
+              </Text>
+            </Stack>
+
+            <Stack spacing={0}>
+              <Text fontSize={"sm"} fontWeight={"bold"} textTransform={"uppercase"}>
+                Free of Top Allergens
+              </Text>
+              <Text fontSize={"sm"}>
+                Sleep & Burn is free of the top 9 allergens, GMOs, gluten, sugar, and lactose.
+              </Text>
+            </Stack>
 
             <StaticImage
               alt="Sleep & Burn Supplement facts"
