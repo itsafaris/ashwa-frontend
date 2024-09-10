@@ -40,6 +40,8 @@ export function VideoTestimonials({ reviews }: { reviews: Review[] }) {
             })}
           </Grid>
         </Stack>
+
+        <CTAButton mt={10} />
       </Container>
     </Box>
   );

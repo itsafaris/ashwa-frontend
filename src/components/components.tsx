@@ -90,21 +90,20 @@ function formatTimestamp(timestamp: number): {
 export function CTAButton(props: StackProps) {
   return (
     <Stack width={["full", "unset"]} alignItems="center" {...props}>
-      <Link to="/product-selection">
+      <Link to="#product-selection">
         <Button
           size="lg"
           mx="auto"
           variant={"solid"}
-          colorScheme={"pink"}
           borderRadius={"full"}
           width={"100%"}
           py={7}
           px={10}
+          colorScheme={"yellow"}
+          backgroundColor={"#FFD600"}
+          rightIcon={<Icon as={FaArrowRight} />}
         >
-          <Stack direction={"row"} alignItems={"center"} spacing={2}>
-            <Text lineHeight={1}>See the product</Text>
-            <Icon as={FaArrowRight} />
-          </Stack>
+          Shop Sleep & Burn
         </Button>
       </Link>
     </Stack>
