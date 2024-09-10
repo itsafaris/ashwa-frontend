@@ -3,6 +3,7 @@ import * as React from "react";
 import UGC1 from "@images/user-video-1.mp4";
 import UGC2 from "@images/user-video-2.mp4";
 import UGC3 from "@images/user-video-3.mp4";
+import UGC5 from "@images/user-video-4.mp4";
 import UGC4 from "@images/video-ugc-4.mp4";
 
 export type Review = {
@@ -40,7 +41,7 @@ export const topReviews: Review[] = [
     hoursAgo: 12,
   },
   {
-    title: "In my 3rd month already!",
+    title: "Improved my mobility",
     text: "",
     name: "Clara S.",
     location: "Georgia",
@@ -51,15 +52,38 @@ export const topReviews: Review[] = [
         loop={true}
         autoPlay={true}
         muted={true}
-        src={UGC2}
+        src={UGC5}
+        style={{
+          height: "100%",
+          width: "100%",
+          filter: "brightness(90%)",
+        }}
+      ></video>
+    ),
+    productImg: <StaticImage width={100} src="./images/product-3-small.png" alt="" />,
+    hoursAgo: 13,
+  },
+  {
+    title: "In my 3rd month already!",
+    text: "",
+    name: "Hazel V.",
+    location: "Virginia",
+    score: 4.7,
+    productImg: <StaticImage width={100} src="./images/product-6-small.png" alt="" />,
+    img: (
+      <video
+        playsInline={true}
+        loop={true}
+        autoPlay={true}
+        muted={true}
+        src={UGC3}
         style={{
           height: "100%",
           width: "100%",
         }}
       ></video>
     ),
-    productImg: <StaticImage width={100} src="./images/product-3-small.png" alt="" />,
-    hoursAgo: 13,
+    hoursAgo: 19,
   },
   {
     title: "Enhances weight loss!",
@@ -75,28 +99,6 @@ export const topReviews: Review[] = [
         autoPlay={true}
         muted={true}
         src={UGC4}
-        style={{
-          height: "100%",
-          width: "100%",
-        }}
-      ></video>
-    ),
-    hoursAgo: 19,
-  },
-  {
-    title: "Helps me manage stress",
-    text: "",
-    name: "Hazel V.",
-    location: "Virginia",
-    score: 4.7,
-    productImg: <StaticImage width={100} src="./images/product-6-small.png" alt="" />,
-    img: (
-      <video
-        playsInline={true}
-        loop={true}
-        autoPlay={true}
-        muted={true}
-        src={UGC3}
         style={{
           height: "100%",
           width: "100%",
