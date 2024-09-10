@@ -1,6 +1,7 @@
-import { Box, Container, Grid } from "@chakra-ui/react";
+import { Box, Container, Grid, Stack } from "@chakra-ui/react";
 import { Gallery } from "./Gallery";
 import { Content } from "./Content";
+import { FreeEBook } from "./FreeEBook";
 
 export const HeroSection = (props: { weightAvgMonthlyLoss: number; weightUnits: string }) => {
   return (
@@ -27,7 +28,11 @@ export const HeroSection = (props: { weightAvgMonthlyLoss: number; weightUnits: 
           width={"full"}
           justifyContent={"space-between"}
         >
-          <Gallery />
+          <Stack spacing={0}>
+            <Gallery />
+
+            <FreeEBook />
+          </Stack>
 
           <Content
             weightAvgMonthlyLoss={props.weightAvgMonthlyLoss}

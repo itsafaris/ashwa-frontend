@@ -95,7 +95,7 @@ export function Gallery() {
   ];
 
   return (
-    <Stack gridArea={"gallery"} flex={1}>
+    <Stack gridArea={"gallery"}>
       <Global
         styles={css`
           .slider_thumbnail.active {
