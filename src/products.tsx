@@ -33,10 +33,12 @@ export type ProductShopifyData = {
 
 export type Product = ProductMeta & ProductShopifyData;
 
+// const TEST_VARIANT_ID = "gid://shopify/ProductVariant/43217257824303";
+
 const productMeta1: ProductMeta = {
   id: "bundle-1",
   stripeID: "gid://shopify/ProductVariant/43142721372207",
-  subscriptionPlanID: "gid://shopify/SellingPlan/1473183791",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1478197295",
   count: 1,
   unitServingsCount: 30,
   subtitle: "Ideal solution for trying out",
@@ -53,7 +55,7 @@ const productMeta1: ProductMeta = {
 const productMeta3: ProductMeta = {
   id: "bundle-3",
   stripeID: "gid://shopify/ProductVariant/43142721404975",
-  subscriptionPlanID: "gid://shopify/SellingPlan/1473216559",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1478230063",
   count: 3,
   unitServingsCount: 30,
   subtitle: "Great for building new habits",
@@ -70,7 +72,7 @@ const productMeta3: ProductMeta = {
 const productMeta6: ProductMeta = {
   id: "bundle-6",
   stripeID: "gid://shopify/ProductVariant/43142721437743",
-  subscriptionPlanID: "gid://shopify/SellingPlan/1473249327",
+  subscriptionPlanID: "gid://shopify/SellingPlan/1478262831",
   count: 6,
   unitServingsCount: 30,
   subtitle: "For achieving the most sustainable results",
