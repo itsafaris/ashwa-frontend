@@ -21,14 +21,14 @@ export function QuickFAQ() {
         <AccordionButton py={4}>
           <Stack direction={"row"} spacing={2} alignItems={"center"} mr="auto">
             <Icon as={IoMdInformationCircleOutline} />
-            <Text>Details</Text>
+            <Text textAlign={"left"}>Product Information</Text>
           </Stack>
 
           <AccordionIcon />
         </AccordionButton>
 
         <AccordionPanel pb={4}>
-          <Stack alignItems={"center"} spacing={6}>
+          <Stack spacing={6}>
             <Stack spacing={0}>
               <Text fontSize={"sm"} fontWeight={"bold"}>
                 TAKE TWO A DAY
@@ -58,11 +58,13 @@ export function QuickFAQ() {
               </Text>
             </Stack>
 
-            <StaticImage
-              alt="Sleep & Burn Supplement facts"
-              src=".././../../images/facts-label.jpg"
-              width={400}
-            />
+            <Box mx="auto">
+              <StaticImage
+                alt="Sleep & Burn Supplement facts"
+                src=".././../../images/facts-label.jpg"
+                width={400}
+              />
+            </Box>
           </Stack>
         </AccordionPanel>
       </AccordionItem>
@@ -71,7 +73,7 @@ export function QuickFAQ() {
         <AccordionButton py={4}>
           <Stack direction={"row"} spacing={2} alignItems={"center"} mr="auto">
             <Icon as={MdOutlinePendingActions} />
-            <Text>Recommendation</Text>
+            <Text textAlign={"left"}>Recommended Use</Text>
           </Stack>
 
           <AccordionIcon />
