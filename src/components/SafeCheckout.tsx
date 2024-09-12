@@ -1,6 +1,5 @@
 import { Box, Image, Stack, Text } from "@chakra-ui/react";
 import SafeCheckoutImg from "@images/safe-checkout.png";
-import React from "react";
 
 export function SafeCheckout() {
   return (

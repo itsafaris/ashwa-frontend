@@ -11,9 +11,7 @@ import {
   Button,
   Badge,
 } from "@chakra-ui/react";
-import { loadStripe, Stripe } from "@stripe/stripe-js";
 import React from "react";
-import { siteConfig } from "src/conf";
 
 import { Product, PurchaseType } from "src/products";
 import { useGlobalState } from "src/RootWrapper";
@@ -111,7 +109,6 @@ export function ProductSelectionSection() {
           {v3 && <ProductSelectItem purchaseType={purchaseType} product={v3} />}
         </SimpleGrid>
         <SafeCheckout />
-        {/* <RiskFreeGuaranteed /> */}
       </Container>
     </Box>
   );

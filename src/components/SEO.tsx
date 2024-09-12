@@ -1,7 +1,7 @@
 import React from "react";
 import { siteConfig } from "src/conf";
 
-export type SEOProps = {
+type SEOProps = {
   title?: string;
   description?: string;
   pathname?: string;
@@ -9,13 +9,7 @@ export type SEOProps = {
   children?: React.ReactNode;
 };
 
-export const SEO = ({
-  title,
-  image,
-  description,
-  pathname,
-  children,
-}: SEOProps) => {
+export const SEO = ({ title, image, description, pathname, children }: SEOProps) => {
   const {
     title: defaultTitle,
     description: defaultDescription,

@@ -10,7 +10,8 @@
       "@components/*": ["./src/components/*"],
       "@images/*": ["./src/images/*"],
       "@hooks/*": ["./src/hooks/*"],
-      "@lib/*": ["./src/lib/*"]
+      "@lib/*": ["./src/lib/*"],
+      "@funnels/*": ["./src/funnels/*"]
     },
     "resolveJsonModule": true,
     "esModuleInterop": true,

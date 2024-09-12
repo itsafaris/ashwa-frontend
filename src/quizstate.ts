@@ -9,7 +9,7 @@ import {
   Snapshot,
   WeightState,
 } from "@lib/quiz-lib";
-import { toHeightMetric, toWeightMetric } from "./utils";
+import { toHeightMetric, toWeightMetric } from "./domainUtils";
 
 export type QuizStateTyped = ReturnType<typeof getTypedQuizState>;
 

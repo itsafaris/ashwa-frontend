@@ -1,5 +1,3 @@
-export const WEIGHT_COFF_IMPERIAL = 2.2046;
-export const WEIGHT_COFF_METRIC = 0.45359237;
 const MONTH_NAMES = [
   "January",
   "February",
@@ -17,16 +15,6 @@ const MONTH_NAMES = [
 
 export function isProdMode() {
   return process.env.NODE_ENV === "production";
-}
-
-export function toWeightMetric(weight: number): number {
-  return weight * WEIGHT_COFF_METRIC;
-}
-
-export function toHeightMetric(feet: number, inches: number): number {
-  const feetToCm = feet * 30.48;
-  const inchesToCm = inches * 2.54;
-  return feetToCm + inchesToCm;
 }
 
 export function getReadableDateTime(date: Date): string {
