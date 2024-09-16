@@ -32,7 +32,7 @@ export function GoalsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Hey! To get to know you better, tell us about your goals
+        What are your goals?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -288,17 +288,15 @@ export function HealthStateSlide() {
       type="single"
       variant="list"
       options={[
-        { text: "Poor", icon: <Text fontSize={"2xl"}>😞</Text> },
+        { text: "Poor" },
         {
           text: "Could be better",
-          icon: <Text fontSize={"2xl"}>😕</Text>,
         },
-        { text: "Average", icon: <Text fontSize={"2xl"}>😐</Text> },
+
+        { text: "Average" },
         {
-          text: "Pretty Good",
-          icon: <Text fontSize={"2xl"}>🙂</Text>,
+          text: "Great!",
         },
-        { text: "Great!", icon: <Text fontSize={"2xl"}>😄</Text> },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
