@@ -4,15 +4,15 @@ import { ComponentProps } from "react";
 export function CheckIcon(props: ComponentProps<typeof Icon>) {
   return (
     <Icon viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <rect x={7.5} y={7.5} width={49} height={49} rx={6.5} stroke="currentColor" strokeWidth={5} />
-      <path d="M15 32.826L27.28 45 50 17" stroke="currentColor" strokeWidth={6} />
+      <rect x={7.5} y={7.5} width={49} height={49} rx={6.5} stroke="currentColor" strokeWidth={6} />
+      <path d="M15 32.826L27.28 45 50 17" stroke="currentColor" strokeWidth={4} />
     </Icon>
   );
 }
 export function CheckIconEmpty(props: ComponentProps<typeof Icon>) {
   return (
     <Icon viewBox="0 0 64 64" fill="none" xmlns="http://www.w3.org/2000/svg" {...props}>
-      <rect x={7.5} y={7.5} width={49} height={49} rx={6.5} stroke="currentColor" strokeWidth={5} />
+      <rect x={7.5} y={7.5} width={49} height={49} rx={6.5} stroke="currentColor" strokeWidth={6} />
     </Icon>
   );
 }

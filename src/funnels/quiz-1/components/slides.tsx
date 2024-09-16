@@ -25,17 +25,14 @@ export function GoalsSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Reduce stress and anxiety", icon: <Text fontSize={"2xl"}>🧘‍♀️</Text> },
-        { text: "Improve sleep quality", icon: <Text fontSize={"2xl"}>💤</Text> },
-        { text: "Manage weight more effectively", icon: <Text fontSize={"2xl"}>⚖️</Text> },
-        { text: "Loose weight", icon: <Text fontSize={"2xl"}>🏋️‍♀️</Text> },
+        { text: "Lose weight" },
+        { text: "Improve weight control" },
+        { text: "Reduce stress and anxiety" },
+        { text: "Improve sleep quality" },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        What are your{" "}
-        <Text as="span" textDecor={"underline"}>
-          main goals?
-        </Text>
+        Hey! To get to know you better, tell us about your goals
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -54,7 +51,7 @@ export function WeightGainSlide() {
       options={[{ text: "Yes" }, { text: "No" }]}
     >
       <QuizHeading color="text.main" mb={4}>
-        Have you experienced unexplained weight gain over the past 12 months?
+        Have you gained weight in the last year?
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -69,13 +66,7 @@ export function LackOfSleepSlide() {
       id="lack-of-sleep"
       type="single"
       variant="list"
-      options={[
-        { text: "Always" },
-        { text: "Often" },
-        { text: "Occasionally" },
-        { text: "Rarely" },
-        { text: "Never" },
-      ]}
+      options={[{ text: "Always" }, { text: "Often" }, { text: "Sometimes" }, { text: "Never" }]}
     >
       <QuizHeading color="text.main" mb={4}>
         Do you have trouble falling or staying asleep?
@@ -96,8 +87,7 @@ export function StressFrequencySlide() {
       options={[
         { text: "Constantly" },
         { text: "Frequently" },
-        { text: "Occasionally" },
-        { text: "Rarely" },
+        { text: "Sometimes" },
         { text: "Never" },
       ]}
     >
@@ -115,45 +105,120 @@ export function LackOfSleepGraphicSlide() {
   return (
     <Slide id="lack-of-sleep-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        Poor sleep disrupts hormones, metabolism, increases hunger, and{" "}
-        <Text as="span" backgroundColor="#ffc5c5">
-          reduces the body's ability to naturally lose weight by 60%
-        </Text>
+        It takes{" "}
+        <Text as="span" color="black" backgroundColor={"red.100"}>
+          twice as long to lose that weight
+        </Text>{" "}
+        when not getting enough sleep
       </QuizHeading>
-      <Box p={4} bg="white">
+
+      <Text fontSize={"xs"} mb={2}>
+        Hormones are disrupted, metabolism is slowed, hunger is increased, body's ability to lose
+        weight is reduced by 60%.
+      </Text>
+
+      <Box px={3} py={5} bg="white">
         <StaticImage
           src="../../../images/poor-sleep-graphic.jpg"
           alt="effects of lack of sleep for weight gain"
+          width={350}
         />
       </Box>
-      <Stack mt={4} mb={2}>
+
+      <Stack mt={4}>
         <Selector mt={0} mb={0} />
       </Stack>
-      <NextButton mt={4}>Next</NextButton>
+
+      <NextButton mt={4}>Continue</NextButton>
     </Slide>
   );
 }
 
-export function CortisolGraphicSlide() {
+export function WeGotYouSlide() {
+  return (
+    <Slide id="we-got-you" type="filler" containerProps={{ backgroundColor: "#d8d1c4" }}>
+      <QuizHeading fontSize={"4xl"} mb={4} mx={"auto"}>
+        We got you!
+      </QuizHeading>
+
+      <Text mb={2} textAlign={"center"}>
+        That's definitely something we can help you with.
+      </Text>
+
+      <Stack justifyContent={"center"} alignItems={"center"}>
+        <StaticImage
+          src="../../../images/we-got-you.jpg"
+          alt="effects of lack of sleep for weight gain"
+          width={300}
+        />
+      </Stack>
+
+      <Stack
+        spacing={2}
+        mb={7}
+        color={"black"}
+        fontWeight={"bold"}
+        fontSize={"xs"}
+        textTransform={"uppercase"}
+      >
+        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+          • 🔥 Lose weight
+        </Text>
+        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+          • 🍕 Control late-night cravings
+        </Text>
+        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+          • 😴 Have deep full night sleep
+        </Text>
+        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+          • 🧘‍♀️ Handle stress with ease
+        </Text>
+      </Stack>
+
+      <Text mb={2} fontSize={"lg"} textAlign={"center"} fontWeight={"bold"}>
+        Let's finish the quiz and get to your results.
+      </Text>
+
+      <Stack mt={4}>
+        <Selector mt={0} mb={0} />
+      </Stack>
+
+      <NextButton mt={4}>Continue</NextButton>
+    </Slide>
+  );
+}
+
+export function StressFrequencyGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        High stress increases cortisol production by up to 3 times,
-        <Text as="span" backgroundColor="#ffc5c5">
-          {" "}
-          leading to stubborn weight gain.
-        </Text>
+        Your body{" "}
+        <Text as="span" color="black" backgroundColor={"red.100"}>
+          gains weight up to 3 times faster
+        </Text>{" "}
+        if stress becomes prolonged and unmanaged
       </QuizHeading>
-      <Box p={6} bg="white">
-        <StaticImage
-          src="../../../images/cortisol-graphic.jpg"
-          alt="effects of cortisol for weight gain"
-        />
-      </Box>
-      <Stack mt={4} mb={2}>
+
+      <Text fontSize={"xs"} mb={2}>
+        Stress raises cortisol, boosting cravings for high-calorie foods, increasing belly fat, and
+        impairing sleep and exercise routines.
+      </Text>
+
+      <Stack px={3} py={5} bg="white" alignItems={"center"}>
+        <Box>
+          <StaticImage
+            src="../../../images/cortisol-graphic.jpg"
+            alt="effects of stress for weight gain"
+            width={300}
+          />
+        </Box>
+      </Stack>
+
+      <Stack mt={4}>
         <Selector mt={0} mb={0} />
       </Stack>
-      <NextButton mt={4}>Next</NextButton>
+
+      <NextButton mt={4}>Continue</NextButton>
     </Slide>
   );
 }
@@ -165,15 +230,15 @@ export function EmotionalEatingSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Overeating" },
-        { text: "Stress-induced eating" },
-        { text: "Irregular meal times" },
-        { text: "Fast food consumption" },
-        { text: "None of these" },
+        { text: "Overeat" },
+        { text: "Stress eat" },
+        { text: "Eat irregularly" },
+        { text: "Eat fast food" },
+        { text: "None of the above" },
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        On occasion, are you prone to…
+        Do you sometimes tend to...
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -247,11 +312,20 @@ export function SymptomsSlide() {
       type="multi"
       variant="list"
       options={[
-        { text: "Weight bouncing back" },
-        { text: "Hunger/cravings" },
-        { text: "Low energy" },
-        { text: "Brain fog" },
-        { text: "Mood swings" },
+        {
+          text: "Weight bouncing back",
+          icon: <StaticImage alt="" width={60} src="../../../images/symptom-1.png" />,
+        },
+        {
+          text: "Hunger/cravings",
+          icon: <StaticImage alt="" width={60} src="../../../images/symptom-2.png" />,
+        },
+        {
+          text: "Low energy",
+          icon: <StaticImage alt="" width={60} src="../../../images/symptom-3.png" />,
+        },
+        // { text: "Brain fog" },
+        // { text: "Mood swings" },
         { text: "None" },
       ]}
     >
@@ -460,11 +534,7 @@ export function LoadingSlide() {
       </Stack>
       <Stack mt={4}>
         <LoadingListItem text="Evaluating your answers..." isComplete={(progressValue ?? 0) > 25} />
-        <LoadingListItem text="Analyzing results..." isComplete={(progressValue ?? 0) > 50} />
-        <LoadingListItem
-          text="Determining your stress levels..."
-          isComplete={(progressValue ?? 0) > 75}
-        />
+        <LoadingListItem text="Preparing results..." isComplete={(progressValue ?? 0) > 50} />
         <LoadingListItem
           text="Building recommendations..."
           isComplete={(progressValue ?? 0) === 100}
@@ -492,9 +562,10 @@ export function EmailSlide() {
 
   return (
     <Slide id="your-email" type="email" placeholder="Enter your email">
-      <QuizHeading color="text.main" mb={4}>
-        Great job! Your results and recommendations are ready!
+      <QuizHeading color="text.main" mb={4} fontSize={"3xl"}>
+        Your results are ready!
       </QuizHeading>
+
       <Text>Enter your email to see result, claim FREE shipping and get a limited-time offer!</Text>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
@@ -512,8 +583,8 @@ export function EmailSlide() {
       >
         See my results
       </NextButton>
-      <Text mt={4} mb={7} fontSize={"xs"}>
-        🔒 We don't send spam or share your data. We treat your privacy with the utmost care and
+      <Text mt={4} mb={7} fontSize={"xs"} color={"gray.500"}>
+        We don't send spam or share your data. We treat your privacy with the utmost care and
         respect.
       </Text>
     </Slide>

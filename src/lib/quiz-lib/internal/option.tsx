@@ -16,7 +16,7 @@ function OptionInput({ type, isSelected }: { type: "radio" | "checkbox"; isSelec
   switch (type) {
     case "checkbox": {
       return isSelected ? (
-        <CheckIcon width={size} height={size} color={theme.colors.text["700"]} />
+        <CheckIcon width={size} height={size} color={theme.colors.primary["700"]} />
       ) : (
         <CheckIconEmpty width={size} height={size} color={theme.colors.text["200"]} />
       );
@@ -99,7 +99,7 @@ export function OptionWithPicture({
       flexDirection={"column"}
       alignItems={"center"}
       gap={2}
-      p={4}
+      p={0}
       width={"full"}
       {...rest}
     >
@@ -119,7 +119,7 @@ function BaseOption({ isSelected, children, ...chakraButtonProps }: BaseOptionPr
       as={motion.button}
       borderRadius={"md"}
       outline={`${isSelected ? 3 : 0}px solid`}
-      outlineColor={"primary.500"}
+      outlineColor={"primary.400"}
       backgroundColor={isSelected ? "primary.200" : "bg.200"}
       // @ts-expect-error
       transition={{

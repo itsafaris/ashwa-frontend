@@ -4,7 +4,7 @@ import { isProdMode } from "src/utils";
 import {
   AgeSlide,
   AlergiesSlide,
-  CortisolGraphicSlide,
+  StressFrequencyGraphicSlide,
   EmailSlide,
   EmotionalEatingSlide,
   GoalsSlide,
@@ -20,6 +20,7 @@ import {
   WeightGainSlide,
   WeightGoalSlide,
   WeightSlide,
+  WeGotYouSlide,
 } from "./components/slides";
 import { ProgressIndicator } from "@lib/quiz-lib/public/progress";
 import { Logo } from "@components/logo";
@@ -111,22 +112,25 @@ export function QuizPage(props: PageProps) {
         }}
       >
         <Segment title="Progress">
-          <HealthStateSlide />
+          {/* <HealthStateSlide /> */}
+          <GoalsSlide />
           <SymptomsSlide />
-          <LackOfSleepSlide />
-          <LackOfSleepGraphicSlide />
           <StressFrequencySlide />
-          <CortisolGraphicSlide />
+          <LackOfSleepSlide />
+          <StressFrequencyGraphicSlide />
+          <LackOfSleepGraphicSlide />
           <EmotionalEatingSlide />
           <WeightGainSlide />
-          <GoalsSlide />
+
+          <WeGotYouSlide />
+
           <AgeSlide />
           <HeightSlide />
           <WeightSlide />
           <WeightGoalSlide />
-          <AlergiesSlide />
+          {/* <AlergiesSlide />
           <MedicalConditionsSlide />
-          <OutcomesSlide />
+          <OutcomesSlide /> */}
           <LoadingSlide />
           <EmailSlide />
         </Segment>

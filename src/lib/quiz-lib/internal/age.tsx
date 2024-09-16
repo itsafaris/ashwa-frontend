@@ -22,6 +22,9 @@ export function Age({ placeholder }: AgeProps) {
         placeholder={placeholder || "Age"}
         value={state.value ?? ""}
         type="number"
+        _placeholder={{
+          color: "gray.400",
+        }}
         onChange={(e) => {
           const i = parseInt(e.target.value);
           actions.setAgeValue(slide.id, i);

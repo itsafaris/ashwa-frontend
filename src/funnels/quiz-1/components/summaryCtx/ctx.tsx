@@ -60,7 +60,7 @@ export function SummaryStateProvider({ children }: React.PropsWithChildren) {
     if (state) {
       const summaryState = getSummaryState(state);
       if (!summaryState) {
-        navigate("/weight-loss");
+        navigate("/quiz-1");
       } else {
         setState(summaryState);
       }

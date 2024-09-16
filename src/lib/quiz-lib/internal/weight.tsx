@@ -30,6 +30,9 @@ export function Weight({}: WeightProps) {
           size={"lg"}
           placeholder={"Weight"}
           value={state.value ?? ""}
+          _placeholder={{
+            color: "gray.400",
+          }}
           type="number"
           onChange={(e) => {
             const i = parseInt(e.target.value);

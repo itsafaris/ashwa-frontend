@@ -18,9 +18,7 @@ export function Height({}: HeightProps) {
   const actions = useQuizActions();
   const slide = useSlide();
   const snap = useQuizSnapshot();
-
   const state = snap.slideStateByID[slide.id] as HeightState;
-
   const value = state.value;
   const system = snap.unitSystem;
 
@@ -35,6 +33,9 @@ export function Height({}: HeightProps) {
               value={value?.ft ?? ""}
               type="number"
               placeholder="Feet"
+              _placeholder={{
+                color: "gray.400",
+              }}
               onChange={(e) => {
                 const i = parseInt(e.target.value);
                 let it = isNaN(i) ? null : i;
@@ -54,6 +55,9 @@ export function Height({}: HeightProps) {
               value={value?.in ?? ""}
               type="number"
               placeholder="Inches"
+              _placeholder={{
+                color: "gray.400",
+              }}
               onChange={(e) => {
                 const i = parseInt(e.target.value);
                 let it = isNaN(i) ? null : i;
@@ -75,6 +79,10 @@ export function Height({}: HeightProps) {
               size={"lg"}
               value={value?.cm ?? ""}
               type="number"
+              placeholder="Height"
+              _placeholder={{
+                color: "gray.400",
+              }}
               onChange={(e) => {
                 const i = parseInt(e.target.value);
                 let it = isNaN(i) ? null : i;

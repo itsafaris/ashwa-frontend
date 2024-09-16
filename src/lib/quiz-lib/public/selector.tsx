@@ -21,9 +21,7 @@ export function Selector(props: ComponentProps<typeof Box> & SelectorProps) {
   const slide = useSlide();
   const slideState = useQuizSnapshot().currentSlideState;
   const currentSlide = useQuizSnapshot().currentSlideID;
-
   const controls = useAnimationControls();
-
   const isActive = slide.id === currentSlide;
 
   useEffect(() => {

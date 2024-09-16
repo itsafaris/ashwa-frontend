@@ -26,6 +26,9 @@ export function Email({ placeholder, label }: Email) {
         size={"lg"}
         placeholder={placeholder}
         value={localEmailValue}
+        _placeholder={{
+          color: "gray.400",
+        }}
         type="email"
         onChange={(e) => {
           setLocalEmailValue(e.target.value);
