@@ -118,16 +118,16 @@ export function LackOfSleepGraphicSlide() {
         as a result of stress-related sleep deprivation.
       </QuizHeading>
 
-      <Text fontSize={"xs"} mb={2}>
+      <Text fontSize={"xs"} mb={4}>
         Hormones are disrupted, metabolism is slowed, hunger is increased, body's ability to lose
         weight is reduced by 60%.
       </Text>
 
-      <Box px={3} py={5} bg="white">
+      <Box mx="auto">
         <StaticImage
           src="../../../images/poor-sleep-graphic.jpg"
           alt="effects of lack of sleep for weight gain"
-          width={350}
+          width={320}
         />
       </Box>
 
@@ -205,20 +205,18 @@ export function StressFrequencyGraphicSlide() {
         due to prolonged or unmanaged stress.
       </QuizHeading>
 
-      <Text fontSize={"xs"} mb={2}>
+      <Text fontSize={"xs"} mb={3}>
         Stress raises cortisol, boosting cravings for high-calorie foods, increasing belly fat, and
         impairing sleep and exercise routines.
       </Text>
 
-      <Stack px={3} py={5} bg="white" alignItems={"center"}>
-        <Box>
-          <StaticImage
-            src="../../../images/cortisol-graphic.jpg"
-            alt="effects of stress for weight gain"
-            width={300}
-          />
-        </Box>
-      </Stack>
+      <Box mx="auto">
+        <StaticImage
+          src="../../../images/cortisol-graphic.jpg"
+          alt="effects of stress for weight gain"
+          width={320}
+        />
+      </Box>
 
       <Stack mt={4}>
         <Selector mt={0} mb={0} />
@@ -318,15 +316,12 @@ export function SymptomsSlide() {
       options={[
         {
           text: "Weight bouncing back",
-          icon: <StaticImage alt="" width={60} src="../../../images/symptom-1.png" />,
         },
         {
           text: "Hunger/cravings",
-          icon: <StaticImage alt="" width={60} src="../../../images/symptom-2.png" />,
         },
         {
           text: "Low energy",
-          icon: <StaticImage alt="" width={60} src="../../../images/symptom-3.png" />,
         },
         // { text: "Brain fog" },
         // { text: "Mood swings" },
