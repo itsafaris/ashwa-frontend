@@ -136,22 +136,23 @@ export function LackOfSleepGraphicSlide() {
 
 export function WeGotYouSlide() {
   return (
-    <Slide id="we-got-you" type="filler" containerProps={{ backgroundColor: "#d8d1c4" }}>
-      <QuizHeading fontSize={"4xl"} mb={4} mx={"auto"}>
-        We got you!
-      </QuizHeading>
-
-      <Text mb={2} textAlign={"center"}>
-        That's definitely something we can help you with.
-      </Text>
-
+    <Slide id="we-got-you" type="filler" containerProps={{ backgroundColor: "white" }}>
       <Stack justifyContent={"center"} alignItems={"center"}>
         <StaticImage
-          src="../../../images/we-got-you.jpg"
+          src="../../../images/product-preview-mobile.jpg"
           alt="effects of lack of sleep for weight gain"
           width={300}
         />
       </Stack>
+
+      <QuizHeading fontSize={"3xl"} mb={4} mx={"auto"}>
+        We got you!
+      </QuizHeading>
+
+      <Text mb={6} textAlign={"center"}>
+        We have helped many other women, and that's definitely something we can help you with as
+        well.
+      </Text>
 
       <Stack
         spacing={2}
@@ -161,16 +162,16 @@ export function WeGotYouSlide() {
         fontSize={"xs"}
         textTransform={"uppercase"}
       >
-        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+        <Text px={2} mx={"auto"}>
           • 🔥 Lose weight
         </Text>
-        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+        <Text px={2} mx={"auto"}>
           • 🍕 Control late-night cravings
         </Text>
-        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+        <Text px={2} mx={"auto"}>
           • 😴 Have deep full night sleep
         </Text>
-        <Text backgroundColor={"whiteAlpha.500"} px={2} mx={"auto"}>
+        <Text px={2} mx={"auto"}>
           • 🧘‍♀️ Handle stress with ease
         </Text>
       </Stack>
