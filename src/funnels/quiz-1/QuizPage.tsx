@@ -117,11 +117,10 @@ export function QuizPage(props: PageProps) {
           <SymptomsSlide />
           <StressFrequencySlide />
           <LackOfSleepSlide />
+          <WeightGainSlide />
           <StressFrequencyGraphicSlide />
           <LackOfSleepGraphicSlide />
           <EmotionalEatingSlide />
-          <WeightGainSlide />
-
           <WeGotYouSlide />
 
           <AgeSlide />

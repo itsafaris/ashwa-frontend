@@ -85,9 +85,15 @@ export function StressFrequencySlide() {
       type="single"
       variant="list"
       options={[
-        { text: "Constantly" },
-        { text: "Frequently" },
-        { text: "Sometimes" },
+        {
+          text: "Constantly",
+        },
+        {
+          text: "Frequently",
+        },
+        {
+          text: "Sometimes",
+        },
         { text: "Never" },
       ]}
     >
@@ -109,7 +115,7 @@ export function LackOfSleepGraphicSlide() {
         <Text as="span" color="black" backgroundColor={"red.100"}>
           twice as long to lose that weight
         </Text>{" "}
-        when not getting enough sleep
+        as a result of stress-related sleep deprivation.
       </QuizHeading>
 
       <Text fontSize={"xs"} mb={2}>
@@ -136,22 +142,21 @@ export function LackOfSleepGraphicSlide() {
 
 export function WeGotYouSlide() {
   return (
-    <Slide id="we-got-you" type="filler" containerProps={{ backgroundColor: "white" }}>
+    <Slide id="we-got-you" type="filler">
       <Stack justifyContent={"center"} alignItems={"center"}>
         <StaticImage
-          src="../../../images/product-preview-mobile.jpg"
-          alt="effects of lack of sleep for weight gain"
+          src="../../../images/we-got-you.png"
+          alt="Calmr supplement can help you"
           width={300}
         />
       </Stack>
 
-      <QuizHeading fontSize={"3xl"} mb={4} mx={"auto"}>
+      <QuizHeading fontSize={"2xl"} mb={4} mx={"auto"}>
         We got you!
       </QuizHeading>
 
       <Text mb={6} textAlign={"center"}>
-        We have helped many other women, and that's definitely something we can help you with as
-        well.
+        We have helped many other women and can certainly help you too.
       </Text>
 
       <Stack
@@ -197,7 +202,7 @@ export function StressFrequencyGraphicSlide() {
         <Text as="span" color="black" backgroundColor={"red.100"}>
           gains weight up to 3 times faster
         </Text>{" "}
-        if stress becomes prolonged and unmanaged
+        due to prolonged or unmanaged stress.
       </QuizHeading>
 
       <Text fontSize={"xs"} mb={2}>
