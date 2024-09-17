@@ -3,7 +3,6 @@ import { QuizProvider, QuizUI, Segment, useQuizSnapshot } from "@lib/quiz-lib";
 import { isProdMode } from "src/utils";
 import {
   AgeSlide,
-  AlergiesSlide,
   StressFrequencyGraphicSlide,
   EmailSlide,
   EmotionalEatingSlide,
@@ -13,15 +12,13 @@ import {
   LackOfSleepGraphicSlide,
   LackOfSleepSlide,
   LoadingSlide,
-  MedicalConditionsSlide,
-  OutcomesSlide,
   StressFrequencySlide,
   SymptomsSlide,
   WeightGainSlide,
   WeightGoalSlide,
   WeightSlide,
   WeGotYouSlide,
-} from "./components/slides";
+} from "./slides";
 import { ProgressIndicator } from "@lib/quiz-lib/public/progress";
 import { Logo } from "@components/logo";
 import { getCalculatedState, getTypedQuizState } from "src/quizstate";
@@ -122,14 +119,10 @@ export function QuizPage(props: PageProps) {
           <EmotionalEatingSlide />
           <GoalsSlide />
           <WeGotYouSlide />
-
           <AgeSlide />
           <HeightSlide />
           <WeightSlide />
           <WeightGoalSlide />
-          {/* <AlergiesSlide />
-          <MedicalConditionsSlide />
-          <OutcomesSlide /> */}
           <LoadingSlide />
           <EmailSlide />
         </Segment>

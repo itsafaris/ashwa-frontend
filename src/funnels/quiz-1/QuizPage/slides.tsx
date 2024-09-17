@@ -8,7 +8,7 @@ import {
   useSlideState,
 } from "@lib/quiz-lib";
 
-import { NextButton, QuizHeading } from "./ui";
+import { NextButton, QuizHeading } from "../components/ui";
 import { StaticImage } from "gatsby-plugin-image";
 import { Span } from "@components/components";
 import { FaCheck } from "react-icons/fa";

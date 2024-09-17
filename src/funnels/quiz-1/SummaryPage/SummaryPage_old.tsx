@@ -5,22 +5,20 @@ import { VideoTestimonials } from "@components/VideoTestimonials";
 import { HowItWorksSection } from "@components/HowItWorks";
 import { ProductPreview } from "@components/ProductPreview";
 import { ReviewList } from "@components/ReviewList";
-import { QuizSummary } from "./components/Summary";
-import { AshwaRevivalSection } from "./components/Research";
+import { QuizSummary } from "../components/Summary";
+import { AshwaRevivalSection } from "../components/Research";
 import { IngredientsSection } from "@components/Ingredients";
-import { Link } from "gatsby";
 import { FaArrowRight as ArrowRight } from "react-icons/fa6";
 import { Box, Heading, Text, Button, Icon, Container, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
-import { FaArrowRight } from "react-icons/fa6";
 import { Recommendation } from "@components/Recommendation";
-import { SummaryStateProvider, useSummaryState } from "./components/summaryCtx/ctx";
+import { SummaryStateProvider, useSummaryState } from "../components/summaryCtx/ctx";
 import { Span } from "@components/components";
 import { getReadableDateTime } from "src/utils";
 import { Disclaimer } from "@components/Disclaimer";
-import { SmallWinsSection } from "./components/SmallWins";
+import { SmallWinsSection } from "../components/SmallWins";
 import { FAQList } from "@components/FAQList";
-import { CTAButton } from "./components/CTAButton";
+import { CTAButton } from "../components/CTAButton";
 
 export function SummaryPage() {
   return (
@@ -149,7 +147,7 @@ const Hero = () => {
               </Grid>
 
               <Box position={"relative"}>
-                <StaticImage src="../../images/chart-1.jpg" alt="" />
+                <StaticImage src="../../../images/chart-1.jpg" alt="" />
 
                 <Text
                   position={"absolute"}

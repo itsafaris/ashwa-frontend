@@ -27,28 +27,28 @@ import { loadQuizState, SavedState } from "src/localStorage";
 //   gender: "female",
 // };
 
-// const savedStateImperialMock: SavedState = {
-//   version: 1,
-//   unitSystem: "imperial",
-//   email: "dsad@dfsf.cm",
-//   age: 43,
-//   height: {
-//     cm: null,
-//     ft: 5,
-//     in: 7,
-//   },
-//   weight: 203,
-//   weightGoal: 203,
-//   goals: ["Manage weight more effectively"],
-//   healthState: "Poor",
-//   stressFrequency: "Rarely",
-//   symptoms: ["Weight bouncing back", "Hunger/cravings"],
-//   medicalConditions: ["Other"],
-//   emotionalEating: "",
-//   weightGain: "No",
-//   alergies: ["Sesame", "Other"],
-//   gender: "female",
-// };
+const savedStateImperialMock: SavedState = {
+  version: 1,
+  unitSystem: "imperial",
+  email: "dsad@dfsf.cm",
+  age: 43,
+  height: {
+    cm: null,
+    ft: 5,
+    in: 7,
+  },
+  weight: 203,
+  weightGoal: 203,
+  goals: ["Manage weight more effectively"],
+  healthState: "Poor",
+  stressFrequency: "Rarely",
+  symptoms: ["Weight bouncing back", "Hunger/cravings"],
+  medicalConditions: ["Other"],
+  emotionalEating: "",
+  weightGain: "No",
+  alergies: ["Sesame", "Other"],
+  gender: "female",
+};
 
 const SummaryStateCtx = React.createContext<SummaryState | null>(null);
 
@@ -56,7 +56,7 @@ export function SummaryStateProvider({ children }: React.PropsWithChildren) {
   const [state, setState] = React.useState<SummaryState | null>(null);
 
   React.useEffect(() => {
-    const state = loadQuizState();
+    const state = savedStateImperialMock ?? loadQuizState();
     if (state) {
       const summaryState = getSummaryState(state);
       if (!summaryState) {

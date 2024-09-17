@@ -9,11 +9,14 @@ import { FaArrowLeft } from "react-icons/fa";
 
 export type ProgressIndicatorProps = {
   logo?: React.ReactNode;
+  showControls?: boolean;
 };
 
-export function ProgressIndicator(
-  props: ProgressIndicatorProps & ComponentProps<typeof Flex>
-) {
+export function ProgressIndicator({
+  logo,
+  showControls = true,
+  ...rest
+}: ProgressIndicatorProps & ComponentProps<typeof Flex>) {
   const snap = useQuizSnapshot();
   const actions = useQuizActions();
   const [colorOverrides, setColorOverrides] = useState<
@@ -25,12 +28,11 @@ export function ProgressIndicator(
     if (!snap.currentSlide) {
       return;
     }
+
     setColorOverrides(snap.currentSlide.quizContainerProps?.progressBar as any);
   }, [snap.currentSlide]);
 
-  const overallProgress = Math.ceil(
-    ((snap.currentIdx + 1) / snap.slideCount) * 100
-  );
+  const overallProgress = Math.ceil(((snap.currentIdx + 1) / snap.slideCount) * 100);
 
   const colorScheme = colorOverrides?.colorScheme ?? "primary";
   const activeSegmentBg = colorOverrides?.activeSegmentBg ?? "bg.200";
@@ -46,28 +48,29 @@ export function ProgressIndicator(
         alignItems={"center"}
         py={1}
       >
-        <Button
-          variant={"text"}
-          size="sm"
-          px={0}
-          leftIcon={<Icon as={FaArrowLeft} />}
-          onClick={() => {
-            actions.goToPrev();
-          }}
-        >
-          Back
-        </Button>
+        {showControls && (
+          <Button
+            variant={"text"}
+            size="sm"
+            px={0}
+            leftIcon={<Icon as={FaArrowLeft} />}
+            onClick={() => {
+              actions.goToPrev();
+            }}
+          >
+            Back
+          </Button>
+        )}
 
-        {props.logo}
-        <Text
-          fontWeight={"bold"}
-          color={textColor}
-          width={"60px"}
-          textAlign={"right"}
-        >
-          {snap.currentIdx + 1} of {snap.slideCount}
-        </Text>
+        {logo}
+
+        {showControls && (
+          <Text fontWeight={"bold"} color={textColor} width={"60px"} textAlign={"right"}>
+            {snap.currentIdx + 1} of {snap.slideCount}
+          </Text>
+        )}
       </Flex>
+
       <Flex direction={"row"} gap={2} width={"100%"}>
         {snap.segmentsFull.map((s, idx) => {
           const posInBounds = getPosInBounds(snap.currentIdx, s.bounds);
@@ -87,16 +90,8 @@ export function ProgressIndicator(
                 borderRadius={"full"}
                 width={"full"}
                 colorScheme={colorScheme}
-                background={
-                  segmentIsActive ? activeSegmentBg : inactiveSegmentBg
-                }
-                value={
-                  posInBounds === "left"
-                    ? 0
-                    : posInBounds === "right"
-                    ? 100
-                    : segmentProgress
-                }
+                background={segmentIsActive ? activeSegmentBg : inactiveSegmentBg}
+                value={posInBounds === "left" ? 0 : posInBounds === "right" ? 100 : segmentProgress}
                 size={"sm"}
               />
             </Flex>
