@@ -15,6 +15,7 @@ import { IoIosWarning } from "react-icons/io";
 import { FaArrowRight as ArrowRight } from "react-icons/fa6";
 import { useSummaryState } from "../components/summaryCtx/ctx";
 import { getReadableDateTime } from "src/utils";
+import { FaArrowUp } from "react-icons/fa";
 
 function Card(props: StackProps) {
   return (
@@ -396,6 +397,49 @@ export function WeightLossForecastSlide() {
               Week 4
             </Text>
           </Grid>
+        </Stack>
+
+        <Stack
+          px={5}
+          py={4}
+          borderRadius={"lg"}
+          width={"100%"}
+          alignItems={"left"}
+          justifyContent={"space-between"}
+          spacing={1}
+          boxShadow={"0px 0px 10px 0px #00000052"}
+        >
+          <Stack spacing={1} lineHeight={1.3} mb={6}>
+            <Text fontSize={"2xl"} fontWeight={"bold"} mb={2}>
+              Your Overall Wellbeing
+            </Text>
+
+            <Stack direction={"row"} alignItems={"center"} fontSize={"sm"}>
+              <Icon as={FaArrowUp} />
+
+              <Text fontWeight={"bold"}>43%</Text>
+
+              <Text>increase in cortisol reduction</Text>
+            </Stack>
+
+            <Stack direction={"row"} alignItems={"center"} fontSize={"sm"}>
+              <Icon as={FaArrowUp} />
+
+              <Text fontWeight={"bold"}>50%</Text>
+
+              <Text>boost in sleep onset speed</Text>
+            </Stack>
+
+            <Stack direction={"row"} alignItems={"center"} fontSize={"sm"}>
+              <Icon as={FaArrowUp} />
+
+              <Text fontWeight={"bold"}>70%</Text>
+
+              <Text>decrease in nighttime cravings</Text>
+            </Stack>
+          </Stack>
+
+          <StaticImage alt="" src="../../../images/chart-3.jpg" />
         </Stack>
 
         <Stack mt={4}>
