@@ -90,7 +90,7 @@ export function ProgressIndicator({
                 borderRadius={"full"}
                 width={"full"}
                 colorScheme={colorScheme}
-                background={segmentIsActive ? activeSegmentBg : inactiveSegmentBg}
+                backgroundColor={segmentIsActive ? activeSegmentBg : inactiveSegmentBg}
                 value={posInBounds === "left" ? 0 : posInBounds === "right" ? 100 : segmentProgress}
                 size={"sm"}
               />

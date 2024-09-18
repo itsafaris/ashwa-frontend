@@ -1,6 +1,6 @@
 import { Box, Stack, StackProps, Text, Grid, Icon, ButtonProps, TextProps } from "@chakra-ui/react";
 import { Selector, Slide } from "@lib/quiz-lib";
-import { NextButton as NextButtonRaw } from "../components/ui";
+import { NextButton as NextButtonRaw, QuizHeading } from "../components/ui";
 import { StaticImage } from "gatsby-plugin-image";
 import { IoIosWarning } from "react-icons/io";
 import { FaArrowRight as ArrowRight } from "react-icons/fa6";
@@ -23,12 +23,19 @@ function Card(props: StackProps) {
 
 function Heading(props: TextProps) {
   return (
-    <Text color="white" lineHeight={1.3} fontSize={"2xl"} fontWeight={"semibold"} {...props} />
+    <QuizHeading
+      color="white"
+      lineHeight={1.2}
+      fontSize={"3xl"}
+      fontWeight={"semibold"}
+      mb={0}
+      {...props}
+    />
   );
 }
 
 function Subtitle(props: TextProps) {
-  return <Text mb={4} color={"gray.400"} {...props} />;
+  return <Text mb={4} color={"whiteAlpha.700"} {...props} />;
 }
 
 function NextButton(props: ButtonProps) {
@@ -39,7 +46,18 @@ export function WeightGainRiskSlide() {
   const state = useSummaryState();
 
   return (
-    <Slide id="weight-gain-risk" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide
+      id="weight-gain-risk"
+      type="filler"
+      containerProps={{ px: 3, py: 1 }}
+      quizContainerProps={{
+        progressBar: {
+          activeSegmentBg: "white",
+          inactiveSegmentBg: "#ffffff3b",
+          colorScheme: "white",
+        },
+      }}
+    >
       <Card>
         <Heading>What do your quiz answers reveal about your weight gain risk?</Heading>
 
@@ -50,7 +68,7 @@ export function WeightGainRiskSlide() {
 
         <Stack>
           <SummaryCard>
-            <Stack width={"full"} backgroundColor={"#ffe0e0"} p={2} position={"relative"} mb={6}>
+            <Stack width={"full"} backgroundColor={"red.100"} p={2} position={"relative"} mb={6}>
               <Text
                 fontSize={"xs"}
                 fontWeight={"semibold"}
@@ -59,7 +77,7 @@ export function WeightGainRiskSlide() {
               >
                 Weight gain risk
               </Text>
-              <Text fontSize={"2xl"} color={"red.500"} fontWeight={"bold"}>
+              <Text fontSize={"2xl"} color={"red.600"} fontWeight={"bold"}>
                 HIGH
               </Text>
 
@@ -77,7 +95,7 @@ export function WeightGainRiskSlide() {
                 height={0}
                 borderLeft="12px solid transparent"
                 borderRight="12px solid transparent"
-                borderTop="12px solid #ffe0e0"
+                borderTop="12px solid #fed7d7"
               />
             </Stack>
 
@@ -123,7 +141,18 @@ export function WeightGainRiskSlide() {
 
 export function CortisolLevelsSlide() {
   return (
-    <Slide id="cortisol-levels" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide
+      id="cortisol-levels"
+      type="filler"
+      containerProps={{ px: 3, py: 1 }}
+      quizContainerProps={{
+        progressBar: {
+          activeSegmentBg: "white",
+          inactiveSegmentBg: "#ffffff3b",
+          colorScheme: "white",
+        },
+      }}
+    >
       <Card>
         <Heading>
           Based on your quiz answers, your cortisol levels may be:{" "}
@@ -137,7 +166,7 @@ export function CortisolLevelsSlide() {
           concerns.
         </Subtitle>
 
-        <SummaryCard>
+        <SummaryCard px={6} py={6}>
           <StaticImage width={600} alt="" src="../../../images/cortisol-level-chart.jpg" />
         </SummaryCard>
 
@@ -158,7 +187,18 @@ export function WeightLossForecastSlide() {
   endDate.setMonth(startDate.getMonth() + state.weightLossDuration);
 
   return (
-    <Slide id="weight-loss-forecast" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide
+      id="weight-loss-forecast"
+      type="filler"
+      containerProps={{ px: 3, py: 1 }}
+      quizContainerProps={{
+        progressBar: {
+          activeSegmentBg: "white",
+          inactiveSegmentBg: "#ffffff3b",
+          colorScheme: "white",
+        },
+      }}
+    >
       <Card>
         <Heading>Your Weight Loss Forecast With Calmr</Heading>
 
