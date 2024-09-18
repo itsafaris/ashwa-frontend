@@ -19,7 +19,7 @@ export function CortisolLevelsSlide() {
             Cortisol levels
           </Text>
           <Text fontSize={"2xl"} color={"red.600"} fontWeight={"bold"}>
-            HIGH
+            ELEVATED
           </Text>
 
           <Text fontSize={"sm"} fontWeight={"semibold"} color={"red.600"}>
