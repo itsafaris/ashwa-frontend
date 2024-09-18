@@ -14,18 +14,7 @@ export function WeightLossForecastSlide() {
   endDate.setMonth(startDate.getMonth() + state.weightLossDuration);
 
   return (
-    <Slide
-      id="weight-loss-forecast"
-      type="filler"
-      containerProps={{ px: 3, py: 1 }}
-      quizContainerProps={{
-        progressBar: {
-          activeSegmentBg: "white",
-          inactiveSegmentBg: "#ffffff3b",
-          colorScheme: "white",
-        },
-      }}
-    >
+    <Slide id="weight-loss-forecast" type="filler" containerProps={{ px: 3, py: 1 }}>
       <Card>
         <Heading>Your Weight Loss Forecast With Calmr</Heading>
 

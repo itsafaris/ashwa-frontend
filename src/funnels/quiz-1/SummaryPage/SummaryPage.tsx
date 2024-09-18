@@ -23,12 +23,12 @@ export function SummaryPage() {
           progressComponent={
             <ProgressIndicator
               showControls={false}
-              logo={<Logo height={"28px"} fill="white" mx="auto" />}
+              logo={<Logo height={"28px"} fill="black" mx="auto" />}
             />
           }
           containerProps={{
             minH: "100vh",
-            bg: "#352833",
+            bg: "white",
           }}
         >
           <Segment title="Cortisol levels">

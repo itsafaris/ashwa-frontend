@@ -92,7 +92,7 @@ export function ProgressIndicator({
                 colorScheme={colorScheme}
                 backgroundColor={segmentIsActive ? activeSegmentBg : inactiveSegmentBg}
                 value={posInBounds === "left" ? 0 : posInBounds === "right" ? 100 : segmentProgress}
-                size={"sm"}
+                size={"xs"}
               />
             </Flex>
           );

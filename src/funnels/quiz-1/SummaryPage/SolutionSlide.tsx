@@ -6,24 +6,10 @@ import { ImCheckmark } from "react-icons/im";
 
 export function SolutionSlide() {
   return (
-    <Slide
-      id="solution"
-      type="filler"
-      containerProps={{ px: 3, py: 1 }}
-      quizContainerProps={{
-        progressBar: {
-          activeSegmentBg: "white",
-          inactiveSegmentBg: "#ffffff3b",
-          colorScheme: "white",
-        },
-      }}
-    >
+    <Slide id="solution" type="filler" containerProps={{ px: 3, py: 1 }}>
       <Card>
         <Heading>
-          Calmr Sleep & Burn - designed to{" "}
-          <Text as="span" color={"#dfa1e6"}>
-            restore balance to your cortisol and weight.
-          </Text>
+          Calmr Sleep & Burn - designed to restore balance to your cortisol and weight.
         </Heading>
 
         <Subtitle>
@@ -31,21 +17,19 @@ export function SolutionSlide() {
           a more successful weight loss outcome.
         </Subtitle>
 
-        <SummaryCard spacing={7} py={10}>
-          <StaticImage
-            alt="Product with labels"
-            src="../../../images/product-with-labels.jpg"
-            width={400}
-          />
+        <StaticImage
+          alt="Product with labels"
+          src="../../../images/product-with-labels.jpg"
+          width={400}
+        />
 
-          <Stack spacing={3}>
-            <ListItem text="Facilitates weight loss and curbs nocturnal appetite, promoting a balanced approach to nutrition and body composition" />
-            <ListItem text="Enhances sleep quality and duration, allowing for restorative rest and improved overall nocturnal experiences" />
-            <ListItem text="Boosts stress resilience and emotional equilibrium, enabling more effective management of daily pressures and challenges" />
-            <ListItem text="Contains specific ingredients, not generic blends, each precisely tackling specific symptoms" />
-            <ListItem text="Uses delayed-release capsule to ensure all ingredients pass through the digestive tract intact" />
-          </Stack>
-        </SummaryCard>
+        <Stack spacing={3}>
+          <ListItem text="Facilitates weight loss and curbs nocturnal appetite, promoting a balanced approach to nutrition and body composition" />
+          <ListItem text="Enhances sleep quality and duration, allowing for restorative rest and improved overall nocturnal experiences" />
+          <ListItem text="Boosts stress resilience and emotional equilibrium, enabling more effective management of daily pressures and challenges" />
+          <ListItem text="Contains specific ingredients, not generic blends, each precisely tackling specific symptoms" />
+          <ListItem text="Uses delayed-release capsule to ensure all ingredients pass through the digestive tract intact" />
+        </Stack>
 
         <Stack>
           <Selector mt={0} mb={0} />

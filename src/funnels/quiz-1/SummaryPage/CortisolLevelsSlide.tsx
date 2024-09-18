@@ -1,38 +1,41 @@
-import { Stack, Text } from "@chakra-ui/react";
+import { Box, Stack, Text } from "@chakra-ui/react";
 import { Selector, Slide } from "@lib/quiz-lib";
 import { StaticImage } from "gatsby-plugin-image";
 import { Card, Heading, NextButton, Subtitle, SummaryCard } from "./components";
 
 export function CortisolLevelsSlide() {
   return (
-    <Slide
-      id="cortisol-levels"
-      type="filler"
-      containerProps={{ px: 3, py: 1 }}
-      quizContainerProps={{
-        progressBar: {
-          activeSegmentBg: "white",
-          inactiveSegmentBg: "#ffffff3b",
-          colorScheme: "white",
-        },
-      }}
-    >
+    <Slide id="cortisol-levels" type="filler" containerProps={{ px: 3, py: 1 }}>
       <Card>
-        <Heading>
-          Based on your quiz answers, your cortisol levels may be:{" "}
-          <Text as="span" fontWeight={"bold"} color={"red.500"}>
+        <Heading>Based on your quiz answers, your cortisol levels may be:</Heading>
+
+        <Stack width={"full"} backgroundColor={"red.100"} p={2} position={"relative"}>
+          <Text
+            fontSize={"xs"}
+            fontWeight={"semibold"}
+            color={"red.600"}
+            textTransform={"uppercase"}
+          >
+            Cortisol levels
+          </Text>
+          <Text fontSize={"2xl"} color={"red.600"} fontWeight={"bold"}>
             HIGH
           </Text>
-        </Heading>
 
-        <Subtitle>
+          <Text fontSize={"sm"} fontWeight={"semibold"} color={"red.600"}>
+            Lowering and maintaining your cortisol is the key to solving your sleep and weight gain
+            concerns.
+          </Text>
+        </Stack>
+
+        {/* <Subtitle>
           Lowering and maintaining your cortisol is the key to solving your sleep and weight gain
           concerns.
-        </Subtitle>
+        </Subtitle> */}
 
-        <SummaryCard px={7} py={7}>
+        <Box px={8}>
           <StaticImage width={600} alt="" src="../../../images/cortisol-level-chart.jpg" />
-        </SummaryCard>
+        </Box>
 
         <Stack mt={4}>
           <Selector mt={0} mb={0} />

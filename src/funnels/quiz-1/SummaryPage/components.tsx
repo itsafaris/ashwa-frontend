@@ -16,19 +16,12 @@ export function Card(props: StackProps) {
 
 export function Heading(props: TextProps) {
   return (
-    <QuizHeading
-      color="white"
-      lineHeight={1.2}
-      fontSize={"3xl"}
-      fontWeight={"semibold"}
-      mb={0}
-      {...props}
-    />
+    <QuizHeading lineHeight={1.2} fontSize={"3xl"} fontWeight={"semibold"} mb={0} {...props} />
   );
 }
 
 export function Subtitle(props: TextProps) {
-  return <Text mb={2} color={"whiteAlpha.700"} {...props} />;
+  return <Text mb={2} color={"blackAlpha.700"} {...props} />;
 }
 
 export function NextButton(props: ButtonProps) {
@@ -45,7 +38,7 @@ export function SummaryCard(props: StackProps) {
       alignItems={"center"}
       justifyContent={"space-between"}
       spacing={1}
-      boxShadow={"0px 0px 10px 0px #00000052"}
+      boxShadow={"0px 0px 6px 0px #00000052"}
       backgroundColor={"white"}
       {...props}
     />
