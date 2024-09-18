@@ -8,6 +8,7 @@ import { CortisolLevelsSlide } from "./CortisolLevelsSlide";
 import { WeightGainRiskSlide } from "./WeightGainRiskSlide";
 import { WeightLossForecastSlide } from "./WeightLossForecastSlide";
 import { SolutionSlide } from "./SolutionSlide";
+import { HowItWorksSlide } from "./HowItWorksSlide";
 
 export function SummaryPage() {
   return (
@@ -41,6 +42,9 @@ export function SummaryPage() {
           </Segment>
           <Segment title="Solution">
             <SolutionSlide />
+          </Segment>
+          <Segment title="How it works">
+            <HowItWorksSlide />
           </Segment>
         </QuizUI>
       </QuizProvider>

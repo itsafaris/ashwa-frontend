@@ -4,10 +4,10 @@ import { StaticImage } from "gatsby-plugin-image";
 import { Card, Heading, NextButton, Subtitle, SummaryCard } from "./components";
 import { ImCheckmark } from "react-icons/im";
 
-export function SolutionSlide() {
+export function HowItWorksSlide() {
   return (
     <Slide
-      id="solution"
+      id="how-it-works"
       type="filler"
       containerProps={{ px: 3, py: 1 }}
       quizContainerProps={{
@@ -19,12 +19,7 @@ export function SolutionSlide() {
       }}
     >
       <Card>
-        <Heading>
-          Calmr Sleep & Burn - designed to{" "}
-          <Text as="span" color={"#dfa1e6"}>
-            restore balance to your cortisol and weight.
-          </Text>
-        </Heading>
+        <Heading>Wondering how quickly you can notice a difference?</Heading>
 
         <Subtitle>
           By incorporating Calmr into your routine you're setting the stage for a healthier life and
