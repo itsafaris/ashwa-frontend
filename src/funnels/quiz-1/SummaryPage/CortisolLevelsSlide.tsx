@@ -9,7 +9,7 @@ export function CortisolLevelsSlide() {
       <Card>
         <Heading>Based on your quiz answers, your cortisol levels may be:</Heading>
 
-        <Stack width={"full"} backgroundColor={"red.100"} p={2} position={"relative"}>
+        <Stack width={"full"} backgroundColor={"#ffe7e7"} p={2} position={"relative"}>
           <Text
             fontSize={"xs"}
             fontWeight={"semibold"}

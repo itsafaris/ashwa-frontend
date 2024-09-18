@@ -18,7 +18,7 @@ export function WeightGainRiskSlide() {
 
         <Stack>
           <SummaryCard>
-            <Stack width={"full"} backgroundColor={"red.100"} p={2} position={"relative"} mb={6}>
+            <Stack width={"full"} backgroundColor={"#ffe7e7"} p={2} position={"relative"} mb={6}>
               <Text
                 fontSize={"xs"}
                 fontWeight={"semibold"}
