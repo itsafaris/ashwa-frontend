@@ -78,7 +78,7 @@ export function getBMI(weight: number, height: number, unitSystem: UnitSystemTyp
 }
 
 export function getMetabolicAge(actualAge: number): number {
-  return actualAge + 7;
+  return actualAge + 9;
 }
 
 export function getWeightUnits(unitSystem: UnitSystemType): string {

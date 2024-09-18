@@ -45,7 +45,7 @@ export function WeightGainRiskSlide() {
                 height={0}
                 borderLeft="12px solid transparent"
                 borderRight="12px solid transparent"
-                borderTop="12px solid #fed7d7"
+                borderTop="12px solid #ffe7e7"
               />
             </Stack>
 
