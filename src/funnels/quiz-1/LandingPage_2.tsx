@@ -19,7 +19,6 @@ import { Logo } from "@components/logo";
 import { FaCheck } from "react-icons/fa";
 import { IoMdFemale } from "react-icons/io";
 import { IoMdMale } from "react-icons/io";
-import bgImageLG from "../../images/lp-hero-image-lg.jpg";
 import { MediaSection } from "./components/MediaSection";
 
 const outcomes = ["Lose weight", "Boost metabolism", "Reduce stress", "Improve sleep quality"];
@@ -30,7 +29,7 @@ export function LandingPage_2() {
       <Box backgroundColor="#38283f" position={"relative"}>
         <Stack
           position={"absolute"}
-          zIndex={0}
+          zIndex={1}
           backgroundColor={"#00000025"}
           top={0}
           left={0}
@@ -43,15 +42,14 @@ export function LandingPage_2() {
         </Stack>
 
         <Container px={0} maxW={["unset"]}>
-          <Box
-            backgroundImage={`url(${bgImageLG})`}
-            backgroundRepeat={"no-repeat"}
-            backgroundPosition={"center"}
-            backgroundSize={"cover"}
-            px={4}
-            pt={6}
-            pb={8}
-          >
+          <Box px={4} pt={6} pb={8} position={"relative"}>
+            <StaticImage
+              alt=""
+              src="../../images/lp-hero-image-lg.jpg"
+              style={{ position: "absolute", top: 0, left: 0, height: "100%", width: "100%" }}
+              width={1000}
+            />
+
             <Stack zIndex={1} position={"relative"} width={"100%"} height={"100%"} spacing={0}>
               <Logo height={"50px"} fill="white" />
 
