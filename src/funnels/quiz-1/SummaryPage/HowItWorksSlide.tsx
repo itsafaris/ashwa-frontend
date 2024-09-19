@@ -5,13 +5,13 @@ import { Card, Heading, NextButton, Subtitle, SummaryCard } from "./components";
 
 export function HowItWorksSlide() {
   return (
-    <Slide id="how-it-works" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide id="how-it-works" type="filler" containerProps={{ px: 3, py: 1, maxW: "600px" }}>
       <Card>
         <Heading>Wondering how quickly you can notice a difference?</Heading>
 
         <Subtitle>
           Our carefully curated, science-backed formula starts working from day one, helping you to
-          rebalance your vaginal flora and reach optimal feminine health.
+          rebalance your cortisol and reach optimal weight.
         </Subtitle>
 
         <Stack>
@@ -70,25 +70,25 @@ export function HowItWorksSlide() {
 
         <Stack spacing={0}>
           <StepItem
-            title=""
+            title="Relaxation Begins to Set"
             number={1}
-            text="Facilitates weight loss and curbs nocturnal appetite, promoting a balanced approach to nutrition and body composition"
+            text="The blend of calming herbs start to take effect. You start feeling a sense of relaxation as your body prepares for sleep."
           />
           <StepItem
-            title=""
+            title="Sleep Quality Improves"
             number={2}
-            text="Enhances sleep quality and duration, allowing for restorative rest and improved overall nocturnal experiences"
+            text="Melatonin and other sleep-supporting ingredients help you fall asleep faster and stay asleep longer. This leads to more restful and restorative sleep throughout the night."
           />
           <StepItem
-            title=""
+            title="Nighttime Metabolism Gets Support"
             number={3}
-            text="Boosts stress resilience and emotional equilibrium, enabling more effective management of daily pressures and challenges"
+            text="While you sleep, Calmr supports your metabolic processes. This aids in the body's natural fat-burning processes during rest."
           />
           <StepItem
-            title=""
+            title="Morning Brings Renewed Energy"
             showStick={false}
             number={4}
-            text="Uses delayed-release capsule to ensure all ingredients pass through the digestive tract intact"
+            text="After a night of quality sleep, you feel more refreshed and energized. This renewed energy supports better food choices and increased motivation for physical activity during the day."
           />
         </Stack>
 
@@ -140,7 +140,7 @@ function StepItem({
           {number} - {title}
         </Text>
 
-        <Text pb={4} pt={2}>
+        <Text pb={8} pt={2}>
           {text}
         </Text>
       </Stack>

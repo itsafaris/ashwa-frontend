@@ -5,7 +5,7 @@ import { Card, Heading, NextButton, Subtitle, SummaryCard } from "./components";
 
 export function CortisolLevelsSlide() {
   return (
-    <Slide id="cortisol-levels" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide id="cortisol-levels" type="filler" containerProps={{ px: 3, py: 1, maxW: "600px" }}>
       <Card>
         <Heading>Based on your quiz answers, your cortisol levels may be:</Heading>
 
@@ -33,7 +33,7 @@ export function CortisolLevelsSlide() {
           concerns.
         </Subtitle> */}
 
-        <Box px={8}>
+        <Box px={8} maxW="400px" mx="auto">
           <StaticImage width={600} alt="" src="../../../images/cortisol-level-chart.jpg" />
         </Box>
 

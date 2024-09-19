@@ -8,7 +8,11 @@ import { navigate } from "gatsby";
 
 export function TestimonialMoreSlide() {
   return (
-    <Slide id="more-user-testimonial" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide
+      id="more-user-testimonial"
+      type="filler"
+      containerProps={{ px: 3, py: 1, maxW: "600px" }}
+    >
       <Card>
         <Heading>
           But don't just take our word for it. Hear what others are saying about Calmr:

@@ -14,14 +14,13 @@ export function WeightLossForecastSlide() {
   endDate.setMonth(startDate.getMonth() + state.weightLossDuration);
 
   return (
-    <Slide id="weight-loss-forecast" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide id="weight-loss-forecast" type="filler" containerProps={{ px: 3, py: 1, maxW: "600px" }}>
       <Card>
-        <Heading>Your Weight Loss Forecast With Calmr</Heading>
+        <Heading>Your weight loss forecast with Calmr</Heading>
 
         <Subtitle>
-          High cortisol levels and poor sleep quality lead to weight gain by increasing cravings for
-          high-calorie foods, promoting abdominal fat storage, reducing exercise motivation, and
-          altering metabolism.
+          You can easily prevent this and start losing weight easier than you think. See how Calmr
+          can help in your personal summary below.
         </Subtitle>
 
         <Stack>

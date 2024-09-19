@@ -20,6 +20,7 @@ import { FaCheck } from "react-icons/fa";
 import { IoMdFemale } from "react-icons/io";
 import { IoMdMale } from "react-icons/io";
 import bgImageLG from "../../images/lp-hero-image-lg.jpg";
+import { MediaSection } from "./components/MediaSection";
 
 const outcomes = ["Lose weight", "Boost metabolism", "Reduce stress", "Improve sleep quality"];
 
@@ -134,53 +135,7 @@ export function LandingPage_2() {
             zIndex={1}
             position={"relative"}
           >
-            <Text
-              mx="auto"
-              maxW={"200px"}
-              textAlign={"center"}
-              fontWeight={"semibold"}
-              fontSize={"xs"}
-              color="gray.500"
-              textTransform={"uppercase"}
-            >
-              Benefits of Sleep & Burn ingredients covered in:
-            </Text>
-
-            <Stack opacity={0.8} spacing={6}>
-              <StaticImage
-                style={{ flexShrink: 0, margin: "auto" }}
-                height={23}
-                layout="fixed"
-                src="../../images/media1.png"
-                alt="media logo"
-              />
-
-              <Stack direction={"row"} alignItems={"center"} mx="auto" spacing={6}>
-                <StaticImage
-                  style={{ flexShrink: 0 }}
-                  height={43}
-                  layout="fixed"
-                  src="../../images/media4.png"
-                  alt="media logo"
-                />
-
-                <StaticImage
-                  style={{ flexShrink: 0 }}
-                  height={38}
-                  layout="fixed"
-                  src="../../images/media3.png"
-                  alt="media logo"
-                />
-              </Stack>
-
-              <StaticImage
-                style={{ flexShrink: 0, margin: "auto" }}
-                height={23}
-                layout="fixed"
-                src="../../images/media2.png"
-                alt="media logo"
-              />
-            </Stack>
+            <MediaSection />
           </Stack>
         </Container>
       </Box>

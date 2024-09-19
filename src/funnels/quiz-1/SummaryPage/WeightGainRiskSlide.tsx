@@ -7,7 +7,7 @@ export function WeightGainRiskSlide() {
   const state = useSummaryState();
 
   return (
-    <Slide id="weight-gain-risk" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide id="weight-gain-risk" type="filler" containerProps={{ px: 3, py: 1, maxW: "600px" }}>
       <Card>
         <Heading>What do your quiz answers reveal about your weight gain risk?</Heading>
 

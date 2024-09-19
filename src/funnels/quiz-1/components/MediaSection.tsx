@@ -5,7 +5,7 @@ export function MediaSection() {
   return (
     <Stack p={4} pt={6} pb={10} spacing={6}>
       <Text mx="auto" textAlign={"center"} fontWeight={"semibold"} fontSize={"xs"}>
-        BENEFITS OF OUR INGREDIENTS WERE COVERED IN:
+        BENEFITS OF OUR INGREDIENTS <br /> WERE COVERED IN:
       </Text>
 
       <Grid gridTemplateColumns={["repeat(2, 1fr)"]} alignItems={"center"} mx="auto" gap={0}>

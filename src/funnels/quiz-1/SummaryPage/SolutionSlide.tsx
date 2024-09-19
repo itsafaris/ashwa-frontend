@@ -6,7 +6,7 @@ import { ImCheckmark } from "react-icons/im";
 
 export function SolutionSlide() {
   return (
-    <Slide id="solution" type="filler" containerProps={{ px: 3, py: 1 }}>
+    <Slide id="solution" type="filler" containerProps={{ px: 3, py: 1, maxW: "600px" }}>
       <Card>
         <Heading>
           Calmr Sleep & Burn - designed to restore balance to your cortisol and weight.
@@ -20,7 +20,7 @@ export function SolutionSlide() {
         <StaticImage
           alt="Product with labels"
           src="../../../images/product-with-labels.jpg"
-          width={400}
+          width={1000}
         />
 
         <Stack spacing={3}>
