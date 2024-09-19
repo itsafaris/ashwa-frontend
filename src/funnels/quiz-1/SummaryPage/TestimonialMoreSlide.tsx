@@ -5,6 +5,7 @@ import { Card, Heading, NextButton } from "./components";
 import { Rating } from "@components/components";
 import { FaCheckCircle } from "react-icons/fa";
 import { Review, topReviews } from "@components/reviews";
+import { MediaSection } from "../components/MediaSection";
 
 export function TestimonialMoreSlide() {
   return (
@@ -17,6 +18,8 @@ export function TestimonialMoreSlide() {
         {topReviews.map((it, idx) => {
           return <ReviewItem key={idx} review={it} />;
         })}
+
+        <MediaSection />
 
         <Stack>
           <Selector mt={0} mb={0} />
