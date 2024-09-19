@@ -45,7 +45,7 @@ const productMeta1: ProductMeta = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product-1.jpg"}
+      src={"./images/product-1.png"}
       placeholder="blurred"
       width={240}
     />
@@ -62,7 +62,7 @@ const productMeta3: ProductMeta = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product-2.jpg"}
+      src={"./images/product-3.png"}
       placeholder="blurred"
       width={240}
     />
@@ -79,7 +79,7 @@ const productMeta6: ProductMeta = {
   image: (
     <StaticImage
       alt="ashwagandha supplements bottle"
-      src={"./images/product-3.jpg"}
+      src={"./images/product-6.png"}
       placeholder="blurred"
       width={240}
     />

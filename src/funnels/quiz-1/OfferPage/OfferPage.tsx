@@ -2,16 +2,12 @@ import * as React from "react";
 import { Box, Heading, Button, Icon, Container, Stack, Grid } from "@chakra-ui/react";
 import { StaticImage } from "gatsby-plugin-image";
 import { FaArrowRight } from "react-icons/fa";
-import { Header } from "@components/Header";
 import { Footer } from "@components/Footer";
 import { trackPixelEvent } from "src/tracking";
 import "blaze-slider/dist/blaze.css";
-import { ProductSelectionSection } from "@components/ProductSelection";
-import { Recommendation } from "@components/Recommendation";
-import { FreeShippingSection } from "@components/FreeShipping";
 import { SpecialOfferBannerTop } from "@components/SpecialOfferBannerTop";
-import { SpecialOfferBanner } from "@components/SpecialOfferBanner";
-import { SpecialOfferTimer } from "@components/SpecialOfferTimer";
+import { HeroSection } from "./HeroSection";
+import { SummaryStateProvider, useSummaryState } from "../components/summaryCtx/ctx";
 
 export function OfferPage() {
   React.useEffect(() => {
@@ -19,23 +15,30 @@ export function OfferPage() {
   }, []);
 
   return (
+    <SummaryStateProvider>
+      <Content />
+    </SummaryStateProvider>
+  );
+}
+
+function Content() {
+  const summaryState = useSummaryState();
+
+  return (
     <Box bg="bg.50">
       <SpecialOfferBannerTop />
-      <Header />
-      <Box backgroundColor={"primary.100"} pt={4}>
-        <SpecialOfferBanner />
-      </Box>
-      <Box backgroundColor={"primary.100"} pt={1}>
-        <SpecialOfferTimer />
-      </Box>
-      <Hero />
-      <ProductSelectionSection />
-      <FreeShippingSection />
+
+      <HeroSection
+        weightAvgMonthlyLoss={summaryState.weightAvgMonthlyLoss}
+        weightUnits={summaryState.weightUnits}
+      />
+
       <FreeGift />
       <Footer />
     </Box>
   );
 }
+
 const FreeGift = () => {
   return (
     <Box bg="white" pt={8}>
@@ -53,36 +56,14 @@ const FreeGift = () => {
           mb={8}
         >
           <Stack alignItems={"center"}>
-            <StaticImage alt="" src="../../images/free-gift-1.jpg" layout="constrained" />
+            <StaticImage alt="" src="../../../images/free-gift-1.jpg" layout="constrained" />
           </Stack>
           <Stack alignItems={"center"}>
-            <StaticImage alt="" src="../../images/free-gift-2.jpg" layout="constrained" />
+            <StaticImage alt="" src="../../../images/free-gift-2.jpg" layout="constrained" />
           </Stack>
         </Grid>
 
         <JumptToPricingButton />
-      </Container>
-    </Box>
-  );
-};
-
-const Hero = () => {
-  return (
-    <Box backgroundColor="primary.100" pt={10} pb={3}>
-      <Container maxW={"container.lg"} as={Stack} spacing={4}>
-        <Heading
-          mx="auto"
-          px={8}
-          textAlign={"center"}
-          fontSize={["3xl", "3xl", "4xl"]}
-          maxW={"container.sm"}
-        >
-          Lose Weight For Under $1 Per Day!
-        </Heading>
-
-        <Box mt={1}>
-          <Recommendation />
-        </Box>
       </Container>
     </Box>
   );
@@ -96,8 +77,19 @@ function JumptToPricingButton() {
       mx="auto"
       size={"lg"}
       borderRadius={"full"}
-      rightIcon={<Icon as={FaArrowRight} />}
-      href="#pricing-section"
+      rightIcon={
+        <Stack
+          justifyContent={"center"}
+          alignItems={"center"}
+          height={"20px"}
+          width={"20px"}
+          borderRadius={"full"}
+          backgroundColor={"white"}
+        >
+          <Icon as={FaArrowRight} color={"green.500"} boxSize={3} />
+        </Stack>
+      }
+      href="#product-selection"
     >
       Order yours now
     </Button>
