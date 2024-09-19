@@ -19,7 +19,7 @@ export type Review = {
 export const topReviews: Review[] = [
   {
     title: "Gone down to a size 8",
-    text: "",
+    text: "This really helped me with weight. Lost 13 lbs that never came back!",
     name: "Amanda E.",
     location: "Vermont",
     score: 5,
@@ -41,8 +41,8 @@ export const topReviews: Review[] = [
   },
   {
     title: "Improved my mobility",
-    text: "",
-    name: "Clara S.",
+    text: "Taking care of your sleep quality is probably the best thing you can do for your weight loss.",
+    name: "Susie W.",
     location: "Georgia",
     score: 4,
     img: (
@@ -65,7 +65,7 @@ export const topReviews: Review[] = [
 
   {
     title: "In my 3rd month already!",
-    text: "",
+    text: "I take two capsules a day and finally feel and look lighter. Lost 15 pounds too!",
     name: "Hazel V.",
     location: "Virginia",
     score: 4.7,
@@ -88,8 +88,8 @@ export const topReviews: Review[] = [
 
   {
     title: "Enhances weight loss!",
-    text: "",
-    name: "Susie W.",
+    text: "I wish I'd found these sooner. Calmr helped me achieve my weight goal and then some.",
+    name: "Clara S.",
     location: "Virginia",
     score: 5,
     productImg: <StaticImage src="../images/product-3-small.png" alt="" />,

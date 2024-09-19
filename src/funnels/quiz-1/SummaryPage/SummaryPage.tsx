@@ -10,6 +10,7 @@ import { WeightLossForecastSlide } from "./WeightLossForecastSlide";
 import { SolutionSlide } from "./SolutionSlide";
 import { HowItWorksSlide } from "./HowItWorksSlide";
 import { TestimonialOneSlide } from "./TestimonialOneSlide";
+import { TestimonialMoreSlide } from "./TestimonialMoreSlide";
 
 export function SummaryPage() {
   return (
@@ -49,6 +50,9 @@ export function SummaryPage() {
           </Segment>
           <Segment title="User testimonial">
             <TestimonialOneSlide />
+          </Segment>
+          <Segment title="More testimonials">
+            <TestimonialMoreSlide />
           </Segment>
         </QuizUI>
       </QuizProvider>
