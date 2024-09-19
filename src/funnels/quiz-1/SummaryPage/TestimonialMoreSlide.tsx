@@ -1,11 +1,10 @@
 import { Box, Grid, Icon, Stack, Text } from "@chakra-ui/react";
 import { Selector, Slide } from "@lib/quiz-lib";
-import { StaticImage } from "gatsby-plugin-image";
 import { Card, Heading, NextButton } from "./components";
-import { Rating } from "@components/components";
 import { FaCheckCircle } from "react-icons/fa";
 import { Review, topReviews } from "@components/reviews";
 import { MediaSection } from "../components/MediaSection";
+import { navigate } from "gatsby";
 
 export function TestimonialMoreSlide() {
   return (
@@ -25,7 +24,13 @@ export function TestimonialMoreSlide() {
           <Selector mt={0} mb={0} />
         </Stack>
 
-        <NextButton>Continue</NextButton>
+        <NextButton
+          onClick={() => {
+            navigate("/quiz-1/offer");
+          }}
+        >
+          Continue
+        </NextButton>
       </Card>
     </Slide>
   );
