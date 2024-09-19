@@ -1,7 +1,9 @@
-import { Box, Grid, Icon, Stack, Text } from "@chakra-ui/react";
+import { Icon, Stack, Text } from "@chakra-ui/react";
 import { Selector, Slide } from "@lib/quiz-lib";
 import { StaticImage } from "gatsby-plugin-image";
-import { Card, Heading, NextButton, Subtitle, SummaryCard } from "./components";
+import { Card, Heading, NextButton } from "./components";
+import { Rating } from "@components/components";
+import { FaCheckCircle } from "react-icons/fa";
 
 export function TestimonialOneSlide() {
   return (
@@ -19,50 +21,35 @@ export function TestimonialOneSlide() {
           />
         </Stack>
 
-        <Stack>
-          <Grid gridTemplateColumns={"1fr 1fr"} gap={2}>
-            <Stack p={3} backgroundColor="#c38cc8" borderRadius={"lg"} alignItems={"center"}>
-              <StaticImage
-                alt="Take 2 capsules before bed"
-                src="../../../images/how-to-new-1.png"
-                width={200}
-                style={{
-                  width: 70,
-                }}
-              />
+        <Rating rating={5} size="normal" />
 
-              <Text
-                color="white"
-                textTransform={"uppercase"}
-                textAlign={"center"}
-                fontSize={"xs"}
-                fontWeight={"bold"}
-              >
-                Take 2 capsules before bed
-              </Text>
-            </Stack>
+        <Text>
+          “Before Bioma, I just couldn’t get the weight off. I’d lose and regain the same weight
+          over and over again, felt hungry and miserable all the time.
+        </Text>
 
-            <Stack p={3} backgroundColor="#99759d" borderRadius={"lg"} alignItems={"center"}>
-              <StaticImage
-                alt="Relax and enjoy steady weight loss"
-                src="../../../images/how-to-new-2.png"
-                width={200}
-                style={{
-                  width: 70,
-                }}
-              />
+        <Text>
+          Everything changed when I got Bioma. Over time I noticed a lot less cravings, could
+          control my appetite better, and lost a total of 19 lbs. Honestly I don’t remember the last
+          time I felt this great inside and out.
+        </Text>
 
-              <Text
-                color="white"
-                textTransform={"uppercase"}
-                textAlign={"center"}
-                fontSize={"xs"}
-                fontWeight={"bold"}
-              >
-                Relax and enjoy steady weight loss
-              </Text>
-            </Stack>
-          </Grid>
+        <Text>
+          If you’re stuck at a weight that doesn’t make you happy, you owe yourself to try Bioma.
+          You won’t recognize yourself or your health.”
+        </Text>
+
+        <Stack direction={"row"} alignItems={"center"} justifyContent={"space-between"}>
+          <Text fontWeight={"bold"} fontSize={"sm"}>
+            Barbara T.
+          </Text>
+
+          <Stack direction={"row"} spacing={1} alignItems={"center"} color={"green.500"}>
+            <Icon as={FaCheckCircle} />
+            <Text fontWeight={"bold"} fontSize={"sm"}>
+              Verified customer
+            </Text>
+          </Stack>
         </Stack>
 
         <Stack>

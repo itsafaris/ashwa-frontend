@@ -10,8 +10,8 @@ export function HowItWorksSlide() {
         <Heading>Wondering how quickly you can notice a difference?</Heading>
 
         <Subtitle>
-          By incorporating Calmr into your routine you're setting the stage for a healthier life and
-          a more successful weight loss outcome.
+          Our carefully curated, science-backed formula starts working from day one, helping you to
+          rebalance your vaginal flora and reach optimal feminine health.
         </Subtitle>
 
         <Stack>
