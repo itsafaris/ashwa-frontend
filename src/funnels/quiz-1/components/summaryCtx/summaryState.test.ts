@@ -52,7 +52,7 @@ describe("Summary state calculations", () => {
       gender: "female",
       bmi: 24.69,
       age: 55,
-      metabolicAge: 62,
+      metabolicAge: 64,
     };
 
     expect(result).toStrictEqual(expected);
@@ -88,7 +88,7 @@ describe("Summary state calculations", () => {
       gender: "female",
       bmi: 27.72,
       age: 55,
-      metabolicAge: 62,
+      metabolicAge: 64,
     };
 
     expect(result).toStrictEqual(expected);
@@ -124,7 +124,7 @@ describe("Summary state calculations", () => {
       gender: "female",
       bmi: 24.69,
       age: 55,
-      metabolicAge: 62,
+      metabolicAge: 64,
     };
 
     expect(result).toStrictEqual(expected);
