@@ -7,6 +7,7 @@ import {
   useQuizSnapshot,
   useSlideState,
 } from "@lib/quiz-lib";
+import { FaArrowUp } from "react-icons/fa";
 
 import { NextButton, QuizHeading } from "../components/ui";
 import { StaticImage } from "gatsby-plugin-image";
@@ -111,21 +112,35 @@ export function LackOfSleepGraphicSlide() {
   return (
     <Slide id="lack-of-sleep-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        It takes{" "}
+        Poor sleep{" "}
         <Text as="span" color="black" backgroundColor={"red.100"}>
-          twice as long to lose that weight
+          drastically reduces the body's ability to lose weight
         </Text>{" "}
-        as a result of stress-related sleep deprivation.
+        , cutting its effectiveness by half
       </QuizHeading>
 
-      <Text fontSize={"xs"} mb={4}>
-        Hormones are disrupted, metabolism is slowed, hunger is increased, body's ability to lose
-        weight is reduced by 60%.
-      </Text>
+      <Stack spacing={0}>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Hormones are disrupted</Text>
+        </Stack>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Metabolism is slowed</Text>
+        </Stack>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Hunger is increased</Text>
+        </Stack>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Body's ability to lose weight is reduced by 60%</Text>
+        </Stack>
+      </Stack>
 
       <Box mx="auto">
         <StaticImage
-          src="../../../images/poor-sleep-graphic.jpg"
+          src="../../../images/poor-sleep-graphic-2.jpg"
           alt="effects of lack of sleep for weight gain"
           width={320}
         />
@@ -198,21 +213,34 @@ export function StressFrequencyGraphicSlide() {
   return (
     <Slide id="cortisol-graphic" type="filler">
       <QuizHeading color="text.main" mb={4}>
-        Your body{" "}
+        Unmanaged stress makes your body{" "}
         <Text as="span" color="black" backgroundColor={"red.100"}>
-          gains weight up to 3 times faster
-        </Text>{" "}
-        due to prolonged or unmanaged stress.
+          gain weight up to 3 times faster
+        </Text>
       </QuizHeading>
 
-      <Text fontSize={"xs"} mb={3}>
-        Stress raises cortisol, boosting cravings for high-calorie foods, increasing belly fat, and
-        impairing sleep and exercise routines.
-      </Text>
+      <Stack mb={3} spacing={0}>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Stress raises cortisol</Text>
+        </Stack>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Boosts cravings for high-calorie foods</Text>
+        </Stack>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Increases belly fat</Text>
+        </Stack>
+        <Stack direction="row" alignItems={"center"}>
+          <Icon as={FaArrowUp} color="red.600" boxSize={3} />
+          <Text fontSize={"sm"}>Impairs sleep and exercise routines</Text>
+        </Stack>
+      </Stack>
 
       <Box mx="auto">
         <StaticImage
-          src="../../../images/cortisol-graphic.jpg"
+          src="../../../images/cortisol-graphic-2.jpg"
           alt="effects of stress for weight gain"
           width={320}
         />
