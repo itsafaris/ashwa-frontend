@@ -42,7 +42,15 @@ function consumeParams() {
   const newParams = new URLSearchParams(window.location.search);
   newParams.delete("gender");
   newParams.delete("resetstate");
-  history.replaceState(null, "", `?${newParams.toString()}`);
+
+  let url = `?${newParams.toString()}`;
+
+  const hash = window.location.hash;
+  if (hash) {
+    url = url + hash;
+  }
+
+  history.replaceState(null, "", url);
 }
 
 type PageParams = ReturnType<typeof parsePageParams>;
