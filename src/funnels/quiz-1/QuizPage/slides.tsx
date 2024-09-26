@@ -32,7 +32,7 @@ export function GoalsSlide() {
       ]}
     >
       <QuizHeading color="text.main" mb={4}>
-        What are your goals?
+        Hey! Let's begin by having you tell us about your goals
       </QuizHeading>
       <Stack mt={4} mb={2}>
         <Selector mt={0} mb={0} />
