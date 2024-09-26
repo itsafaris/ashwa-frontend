@@ -109,7 +109,8 @@ export function QuizPage(props: PageProps) {
         }}
       >
         <Segment title="Progress">
-          <HealthStateSlide />
+          {/* <HealthStateSlide /> */}
+          <GoalsSlide />
           <SymptomsSlide />
           <StressFrequencySlide />
           <LackOfSleepSlide />
@@ -117,7 +118,6 @@ export function QuizPage(props: PageProps) {
           <StressFrequencyGraphicSlide />
           <LackOfSleepGraphicSlide />
           <EmotionalEatingSlide />
-          <GoalsSlide />
           <WeGotYouSlide />
           <AgeSlide />
           <HeightSlide />
